@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="baichen"><meta name="renderer" content="webkit"><meta name="copyright" content="baichen"><meta name="keywords" content="AzureManor"><meta name="description" content="黑石的博客"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>baichen's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="alternate" href="/atom.xml" title="AzureManor" type="application/atom+xml">
+</head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="https://s2.ax1x.com/2019/06/13/VhRMGV.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">blackstone</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">baichen's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title"></h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2021-01-15</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><p>$(x, y)  -&gt;  (u, y)$</p>
+<p>$u = a_1x+b_1y+c_1$</p>
+<p>$v = a_2x+b_2+c_2$</p>
+<p>矩阵形式<br>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>a_1 &amp; b_1\<br>a_2 &amp; b_2\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>c_1\<br>c_2\<br>\end{pmatrix}<br>$$</p>
+<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>绕原点旋转。</p>
+<p>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>cos\theta &amp; -sin\theta\<br>-sin\theta &amp; cos\theta\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>0\<br>0\<br>\end{pmatrix}<br>$$</p>
+<h2 id="刚体变换"><a href="#刚体变换" class="headerlink" title="刚体变换"></a>刚体变换</h2><p>旋转+平移也称刚体变换（Rigid Transform），就是说如果图像变换前后<strong>两点间的距离</strong>仍然保持不变，那么这种变化就称为刚体变换。<br>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>cos\theta &amp; -sin\theta\<br>sin\theta &amp; cos\theta\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>t_X\<br>t_y\<br>\end{pmatrix}<br>$$</p>
+<h2 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h2><h3 id="垂直翻转"><a href="#垂直翻转" class="headerlink" title="垂直翻转"></a>垂直翻转</h3><p>$u=x; v=-y$</p>
+<p>矩阵形式<br>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>1 &amp; 0\<br>0 &amp; -1\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>0\<br>0\<br>\end{pmatrix}<br>$$</p>
+<h3 id="水平翻转"><a href="#水平翻转" class="headerlink" title="水平翻转"></a>水平翻转</h3><p>$u=-x; v=y$</p>
+<p>矩阵形式<br>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>-1 &amp; 0\<br>0 &amp; 1\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>0\<br>0\<br>\end{pmatrix}<br>$$</p>
+<h3 id="垂直水平翻转"><a href="#垂直水平翻转" class="headerlink" title="垂直水平翻转"></a>垂直水平翻转</h3><p>$u=-x; v=-y$</p>
+<p>矩阵形式<br>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>-1 &amp; 0\<br>0 &amp; -1\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>0\<br>0\<br>\end{pmatrix}<br>$$</p>
+<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>$u = s_xx; v = s_yy$</p>
+<p>矩阵形式</p>
+<p>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>s_x &amp; 0\<br>0 &amp; s_y\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>0\<br>0\<br>\end{pmatrix}<br>$$</p>
+<h2 id="相似变换"><a href="#相似变换" class="headerlink" title="相似变换"></a>相似变换</h2><p>相似变换又称缩放旋转，相似变换包含了旋转、等比例缩放和平移等变换。<br>若缩放比例为scale，旋转角度为θ，旋转中心是$ (center_x,center_y) $，则仿射变换可以表示为：<br>$$<br>\begin{pmatrix}<br>u\<br>v\<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>\alpha &amp; \beta\<br>-\beta &amp; \alpha\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>\end{pmatrix}<br>+<br>\begin{pmatrix}<br>(1-\alpha)center_x &amp; -\beta center_y\<br>\beta center_x &amp; (1-\alpha)center_y\<br>\end{pmatrix}<br>$$</p>
+<h2 id="透视变换"><a href="#透视变换" class="headerlink" title="透视变换"></a>透视变换</h2><p><a href="https://baike.baidu.com/item/透视变换" target="_blank" rel="noopener">透视变换</a>（Perspective Transformation）是将二维的图片投影到一个三维视平面上，然后再转换到二维坐标下，所以也称为投影映射（Projective Mapping）。简单来说就是二维→三维→二维的一个过程。</p>
+<p>$X=a_1x+b_1y+c_1 $</p>
+<p>$Y=a_2x+b_2y+c_2$</p>
+<p>$Z=a_3x+b_3y+c_3$<br>$$<br>\begin{pmatrix}<br>X\<br>Y\<br>Z<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>a_1 &amp; b_1 &amp; c_1\<br>a_1 &amp; b_1 &amp; c_1\<br>a_1 &amp; b_1 &amp; c_1\<br>\end{pmatrix}<br>\begin{pmatrix}<br>x\<br>y\<br>1<br>\end{pmatrix}<br>$$</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://blacston.com">baichen</a></p><p> <span>Link:  </span><a href="http://blacston.com/2021/01/15/仿射变换-矩阵/">http://blacston.com/2021/01/15/仿射变换-矩阵/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="nextSlogan" href="/2021/01/14/opencv笔记/" title=""><span>NextPost ></span><br><span class="nextTitle">[Untitled Post]</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#平移"><span class="toc-number">1.</span> <span class="toc-text">平移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#旋转"><span class="toc-number">2.</span> <span class="toc-text">旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刚体变换"><span class="toc-number">3.</span> <span class="toc-text">刚体变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#翻转"><span class="toc-number">4.</span> <span class="toc-text">翻转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直翻转"><span class="toc-number">4.1.</span> <span class="toc-text">垂直翻转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平翻转"><span class="toc-number">4.2.</span> <span class="toc-text">水平翻转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直水平翻转"><span class="toc-number">4.3.</span> <span class="toc-text">垂直水平翻转</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缩放"><span class="toc-number">5.</span> <span class="toc-text">缩放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相似变换"><span class="toc-number">6.</span> <span class="toc-text">相似变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#透视变换"><span class="toc-number">7.</span> <span class="toc-text">透视变换</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

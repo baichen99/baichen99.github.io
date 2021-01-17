@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="https://s2.ax1x.com/2019/06/13/VhRMGV.pngg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="flask,数据库,ORM,Database," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ORM在web应用里使用原声sql语句操作数据库主要存在以下两类问题:  手动编写sql语句乏味，而且会降低代码易读性。还会出现安全问题 常见的开发模式时在开发时使用简单的SQLite，在部署时切换到MySQL等更健壮的DBMS。但是对于不同的DMBS，我们需要使用不同的python借口库，这让DBMS切换不那么容易。   尽管使用ORM可以避免sql注入问题，但你仍然需要对传入的查询参数进行验证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flask06-数据库">
+<meta property="og:url" content="http://blacston.com/2018/11/24/flask06/index.html">
+<meta property="og:site_name" content="黑石的技术笔记">
+<meta property="og:description" content="ORM在web应用里使用原声sql语句操作数据库主要存在以下两类问题:  手动编写sql语句乏味，而且会降低代码易读性。还会出现安全问题 常见的开发模式时在开发时使用简单的SQLite，在部署时切换到MySQL等更健壮的DBMS。但是对于不同的DMBS，我们需要使用不同的python借口库，这让DBMS切换不那么容易。   尽管使用ORM可以避免sql注入问题，但你仍然需要对传入的查询参数进行验证">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/24/FFhmPe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/24/FFhsaT.png">
+<meta property="article:published_time" content="2018-11-24T07:31:00.000Z">
+<meta property="article:modified_time" content="2021-01-16T03:39:21.288Z">
+<meta property="article:author" content="baichen">
+<meta property="article:tag" content="flask">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="ORM">
+<meta property="article:tag" content="Database">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/11/24/FFhmPe.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blacston.com/2018/11/24/flask06/"/>
+
+
+
+
+
+  <title>flask06-数据库 | 黑石的技术笔记</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黑石的技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/11/24/flask06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">flask06-数据库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-24T15:31:00+08:00">
+                2018-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">flask学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h3><p>在web应用里使用原声sql语句操作数据库主要存在以下两类问题:</p>
+<ol>
+<li>手动编写sql语句乏味，而且会降低代码易读性。还会出现安全问题</li>
+<li>常见的开发模式时在开发时使用简单的SQLite，在部署时切换到MySQL等更健壮的DBMS。但是对于不同的DMBS，我们需要使用不同的python借口库，这让DBMS切换不那么容易。</li>
+</ol>
+<hr>
+<p>尽管使用ORM可以避免sql注入问题，但你仍然需要对传入的查询参数进行验证。另外在执行原生SQL语句时也要注意避免使用字符串拼接或字符串格式化的方式传入参数。</p>
+<hr>
+<p>使用ORM可以很大程度上结局这些问题：</p>
+<ol>
+<li>自动处理查询参数的转义，避免sql注入。</li>
+<li>为不同dbms提供统一接口，让切换工作变得简单。</li>
+<li>ORM将python语言转换成dbms能够读懂的sql指令，能让我们利用python操控数据库。</li>
+</ol>
+<h4 id="ORM的三层映射关系"><a href="#ORM的三层映射关系" class="headerlink" title="ORM的三层映射关系"></a>ORM的三层映射关系</h4><ul>
+<li>表 –&gt; Python类</li>
+<li>字段(列)  –&gt;  类属性</li>
+<li>记录(行)  –&gt;  类实例</li>
+</ul>
+<h2 id="使用Flask-SQLAlchemy管理数据库"><a href="#使用Flask-SQLAlchemy管理数据库" class="headerlink" title="使用Flask-SQLAlchemy管理数据库"></a>使用Flask-SQLAlchemy管理数据库</h2><p>安装Flask-SQLAlchemy及其依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pipenv install flask-sqlalchemy</span><br></pre></td></tr></table></figure>
+<p>实例化Flask-SQLAlchemy提供的SQLAlchemy类，传入程序实例完成初始化，吧实例化扩展类的对象命名为db，这个db对象代表我们的数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from flask_sqlalchemy import SQLAlchemy</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line"></span><br><span class="line">db &#x3D; SQLAlchemy(app)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="连接数据库服务器"><a href="#连接数据库服务器" class="headerlink" title="连接数据库服务器"></a>连接数据库服务器</h3><table>
+<thead>
+<tr>
+<th align="left">DBMS</th>
+<th align="center">URI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">MySQL</td>
+<td align="center">mysql://username:password@host/databasename</td>
+</tr>
+<tr>
+<td align="left">SQLite(Unix)</td>
+<td align="center">sqlite:////absolute/path/to/foo.db</td>
+</tr>
+<tr>
+<td align="left">SQLite(Windows)</td>
+<td align="center">sqlite:///absolute\path\to\foo.db</td>
+</tr>
+<tr>
+<td align="left">SQLite(内存型)</td>
+<td align="center">sqlite:///或sqlite:///:memory</td>
+</tr>
+</tbody></table>
+<p>在Flask-SQLAlchemy中，数据库的URI通过配置变量SQLALCHEMY_DATABASE_URI设置，默认为SQLite内存型数据库。<br>SQLite是基于文件的dbms，不需要设置数据库服务器，只需要制定数据库文件的绝对路径。使用app.root_path来定位数据库文件的绝对路径，并将数据库文件命名为data.py。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">...</span><br><span class="line">app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] &#x3D; os.getenv(&#39;DATABASE_URL&#39;, &#39;sqlite:&#x2F;&#x2F;&#x2F;&#39; + </span><br><span class="line">    os.path.jpin(app.root_path, &#39;data.db&#39;))</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p><code>os.getenv(key, default)</code> Return the value of the environment variable key if it exists, or default if it doesn’t.</p>
+<p>安装并初始化Flask-SQLAlchemy后，启动程序会看到命令行有一段警告信息。这是因为Flask-SQLAlchemy建议你设置<code>SQLALCHEMY_TRACK_MODIFICATIONS</code>配置变量，这个配置决定是否追踪对象的修改，这用语Flask-SQLAlchemy的事件通知系统，如果没有特殊需求设置为False，来关闭警告信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.config[&#39;SQLALCHEMY_TRACK_MODIFICATIONS&#39;] &#x3D; False</span><br></pre></td></tr></table></figure>
+<h3 id="定义数据库模型"><a href="#定义数据库模型" class="headerlink" title="定义数据库模型"></a>定义数据库模型</h3><p>用来映射到数据库表的python类被称为数据库模型(models)。一个数据库模型类对应数据库中的一个表，所有的模型类都需要继承Flask-SQLAlchemy提供的db.Model基类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Note</span>(<span class="params">db.model</span>):</span></span><br><span class="line">    <span class="built_in">id</span> = db.Colum(db.integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">    body = db.Colum(db.Text)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>SQLAlchemy常用字段类型</strong><br><img src="https://s1.ax1x.com/2018/11/24/FFhmPe.png"><br>字段类型一般直接声明，如果要传入参数，也可以添加括号。</p>
+<hr>
+<p>默认情况下，Flask-SQLAlchemy会根据模型类的名称生成一个名称，生成规则如下:</p>
+<ul>
+<li>单个单词转换为小写</li>
+<li>多个单词转换为小写并使用下划线分割</li>
+</ul>
+<p>如果想自己指定表名称，可以通过定义__tablename__属性来实现。</p>
+<p><strong>实例化字段类常用的字段参数</strong><br><img src="https://s1.ax1x.com/2018/11/24/FFhsaT.png"></p>
+<p>实例化字段类时，通过把参数<code>primary_key</code>设为True将其定义为主键。主键是每一条记录独一无二的标识，也是模型类中必须定义的字段。</p>
+<h3 id="创建数据库和表"><a href="#创建数据库和表" class="headerlink" title="创建数据库和表"></a>创建数据库和表</h3><p>创建模型类后，我们需要手动创建数据库和对应的表。这通过db对象的<code>create_all()</code>方法实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from app import db</span><br><span class="line"></span><br><span class="line">db.create_all()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<p>数据库和表一旦建立后，之后对模型的改动不会自动作用到实际的表中。比如在模型类中添加或删除字段，修改字段的名称和类型，这时再次调用<code>create_all()</code>方法也不会更新表结构。如果要使改动生效，最简单的方式是调用<code>db.drop_all()</code>方法删除数据库和表，然后再用<code>create_all()</code>方法创建。</p>
+<hr>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><p>SQLAlchemy使用*数据库会话/事务(transaction)*来管理数据库操作，Flask-SQLAlchemy自动帮我们创建绘画，可以通过<code>db.session</code>属性来获取。这里的会话对象和Flask中的session无关。</p>
+<p>数据库中的会话代表一个临时储存去，你对数据库做的改动都在这里，只有对session对象调用<code>commit()</code>方法时，改动才会被提交到数据库。会话也支持回滚操作，当调用<code>rollback()</code>方法是，添加到会话中且未提交的改动都将被撤销。</p>
+<h3 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h3><h4 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h4><p>添加一条新记录到数据库主要分为三步</p>
+<ol>
+<li>实例化模型类作为一条记录</li>
+<li>添加新创建的记录到数据库会话</li>
+<li>提交数据库会话<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> db, Note</span><br><span class="line"></span><br><span class="line">note1 = Note(body=<span class="string">&quot;text one&quot;</span>)</span><br><span class="line">note2 = Note(body=<span class="string">&quot;text two&quot;</span>)</span><br><span class="line">note3 = Note(body=<span class="string">&quot;text three&quot;</span>)</span><br><span class="line">db.session.add(note1)</span><br><span class="line">db.session.add(note2)</span><br><span class="line">db.session.add(note3)</span><br><span class="line"></span><br><span class="line">db.session.commit()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+Note类继承自db.Model类，db.Model基类会为Note类提供一个构造函数，接收匹配类属性名称的参数值，并赋值给对应的类属性。</li>
+</ol>
+<h3 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h3><p>使用模型的query属性<strong>附加调用</strong>各种过滤方法及查询方法可以从数据库中取出数据。<br>一般来说，一个完整的查询模式遵循下面的模式。</p>
+<p>&lt;模型类&gt;.query.&lt;过滤方法&gt;.&lt;查询方法&gt;</p>
+<p>常用的SQLAlchemy查询方法</p>
+<table>
+<thead>
+<tr>
+<th align="left">查询方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">all()</td>
+<td>返回包含所有查询记录的列表</td>
+</tr>
+<tr>
+<td align="left">first()</td>
+<td>返回查询的第一条记录，如果未找到，则返回None</td>
+</tr>
+<tr>
+<td align="left">one()</td>
+<td>返回第一条记录，若记录数量!=1则抛出错误</td>
+</tr>
+<tr>
+<td align="left">get(indent)</td>
+<td>传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回None</td>
+</tr>
+<tr>
+<td align="left">count()</td>
+<td>返回查询结果的数量</td>
+</tr>
+<tr>
+<td align="left">one_or_none()</td>
+<td>如果结果数量不唯一，则返回None</td>
+</tr>
+<tr>
+<td align="left">first_or_404</td>
+<td>返回第一条，如果未找到则返回404错误响应</td>
+</tr>
+<tr>
+<td align="left">get_or_404(indent)</td>
+<td>传入主键值作为参数，返回对应主键值的记录，如果未找到，则返回404错误响应</td>
+</tr>
+<tr>
+<td align="left">paginate</td>
+<td>返回一个Pagination对象，可以对记录进行分页处理</td>
+</tr>
+<tr>
+<td align="left">with_parent(instance)</td>
+<td>传入模型实例作为参数，返回和这个实例相关联的对象</td>
+</tr>
+</tbody></table>
+<p>SQLAlchemy还提供了许多过滤方法，可以获取更精确的查询。因为对Query对象调用过滤方法将返回一个更精确的Query对象，使用过滤器可以叠加使用。</p>
+<p>常用的SQLAlchemy过滤方法</p>
+<table>
+<thead>
+<tr>
+<th align="left">查询过滤器</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">filter()</td>
+<td align="left">使用指定的规则过滤记录，返回新产生的查询对象</td>
+</tr>
+<tr>
+<td align="left">filter_by()</td>
+<td align="left">使用指定规则过滤记录，返回新的查询对象</td>
+</tr>
+<tr>
+<td align="left">order_by</td>
+<td align="left">根据指定条件对记录进行排序，返回新产生的查询对象</td>
+</tr>
+<tr>
+<td align="left">limit(limit)</td>
+<td align="left">根据指定的值限制原查询返回的记录数量，返回新产生的查询对象</td>
+</tr>
+<tr>
+<td align="left">group_by()</td>
+<td align="left">根据指定的值对记录进行分组，返回新产生的查询对象</td>
+</tr>
+<tr>
+<td align="left">offset(offset)</td>
+<td align="left">使用指定的值偏移原查询结果，返回新产生的查询对象</td>
+</tr>
+</tbody></table>
+<p><code>Note.query.filter(Note.body==&#39;note one&#39;).first()</code><br>其他常用查询操作符：<br><strong>LIKE</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(Note.body.like(&#39;%foo%&#39;))</span><br></pre></td></tr></table></figure>
+<p><strong>IN</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(Note.body.in([&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]))</span><br></pre></td></tr></table></figure>
+<p><strong>NOT IN</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(~Note.body.in([&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]))</span><br></pre></td></tr></table></figure>
+<p><strong>AND</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from sqlalchemy import and_</span><br><span class="line"># 使用and_()</span><br><span class="line">filter(and_(Note.body&#x3D;&#x3D;&#39;bar&#39;, Note.title&#x3D;&#x3D;&#39;foo&#39;))</span><br><span class="line"></span><br><span class="line"># 使用逗号分隔</span><br><span class="line">filter(Note.body&#x3D;&#x3D;&#39;bar&#39;, Note.title&#x3D;&#x3D;&#39;foo&#39;)</span><br><span class="line"></span><br><span class="line"># 叠加使用过滤方法</span><br><span class="line">filter(...).filter(...)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>OR</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sqlalchemy import or_</span><br><span class="line">filter(or_(Note.body&#x3D;&#x3D;&#39;foo&#39;, Note.title&#x3D;&#x3D;&#39;bar&#39;))</span><br></pre></td></tr></table></figure>
+<h3 id="Upate"><a href="#Upate" class="headerlink" title="Upate"></a>Upate</h3><p>直接赋值给模型类的字段属性就可以改变字段值，然后调用<code>commit()</code>方法提交会话即可。</p>
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><p>和添加记录类似，不过要用<code>delete()</code>方法，最后调用<code>commit()</code>方法提交修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; note &#x3D; Note.query(2)  # 主键为2</span><br><span class="line">&gt;&gt;&gt; db.session.delete(note)</span><br><span class="line">&gt;&gt;&gt; db.commit()</span><br></pre></td></tr></table></figure>
+<h2 id="在视图函数中操作数据库"><a href="#在视图函数中操作数据库" class="headerlink" title="在视图函数中操作数据库"></a>在视图函数中操作数据库</h2><h3 id="Create-1"><a href="#Create-1" class="headerlink" title="Create"></a>Create</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#39;&#x2F;new&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def new_note():</span><br><span class="line">    form &#x3D; NewNoteForm()</span><br><span class="line">    if form.validate_on_submit():</span><br><span class="line">        body &#x3D; form.body.data</span><br><span class="line">        note &#x3D; Note(body&#x3D;body)</span><br><span class="line">        db.session.add(note)</span><br><span class="line">        db.session.commit()</span><br><span class="line">        flash(&#39;your note is saved&#39;)</span><br><span class="line">        return redirect(url_for(&#39;index&#39;))</span><br><span class="line">    return render_template(&#39;new_note.html&#39;, form&#x3D;form)</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h3 id="Read-1"><a href="#Read-1" class="headerlink" title="Read"></a>Read</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#39;&#x2F;&#39;)</span><br><span class="line">def index():</span><br><span class="line">    form.DeleteForm()</span><br><span class="line">    notes &#x3D; Note.query.all()</span><br><span class="line">    return render_template(&#39;index.html&#39;, notes&#x3D;notes, form&#x3D;form)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>和create相似</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#39;&#x2F;edit&#x2F;&lt;int:note_id&gt;&#39;, methods&#x3D;[&#39;GET&#39;, &#39;POST&#39;])</span><br><span class="line">def edit_note(note_id):</span><br><span class="line">    form &#x3D; EditNoteForm()</span><br><span class="line">    note &#x3D; Note.query.get(note_id)</span><br><span class="line">    if form.validate_on_submit():</span><br><span class="line">        note.body &#x3D; form.body.data</span><br><span class="line">        db.session.commit()</span><br><span class="line">        flash(&#39;note is updated&#39;)</span><br><span class="line">        return redirect(url_for(&#39;index&#39;))</span><br><span class="line">    form.body.data &#x3D; note.body</span><br><span class="line">    return render_template(&#39;edit_note.html&#39;, form)</span><br></pre></td></tr></table></figure>
+<h3 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h3><p>不能添加一个指向删除视图的链接，因为有CSRF攻击的风险，像删除这类修改数据的操作绝对不能通过get请求实现，<strong>正确的做法</strong>是为删除操作创建一个表单。如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DeleteNoteForm</span>(<span class="params">FlaskForm</span>):</span></span><br><span class="line">    submit = SubmitField(<span class="string">&#x27;Delete&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#39;&#x2F;delete&#x2F;&lt;int:note_id&gt;&#39;, methods&#x3D;[&#39;POST&#39;])</span><br><span class="line">def delete_note(note_id):</span><br><span class="line">    form &#x3D; DeleteNoteForm()</span><br><span class="line">    if form.validate_on_submit():   # 主要是验证CSRF令牌，要在模板中手动渲染form.csrf_token</span><br><span class="line">        note &#x3D; Note.query.get(note_id)</span><br><span class="line">        db.session.delete(note)</span><br><span class="line">        db.session.commit()</span><br><span class="line">        flash(&#39;note is deleted&#39;)</span><br><span class="line">    else:</span><br><span class="line">        abort(400)</span><br><span class="line">    return redirect(url_for(&#39;index&#39;))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="定义关系"><a href="#定义关系" class="headerlink" title="定义关系"></a>定义关系</h2><h3 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Author(db.Model):</span><br><span class="line">    id</span><br><span class="line">    name</span><br><span class="line">    phone</span><br><span class="line"></span><br><span class="line">class Article(db.Model):</span><br><span class="line">    id</span><br><span class="line">    title</span><br><span class="line">    body</span><br></pre></td></tr></table></figure>
+<p>目的是在Author类中添加一个articles属性，当对特定的Author对象调用articles属性会返回相关Article对象。</p>
+<h4 id="一、定义外键"><a href="#一、定义外键" class="headerlink" title="一、定义外键"></a>一、定义外键</h4><p>外键是在表A存储表B的<em>主键值</em>，以便和表B建立联系的关系字段。因为怪键只能存储单一数据（标量），使用外键总是在“多”的一侧定义，多篇文章属于一个作者，所以我们需要在文章添加外键，存储作者的主键值以指向对应的作者。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Article(db.Model):</span><br><span class="line">    ...</span><br><span class="line">    author_id &#x3D; db.Colum(db.Interger, db.ForeignKey(&#39;author.id&#39;))</span><br></pre></td></tr></table></figure>
+<p>外键字段的命名没有限制，但传入ForeignKey类的参数<code>author.id</code>中，author指的是表名，id是字段名。默认为类的名称的小写形式，多个单词通过下划线分割。可以通过<code>__tablename__</code>属性指定。</p>
+<h4 id="二、定义关系属性"><a href="#二、定义关系属性" class="headerlink" title="二、定义关系属性"></a>二、定义关系属性</h4><p>定义关系的第二部是使用关系函数定义关系属性。<strong>关系属性在关系的出发侧定义</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Author(db.Model):</span><br><span class="line">    ...</span><br><span class="line">    articles &#x3D; db.relationship(&#39;Aticle&#39;)</span><br></pre></td></tr></table></figure>
+<p>这个属性并没有使用Column类来声明为列，而是使用了<code>db.relationship()</code>定义为关系属性。因为这个关系属性返回多条记录，我们称之为<em>集合关系属性</em>。<br>relationship()函数的第一个参数为关系另一侧模型的名称，他会告诉SQLAlchemy将Author类与Article类建立关系。当这个关系被调用时，SQLAlchemy会找到关系另一侧的外键字段(author_id)，然后反响查询article表中所有author_id值为当前主键值(author.id)的记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; foo &#x3D; Author(name&#x3D;&#39;foo&#39;)</span><br><span class="line">&gt;&gt;&gt; spam &#x3D; Aticle(title&#x3D;&#39;spam&#39;)</span><br><span class="line">&gt;&gt;&gt; ham &#x3D; Article(title&#x3D;&#39;ham&#39;)</span><br><span class="line">&gt;&gt;&gt; db.session.add(foo)</span><br><span class="line">&gt;&gt;&gt; db.session.add(spam)</span><br><span class="line">&gt;&gt;&gt; db.session.add(ham)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="三、建立关系"><a href="#三、建立关系" class="headerlink" title="三、建立关系"></a>三、建立关系</h3><p>有两种方式，第一种是为外键赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; spam.author_id &#x3D; 1</span><br><span class="line">&gt;&gt;&gt; db.session.commit()</span><br></pre></td></tr></table></figure>
+<p>将spam的author_id设为1，会和id为1的Author建立关系。</p>
+<p>另一种方式是通过操作关系属性，将关系属性赋值给实际的对象即可建立关系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; foo.articles.append(spam)</span><br><span class="line">&gt;&gt;&gt; foo.articles.append(ham)</span><br><span class="line">&gt;&gt;&gt; db.session.commit()</span><br></pre></td></tr></table></figure>
+<p>使用<code>remove()</code>方法可以解除关系，<code>pop()</code>方法可以与关系属性列表的最后一个对象解除关系并返回该对象。</p>
+<p>常用的SQLAlchemy关系函数参数</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数名</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">back_populates</td>
+<td align="left">定义反向引用，用于建立双向关系，在关系的另一侧也必须现实定义关系属性</td>
+</tr>
+<tr>
+<td align="left">backref</td>
+<td align="left">添加反向引用，自动在另一侧建立关系属性</td>
+</tr>
+<tr>
+<td align="left">lazy</td>
+<td align="left">指定如何加载相关记录</td>
+</tr>
+<tr>
+<td align="left">useklist</td>
+<td align="left">指定是否使用列表形式加载记录</td>
+</tr>
+<tr>
+<td align="left">cascade</td>
+<td align="left">设置级联操作</td>
+</tr>
+<tr>
+<td align="left">order_by</td>
+<td align="left">指定家在相关记录时的排序方式</td>
+</tr>
+<tr>
+<td align="left">secondary</td>
+<td align="left">在多对多关系中指定关联表</td>
+</tr>
+<tr>
+<td align="left">primaryjoin</td>
+<td align="left">指定多对多关系中的一级联结条件</td>
+</tr>
+<tr>
+<td align="left">secondaryjoin</td>
+<td align="left">指定多对多关系中的二级联结条件</td>
+</tr>
+</tbody></table>
+<p>常用的SQLAlchemy关系记录加载方式(lazy参数可选值)</p>
+<table>
+<thead>
+<tr>
+<th align="left">关系加载方式</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">select</td>
+<td align="left">在必要时一次性加载疾苦，返回包含记录的列表，等同于lazy=True</td>
+</tr>
+<tr>
+<td align="left">joined</td>
+<td align="left">和父查询一样加载记录，但使用联结，等同于lazy=False</td>
+</tr>
+<tr>
+<td align="left">immediate</td>
+<td align="left">一旦父查询加载就加载</td>
+</tr>
+<tr>
+<td align="left">subquery</td>
+<td align="left">类似joined，不过使用自查询</td>
+</tr>
+<tr>
+<td align="left">dymamic</td>
+<td align="left">不知加载记录，而是返回一个包含相关记录的query对象</td>
+</tr>
+</tbody></table>
+<h3 id="建立双向关系"><a href="#建立双向关系" class="headerlink" title="建立双向关系"></a>建立双向关系</h3><p>两侧都添加关系属性获取对方记录的关系为双向关系。双向关系的建立很简单，通过在关系的另一侧也创建一个relationship()函数，我们就可以在两个表之间建立双向关系。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flask/" rel="tag"># flask</a>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/ORM/" rel="tag"># ORM</a>
+          
+            <a href="/tags/Database/" rel="tag"># Database</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/22/flask05/" rel="next" title="flask05-表单">
+                <i class="fa fa-chevron-left"></i> flask05-表单
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/13/go-string/" rel="prev" title="go string">
+                go string <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ORM"><span class="nav-number">1.</span> <span class="nav-text">ORM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ORM%E7%9A%84%E4%B8%89%E5%B1%82%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">ORM的三层映射关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Flask-SQLAlchemy%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number"></span> <span class="nav-text">使用Flask-SQLAlchemy管理数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">连接数据库服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">定义数据库模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">创建数据库和表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">数据库操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CURD"><span class="nav-number">5.</span> <span class="nav-text">CURD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Create"><span class="nav-number">5.1.</span> <span class="nav-text">Create</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read"><span class="nav-number">6.</span> <span class="nav-text">Read</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Upate"><span class="nav-number">7.</span> <span class="nav-text">Upate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete"><span class="nav-number">8.</span> <span class="nav-text">delete</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number"></span> <span class="nav-text">在视图函数中操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-1"><span class="nav-number">1.</span> <span class="nav-text">Create</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-1"><span class="nav-number">2.</span> <span class="nav-text">Read</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update"><span class="nav-number">3.</span> <span class="nav-text">Update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Delete"><span class="nav-number">4.</span> <span class="nav-text">Delete</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%85%B3%E7%B3%BB"><span class="nav-number"></span> <span class="nav-text">定义关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%AF%B9%E5%A4%9A"><span class="nav-number">1.</span> <span class="nav-text">一对多</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%9A%E4%B9%89%E5%A4%96%E9%94%AE"><span class="nav-number">1.1.</span> <span class="nav-text">一、定义外键</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9A%E4%B9%89%E5%85%B3%E7%B3%BB%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">二、定义关系属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%BB%BA%E7%AB%8B%E5%85%B3%E7%B3%BB"><span class="nav-number">2.</span> <span class="nav-text">三、建立关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%8F%8C%E5%90%91%E5%85%B3%E7%B3%BB"><span class="nav-number">3.</span> <span class="nav-text">建立双向关系</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baichen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

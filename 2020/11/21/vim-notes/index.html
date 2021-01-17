@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="https://s2.ax1x.com/2019/06/13/VhRMGV.pngg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vim," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="移动光标gg 移动到第一行G    移动到最后一行0 到行首（第 1 列）^ 到第一个非空白字符$ 到行尾gg  移动到第n行Ctrl-d 向下移动半页Ctrl-u 向上移动半页 增删改查增a (append)i (insert)o (open a line)以上三种都是在当前字符&#x2F;行后插入 A    行尾插入I    行头插入O    向上新建一行 删 d deleted$    删除当前字符到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim笔记">
+<meta property="og:url" content="http://blacston.com/2020/11/21/vim-notes/index.html">
+<meta property="og:site_name" content="黑石的技术笔记">
+<meta property="og:description" content="移动光标gg 移动到第一行G    移动到最后一行0 到行首（第 1 列）^ 到第一个非空白字符$ 到行尾gg  移动到第n行Ctrl-d 向下移动半页Ctrl-u 向上移动半页 增删改查增a (append)i (insert)o (open a line)以上三种都是在当前字符&#x2F;行后插入 A    行尾插入I    行头插入O    向上新建一行 删 d deleted$    删除当前字符到">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-21T04:33:48.000Z">
+<meta property="article:modified_time" content="2021-01-16T03:39:21.276Z">
+<meta property="article:author" content="baichen">
+<meta property="article:tag" content="vim">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blacston.com/2020/11/21/vim-notes/"/>
+
+
+
+
+
+  <title>vim笔记 | 黑石的技术笔记</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黑石的技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2020/11/21/vim-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vim笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-21T12:33:48+08:00">
+                2020-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h2><p>gg 移动到第一行<br>G    移动到最后一行<br>0 到行首（第 1 列）<br>^ 到第一个非空白字符<br>$ 到行尾<br><n>gg  移动到第n行<br>Ctrl-d 向下移动半页<br>Ctrl-u 向上移动半页</p>
+<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p>a (append)<br>i (insert)<br>o (open a line)<br>以上三种都是在当前字符/行后插入</p>
+<p>A    行尾插入<br>I    行头插入<br>O    向上新建一行</p>
+<h3 id="删-d-delete"><a href="#删-d-delete" class="headerlink" title="删 d delete"></a>删 d delete</h3><p>d$    删除当前字符到行末的内容<br>x    删除当前字符<br>dd    剪切当前行<br>di(    删除()中间的字符<br>dw    删除当前单词</p>
+<h3 id="改-c-change"><a href="#改-c-change" class="headerlink" title="改 c change"></a>改 c change</h3><p>u    撤销<br>.     重复<br>:%s/a/b   全局把a替换成b<br>:s/a/b    替换当前行第一个a为b<br>:s/a/b/g    替换当前行所有a为b<br>:n,$s/a/b    替换第n行到最后一行的a为b</p>
+<p>ciw     change inner word</p>
+<ul>
+<li>比如(asdasd) 输入ci(就可以修改括号中间的内容<br>ctw    change to word</li>
+<li>比如ct) 就修改 asdasd) 做括号左边的内容</li>
+</ul>
+<h3 id="查-f-find"><a href="#查-f-find" class="headerlink" title="查 f find"></a>查 f find</h3><p>f<x>    在当前行查找第一个字符x，按;查找下一个，按,查找上一个<br>F<x>    反向查找</p>
+<p>/word    全文查找单词 按n查找下一个，按N查找上一个<br>?word    反向查找</p>
+<h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3><p>y    复制<br>yy    复制当前行<br>p    粘贴<br>P    在上一行粘贴</p>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p><opration> <motion><br>d3h    向左删除三个字符<br>df:    删除当前行:前的内容<br>y$    复制当前字符到末尾</p>
+<h2 id="配置文件-vimrc"><a href="#配置文件-vimrc" class="headerlink" title="配置文件 .vimrc"></a>配置文件 .vimrc</h2><p>在<code>~</code>文件夹下新建一个.vimrc文件</p>
+<h2 id="visual-模式"><a href="#visual-模式" class="headerlink" title="visual 模式"></a>visual 模式</h2><p>在普通模式下按v进入可视模式<br>V    进入可视行模式</p>
+<ul>
+<li>选中后输入:normal <command> 可以执行normal指令</li>
+<li>选中后:normal A.png 在每行后面添加.png后缀<br>ctrl+v    进入可视块模式</li>
+</ul>
+<h2 id="分屏"><a href="#分屏" class="headerlink" title="分屏"></a>分屏</h2><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>到<a target="_blank" rel="noopener" href="https://github.com/junegunn/vim-plug">https://github.com/junegunn/vim-plug</a>根据提示安装<code>vim-plug</code> 并且修改配置文件</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vim/" rel="tag"># vim</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/05/raspberry-os/" rel="next" title="树莓派安装系统">
+                <i class="fa fa-chevron-left"></i> 树莓派安装系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/17/pyton-commandline-arguments/" rel="prev" title="python 命令行参数">
+                python 命令行参数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E5%85%89%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">移动光标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E"><span class="nav-number">2.1.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0-d-delete"><span class="nav-number">2.2.</span> <span class="nav-text">删 d delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9-c-change"><span class="nav-number">2.3.</span> <span class="nav-text">改 c change</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5-f-find"><span class="nav-number">2.4.</span> <span class="nav-text">查 f find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4"><span class="nav-number">2.5.</span> <span class="nav-text">复制粘贴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.6.</span> <span class="nav-text">格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-vimrc"><span class="nav-number">3.</span> <span class="nav-text">配置文件 .vimrc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visual-%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">visual 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%8F"><span class="nav-number">5.</span> <span class="nav-text">分屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">插件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baichen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

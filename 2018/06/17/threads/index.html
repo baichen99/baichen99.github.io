@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="https://s2.ax1x.com/2019/06/13/VhRMGV.pngg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,线程," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程">
+<meta property="og:url" content="http://blacston.com/2018/06/17/threads/index.html">
+<meta property="og:site_name" content="黑石的技术笔记">
+<meta property="og:description" content="Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-06-17T08:31:04.000Z">
+<meta property="article:modified_time" content="2021-01-16T03:39:21.276Z">
+<meta property="article:author" content="baichen">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="线程">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blacston.com/2018/06/17/threads/"/>
+
+
+
+
+
+  <title>线程 | 黑石的技术笔记</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黑石的技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/17/threads/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">线程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-17T16:31:04+08:00">
+                2018-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading</p>
+<a id="more"></a>
+<h2 id="使用threading创建多线程"><a href="#使用threading创建多线程" class="headerlink" title="使用threading创建多线程"></a>使用threading创建多线程</h2><p>有两种方法</p>
+<p>第一种方法是:把一个函数传入并创建Thread实例,然后调用start方法开始执行</p>
+<p>第二种方法是:从threading.Thread<strong>继承</strong>并创建线程类, 然后<strong>重写</strong>__init__方法和run方法</p>
+<p>方法一演示如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time, threading</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_run</span>(<span class="params">urls</span>):</span></span><br><span class="line">    print(<span class="string">&quot;Current process %s is running&quot;</span> % threading.current_thread().name)</span><br><span class="line">    <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">        print(<span class="string">&quot;%s ------&gt; %s&quot;</span> % (threading.current_thread().name, url))</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;%s is running...&quot;</span> % threading.current_thread().name)</span><br><span class="line">t1 = threading.Thread(target=thread_run, name=<span class="string">&quot;thread1&quot;</span>, args=([<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>],))</span><br><span class="line">t2 = threading.Thread(target=thread_run, name=<span class="string">&quot;thread2&quot;</span>, args=([<span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;8&#x27;</span>],))</span><br><span class="line"></span><br><span class="line">t1.start()</span><br><span class="line">t2.start()</span><br><span class="line">t1.join()</span><br><span class="line">t2.join()</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">MainThread is running...</span><br><span class="line">Current process thread1 is running</span><br><span class="line">thread1 ------&gt; 1</span><br><span class="line">Current process thread2 is running</span><br><span class="line">thread2 ------&gt; 5</span><br><span class="line">thread1 ------&gt; 2</span><br><span class="line">thread2 ------&gt; 6</span><br><span class="line">thread1 ------&gt; 3</span><br><span class="line">thread2 ------&gt; 7</span><br><span class="line">thread2 ------&gt; 8</span><br><span class="line">thread1 ------&gt; 4</span><br><span class="line">thread1 ended</span><br><span class="line">thread2 ended</span><br><span class="line">MainThread ended</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>方法二</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random, threading, time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span>(<span class="params">threading.Thread</span>):</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name, urls</span>):</span></span><br><span class="line">        threading.Thread.__init__(self, name=name)</span><br><span class="line">        self.urls = urls</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(<span class="string">&quot;Current %s is running...&quot;</span> % threading.current_thread().name)</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> self.urls:</span><br><span class="line">            print(<span class="string">&quot;%s ---&gt;&gt;&gt; %s&quot;</span> % (threading.current_thread().name, url))</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line">        print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br><span class="line">print(<span class="string">&quot;%s is running&quot;</span> % threading.current_thread().name)</span><br><span class="line">t1 = MyThread(name=<span class="string">&quot;Thread1&quot;</span>, urls=[<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>])</span><br><span class="line">t2 = MyThread(name=<span class="string">&quot;Thread2&quot;</span>, urls=[<span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>])</span><br><span class="line">t1.start()</span><br><span class="line">t2.start()</span><br><span class="line">t1.join()</span><br><span class="line">t2.join()</span><br><span class="line">print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br></pre></td></tr></table></figure>
+<p>运行结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">MainThread is running</span><br><span class="line">Current Thread1 is running...</span><br><span class="line">Thread1 ---&gt;&gt;&gt; 1</span><br><span class="line">Current Thread2 is running...</span><br><span class="line">Thread2 ---&gt;&gt;&gt; 4</span><br><span class="line">Thread2 ---&gt;&gt;&gt; 5</span><br><span class="line">Thread1 ---&gt;&gt;&gt; 2</span><br><span class="line">Thread2 ---&gt;&gt;&gt; 6</span><br><span class="line">Thread1 ---&gt;&gt;&gt; 3</span><br><span class="line">Thread2 ended</span><br><span class="line">Thread1 ended</span><br><span class="line">MainThread ended</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h2><p>多个线程对某个数据进行修改可能会出现错误, 使用Thread对象的Lock和RLock方法可以实现简单的线程同步,这两个对象都有acquire方法和release方法, 对于哪些每次只允许一个线程操作的数据, 可以将其操作放到acquire和release之间<br>对于<strong>Lock对象</strong>如果一个线程进行两次aquire,由于没有release第二次的aquire将会挂起,造成死锁<br><strong>RLock</strong>对象允许一个线程多次对其进行acquire操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RLock使多个线程不能同时更改变量</span></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">mylock = threading.RLock()</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span>(<span class="params">threading.Thread</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        初始化</span></span><br><span class="line"><span class="string">        :param name: 线程名称</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        threading.Thread.__init__(self, name=name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">global</span> num</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            mylock.acquire()</span><br><span class="line">            print(<span class="string">&quot;%s locked, Number: %d&quot;</span> % (threading.current_thread().name, num))</span><br><span class="line">            <span class="keyword">if</span> num &gt;= <span class="number">4</span>:</span><br><span class="line">                mylock.release()</span><br><span class="line">                print(<span class="string">&quot;%s released, Number: %d&quot;</span> % (threading.current_thread().name, num))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">            print(<span class="string">&quot;%s released, Number: %d&quot;</span> % (threading.current_thread().name, num))</span><br><span class="line">            mylock.release()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    thread1 = MyThread(<span class="string">&#x27;thread1&#x27;</span>)</span><br><span class="line">    thread2 = MyThread(<span class="string">&#x27;thread2&#x27;</span>)</span><br><span class="line">    thread1.start()</span><br><span class="line">    thread2.start()</span><br></pre></td></tr></table></figure>
+<p>执行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">thread1 locked, Number: 0</span><br><span class="line">thread1 released, Number: 1</span><br><span class="line">thread1 locked, Number: 1</span><br><span class="line">thread1 released, Number: 2</span><br><span class="line">thread1 locked, Number: 2</span><br><span class="line">thread1 released, Number: 3</span><br><span class="line">thread1 locked, Number: 3</span><br><span class="line">thread1 released, Number: 4</span><br><span class="line">thread1 locked, Number: 4</span><br><span class="line">thread1 released, Number: 4</span><br><span class="line">thread2 locked, Number: 4</span><br><span class="line">thread2 released, Number: 4</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag"># 线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/15/jincheng/" rel="next" title="进程">
+                <i class="fa fa-chevron-left"></i> 进程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/25/shu-cookies/" rel="prev" title="Cookie处理(requests库)">
+                Cookie处理(requests库) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8threading%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">使用threading创建多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">2.</span> <span class="nav-text">线程同步</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baichen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

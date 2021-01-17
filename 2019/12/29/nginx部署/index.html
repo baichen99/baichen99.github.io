@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="https://s2.ax1x.com/2019/06/13/VhRMGV.pngg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="flask,vue,nginx,部署," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="买服务器 ubuntu系统 开启80 8080端口 教程   安装nginx 123apt updateapt upgradesudo apt install nginx 测试nginx 1sudo service nginx restart 然后访问ip地址 如何查看公网ip  安装docker docker安装教程  编写dockerfile文件 12345678910FROM python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flask+gunicorn+nginx部署">
+<meta property="og:url" content="http://blacston.com/2019/12/29/nginx%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="黑石的技术笔记">
+<meta property="og:description" content="买服务器 ubuntu系统 开启80 8080端口 教程   安装nginx 123apt updateapt upgradesudo apt install nginx 测试nginx 1sudo service nginx restart 然后访问ip地址 如何查看公网ip  安装docker docker安装教程  编写dockerfile文件 12345678910FROM python">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-29T02:43:00.000Z">
+<meta property="article:modified_time" content="2021-01-16T03:39:21.280Z">
+<meta property="article:author" content="baichen">
+<meta property="article:tag" content="flask">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="部署">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blacston.com/2019/12/29/nginx部署/"/>
+
+
+
+
+
+  <title>flask+gunicorn+nginx部署 | 黑石的技术笔记</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黑石的技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/12/29/nginx%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">flask+gunicorn+nginx部署</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-29T10:43:00+08:00">
+                2019-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>买服务器</li>
+<li>ubuntu系统</li>
+<li>开启80 8080端口 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/codeman-hf/p/10535923.html">教程</a></li>
+</ol>
+<ol>
+<li><p>安装nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt upgrade</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure></li>
+<li><p>测试nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+<p>然后访问ip地址 <a target="_blank" rel="noopener" href="https://blog.csdn.net/ssssSFN/article/details/89501469">如何查看公网ip</a></p>
+</li>
+<li><p>安装docker <a target="_blank" rel="noopener" href="https://www.runoob.com/docker/ubuntu-docker-install.html">docker安装教程</a></p>
+</li>
+<li><p>编写dockerfile文件</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.8</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir /home/web &amp;&amp; <span class="built_in">cd</span> /home/web</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /home/web</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./backend/* /home/web/</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -r ./requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/  \</span></span><br><span class="line"><span class="bash">    &amp;&amp; pip install gunicorn</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">&quot;gunicorn&quot;</span>, <span class="string">&quot;-w&quot;</span>, <span class="string">&quot;5&quot;</span>,  <span class="string">&quot;api:app&quot;</span>]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker build . flask:0.1</span><br><span class="line">docker save [image_id] &gt; docker.tar</span><br></pre></td></tr></table></figure></li>
+<li><p>在服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i docker.tar</span><br></pre></td></tr></table></figure></li>
+<li><p><code>npm run build &amp;&amp; scp dist/* root@ip:path/</code></p>
+</li>
+<li><p>编写nginx配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen       80;</span><br><span class="line">	server_name  ipAddr;</span><br><span class="line"></span><br><span class="line">	location &#x2F; &#123;</span><br><span class="line">		root &#x2F;root&#x2F;app;</span><br><span class="line">		index index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">	listen       8081;</span><br><span class="line">	server_name  ipAddr;</span><br><span class="line"></span><br><span class="line">	location &#x2F; &#123;</span><br><span class="line">		proxy_pass  http:&#x2F;&#x2F;127.0.0.1:8080</span><br><span class="line">		proxy_set_header Host $host;</span><br><span class="line">		proxy_set_header X-Forwarded-For</span><br><span class="line">		$proxy_add_x_forwarded_for;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>docker run -d -p 8080:8080 image_id gunicorn -w 4 api:app</code></p>
+<p>报错说明端口占用</p>
+<p><code>ps aux | grep 8080</code></p>
+<p><code>ps -ef | grep 8080</code></p>
+</li>
+</ol>
+<h2 id="参考内容"><a href="#参考内容" class="headerlink" title="参考内容"></a>参考内容</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/doocool/p/8847288.html">Vue+Flask部署到阿里云服务器</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flask/" rel="tag"># flask</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+            <a href="/tags/%E9%83%A8%E7%BD%B2/" rel="tag"># 部署</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/18/Vuejs%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%92%8C/" rel="next" title="webpack和vue配合使用">
+                <i class="fa fa-chevron-left"></i> webpack和vue配合使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/29/vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" rel="prev" title="vue 父子组件通信">
+                vue 父子组件通信 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">参考内容</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baichen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
