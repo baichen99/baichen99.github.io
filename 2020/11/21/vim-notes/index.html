@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="移动光标gg 移动到第一行G    移动到最后一行0 到行首（第 1 列）^ 到第一个非空白字符$ 到行尾gg  移动到第n行Ctrl-d 向下移动半页Ctrl-u 向上移动半页 增删改查增a (append)i (insert)o (open a line)以上三种都是在当前字符&#x2F;行后插入 A    行尾插入I    行头插入O    向上新建一行 删 d deleted$    删除当前字符到">
+<meta name="description" content="移动光标gg 移动到第一行G    移动到最后一行0 到行首（第 1 列）^ 到第一个非空白字符$ 到行尾 gg  移动到第n行Ctrl-d 向下移动半页Ctrl-u 向上移动半页 增删改查增a (append)i (insert)o (open a line)以上三种都是在当前字符&#x2F;行后插入 A    行尾插入I    行头插入O    向上新建一行 删 d deleted$    删除当前字符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim笔记">
 <meta property="og:url" content="http://blacston.com/2020/11/21/vim-notes/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="移动光标gg 移动到第一行G    移动到最后一行0 到行首（第 1 列）^ 到第一个非空白字符$ 到行尾gg  移动到第n行Ctrl-d 向下移动半页Ctrl-u 向上移动半页 增删改查增a (append)i (insert)o (open a line)以上三种都是在当前字符&#x2F;行后插入 A    行尾插入I    行头插入O    向上新建一行 删 d deleted$    删除当前字符到">
+<meta property="og:description" content="移动光标gg 移动到第一行G    移动到最后一行0 到行首（第 1 列）^ 到第一个非空白字符$ 到行尾 gg  移动到第n行Ctrl-d 向下移动半页Ctrl-u 向上移动半页 增删改查增a (append)i (insert)o (open a line)以上三种都是在当前字符&#x2F;行后插入 A    行尾插入I    行头插入O    向上新建一行 删 d deleted$    删除当前字符">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-21T04:33:48.000Z">
-<meta property="article:modified_time" content="2021-01-16T03:39:21.276Z">
+<meta property="article:modified_time" content="2021-02-03T03:26:21.823Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="vim">
 <meta name="twitter:card" content="summary">
@@ -356,7 +356,8 @@
       
 
       
-        <h2 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h2><p>gg 移动到第一行<br>G    移动到最后一行<br>0 到行首（第 1 列）<br>^ 到第一个非空白字符<br>$ 到行尾<br><n>gg  移动到第n行<br>Ctrl-d 向下移动半页<br>Ctrl-u 向上移动半页</p>
+        <h2 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h2><p>gg 移动到第一行<br>G    移动到最后一行<br>0 到行首（第 1 列）<br>^ 到第一个非空白字符<br>$ 到行尾</p>
+<p><n>gg  移动到第n行<br>Ctrl-d 向下移动半页<br>Ctrl-u 向上移动半页</p>
 <h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p>a (append)<br>i (insert)<br>o (open a line)<br>以上三种都是在当前字符/行后插入</p>
 <p>A    行尾插入<br>I    行头插入<br>O    向上新建一行</p>
 <h3 id="删-d-delete"><a href="#删-d-delete" class="headerlink" title="删 d delete"></a>删 d delete</h3><p>d$    删除当前字符到行末的内容<br>x    删除当前字符<br>dd    剪切当前行<br>di(    删除()中间的字符<br>dw    删除当前单词</p>
@@ -377,6 +378,7 @@
 <li>选中后:normal A.png 在每行后面添加.png后缀<br>ctrl+v    进入可视块模式</li>
 </ul>
 <h2 id="分屏"><a href="#分屏" class="headerlink" title="分屏"></a>分屏</h2><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>到<a target="_blank" rel="noopener" href="https://github.com/junegunn/vim-plug">https://github.com/junegunn/vim-plug</a>根据提示安装<code>vim-plug</code> 并且修改配置文件</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ii1245712564/article/details/46496347">重复技巧</a></p>
 
       
     </div>
@@ -496,7 +498,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -507,7 +509,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -518,7 +520,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -551,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E5%85%89%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">移动光标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E"><span class="nav-number">2.1.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0-d-delete"><span class="nav-number">2.2.</span> <span class="nav-text">删 d delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9-c-change"><span class="nav-number">2.3.</span> <span class="nav-text">改 c change</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5-f-find"><span class="nav-number">2.4.</span> <span class="nav-text">查 f find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4"><span class="nav-number">2.5.</span> <span class="nav-text">复制粘贴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.6.</span> <span class="nav-text">格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-vimrc"><span class="nav-number">3.</span> <span class="nav-text">配置文件 .vimrc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visual-%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">visual 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%8F"><span class="nav-number">5.</span> <span class="nav-text">分屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">插件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E5%85%89%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">移动光标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E"><span class="nav-number">2.1.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0-d-delete"><span class="nav-number">2.2.</span> <span class="nav-text">删 d delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9-c-change"><span class="nav-number">2.3.</span> <span class="nav-text">改 c change</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5-f-find"><span class="nav-number">2.4.</span> <span class="nav-text">查 f find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4"><span class="nav-number">2.5.</span> <span class="nav-text">复制粘贴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.6.</span> <span class="nav-text">格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-vimrc"><span class="nav-number">3.</span> <span class="nav-text">配置文件 .vimrc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visual-%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">visual 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%8F"><span class="nav-number">5.</span> <span class="nav-text">分屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
 
           </div>
