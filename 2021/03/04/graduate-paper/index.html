@@ -90,19 +90,19 @@
 <meta property="og:site_name" content="黑石的技术笔记">
 <meta property="og:description" content="Intro我的毕设论文题目是：科学文献中曲线信息自动提取算法，简单来说就是写一个算法能够从统计图中提取出曲线的信息(包括说明文字)，以及曲线每个点的对应的值。 基本思路目标提取 读取一张图片    canny边缘检测+霍夫直线检测检测出水平线和竖直线。   提取出最长的两根，根据这两条线求外接矩形得把图像分为象限内和象限外两部分   然后使用MSER算法和NMS算法，分别检测X轴，Y轴外侧的文字。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://blacston.com/.com//test_img.png">
-<meta property="og:image" content="http://blacston.com/.com//lines.png">
-<meta property="og:image" content="http://blacston.com/.com//getAxisCoords.png">
-<meta property="og:image" content="http://blacston.com/.com//xyboxes.png">
-<meta property="og:image" content="http://blacston.com/.com//withdrawNums1.png">
-<meta property="og:image" content="http://blacston.com/.com//withdrawNums2.png">
-<meta property="og:image" content="http://blacston.com/.com//iou.png">
-<meta property="og:image" content="http://blacston.com/.com//suppresion.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/test_img.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/lines.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/getAxisCoords.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/xyboxes.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/withdrawNums1.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/withdrawNums2.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/iou.png">
+<meta property="og:image" content="http://blacston.com/2021/03/04/graduate-paper/suppresion.png">
 <meta property="article:published_time" content="2021-03-04T14:13:59.000Z">
-<meta property="article:modified_time" content="2021-04-14T08:15:42.215Z">
+<meta property="article:modified_time" content="2021-04-14T08:57:20.127Z">
 <meta property="article:author" content="baichen">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://blacston.com/.com//test_img.png">
+<meta name="twitter:image" content="http://blacston.com/2021/03/04/graduate-paper/test_img.png">
 
 
 
@@ -349,20 +349,20 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>我的毕设论文题目是：<em>科学文献中曲线信息自动提取算法</em>，简单来说就是写一个算法能够从统计图中提取出曲线的信息(包括说明文字)，以及曲线每个点的对应的值。</p>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><h4 id="目标提取"><a href="#目标提取" class="headerlink" title="目标提取"></a>目标提取</h4><ol>
 <li><p>读取一张图片</p>
-<p> <img src="/.com//test_img.png" alt></p>
+<p> <img src="/2021/03/04/graduate-paper/test_img.png" alt></p>
 </li>
 <li><p>canny边缘检测+霍夫直线检测检测出水平线和竖直线。</p>
-<p><img src="/.com//lines.png" style="zoom:33%;"></p>
+<p><img src="/2021/03/04/graduate-paper/lines.png" style="zoom:33%;"></p>
 </li>
 <li><p>提取出最长的两根，根据这两条线求外接矩形得把图像分为<strong>象限内</strong>和<strong>象限外</strong>两部分</p>
-<p><img src="/.com//getAxisCoords.png" style="zoom:33%;"></p>
+<p><img src="/2021/03/04/graduate-paper/getAxisCoords.png" style="zoom:33%;"></p>
 </li>
 <li><p>然后使用MSER算法和NMS算法，分别检测X轴，Y轴外侧的文字。</p>
-<p><img src="/.com//xyboxes.png" alt></p>
+<p><img src="/2021/03/04/graduate-paper/xyboxes.png" alt></p>
 </li>
 <li><p>可以看到X轴下方有文字和数字两类，数字总是在靠近坐标轴一侧。因此我们从上往下扫描，碰到的第一行检测框即为数字，剩下的为描述文字。根据此方法过滤出数字和描述文字。</p>
-<p><img src="/.com//withdrawNums1.png" style="zoom: 50%;"></p>
-<p><img src="/.com//withdrawNums2.png" style="zoom:50%;"></p>
+<p><img src="/2021/03/04/graduate-paper/withdrawNums1.png" style="zoom: 50%;"></p>
+<p><img src="/2021/03/04/graduate-paper/withdrawNums2.png" style="zoom:50%;"></p>
 </li>
 </ol>
 <h4 id="字符识别算法"><a href="#字符识别算法" class="headerlink" title="字符识别算法"></a>字符识别算法</h4><h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>滑动窗口不能精确获得目标物体的bouding box(边界框)，可能会产生偏移。</p>
@@ -375,8 +375,8 @@
 </blockquote>
 <h4 id="交并比-intersection-over-union"><a href="#交并比-intersection-over-union" class="headerlink" title="交并比 (intersection over union )"></a>交并比 (intersection over union )</h4><p>交并比可以用来评估对象检测算法的精准程度，交并比（<strong>loU</strong>）函数做的是计算两个边界框交集和并集之比。如图紫色框红色框分别是预测器和实际边界框。</p>
 <p>评判标准：如果iou&gt;=0.5代表结果可以接受，iou越接近1，效果越好。</p>
-<p><img src="/.com//iou.png" alt></p>
-<h4 id="非极大抑制-（Non–max-suppression）"><a href="#非极大抑制-（Non–max-suppression）" class="headerlink" title="非极大抑制 （Non–max suppression）"></a>非极大抑制 （Non–max suppression）</h4><p>算法可能对同一个对象做出多次检测，所以算法不是对某个对象检测出一次，而是检测出多次。非极大值抑制这个方法可以确保你的算法对每个对象只检测一次，本质上是对结果进行过滤。<br>举个例子：<br><img src="/.com//suppresion.png" alt></p>
+<p><img src="/2021/03/04/graduate-paper/iou.png" alt></p>
+<h4 id="非极大抑制-（Non–max-suppression）"><a href="#非极大抑制-（Non–max-suppression）" class="headerlink" title="非极大抑制 （Non–max suppression）"></a>非极大抑制 （Non–max suppression）</h4><p>算法可能对同一个对象做出多次检测，所以算法不是对某个对象检测出一次，而是检测出多次。非极大值抑制这个方法可以确保你的算法对每个对象只检测一次，本质上是对结果进行过滤。<br>举个例子：<br><img src="/2021/03/04/graduate-paper/suppresion.png" alt></p>
 <ol>
 <li>找到所有pc中最大的矩形</li>
 <li>再找出和这个矩形iou较大的，过滤掉。（代表他们检测的是同一对象）</li>
