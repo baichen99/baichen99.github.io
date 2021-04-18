@@ -361,16 +361,16 @@
       
 
       
-        <h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><p>CSRF(Cross Site Request Forgery)是一种攻击者盗用用户身份，在当前<strong>已登录</strong>的Web上执行非本意操作的攻击方法。攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><p>CSRF(Cross Site Request Forgery)是一种攻击者盗用用户身份，在当前<strong>已登录</strong>的Web上执行非本意操作的攻击方法。攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46592479">如何防止CSRF攻击？</a></p>
 <p>一个典型的CSRF攻击有着如下的流程：</p>
 <ul>
-<li>受害者登录<a href="https://link.zhihu.com/?target=http://a.com">http://a.com</a>，并保留了登录凭证（Cookie）。</li>
-<li>攻击者引诱受害者访问了<a href="https://link.zhihu.com/?target=http://b.com">http://b.com</a>。</li>
-<li><a href="https://link.zhihu.com/?target=http://b.com">http://b.com</a> 向 <a href="https://link.zhihu.com/?target=http://a.com">http://a.com</a> 发送了一个请求：<a href="https://link.zhihu.com/?target=http://a.com/act=xx">http://a.com/act=xx</a>。浏览器会默认携带<a href="https://link.zhihu.com/?target=http://a.com">http://a.com</a>的Cookie。</li>
-<li><a href="https://link.zhihu.com/?target=http://a.com">http://a.com</a>接收到请求后，对请求进行验证，并确认是受害者的凭证，误以为是受害者自己发送的请求。</li>
-<li><a href="https://link.zhihu.com/?target=http://a.com">http://a.com</a>以受害者的名义执行了act=xx。</li>
-<li>攻击完成，攻击者在受害者不知情的情况下，冒充受害者，让<a href="https://link.zhihu.com/?target=http://a.com">http://a.com</a>执行了自己定义的操作。</li>
+<li>受害者登录<a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>，并保留了登录凭证（Cookie）。</li>
+<li>攻击者引诱受害者访问了<a href="https://link.zhihu.com/?target=http%3A//b.com">http://b.com</a>。</li>
+<li><a href="https://link.zhihu.com/?target=http%3A//b.com">http://b.com</a> 向 <a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a> 发送了一个请求：<a href="https://link.zhihu.com/?target=http%3A//a.com/act%3Dxx">http://a.com/act=xx</a>。浏览器会默认携带<a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>的Cookie。</li>
+<li><a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>接收到请求后，对请求进行验证，并确认是受害者的凭证，误以为是受害者自己发送的请求。</li>
+<li><a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>以受害者的名义执行了act=xx。</li>
+<li>攻击完成，攻击者在受害者不知情的情况下，冒充受害者，让<a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>执行了自己定义的操作。</li>
 </ul>
 <h2 id="CSRF的特点"><a href="#CSRF的特点" class="headerlink" title="CSRF的特点"></a><strong>CSRF的特点</strong></h2><ul>
 <li>攻击一般发起在第三方网站，而不是被攻击的网站。被攻击的网站无法防止攻击发生。</li>
@@ -404,16 +404,16 @@
 <li>将CSRF Token输出到页面中</li>
 </ol>
 <p>首先，用户打开页面的时候，服务器需要给这个用户生成一个Token，该Token通过加密算法对数据进行加密，一般Token都包括随机字符串和时间戳的组合，显然在提交时Token<strong>不能再放在Cookie中</strong>了，否则又会被攻击者冒用。因此，为了安全起见Token最好还是<strong>存在服务器的Session</strong>中，之后在每次页面加载时，使用JS遍历整个DOM树，对于DOM中所有的a和form标签后加入Token。这样可以解决大部分的请求，但是对于在页面加载之后<strong>动态生成</strong>的HTML代码，这种方法就没有作用，还需要程序员在编码时手动添加Token。</p>
-<ol start="2">
+<ol>
 <li>页面提交的请求携带这个Token</li>
 </ol>
-<p>对于GET请求，Token将附在请求地址之后，这样URL 就变成 <a target="_blank" rel="noopener" href="http://url/?csrftoken=tokenvalue%E3%80%82">http://url?csrftoken=tokenvalue。</a> 而对于 POST 请求来说，要在 form 的最后加上：<br><code>&lt;input type=”hidden” name=”csrftoken” value=”tokenvalue”/&gt;</code><br>这样，就把Token以参数的形式加入请求了。</p>
-<ol start="3">
+<p>对于GET请求，Token将附在请求地址之后，这样URL 就变成 <a target="_blank" rel="noopener" href="http://url?csrftoken=tokenvalue。">http://url?csrftoken=tokenvalue。</a> 而对于 POST 请求来说，要在 form 的最后加上：<br><code>&lt;input type=”hidden” name=”csrftoken” value=”tokenvalue”/&gt;</code><br>这样，就把Token以参数的形式加入请求了。</p>
+<ol>
 <li>服务器验证Token是否正确</li>
 </ol>
 <p>当用户从客户端得到了Token，再次提交给服务器的时候，服务器需要判断Token的有效性，验证过程是先解密Token，对比加密字符串以及时间戳，如果加密字符串一致且时间未过期，那么这个Token就是有效的。</p>
 <h3 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003716037"><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003716037">如何通过JWT防御CSRF</a></a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Origin">Origin</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referer">Referer</a><br><a target="_blank" rel="noopener" href="https://developer.ibm.com/zh/articles/1102-niugang-csrf/">CSRF 攻击的应对之道</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003716037">CSRF JWT</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37959945/how-to-destroy-jwt-tokens-on-logout">如何在logout时销毁JWT–在client端删除</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Origin">Origin</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referer">Referer</a><br><a target="_blank" rel="noopener" href="https://developer.ibm.com/zh/articles/1102-niugang-csrf/">CSRF 攻击的应对之道</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003716037">CSRF JWT</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37959945/how-to-destroy-jwt-tokens-on-logout">如何在logout时销毁JWT—在client端删除</a></p>
 
       
     </div>

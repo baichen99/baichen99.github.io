@@ -364,14 +364,14 @@
       
 
       
-        <h1 id="基础爬虫"><a href="#基础爬虫" class="headerlink" title="基础爬虫"></a>基础爬虫</h1><h2 id="基础架构和流程"><a href="#基础架构和流程" class="headerlink" title="基础架构和流程"></a>基础架构和流程</h2><ul>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="基础爬虫"><a href="#基础爬虫" class="headerlink" title="基础爬虫"></a>基础爬虫</h1><h2 id="基础架构和流程"><a href="#基础架构和流程" class="headerlink" title="基础架构和流程"></a>基础架构和流程</h2><ul>
 <li>简单的爬虫架构由以下几部分构成：</li>
 <li>爬虫调度器：总体协调其它几个模块的工作</li>
 <li>URL管理器(UrlManager)：负责管理URL，维护已经爬取的URL集合和未爬取的URL集合</li>
 <li>网页下载器(HtmlDownloader)：对未爬取的URL下载</li>
 <li>网页解析器(HtmlParser)：解析已下载的html，并从中提取新的URL交给URL管理器，数据交给存储器处理</li>
 <li>数据存储器(DataOutput)：将html解析出来的数据进行存取<a id="more"></a>
-流程图如下<br><img src="http://i2.51cto.com/images/blog/201801/09/516fe1c29bedf43d2ee5676558ba0ea4.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk="><br>以爬取百度百科为例子来理解基础爬虫</li>
+流程图如下<br><img src="http://i2.51cto.com/images/blog/201801/09/516fe1c29bedf43d2ee5676558ba0ea4.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt=""><br>以爬取百度百科为例子来理解基础爬虫</li>
 </ul>
 <h3 id="URL管理器-UrlManager"><a href="#URL管理器-UrlManager" class="headerlink" title="URL管理器(UrlManager)"></a>URL管理器(UrlManager)</h3><p>URL管理器包括两个变量, 即已爬取URL集合与未爬取URL集合, 还需提供以下接口:</p>
 <ol>

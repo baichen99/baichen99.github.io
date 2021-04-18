@@ -677,14 +677,12 @@
 {{ ... }}
 
 
-
 注释
 
 
 {# ... #}
 
-
-在jinja2使用.来获取变量的属性，比如user字典中的username键值通过.
+在jinja2使用.来获取变量的属性，比如user字典中的username键值通过.来获
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -831,7 +829,7 @@
 
       
         
-          <h2 id="文本类型"><a href="#文本类型" class="headerlink" title="文本类型"></a>文本类型</h2><p>文件的类型分为文本文件和二进制文件，</p>
+          <h2 id="文本类型"><a href="#文本类型" class="headerlink" title="文本类型"></a>文本类型</h2><p>文件的类型分为文本文件和二进制文件，<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/23/iocaozuo/#more" rel="contents">
@@ -1127,7 +1125,7 @@ set_coo
 
       
         
-          <p>flask通过依赖包Click安装了一个CLI(命令行交互界面)系统, 可以通过flask命令执行内置命令<br>使用<code>flask run</code>来启动内置的开发服务器</p>
+          <p>flask通过依赖包Click安装了一个CLI(命令行交互界面)系统, 可以通过flask命令执行内置命令<br>使用<code>flask run</code>来启动内置的开发服务器<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/22/flask02/#more" rel="contents">
@@ -1273,7 +1271,7 @@ set_coo
 
       
         
-          <h3 id="route装饰器"><a href="#route装饰器" class="headerlink" title="route装饰器"></a>route装饰器</h3><p>route()装饰器的第一个参数是<strong>URL规则</strong>，用字符串表示，必须以斜杠开始，这里的URL是相对URL。<br>以<code>www.blacston.com</code>为例，’/‘ 对应的是根地址 <code>www.blacton.com</code>, ‘/hello’对应的是 <code>www.blacton.com/hello</code></p>
+          <h3 id="route装饰器"><a href="#route装饰器" class="headerlink" title="route装饰器"></a>route装饰器</h3><p>route()装饰器的第一个参数是<strong>URL规则</strong>，用字符串表示，必须以斜杠开始，这里的URL是相对URL。<br>以<code>www.blacston.com</code>为例，’/‘ 对应的是根地址 <code>www.blacton.com</code>, ‘/hello’对应的是 <code>www.blacton.com/hello</code><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/22/flask01-1/#more" rel="contents">
@@ -1421,7 +1419,7 @@ set_coo
         
           <h3 id="常量指针和指针常量"><a href="#常量指针和指针常量" class="headerlink" title="常量指针和指针常量"></a>常量指针和指针常量</h3><p><strong>常量指针</strong>是指向常量的指针，如：<code>const int* p</code> 其中p是一个指针，指向了一个常量，也就是<code>*p</code>不能修改，而p的值可以修改</p>
 <p><strong>指针常量</strong>是个常量，如：<code>int *const p</code> p是个指针，p（指针的指向）不能修改，但是<code>*p</code>可以修改</p>
-<p><strong>指向常量的指针常量</strong>，如：<code>const int const* p</code> p是个指针常量，而且指向的值也是个常量</p>
+<p><strong>指向常量的指针常量</strong>，如：<code>const int const* p</code> p是个指针常量，而且指向的值也是个常量<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/13/pointer-reference-constant/#more" rel="contents">
@@ -1568,7 +1566,7 @@ set_coo
       
         
           <p>以登录上海大学教务处并获取课程表为例, 分析cookie处理</p>
-<h3 id="cookie与session"><a href="#cookie与session" class="headerlink" title="cookie与session"></a>cookie与session</h3><p>session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cookie又叫会话跟踪机制。打开一次浏览器到关闭浏览器算是一次会话。说到这里，讲下HTTP协议，前面提到，HTTP协议是一种无状态协议，在数据交换完毕后，服务器端和客户端的链接就会关闭，每次交换数据都需要建立新的链接。此时，服务器无法从链接上跟踪会话。cookie可以跟踪会话，弥补HTTP无状态协议的不足。</p>
+<h3 id="cookie与session"><a href="#cookie与session" class="headerlink" title="cookie与session"></a>cookie与session</h3><p>session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cookie又叫会话跟踪机制。打开一次浏览器到关闭浏览器算是一次会话。说到这里，讲下HTTP协议，前面提到，HTTP协议是一种无状态协议，在数据交换完毕后，服务器端和客户端的链接就会关闭，每次交换数据都需要建立新的链接。此时，服务器无法从链接上跟踪会话。cookie可以跟踪会话，弥补HTTP无状态协议的不足。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/25/shu-cookies/#more" rel="contents">
@@ -1714,7 +1712,7 @@ set_coo
 
       
         
-          <p>Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading</p>
+          <p>Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/17/threads/#more" rel="contents">

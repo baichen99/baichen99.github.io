@@ -365,49 +365,47 @@
       
 
       
-        <h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><h2 id="html表单"><a href="#html表单" class="headerlink" title="html表单"></a>html表单</h2><p>在html表单中，<code>&lt;input&gt;</code>标签表示各种输入字段，<code>&lt;label&gt;</code>标签则用文字来定义字段的标签文字。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><h2 id="html表单"><a href="#html表单" class="headerlink" title="html表单"></a>html表单</h2><p>在html表单中，<code>&lt;input&gt;</code>标签表示各种输入字段，<code>&lt;label&gt;</code>标签则用文字来定义字段的标签文字。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">mehtod</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;username&quot;</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password&quot;</span>&gt;</span>Password<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;1414124&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remenber&quot;</span> <span class="attr">id</span>=<span class="string">&quot;remember&quot;</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;remenber&quot;</span>&gt;</span>Remember me<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;login&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="WTForms"><a href="#WTForms" class="headerlink" title="WTForms"></a>WTForms</h2><p>WTForms支持在python中使用<strong>类</strong>来定义表单，然后通过类定义生成对应的html代码，这种方式方面，易于重用，所以一般不会再模板中直接使用html编写表单。</p>
 <h2 id="使用Flask-WTF处理表单"><a href="#使用Flask-WTF处理表单" class="headerlink" title="使用Flask-WTF处理表单"></a>使用Flask-WTF处理表单</h2><p>Flask-WTF集成了WTForms使用它可以在flask中更方便地使用WTFormss。Flask-WTF将表单数据解析，CSRF保护，文件上传等功能与flask集成，还增加了reCAPTCHA支持。</p>
 <p>安装Flask-WTF及其依赖<br><code>$ pipenv install flask-wtf</code></p>
 <p>Flask-WTF默认为每个表单启用CSRF保护，他会为我们自动生成和验证CSRF令牌。默认情况使用程序密钥来对令牌进行签名，配置键<code>WTF_CSRF_ENABLED</code>来设置是否开启CSRF保护，默认为True。flask-wtf会自动在实例化表单类时添加一个包含CSRF令牌值的<em>隐藏字段</em>，字段名为<code>cstf_token</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.secret_key &#x3D; &#39;secret string&#39;</span><br></pre></td></tr></table></figure>
-<h3 id="定义WTForms表单类"><a href="#定义WTForms表单类" class="headerlink" title="定义WTForms表单类"></a>定义WTForms表单类</h3><p>当使用WTForms创建表单时，表单由python来表示，这个类继承从WTForms导入Form基类。一个表单由若干输入字段(Field)组成，字段由表单类的类属性表示。下面自定义了一个LoginForm类。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> wtforms <span class="keyword">import</span> Form, StringField, PasswordField, BooleanField, SubmitField</span><br><span class="line"><span class="keyword">from</span> wtfroms.validators <span class="keyword">import</span> DataRequired, Length</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginForm</span>(<span class="params">Form</span>):</span></span><br><span class="line">    username = StringField(<span class="string">&#x27;Username&#x27;</span>, validators=[DataRequired()])</span><br><span class="line">    password = PasswordField(<span class="string">&#x27;Password&#x27;</span>, validators=[DataRequired(), Length(<span class="number">8</span>, <span class="number">128</span>)])</span><br><span class="line">    remember = BooleanField(<span class="string">&#x27;Remember me&#x27;</span>)</span><br><span class="line">    submit = SubmitField(<span class="string">&#x27;Login&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>每隔字段属性通过实例化WTForms提供的字段表示，字段属性的名称将作为对应input元素的name属性和id属性。</br><br>字段名称大小写敏感，不能以下划线和validate开头。</p>
-<h3 id="常用WTForms字段"><a href="#常用WTForms字段" class="headerlink" title="常用WTForms字段"></a>常用WTForms字段</h3><p><img src="https://s1.ax1x.com/2018/11/22/FPNu9J.png"></p>
-<h3 id="实例化字段类常用参数"><a href="#实例化字段类常用参数" class="headerlink" title="实例化字段类常用参数"></a>实例化字段类常用参数</h3><table>
+<h3 id="定义WTForms表单类"><a href="#定义WTForms表单类" class="headerlink" title="定义WTForms表单类"></a>定义WTForms表单类</h3><p>当使用WTForms创建表单时，表单由python来表示，这个类继承从WTForms导入Form基类。一个表单由若干输入字段(Field)组成，字段由表单类的类属性表示。下面自定义了一个LoginForm类。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> wtforms <span class="keyword">import</span> Form, StringField, PasswordField, BooleanField, SubmitField</span><br><span class="line"><span class="keyword">from</span> wtfroms.validators <span class="keyword">import</span> DataRequired, Length</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginForm</span>(<span class="params">Form</span>):</span></span><br><span class="line">    username = StringField(<span class="string">&#x27;Username&#x27;</span>, validators=[DataRequired()])</span><br><span class="line">    password = PasswordField(<span class="string">&#x27;Password&#x27;</span>, validators=[DataRequired(), Length(<span class="number">8</span>, <span class="number">128</span>)])</span><br><span class="line">    remember = BooleanField(<span class="string">&#x27;Remember me&#x27;</span>)</span><br><span class="line">    submit = SubmitField(<span class="string">&#x27;Login&#x27;</span>)</span><br></pre></td></tr></table></figure><br>每隔字段属性通过实例化WTForms提供的字段表示，字段属性的名称将作为对应input元素的name属性和id属性。&lt;/br&gt;<br>字段名称大小写敏感，不能以下划线和validate开头。</p>
+<h3 id="常用WTForms字段"><a href="#常用WTForms字段" class="headerlink" title="常用WTForms字段"></a>常用WTForms字段</h3><p><img src="https://s1.ax1x.com/2018/11/22/FPNu9J.png" alt=""></p>
+<h3 id="实例化字段类常用参数"><a href="#实例化字段类常用参数" class="headerlink" title="实例化字段类常用参数"></a>实例化字段类常用参数</h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">参数</th>
-<th align="center">说明</th>
+<th style="text-align:left">参数</th>
+<th style="text-align:center">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">label</td>
-<td align="center">字段标签<label>的值，也就是渲染后显示在输入字段前的文字</td>
+<tbody>
+<tr>
+<td style="text-align:left">label</td>
+<td style="text-align:center">字段标签<label>的值，也就是渲染后显示在输入字段前的文字</td>
 </tr>
 <tr>
-<td align="left">render_kw</td>
-<td align="center">一个字典，用来设置对应input标签的属性</td>
+<td style="text-align:left">render_kw</td>
+<td style="text-align:center">一个字典，用来设置对应input标签的属性</td>
 </tr>
 <tr>
-<td align="left">valiadtors</td>
-<td align="center">一个列表，包含一系列验证器，会在表单提交后被逐一调用验证表单数据</td>
+<td style="text-align:left">valiadtors</td>
+<td style="text-align:center">一个列表，包含一系列验证器，会在表单提交后被逐一调用验证表单数据</td>
 </tr>
 <tr>
-<td align="left">default</td>
-<td align="center">字符串或可调用对象，用来为表单字段设置默认值</td>
+<td style="text-align:left">default</td>
+<td style="text-align:center">字符串或可调用对象，用来为表单字段设置默认值</td>
 </tr>
-</tbody></table>
-<h3 id="常用WTForms验证器"><a href="#常用WTForms验证器" class="headerlink" title="常用WTForms验证器"></a>常用WTForms验证器</h3><p><img src="https://s1.ax1x.com/2018/11/22/FPNQj1.png"></p>
-<p>验证器的第一个参数一般为促物体时消息，可以使用message参数传入错误消息来覆盖内置消息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name &#x3D; StringField(&#39;Your name&#39;, validators&#x3D;[DataRequired(message&#x3D;u&quot;名字不能为空&quot;)])</span><br></pre></td></tr></table></figure>
-<h3 id="使用Flask-WTF"><a href="#使用Flask-WTF" class="headerlink" title="使用Flask-WTF"></a>使用Flask-WTF</h3><p>使用Flask-WTF定义表单时，<strong>仍然使用WTForms提供的字段类和验证器</strong>，只不过表单类药继承Flask-WTF提供的FlaskForm类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from flask-wtf import FlaskForm</span><br><span class="line">from wtforms import StringField, PasswordField, BooleanField, SubmitField</span><br><span class="line">from wtfroms.validators import DataRequired, Length</span><br><span class="line">class LoginForm(FlaskForm):</span><br><span class="line">    username &#x3D; StringField(&#39;Username&#39;, validators&#x3D;[DataRequired()])</span><br><span class="line">    password &#x3D; PasswordField(&#39;Password&#39;, validators&#x3D;[DataRequired(), Length(8, 128)])</span><br><span class="line">    remember &#x3D; BooleanField(&#39;Remember me&#39;)</span><br><span class="line">    submit &#x3D; SubmitField(&#39;Login&#39;)</span><br></pre></td></tr></table></figure>
-<h2 id="输出html代码"><a href="#输出html代码" class="headerlink" title="输出html代码"></a>输出html代码</h2><p>实例化表单类，然后将实例属性转换成字符串或直接调用获取表单字段对应的html代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; form &#x3D; LoginForm()</span><br><span class="line">&gt;&gt;&gt; form.username()</span><br><span class="line">u&#39;&lt;input id&#x3D;&quot;username&quot; name&#x3D;&quot;username&quot; type&#x3D;&quot;text&quot; value&#x3D;&quot;&quot;&gt;&#39;</span><br></pre></td></tr></table></figure>
-<p>字段的label元素的html代码可以通过<code>form.字段名.label</code>的形式获取</p>
+</tbody>
+</table>
+</div>
+<h3 id="常用WTForms验证器"><a href="#常用WTForms验证器" class="headerlink" title="常用WTForms验证器"></a>常用WTForms验证器</h3><p><img src="https://s1.ax1x.com/2018/11/22/FPNQj1.png" alt=""></p>
+<p>验证器的第一个参数一般为促物体时消息，可以使用message参数传入错误消息来覆盖内置消息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name &#x3D; StringField(&#39;Your name&#39;, validators&#x3D;[DataRequired(message&#x3D;u&quot;名字不能为空&quot;)])</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用Flask-WTF"><a href="#使用Flask-WTF" class="headerlink" title="使用Flask-WTF"></a>使用Flask-WTF</h3><p>使用Flask-WTF定义表单时，<strong>仍然使用WTForms提供的字段类和验证器</strong>，只不过表单类药继承Flask-WTF提供的FlaskForm类。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from flask-wtf import FlaskForm</span><br><span class="line">from wtforms import StringField, PasswordField, BooleanField, SubmitField</span><br><span class="line">from wtfroms.validators import DataRequired, Length</span><br><span class="line">class LoginForm(FlaskForm):</span><br><span class="line">    username &#x3D; StringField(&#39;Username&#39;, validators&#x3D;[DataRequired()])</span><br><span class="line">    password &#x3D; PasswordField(&#39;Password&#39;, validators&#x3D;[DataRequired(), Length(8, 128)])</span><br><span class="line">    remember &#x3D; BooleanField(&#39;Remember me&#39;)</span><br><span class="line">    submit &#x3D; SubmitField(&#39;Login&#39;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="输出html代码"><a href="#输出html代码" class="headerlink" title="输出html代码"></a>输出html代码</h2><p>实例化表单类，然后将实例属性转换成字符串或直接调用获取表单字段对应的html代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; form &#x3D; LoginForm()</span><br><span class="line">&gt;&gt;&gt; form.username()</span><br><span class="line">u&#39;&lt;input id&#x3D;&quot;username&quot; name&#x3D;&quot;username&quot; type&#x3D;&quot;text&quot; value&#x3D;&quot;&quot;&gt;&#39;</span><br></pre></td></tr></table></figure><br>字段的label元素的html代码可以通过<code>form.字段名.label</code>的形式获取</p>
 <h3 id="为字段添加额外属性"><a href="#为字段添加额外属性" class="headerlink" title="为字段添加额外属性"></a>为字段添加额外属性</h3><h4 id="使用render-kw属性"><a href="#使用render-kw属性" class="headerlink" title="使用render_kw属性"></a>使用render_kw属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username &#x3D; StringField(&#39;Username&#39;, render_kw&#x3D;&#123;&#39;placeholder&#39;:&#39;Your name&#39;&#125;)</span><br></pre></td></tr></table></figure>
 <h4 id="在调用字段时传入"><a href="#在调用字段时传入" class="headerlink" title="在调用字段时传入"></a>在调用字段时传入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">form.username(style&#x3D;&#39;width: 200px;&#39;, class_&#x3D;&#39;bar&#39;)</span><br></pre></td></tr></table></figure>
 <p>用class_代替class，渲染后的input标签会获取正确的class属性。</p>
@@ -422,32 +420,35 @@
 <li>如果验证未通过则生成错误消息</li>
 <li>如果通过验证则把数据保存到数据库或做进一步处理</li>
 </ol>
-<h3 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h3><form>标签的提交行为主要由三个属性控制。
-
+<h3 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h3><p><form>标签的提交行为主要由三个属性控制。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">属性</th>
-<th align="center">默认值</th>
-<th align="left">说明</th>
+<th style="text-align:left">属性</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">action</td>
-<td align="center">当前url</td>
-<td align="left">表单提交时发送请求的url</td>
+<tbody>
+<tr>
+<td style="text-align:left">action</td>
+<td style="text-align:center">当前url</td>
+<td style="text-align:left">表单提交时发送请求的url</td>
 </tr>
 <tr>
-<td align="left">method</td>
-<td align="center">get</td>
-<td align="left">提交方法，仅支持get和post</td>
+<td style="text-align:left">method</td>
+<td style="text-align:center">get</td>
+<td style="text-align:left">提交方法，仅支持get和post</td>
 </tr>
 <tr>
-<td align="left">enctype</td>
-<td align="center">application/x-www-form-urlencoded</td>
-<td align="left">表单编码类型</td>
+<td style="text-align:left">enctype</td>
+<td style="text-align:center">application/x-www-form-urlencoded</td>
+<td style="text-align:left">表单编码类型</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="验证表单数据"><a href="#验证表单数据" class="headerlink" title="验证表单数据"></a>验证表单数据</h3><h4 id="wtforms验证机制"><a href="#wtforms验证机制" class="headerlink" title="wtforms验证机制"></a>wtforms验证机制</h4><p>实例化表单类时传入表单数据，然后对表单实例调用<code>validate()</code>方法。这会对每个字段调用相应的验证器，返回验证结果的布尔值。如果验证失败，就把错误消息储存到表单实例的errors属性对应的字典中。</p>
 <hr>
 <p>注意：使用post方法提交的表单数据会被解析成一个字典，可以通过<code>request.form</code>获取。使用get方法提交的数据同样被解析成字典，通过<code>request.args</code>获取。</p>
@@ -456,15 +457,12 @@
 <p>Flask-WTF提供的<code>validate_on_submit()</code>合并了这两个操作</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if form.validate_on_submit(): </span><br></pre></td></tr></table></figure>
 <p>通过form.字段名.date获取对应字段的数据。</p>
-<h4 id="Post-Redirect-Get"><a href="#Post-Redirect-Get" class="headerlink" title="Post/Redirect/Get"></a>Post/Redirect/Get</h4><p>在浏览器中，刷新/重载时的默认行为时发送上一个请求，如果上一个请求时post，那么就会弹出一个窗口，询问用户是否再次提交此表单，为了避免这个提示，我们尽量不要让post请求作为最后一个请求，所以我们在处理表单后返回一个重定向响应，让浏览器发送一个get请求到相应url。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">@app.route(&#39;&#x2F;basic&#39;, methods&#x3D;[&#39;GET&#39;, &#39;POST&#39;])</span><br><span class="line">def basic():</span><br><span class="line">    form &#x3D; LoginForm()</span><br><span class="line">    if form.validate_on_submit():</span><br><span class="line">        username &#x3D; form.username.data</span><br><span class="line">        flash(&quot;Welcome Home %s&quot;, % username)</span><br><span class="line">        return redirect(url_for(&#39;index&#39;))</span><br><span class="line">    return render_template(&#39;basic.html&#39;, form&#x3D;form)</span><br></pre></td></tr></table></figure>
+<h4 id="Post-Redirect-Get"><a href="#Post-Redirect-Get" class="headerlink" title="Post/Redirect/Get"></a>Post/Redirect/Get</h4><p>在浏览器中，刷新/重载时的默认行为时发送上一个请求，如果上一个请求时post，那么就会弹出一个窗口，询问用户是否再次提交此表单，为了避免这个提示，我们尽量不要让post请求作为最后一个请求，所以我们在处理表单后返回一个重定向响应，让浏览器发送一个get请求到相应url。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">@app.route(&#39;&#x2F;basic&#39;, methods&#x3D;[&#39;GET&#39;, &#39;POST&#39;])</span><br><span class="line">def basic():</span><br><span class="line">    form &#x3D; LoginForm()</span><br><span class="line">    if form.validate_on_submit():</span><br><span class="line">        username &#x3D; form.username.data</span><br><span class="line">        flash(&quot;Welcome Home %s&quot;, % username)</span><br><span class="line">        return redirect(url_for(&#39;index&#39;))</span><br><span class="line">    return render_template(&#39;basic.html&#39;, form&#x3D;form)</span><br></pre></td></tr></table></figure></p>
 <h3 id="在模板中渲染错误消息"><a href="#在模板中渲染错误消息" class="headerlink" title="在模板中渲染错误消息"></a>在模板中渲染错误消息</h3><p>我们一般会通过字段名来获取<strong>对应字段的错误消息列表</strong>，即<code>form.字段名.errors</code>。</p>
 <h2 id="自定义验证器"><a href="#自定义验证器" class="headerlink" title="自定义验证器"></a>自定义验证器</h2><h3 id="行内验证器"><a href="#行内验证器" class="headerlink" title="行内验证器"></a>行内验证器</h3><p>当表单类中包含以<code>validate_字段属性名</code>形式命名的方法时，在验证字段数据时会同时调用这个方法来验证对应的字段。验证方法接收两个位置参数，以此为form和field，分别是表单类实例和字段对象。验证出错跑出从<code>wtforms.validators</code>模块导入的<code>ValidatorError</code>异常。</p>
 <p>注：不需要传入参数时使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from wtforms import IntegetField, SubmitField</span><br><span class="line">from wtforms.validators import ValidationError</span><br><span class="line"></span><br><span class="line">class FourtyTwoForm(FlaskForm):</span><br><span class="line">    answer &#x3D; IntegerField(&#39;The Number&#39;)</span><br><span class="line">    submit &#x3D; SubmitField()</span><br><span class="line">    </span><br><span class="line">    def validate_answer(form, field):</span><br><span class="line">        if field.data !&#x3D; 42:</span><br><span class="line">            raise VlidationError(&quot;Must be 42&quot;)</span><br></pre></td></tr></table></figure>
-<h3 id="全局验证器"><a href="#全局验证器" class="headerlink" title="全局验证器"></a>全局验证器</h3><p>如果想定义一个可重用的验证器，可以通过一个函数实现。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def is_42(message&#x3D;None):</span><br><span class="line">    if message is None:</span><br><span class="line">        message &#x3D; &#39;Must be 42&#39;</span><br><span class="line">    def _is_42(form, field):</span><br><span class="line">        if field.data !&#x3D; 42:</span><br><span class="line">            raise ValidationError(message)</span><br><span class="line">    </span><br><span class="line">    return _is_42</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
-<p>注意：自定义验证器要返回可调用对象</p>
+<h3 id="全局验证器"><a href="#全局验证器" class="headerlink" title="全局验证器"></a>全局验证器</h3><p>如果想定义一个可重用的验证器，可以通过一个函数实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def is_42(message&#x3D;None):</span><br><span class="line">    if message is None:</span><br><span class="line">        message &#x3D; &#39;Must be 42&#39;</span><br><span class="line">    def _is_42(form, field):</span><br><span class="line">        if field.data !&#x3D; 42:</span><br><span class="line">            raise ValidationError(message)</span><br><span class="line">    </span><br><span class="line">    return _is_42</span><br><span class="line">            </span><br></pre></td></tr></table></figure><br>注意：自定义验证器要返回可调用对象</p>
 
       
     </div>

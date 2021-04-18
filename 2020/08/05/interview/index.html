@@ -365,7 +365,7 @@
       
 
       
-        <h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><ul>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><ul>
 <li><p>A, atomacity 原子性 事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。通常，与某个事务关联的操作具有共同的目标，并且是相互依赖的。如果系统只执行这些操作的一个子集，则可能会破坏事务的总体目标。原子性消除了系统处理操作子集的可能性。</p>
 </li>
 <li><p>C, consistency 一致性</p>
@@ -401,20 +401,15 @@
 </ul>
 <h4 id="数据库索引"><a href="#数据库索引" class="headerlink" title="数据库索引"></a>数据库索引</h4><h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p>osi模型</p>
 <ol>
-<li><p>应用层(数据):是计算机用户以及各种应用程序和网络之间的接口</p>
-</li>
-<li><p>表示层(数据):它对来自应用层的命令和数据进行解释，对各种语法赋予相应的含义，并按照一定的格式传送给会话层。</p>
-</li>
+<li>应用层(数据):是计算机用户以及各种应用程序和网络之间的接口</li>
+<li>表示层(数据):它对来自应用层的命令和数据进行解释，对各种语法赋予相应的含义，并按照一定的格式传送给会话层。</li>
 <li><p>会话层(数据):不同机器上的用户建立会话</p>
 </li>
 <li><p>传输层(段):实现网络不同主机上用户进程之间的数据通信，可靠与不可靠的传输，传输层的错误检测，流量控制等</p>
 </li>
-<li><p>网络层(包):提供逻辑地址(IP)、通过路径选择算法将数据从源端到目的端</p>
-</li>
-<li><p>数据链路层(帧):将比特流数据封装成帧，增加错误检测与修正等功能，增加可靠性</p>
-</li>
-<li><p>物理层(比特流):利用物理介质提供物理连接，提供比特流传输</p>
-</li>
+<li>网络层(包):提供逻辑地址(IP)、通过路径选择算法将数据从源端到目的端</li>
+<li>数据链路层(帧):将比特流数据封装成帧，增加错误检测与修正等功能，增加可靠性</li>
+<li>物理层(比特流):利用物理介质提供物理连接，提供比特流传输</li>
 </ol>
 <h3 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h3><p>TCP/IP模型是互联网的基础，它是一系列网络协议的总称。这些协议可以划分为四层，分别为链路层、网络层、传输层和应用层。</p>
 <p>链路层：负责封装和解封装IP报文，发送和接受ARP/RARP报文等。</p>
@@ -477,7 +472,7 @@
 <p>接收方每次收到数据包，可以在发送确定报⽂的时候，同时告诉发送方⾃己的缓存区还剩余多少是空闲的，我们也把缓存区的剩余⼤小称之为接收窗口⼤小。</p>
 <p>发送方收到之后，便会调整自己的发送速率，也就是调整自己发送窗口的大小，当发送方收到接收窗口的大小为0时，发送方就会停止发送数据，防止出现大量丢包情况的发生。</p>
 <p>发送方如果收到零窗口通知，就会启动计时器。若计时器的时间到期，就会发送一个报文：如果接收方可以接收数据就告诉他此时接收窗口的大小，如果接收大小还是为0，发送方就重新设置计时器。</p>
-<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><h4 id="http"><a href="#http" class="headerlink" title="http"></a>http</h4><p><a href="%5Bhttps://troywu0.gitbooks.io/interview/content/http%E5%8D%8F%E8%AE%AE.html%5D(https://troywu0.gitbooks.io/interview/content/http%E5%8D%8F%E8%AE%AE.html">http协议-面试</a></p>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><h4 id="http"><a href="#http" class="headerlink" title="http"></a>http</h4><p><a href="[https://troywu0.gitbooks.io/interview/content/http%E5%8D%8F%E8%AE%AE.html](https://troywu0.gitbooks.io/interview/content/http协议.html">http协议-面试</a></p>
 <p>http协议是超文本传输协议，它规定了浏览器怎样向万维网请求文档，以及服务器如何把文档传递给浏览器。从层次的角度来看，http协议是一个应用层协议。</p>
 <p>在浏览器和服务器之间的请求和响应，必须按照规定的格式和遵循一定格式，这些格式和规则就是http。</p>
 <p>HTTP就是一种无状态协议，它对用户的操作没有记忆功能。为了解决这种情况，引出了<strong>Cookie&amp;Session</strong>机制，让浏览器具备了记忆功能</p>
@@ -533,14 +528,10 @@
 <li>客户端解密</li>
 </ol>
 <h4 id="get-post-区别"><a href="#get-post-区别" class="headerlink" title="get post 区别"></a>get post 区别</h4><ul>
-<li><p>在浏览器回退时，GET是无害的，POST会再次提交请求。</p>
-</li>
-<li><p>GET请求参数会被完整保留在浏览历史记录里，而POST中的参数不会被保留</p>
-</li>
-<li><p>GET参数通过URL传递，POST放在Request body中。</p>
-</li>
-<li><p>GET 请求在url中传送的参数有长度限制，而POST没有</p>
-</li>
+<li>在浏览器回退时，GET是无害的，POST会再次提交请求。</li>
+<li>GET请求参数会被完整保留在浏览历史记录里，而POST中的参数不会被保留</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+<li>GET 请求在url中传送的参数有长度限制，而POST没有</li>
 <li><p>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</p>
 </li>
 <li><p>GET产生一个TCP数据包；POST产生两个TCP数据包。</p>
@@ -621,7 +612,7 @@
 </li>
 </ul>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/codingmylife/archive/2012/10/21/2732980.html">稳定性</a></p>
-<p><img src="https://img-blog.csdn.net/20180117112126129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQyODAxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"></p>
+<p><img src="https://img-blog.csdn.net/20180117112126129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQyODAxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><p>docker将应用程序及其所有依赖项打包在一起。这可以保证无论其环境如何，软件始终运行相同。</p>
 <p><a target="_blank" rel="noopener" href="https://hit-alibaba.github.io/interview/basic/arch/Concurrency.html">面试总结</a></p>
 

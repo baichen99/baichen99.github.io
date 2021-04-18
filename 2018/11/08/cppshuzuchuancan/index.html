@@ -360,7 +360,7 @@
       
 
       
-        <p><strong>在C/C++中，在进行数组传参时，c虽然传递的是收地址，但是在函数内部就成了普通指针，不是数组首地址了，所以在函数里得到数组长度是不可以的，所以函数参数中有数组时一般要传入数组大小</strong></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>在C/C++中，在进行数组传参时，c虽然传递的是收地址，但是在函数内部就成了普通指针，不是数组首地址了，所以在函数里得到数组长度是不可以的，所以函数参数中有数组时一般要传入数组大小</strong></p>
 <h3 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a>错误示范</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetLen</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></span><br><span class="line">return sizeof(arr)/sizeof(*a);</span><br></pre></td></tr></table></figure>
 <h3 id="正确例子"><a href="#正确例子" class="headerlink" title="正确例子"></a>正确例子</h3><ol>
 <li><p><code>void func(int *a, int length)&#123;&#125;</code></p>
