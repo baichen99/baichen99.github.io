@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="Intro我的毕设论文题目是：科学文献中曲线信息自动提取算法，简单来说就是写一个算法能够从统计图中提取出曲线的信息(包括说明文字)，以及曲线每个点的对应的值。 基本思路目标提取 读取一张图片   canny边缘检测+霍夫直线检测检测出水平线和竖直线。   提取出最长的两根，根据这两条线求外接矩形得把图像分为象限内和象限外两部分   然后使用MSER算法和NMS算法，分别检测X轴，Y轴外侧的文字。">
+<meta name="description" content="Intro我的毕设论文题目是：科学文献中曲线信息自动提取算法，简单来说就是写一个算法能够从统计图中提取出曲线的信息(包括说明文字)，以及曲线每个点的对应的值。 基本思路目标提取 读取一张图片    canny边缘检测+霍夫直线检测检测出水平线和竖直线。   提取出最长的两根，根据这两条线求外接矩形得把图像分为象限内和象限外两部分   然后使用MSER算法和NMS算法，分别检测X轴，Y轴外侧的文字。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="毕设笔记">
 <meta property="og:url" content="http://blacston.com/2021/03/04/graduate-paper/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="Intro我的毕设论文题目是：科学文献中曲线信息自动提取算法，简单来说就是写一个算法能够从统计图中提取出曲线的信息(包括说明文字)，以及曲线每个点的对应的值。 基本思路目标提取 读取一张图片   canny边缘检测+霍夫直线检测检测出水平线和竖直线。   提取出最长的两根，根据这两条线求外接矩形得把图像分为象限内和象限外两部分   然后使用MSER算法和NMS算法，分别检测X轴，Y轴外侧的文字。">
+<meta property="og:description" content="Intro我的毕设论文题目是：科学文献中曲线信息自动提取算法，简单来说就是写一个算法能够从统计图中提取出曲线的信息(包括说明文字)，以及曲线每个点的对应的值。 基本思路目标提取 读取一张图片    canny边缘检测+霍夫直线检测检测出水平线和竖直线。   提取出最长的两根，根据这两条线求外接矩形得把图像分为象限内和象限外两部分   然后使用MSER算法和NMS算法，分别检测X轴，Y轴外侧的文字。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/test_img.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/lines.png">
@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-04-18%20%E4%B8%8B%E5%8D%884.52.09.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/v2-de5ad673d74a07ea40a24f916956e675_b.webp.gif">
 <meta property="article:published_time" content="2021-03-04T14:13:59.000Z">
-<meta property="article:modified_time" content="2021-04-20T06:23:49.094Z">
+<meta property="article:modified_time" content="2021-04-20T06:50:22.250Z">
 <meta property="article:author" content="baichen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/test_img.png">
@@ -352,9 +352,10 @@
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>我的毕设论文题目是：<em>科学文献中曲线信息自动提取算法</em>，简单来说就是写一个算法能够从统计图中提取出曲线的信息(包括说明文字)，以及曲线每个点的对应的值。</p>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><h4 id="目标提取"><a href="#目标提取" class="headerlink" title="目标提取"></a>目标提取</h4><ol>
-<li><p>读取一张图片</p>
+<li>读取一张图片</li>
+</ol>
 <p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/test_img.png" alt></p>
-</li>
+<ol>
 <li><p>canny边缘检测+霍夫直线检测检测出水平线和竖直线。</p>
 <p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/lines.png" style="zoom:33%;"></p>
 </li>
@@ -365,22 +366,22 @@
 <p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/xyboxes.png" alt></p>
 </li>
 <li><p>可以看到X轴下方有文字和数字两类，数字总是在靠近坐标轴一侧。因此我们从上往下扫描，碰到的第一行检测框即为数字，剩下的为描述文字。根据此方法过滤出数字和描述文字。</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/withdrawNums1.png" style="zoom:33%;"></p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/withdrawNums2.png" style="zoom:33%;"></p>
 </li>
 </ol>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/withdrawNums1.png" style="zoom:33%;"></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/withdrawNums2.png" style="zoom:33%;"></p>
 <h4 id="字符识别算法"><a href="#字符识别算法" class="headerlink" title="字符识别算法"></a>字符识别算法</h4><h4 id="确定曲线上一点的坐标值"><a href="#确定曲线上一点的坐标值" class="headerlink" title="确定曲线上一点的坐标值"></a>确定曲线上一点的坐标值</h4><p>这个方法基于文字检测和文字识别算法。</p>
 <h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/rnn-net.png" alt></p>
-<p>$a^{<t>} = f(w_a[a^{t-1}, x^{t}])$   </t></p>
-<p>$y^{<t>} = g(w_ya^{t}+b_y)$</t></p>
+<p>$a^{\langle t \rangle} = f(w_a[a^{t-1}, x^{t}])$   </p>
+<p>$y^{\langle t \rangle} = g(w_ya^{t}+b_y)$</p>
 <blockquote>
-<p>$w_a, w_y$实现了权值共享，另外有的图中$a^{<t>}$也写作$s_{t}$，表示时间步t的单元状态。</t></p>
+<p>$w_a, w_y$实现了权值共享，另外有的图中$a^{\langle t \rangle}$也写作$s_{t}$，表示时间步t的单元状态。</p>
 </blockquote>
 <p>定义某个时间步t的损失函数（交叉熵损失函数）：</p>
-<p>$L^{<t>}(\hat{y}^{<t>}, y^{<t>}) = -y^{<t>}log\hat{y}^{<t>} - (1-y^{<t>})log(1-y^{<t>})$</t></t></t></t></t></t></t></p>
+<p>$L^{\langle t \rangle}(\hat{y}^{\langle t \rangle}, y^{\langle t \rangle}) = -y^{\langle t \rangle}log\hat{y}^{\langle t \rangle} - (1-y^{\langle t \rangle})log(1-y^{\langle t \rangle})$</p>
 <p>$y的结果是0或1，\hat y是预测值范围在0到1$</p>
 <p>由此可以定义整个网络的损失函数</p>
-<p>$L(\hat{y}, y) = \sum_{t=1}^{T_y} L^{<t>}(\hat{y}^{<t>}, y^{<t>})$</t></t></t></p>
+<p>$L(\hat{y}, y) = \sum_{t=1}^{T_y} L^{\langle t \rangle}(\hat{y}^{\langle t \rangle}, y^{\langle t \rangle})$</p>
 <p>最后通过反向传播算法求权重。</p>
 <h3 id="不同类型的RNN"><a href="#不同类型的RNN" class="headerlink" title="不同类型的RNN"></a>不同类型的RNN</h3><p>上面的例子$T_x = T_y$，也就是输入x的长度和y相同，我们称之为多对多结构。但实际情况中有不一定是x，y有相同长度。比如有多对一结构：$T_y = 1$<br><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-04-18%20%E4%B8%8B%E5%8D%884.50.13.png" style="zoom:50%;"><br>一对多结构，比如音频序列生成：$T_x = \varnothing$</p>
 <p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-04-18%20%E4%B8%8B%E5%8D%884.49.31.png" style="zoom:50%;"></p>
@@ -390,16 +391,21 @@
 <h3 id="RNN单元"><a href="#RNN单元" class="headerlink" title="RNN单元"></a>RNN单元</h3><p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/v2-de5ad673d74a07ea40a24f916956e675_b.webp.gif" alt></p>
 <h3 id="GRU-简化版"><a href="#GRU-简化版" class="headerlink" title="GRU(简化版)"></a>GRU(简化版)</h3><p>由于存在梯度消失，前面的状态很难影响到后面的预测。举个例子：<br><code>the cat, which already ate..., was ...</code> </p>
 <p>在这个例子中cat是单数，所以后面用was，如果cat是负数则用were。但梯度消失会导致无法根据cat的形式决定be动词形式。</p>
-<p>GRU引入了两个门结构，分别是更新门$\Gamma_u$和重置门$\tilde c^{<t>}$ 。更新门：它能决定要丢弃哪些信息和要添加哪些新信息。重置门用于决定丢弃先前信息的程度。</t></p>
-<p>在GRU中$c^{<t>} = a^{<t>}$，然后用$\tilde c^{<t>} = tanh(w_c[c^{<t-1>}, x^{<t>}])$替代老的记忆单元。</t></t-1></t></t></t></p>
+<p>在GRU中$c^{\langle t \rangle} = a^{\langle t \rangle}$，然后用$\tilde c^{\langle t \rangle} = tanh(w_c[c^{<t-1>}, x^{\langle t \rangle}])$替代老的记忆单元。</t-1></p>
 <p>$\Gamma_u$决定更新与否。$\Gamma_u = sigmoid(w_u[c^{<t-1>}, x^{&lt;t}]+b_u),  \Gamma_u\in(0, 1)$   </t-1></p>
-<p>$c^{<t>} = \Gamma_u <em> \tilde c^{<t>} + (1-\Gamma_u)</t></em>c^{<t-1>}$</t-1></t></p>
+<p>$c^{\langle t \rangle} = \Gamma_u <em> {\tilde c}^{\langle t \rangle} + (1-\Gamma_u)</em>c^{<t-1>}$</t-1></p>
 <blockquote>
-<p>因为对于大部分输入sigmoid的输出要么非常接近0，要么非常接近1。为了方便理解直接把它的输出看错0或1两个离散值。那么当$\Gamma_u=1时，c^{<t>}$就要更新。=0时保持原来的值不变。</t></p>
+<p>因为对于大部分输入sigmoid的输出要么非常接近0，要么非常接近1。为了方便理解直接把它的输出看错0或1两个离散值。那么当$\Gamma_u=1时，c^{\langle t \rangle}$就要更新。=0时保持原来的值不变。</p>
 </blockquote>
 <p>实例说明：</p>
 <p>对于<code>the cat, which already ate..., was ...</code>这个例子设cat对应的t=2， was对应的t=10。</p>
 <p>那么假设$c^{2}=1, \Gamma_u=1$ 中间的$\Gamma_u$都设置为0，那么就有$c^{2}=c^{3}=c^{4} … =c^{10}=1$，这样就能让$c^{10}$保持和$c^{2}$相同都为1。这样就能根据cat的形式决定be动词的形式了。</p>
+<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p>有三个门：$\Gamma_u$更新门，$\Gamma_f$遗忘门，$\Gamma_o$输出门。</p>
+<p>$\tilde c^{\langle t \rangle} = tanh(w_c[a^{<t-1>}, x^{\langle t \rangle}] + b_c)$</t-1></p>
+<p>$\Gamma_u = sigmod(w_u[a^{\langle t \rangle}, x^{\langle t \rangle}] + b_u)$</p>
+<p>$\Gamma_o = sigmod(w_o[a^{\langle t \rangle}, x^{\langle t \rangle}] + b_o)$</p>
+<p>$c^{\langle t \rangle} = \Gamma_u <em> \tilde c^{\langle t \rangle} + \Gamma_f </em> c^{\langle t \rangle}$</p>
+<p>$a^{\langle t \rangle} = \Gamma_o * tanh(c^{\langle t \rangle})$</p>
 
       
     </div>
@@ -513,7 +519,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -535,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -584,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%8F%90%E5%8F%96"><span class="nav-number">1.1.1.</span> <span class="nav-text">目标提取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">字符识别算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E6%9B%B2%E7%BA%BF%E4%B8%8A%E4%B8%80%E7%82%B9%E7%9A%84%E5%9D%90%E6%A0%87%E5%80%BC"><span class="nav-number">1.1.3.</span> <span class="nav-text">确定曲线上一点的坐标值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-number">2.</span> <span class="nav-text">RNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84RNN"><span class="nav-number">2.2.</span> <span class="nav-text">不同类型的RNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN%E5%8D%95%E5%85%83"><span class="nav-number">2.3.</span> <span class="nav-text">RNN单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GRU-%E7%AE%80%E5%8C%96%E7%89%88"><span class="nav-number">2.4.</span> <span class="nav-text">GRU(简化版)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%8F%90%E5%8F%96"><span class="nav-number">1.1.1.</span> <span class="nav-text">目标提取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">字符识别算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E6%9B%B2%E7%BA%BF%E4%B8%8A%E4%B8%80%E7%82%B9%E7%9A%84%E5%9D%90%E6%A0%87%E5%80%BC"><span class="nav-number">1.1.3.</span> <span class="nav-text">确定曲线上一点的坐标值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-number">2.</span> <span class="nav-text">RNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84RNN"><span class="nav-number">2.2.</span> <span class="nav-text">不同类型的RNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN%E5%8D%95%E5%85%83"><span class="nav-number">2.3.</span> <span class="nav-text">RNN单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GRU-%E7%AE%80%E5%8C%96%E7%89%88"><span class="nav-number">2.4.</span> <span class="nav-text">GRU(简化版)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LSTM"><span class="nav-number">2.5.</span> <span class="nav-text">LSTM</span></a></li></ol></li></ol></div>
             
 
           </div>
