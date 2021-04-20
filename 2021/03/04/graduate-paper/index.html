@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-04-18%20%E4%B8%8B%E5%8D%884.52.09.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/v2-de5ad673d74a07ea40a24f916956e675_b.webp.gif">
 <meta property="article:published_time" content="2021-03-04T14:13:59.000Z">
-<meta property="article:modified_time" content="2021-04-20T06:50:22.250Z">
+<meta property="article:modified_time" content="2021-04-20T12:14:30.462Z">
 <meta property="article:author" content="baichen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/test_img.png">
@@ -391,9 +391,9 @@
 <h3 id="RNN单元"><a href="#RNN单元" class="headerlink" title="RNN单元"></a>RNN单元</h3><p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/v2-de5ad673d74a07ea40a24f916956e675_b.webp.gif" alt></p>
 <h3 id="GRU-简化版"><a href="#GRU-简化版" class="headerlink" title="GRU(简化版)"></a>GRU(简化版)</h3><p>由于存在梯度消失，前面的状态很难影响到后面的预测。举个例子：<br><code>the cat, which already ate..., was ...</code> </p>
 <p>在这个例子中cat是单数，所以后面用was，如果cat是负数则用were。但梯度消失会导致无法根据cat的形式决定be动词形式。</p>
-<p>在GRU中$c^{\langle t \rangle} = a^{\langle t \rangle}$，然后用$\tilde c^{\langle t \rangle} = tanh(w_c[c^{<t-1>}, x^{\langle t \rangle}])$替代老的记忆单元。</t-1></p>
-<p>$\Gamma_u$决定更新与否。$\Gamma_u = sigmoid(w_u[c^{<t-1>}, x^{&lt;t}]+b_u),  \Gamma_u\in(0, 1)$   </t-1></p>
-<p>$c^{\langle t \rangle} = \Gamma_u <em> {\tilde c}^{\langle t \rangle} + (1-\Gamma_u)</em>c^{<t-1>}$</t-1></p>
+<p>在GRU中 $c^{\langle t \rangle} = a^{\langle t \rangle}$，然后用$\tilde c^{\langle t \rangle} = tanh(w_c[c^{\langle t-1 \rangle}, x^{\langle t \rangle}])$替代老的记忆单元。</p>
+<p>$\Gamma_u$决定更新与否。$\Gamma_u = sigmoid(w_u[c^{\langle t-1 \rangle}, x^{&lt;t}]+b_u),  \Gamma_u\in(0, 1)$   </p>
+<p>$c^{\langle t \rangle} = \Gamma_u <em> {\tilde c}^{\langle t \rangle} + (1-\Gamma_u)</em>c^{\langle t-1 \rangle}$</p>
 <blockquote>
 <p>因为对于大部分输入sigmoid的输出要么非常接近0，要么非常接近1。为了方便理解直接把它的输出看错0或1两个离散值。那么当$\Gamma_u=1时，c^{\langle t \rangle}$就要更新。=0时保持原来的值不变。</p>
 </blockquote>
@@ -401,7 +401,7 @@
 <p>对于<code>the cat, which already ate..., was ...</code>这个例子设cat对应的t=2， was对应的t=10。</p>
 <p>那么假设$c^{2}=1, \Gamma_u=1$ 中间的$\Gamma_u$都设置为0，那么就有$c^{2}=c^{3}=c^{4} … =c^{10}=1$，这样就能让$c^{10}$保持和$c^{2}$相同都为1。这样就能根据cat的形式决定be动词的形式了。</p>
 <h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p>有三个门：$\Gamma_u$更新门，$\Gamma_f$遗忘门，$\Gamma_o$输出门。</p>
-<p>$\tilde c^{\langle t \rangle} = tanh(w_c[a^{<t-1>}, x^{\langle t \rangle}] + b_c)$</t-1></p>
+<p>$\tilde c^{\langle t \rangle} = tanh(w_c[a^{\langle t-1 \rangle}, x^{\langle t \rangle}] + b_c)$</p>
 <p>$\Gamma_u = sigmod(w_u[a^{\langle t \rangle}, x^{\langle t \rangle}] + b_u)$</p>
 <p>$\Gamma_o = sigmod(w_o[a^{\langle t \rangle}, x^{\langle t \rangle}] + b_o)$</p>
 <p>$c^{\langle t \rangle} = \Gamma_u <em> \tilde c^{\langle t \rangle} + \Gamma_f </em> c^{\langle t \rangle}$</p>
@@ -519,7 +519,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -541,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
