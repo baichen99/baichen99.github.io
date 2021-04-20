@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="dropout原理直觉-1：每次迭代之后，神经网络都会变得更小，采用一个较小的神经网络好像和使用正则化的效果是一样的。 直觉-2：神经元不能依赖任何特征，因为每个特征都可能被随机清除，所以不能把所有赌注放在一个节点上，不能给一个输入太多权重，这样改单元通过这种方式积极传播开 dropout的功能类似于L2正则化。 实现方法比如我们有一个神经网络，要在第3层进行dropout。 定义keep_pro">
+<meta name="description" content="dropout原理 直觉-1：每次迭代之后，神经网络都会变得更小，采用一个较小的神经网络好像和使用正则化的效果是一样的。 直觉-2：神经元不能依赖任何特征，因为每个特征都可能被随机清除，所以不能把所有赌注放在一个节点上，不能给一个输入太多权重，这样改单元通过这种方式积极传播开 dropout的功能类似于L2正则化。 实现方法 比如我们有一个神经网络，要在第3层进行dropout。 定义keep_p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="神经网络：dropout 正则化">
 <meta property="og:url" content="http://blacston.com/2021/02/19/dropout/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="dropout原理直觉-1：每次迭代之后，神经网络都会变得更小，采用一个较小的神经网络好像和使用正则化的效果是一样的。 直觉-2：神经元不能依赖任何特征，因为每个特征都可能被随机清除，所以不能把所有赌注放在一个节点上，不能给一个输入太多权重，这样改单元通过这种方式积极传播开 dropout的功能类似于L2正则化。 实现方法比如我们有一个神经网络，要在第3层进行dropout。 定义keep_pro">
+<meta property="og:description" content="dropout原理 直觉-1：每次迭代之后，神经网络都会变得更小，采用一个较小的神经网络好像和使用正则化的效果是一样的。 直觉-2：神经元不能依赖任何特征，因为每个特征都可能被随机清除，所以不能把所有赌注放在一个节点上，不能给一个输入太多权重，这样改单元通过这种方式积极传播开 dropout的功能类似于L2正则化。 实现方法 比如我们有一个神经网络，要在第3层进行dropout。 定义keep_p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-19T01:47:05.000Z">
 <meta property="article:modified_time" content="2021-04-06T10:44:00.249Z">
@@ -361,20 +361,23 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="dropout原理"><a href="#dropout原理" class="headerlink" title="dropout原理"></a>dropout原理</h2><p>直觉-1：每次迭代之后，神经网络都会变得更小，采用一个较小的神经网络好像和使用正则化的效果是一样的。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="dropout原理">dropout原理</h2>
+<p>直觉-1：每次迭代之后，神经网络都会变得更小，采用一个较小的神经网络好像和使用正则化的效果是一样的。</p>
 <p>直觉-2：神经元不能依赖任何特征，因为每个特征都可能被随机清除，所以不能把所有赌注放在一个节点上，不能给一个输入太多权重，这样改单元通过这种方式积极传播开</p>
 <p>dropout的功能类似于L2正则化。</p>
-<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><p>比如我们有一个神经网络，要在第3层进行dropout。</p>
+<h2 id="实现方法">实现方法</h2>
+<p>比如我们有一个神经网络，要在第3层进行dropout。</p>
 <p>定义keep_prob 为保留单元的概率</p>
-<p>$d^{[3]} = np.random.rand(a^{[3]}.shape[0], a^{[3]}.shape[1]) &lt; keep_prob$  这一步是生成一个bool矩阵，其中1的概率为keep_prob。</p>
-<p>$a^{[3]} = np.multiply(a^{[3]}, d^{[3]})$   </p>
-<p>$a^{[3]} /= keep_prob$  这里除以keep_prob是为了让期望保持不变，因为直接去除几个结果期望肯定会改变。</p>
+<p><span class="math inline">\(d^{[3]} = np.random.rand(a^{[3]}.shape[0], a^{[3]}.shape[1]) &lt; keep_prob\)</span> 这一步是生成一个bool矩阵，其中1的概率为keep_prob。</p>
+<p><span class="math inline">\(a^{[3]} = np.multiply(a^{[3]}, d^{[3]})\)</span></p>
+<p><span class="math inline">\(a^{[3]} /= keep\_prob\)</span> 这里除以keep_prob是为了让期望保持不变，因为直接去除几个结果期望肯定会改变。</p>
 <blockquote>
 <p>设置 keep _prob==1则保留这一层的结果，不进行dropout。</p>
 </blockquote>
 <p>另外dropout只在训练时执行，测试阶段则不进行dropout，因为在测试阶段我们不希望输出结果是随机的。</p>
-<h2 id="keras中使用dropout"><a href="#keras中使用dropout" class="headerlink" title="keras中使用dropout"></a>keras中使用dropout</h2><p>使用dropout正则化随机禁用隐藏层中神经元的某些部分。 在Keras库中，你可以在任何隐藏层之后添加dropout，并且可以指定rate，该rate决定了<strong>上一层</strong>中禁用的神经元的百分比。</p>
-<p><a target="_blank" rel="noopener" href="https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/">https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/</a></p>
+<h2 id="keras中使用dropout">keras中使用dropout</h2>
+<p>使用dropout正则化随机禁用隐藏层中神经元的某些部分。 在Keras库中，你可以在任何隐藏层之后添加dropout，并且可以指定rate，该rate决定了<strong>上一层</strong>中禁用的神经元的百分比。</p>
+<p>https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/</p>
 
       
     </div>

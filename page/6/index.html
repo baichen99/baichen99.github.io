@@ -361,8 +361,10 @@
 
       
         
-          <h3 id="单核如何实现多任务"><a href="#单核如何实现多任务" class="headerlink" title="单核如何实现多任务?"></a>单核如何实现多任务?</h3><p>依次轮流执行, 看上去像是同时进行</p>
-<h3 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行?"></a>并发与并行?</h3><p><strong>并发</strong>是看上去一起执行,任务数大于CPU核心数  <strong>并行</strong>是真正的一起执行, 任务数小于CPU核心数<br>
+          <h3 id="单核如何实现多任务">单核如何实现多任务?</h3>
+<p>依次轮流执行, 看上去像是同时进行</p>
+<h3 id="并发与并行">并发与并行?</h3>
+<p><strong>并发</strong>是看上去一起执行,任务数大于CPU核心数 <strong>并行</strong>是真正的一起执行, 任务数小于CPU核心数</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/15/jincheng/#more" rel="contents">
@@ -508,13 +510,15 @@
 
       
         
-          <h1 id="基础爬虫"><a href="#基础爬虫" class="headerlink" title="基础爬虫"></a>基础爬虫</h1><h2 id="基础架构和流程"><a href="#基础架构和流程" class="headerlink" title="基础架构和流程"></a>基础架构和流程</h2><ul>
+          <h1 id="基础爬虫">基础爬虫</h1>
+<h2 id="基础架构和流程">基础架构和流程</h2>
+<ul>
 <li>简单的爬虫架构由以下几部分构成：</li>
 <li>爬虫调度器：总体协调其它几个模块的工作</li>
 <li>URL管理器(UrlManager)：负责管理URL，维护已经爬取的URL集合和未爬取的URL集合</li>
 <li>网页下载器(HtmlDownloader)：对未爬取的URL下载</li>
 <li>网页解析器(HtmlParser)：解析已下载的html，并从中提取新的URL交给URL管理器，数据交给存储器处理</li>
-<li>数据存储器(DataOutput)：将html解析出来的数据进行存取
+<li>数据存储器(DataOutput)：将html解析出来的数据进行存取</li></ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/08/basic-spider/#more" rel="contents">
@@ -660,7 +664,7 @@
 
       
         
-          <p><strong>csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号</strong><br><strong>文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据</strong><br>
+          <p><strong>csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号</strong> <strong>文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据</strong></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/07/spider-csv/#more" rel="contents">
@@ -806,7 +810,7 @@
 
       
         
-          <p><em>JSON的格式是 <code>键:值</code>  类似于python中的字典</em><br><em>JSON数组:   JSON数组在方括号中书写,可包含多个对象 如<code>[&#123;&#39;name&#39;:&#39;blackstone&#39;, &#39;age&#39;, 21&#125;,&#123;&#39;name&#39;:&#39;marry&#39;, &#39;age&#39;, 19&#125;]</code></em><br>
+          <p><em>JSON的格式是 <code>键:值</code> 类似于python中的字典</em> <em>JSON数组: JSON数组在方括号中书写,可包含多个对象 如<code>[&#123;'name':'blackstone', 'age', 21&#125;,&#123;'name':'marry', 'age', 19&#125;]</code></em></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/06/spider-json/#more" rel="contents">

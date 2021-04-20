@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="常用命令后台运行 首先可以docker run -it &lt;image_id&gt; bash，在容器运行bash。 如果想退出docker但是不停止容器，可以按ctrl+p+q来退出 如果想回到容器继续执行指令，docker attatch &lt;container_id&gt;  挂载文件夹 运行之前挂载 docker run -v &#x2F;src&#x2F;example&#x2F;:&#x2F;dest&#x2F;folder">
+<meta name="description" content="常用命令 后台运行  首先可以docker run -it &lt;image_id&gt; bash，在容器运行bash。 如果想退出docker但是不停止容器，可以按ctrl+p+q来退出 如果想回到容器继续执行指令，docker attatch &lt;container_id&gt;  挂载文件夹  运行之前挂载 docker run -v &#x2F;src&#x2F;example&#x2F;:&#x2F;dest&#x2F;fold">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker笔记">
 <meta property="og:url" content="http://blacston.com/2021/02/21/docker-notes/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="常用命令后台运行 首先可以docker run -it &lt;image_id&gt; bash，在容器运行bash。 如果想退出docker但是不停止容器，可以按ctrl+p+q来退出 如果想回到容器继续执行指令，docker attatch &lt;container_id&gt;  挂载文件夹 运行之前挂载 docker run -v &#x2F;src&#x2F;example&#x2F;:&#x2F;dest&#x2F;folder">
+<meta property="og:description" content="常用命令 后台运行  首先可以docker run -it &lt;image_id&gt; bash，在容器运行bash。 如果想退出docker但是不停止容器，可以按ctrl+p+q来退出 如果想回到容器继续执行指令，docker attatch &lt;container_id&gt;  挂载文件夹  运行之前挂载 docker run -v &#x2F;src&#x2F;example&#x2F;:&#x2F;dest&#x2F;fold">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-21T14:43:20.000Z">
 <meta property="article:modified_time" content="2021-02-21T15:00:30.382Z">
@@ -360,17 +360,21 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h3><ol>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="常用命令">常用命令</h2>
+<h3 id="后台运行">后台运行</h3>
+<ol type="1">
 <li>首先可以<code>docker run -it &lt;image_id&gt; bash</code>，在容器运行bash。</li>
 <li>如果想退出docker但是不停止容器，可以按ctrl+p+q来退出</li>
 <li>如果想回到容器继续执行指令，<code>docker attatch &lt;container_id&gt;</code></li>
 </ol>
-<h3 id="挂载文件夹"><a href="#挂载文件夹" class="headerlink" title="挂载文件夹"></a>挂载文件夹</h3><ol>
-<li>运行之前挂载<br> <code>docker run -v /src/example/:/dest/folder &lt;image&gt; &lt;command&gt;</code></li>
-<li>通过修改配置来挂载 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker.service</span><br><span class="line">vim /var/lib/docker/containers/container-ID/config.v2.json</span><br><span class="line">systemctl start docker.service</span><br><span class="line">docker start &lt;container-name/ID&gt;</span><br></pre></td></tr></table></figure>
-</li>
+<h3 id="挂载文件夹">挂载文件夹</h3>
+<ol type="1">
+<li>运行之前挂载 <code>docker run -v /src/example/:/dest/folder &lt;image&gt; &lt;command&gt;</code></li>
+<li>通过修改配置来挂载 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker.service</span><br><span class="line">vim /var/lib/docker/containers/container-ID/config.v2.json</span><br><span class="line">systemctl start docker.service</span><br><span class="line">docker start &lt;container-name/ID&gt;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="dockerfile"><a href="#dockerfile" class="headerlink" title="dockerfile"></a>dockerfile</h2><h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RUN ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime</span><br><span class="line">RUN echo &#39;Asia&#x2F;Shanghai&#39; &gt;&#x2F;etc&#x2F;timezone</span><br></pre></td></tr></table></figure>
+<h2 id="dockerfile">dockerfile</h2>
+<h3 id="设置时区">设置时区</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RUN ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime</span><br><span class="line">RUN echo &#39;Asia&#x2F;Shanghai&#39; &gt;&#x2F;etc&#x2F;timezone</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linjiqin/p/10607800.html">Dockerfile 时区设置</a></p>
 
       

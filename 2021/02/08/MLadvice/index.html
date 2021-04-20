@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="当我们运用训练好了的模型来预测未知数据的时候发现有较大的误差，我们下一步可以做什么？  获得更多的训练样本——通常是有效的，但代价较大，下面的方法也可能有效，可考虑先采用下面的几种方法。  尝试减少特征的数量  尝试获得更多的特征  尝试增加多项式特征  尝试减少正则化程度$\lambda$  尝试增加正则化程度$\lambda$   假设评估为了检验算法是否过拟合，我们将数据分成训练集和测试集，">
+<meta name="description" content="当我们运用训练好了的模型来预测未知数据的时候发现有较大的误差，我们下一步可以做什么？  获得更多的训练样本——通常是有效的，但代价较大，下面的方法也可能有效，可考虑先采用下面的几种方法。 尝试减少特征的数量 尝试获得更多的特征 尝试增加多项式特征 尝试减少正则化程度\(\lambda\) 尝试增加正则化程度\(\lambda\)  假设评估 为了检验算法是否过拟合，我们将数据分成训练集和测试集，通">
 <meta property="og:type" content="article">
 <meta property="og:title" content="应用机器学习的建议">
 <meta property="og:url" content="http://blacston.com/2021/02/08/MLadvice/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="当我们运用训练好了的模型来预测未知数据的时候发现有较大的误差，我们下一步可以做什么？  获得更多的训练样本——通常是有效的，但代价较大，下面的方法也可能有效，可考虑先采用下面的几种方法。  尝试减少特征的数量  尝试获得更多的特征  尝试增加多项式特征  尝试减少正则化程度$\lambda$  尝试增加正则化程度$\lambda$   假设评估为了检验算法是否过拟合，我们将数据分成训练集和测试集，">
+<meta property="og:description" content="当我们运用训练好了的模型来预测未知数据的时候发现有较大的误差，我们下一步可以做什么？  获得更多的训练样本——通常是有效的，但代价较大，下面的方法也可能有效，可考虑先采用下面的几种方法。 尝试减少特征的数量 尝试获得更多的特征 尝试增加多项式特征 尝试减少正则化程度\(\lambda\) 尝试增加正则化程度\(\lambda\)  假设评估 为了检验算法是否过拟合，我们将数据分成训练集和测试集，通">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blacston.com/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208103753073.png">
 <meta property="og:image" content="http://blacston.com/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208104342235.png">
@@ -369,74 +369,80 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>当我们运用训练好了的模型来预测未知数据的时候发现有较大的误差，我们下一步可以做什么？</p>
-<ol>
-<li><p>获得更多的训练样本——通常是有效的，但代价较大，下面的方法也可能有效，可考虑先采用下面的几种方法。</p>
-</li>
-<li><p>尝试减少特征的数量</p>
-</li>
-<li><p>尝试获得更多的特征</p>
-</li>
-<li><p>尝试增加多项式特征</p>
-</li>
-<li><p>尝试减少正则化程度$\lambda$</p>
-</li>
-<li><p>尝试增加正则化程度$\lambda$</p>
-</li>
+<ol type="1">
+<li><p>获得更多的训练样本——通常是有效的，但代价较大，下面的方法也可能有效，可考虑先采用下面的几种方法。</p></li>
+<li><p>尝试减少特征的数量</p></li>
+<li><p>尝试获得更多的特征</p></li>
+<li><p>尝试增加多项式特征</p></li>
+<li><p>尝试减少正则化程度<span class="math inline">\(\lambda\)</span></p></li>
+<li><p>尝试增加正则化程度<span class="math inline">\(\lambda\)</span></p></li>
 </ol>
-<h2 id="假设评估"><a href="#假设评估" class="headerlink" title="假设评估"></a>假设评估</h2><p>为了检验算法是否过拟合，我们将数据分成训练集和测试集，通常用70%的数据作为训练集，用剩下30%的数据作为测试集。很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行“洗牌”，然后再分成训练集和测试集。</p>
-<ol>
-<li>对于线性回归模型，我们利用测试集数据计算代价函数$J$</li>
+<h2 id="假设评估">假设评估</h2>
+<p>为了检验算法是否过拟合，我们将数据分成训练集和测试集，通常用70%的数据作为训练集，用剩下30%的数据作为测试集。很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行“洗牌”，然后再分成训练集和测试集。</p>
+<ol type="1">
+<li>对于线性回归模型，我们利用测试集数据计算代价函数<span class="math inline">\(J\)</span></li>
 <li>对于逻辑回归模型，我们除了可以利用测试数据集来计算代价函数外：</li>
 </ol>
-<h2 id="模型选择和交叉验证集"><a href="#模型选择和交叉验证集" class="headerlink" title="模型选择和交叉验证集"></a>模型选择和交叉验证集</h2><p>显然越高次数的多项式模型越能够适应我们的训练数据集，但是适应训练数据集并不代表着能推广至一般情况，我们应该选择一个更能适应一般情况的模型。我们需要<strong>使用交叉验证集来帮助选择模型。</strong></p>
+<h2 id="模型选择和交叉验证集">模型选择和交叉验证集</h2>
+<p>显然越高次数的多项式模型越能够适应我们的训练数据集，但是适应训练数据集并不代表着能推广至一般情况，我们应该选择一个更能适应一般情况的模型。我们需要<strong>使用交叉验证集来帮助选择模型。</strong></p>
 <p>使用60%的数据作为训练集，使用 20%的数据作为交叉验证集，使用20%的数据作为测试集</p>
 <p>模型选择的方法为：</p>
-<ol>
-<li><p>使用训练集训练出10个模型（分别代表一次到十次）</p>
-</li>
-<li><p>用10个模型分别对<strong>交叉验证集</strong>计算得出交叉验证误差（代价函数的值）</p>
-</li>
-<li><p>选取代价函数值最小的模型</p>
-</li>
-<li><p>用步骤3中选出的模型对测试集计算得出推广误差（代价函数的值）</p>
-</li>
+<ol type="1">
+<li><p>使用训练集训练出10个模型（分别代表一次到十次）</p></li>
+<li><p>用10个模型分别对<strong>交叉验证集</strong>计算得出交叉验证误差（代价函数的值）</p></li>
+<li><p>选取代价函数值最小的模型</p></li>
+<li><p>用步骤3中选出的模型对测试集计算得出推广误差（代价函数的值）</p></li>
 </ol>
 <p><strong><em>Train/validation/test error</em></strong></p>
 <p><strong>Training error:</strong></p>
-<p>$J_{train}(\theta) = \frac{1}{2m}\sum_\limits{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^2$</p>
+<p><span class="math inline">\(J_{train}(\theta) = \frac{1}{2m}\sum_\limits{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^2\)</span></p>
 <p><strong>Cross Validation error:</strong></p>
-<p>$J_{cv}(\theta) = \frac{1}{2m_{cv}}\sum_\limits{i=1}^{m}(h_{\theta}(x^{(i)}_{cv})-y^{(i)}_{cv})^2$</p>
+<p><span class="math inline">\(J_{cv}(\theta) = \frac{1}{2m_{cv}}\sum_\limits{i=1}^{m}(h_{\theta}(x^{(i)}_{cv})-y^{(i)}_{cv})^2\)</span></p>
 <p><strong>Test error:</strong></p>
-<p>$J_{test}(\theta)=\frac{1}{2m_{test}}\sum_\limits{i=1}^{m_{test}}(h_{\theta}(x^{(i)}_{cv})-y^{(i)}_{cv})^2$</p>
-<h2 id="诊断偏差和方差"><a href="#诊断偏差和方差" class="headerlink" title="诊断偏差和方差"></a>诊断偏差和方差</h2><p>下面的图表示：多项式次数越高，他的误差就越小，但是过高的话可能会导致交叉验证集的误差增多。</p>
-<p><img src="/Users/chenbai/Library/Application Support/typora-user-images/image-20210208103753073.png" alt="image-20210208103753073"></p>
-<p>对于训练集，当 $d$ 较小时，模型拟合程度更低，误差较大；随着 $d$ 的增长，拟合程度提高，误差减小。对于交叉验证集，当 $d$ 较小时，模型拟合程度低，误差较大；但是随着 $d$ 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。</p>
+<p><span class="math inline">\(J_{test}(\theta)=\frac{1}{2m_{test}}\sum_\limits{i=1}^{m_{test}}(h_{\theta}(x^{(i)}_{cv})-y^{(i)}_{cv})^2\)</span></p>
+<h2 id="诊断偏差和方差">诊断偏差和方差</h2>
+<p>下面的图表示：多项式次数越高，他的误差就越小，但是过高的话可能会导致交叉验证集的误差增多。</p>
+<figure>
+<img src="/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208103753073.png" alt="image-20210208103753073"><figcaption aria-hidden="true">image-20210208103753073</figcaption>
+</figure>
+<p>对于训练集，当 <span class="math inline">\(d\)</span> 较小时，模型拟合程度更低，误差较大；随着 <span class="math inline">\(d\)</span> 的增长，拟合程度提高，误差减小。对于交叉验证集，当 <span class="math inline">\(d\)</span> 较小时，模型拟合程度低，误差较大；但是随着 <span class="math inline">\(d\)</span> 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。</p>
 <p>如果我们的交叉验证集误差较大，我们如何判断是方差还是偏差呢？根据上面的图表，我们知道:</p>
 <p>训练集误差和交叉验证集误差近似时：偏差/欠拟合</p>
 <p>交叉验证集误差远大于训练集误差时：方差/过拟合</p>
-<h2 id="正则化和偏差-方差"><a href="#正则化和偏差-方差" class="headerlink" title="正则化和偏差/方差"></a>正则化和偏差/方差</h2><p>在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。但是我们可能会正则化的程度太高或太小了，即我们在选择λ的值时也需要思考与刚才选择多项式模型次数类似的问题。</p>
-<p><img src="/Users/chenbai/Library/Application Support/typora-user-images/image-20210208104342235.png" alt="image-20210208104342235"></p>
-<p>我们选择一系列的想要测试的 $\lambda$ 值，通常是 0-10之间的呈现2倍关系的值（如：$0,0.01,0.02,0.04,0.08,0.15,0.32,0.64,1.28,2.56,5.12,10$共12个）。 我们同样把数据分为训练集、交叉验证集和测试集。</p>
-<p>选择$\lambda$的方法为：</p>
-<ol>
+<h2 id="正则化和偏差方差">正则化和偏差/方差</h2>
+<p>在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。但是我们可能会正则化的程度太高或太小了，即我们在选择λ的值时也需要思考与刚才选择多项式模型次数类似的问题。</p>
+<figure>
+<img src="/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208104342235.png" alt="image-20210208104342235"><figcaption aria-hidden="true">image-20210208104342235</figcaption>
+</figure>
+<p>我们选择一系列的想要测试的 <span class="math inline">\(\lambda\)</span> 值，通常是 0-10之间的呈现2倍关系的值（如：<span class="math inline">\(0,0.01,0.02,0.04,0.08,0.15,0.32,0.64,1.28,2.56,5.12,10\)</span>共12个）。 我们同样把数据分为训练集、交叉验证集和测试集。</p>
+<p>选择<span class="math inline">\(\lambda\)</span>的方法为：</p>
+<ol type="1">
 <li>使用训练集训练出12个不同程度正则化的模型</li>
 <li>用12个模型分别对交叉验证集计算的出交叉验证误差</li>
 <li>选择得出交叉验证误差<strong>最小</strong>的模型</li>
 <li>运用步骤3中选出模型对测试集计算得出推广误差，我们也可以同时将训练集和交叉验证集模型的代价函数误差与λ的值绘制在一张图表上：</li>
-<li><img src="/Users/chenbai/Library/Application Support/typora-user-images/image-20210208104447156.png" alt="image-20210208104447156"></li>
+<li><img src="/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208104447156.png" title="fig:" alt="image-20210208104447156"></li>
 </ol>
-<p>• 当 $\lambda$ 较小时，训练集误差较小（过拟合）而交叉验证集误差较大</p>
-<p>• 随着 $\lambda$ 的增加，训练集误差不断增加（欠拟合），而交叉验证集误差则是先减小后增加</p>
-<h2 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h2><p>学习曲线就是一种很好的工具，我经常使用学习曲线来判断某一个学习算法是否处于偏差、方差问题。学习曲线是学习算法的一个很好的<strong>合理检验</strong>（<strong>sanity check</strong>）。</p>
-<p><img src="/Users/chenbai/Library/Application Support/typora-user-images/image-20210208105116689.png" alt="image-20210208105116689"></p>
+<p>• 当 <span class="math inline">\(\lambda\)</span> 较小时，训练集误差较小（过拟合）而交叉验证集误差较大</p>
+<p>• 随着 <span class="math inline">\(\lambda\)</span> 的增加，训练集误差不断增加（欠拟合），而交叉验证集误差则是先减小后增加</p>
+<h2 id="学习曲线">学习曲线</h2>
+<p>学习曲线就是一种很好的工具，我经常使用学习曲线来判断某一个学习算法是否处于偏差、方差问题。学习曲线是学习算法的一个很好的<strong>合理检验</strong>（<strong>sanity check</strong>）。</p>
+<figure>
+<img src="/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208105116689.png" alt="image-20210208105116689"><figcaption aria-hidden="true">image-20210208105116689</figcaption>
+</figure>
 <p>上面这张图表示：当训练集的数量越多，训练集误差会变大，但是交叉验证集的误差会减小。</p>
 <p>如何利用学习曲线<strong>识别高偏差/欠拟合</strong>：作为例子，我们尝试用一条直线来适应下面的数据，可以看出，无论训练集有多么大误差都不会有太大改观：</p>
-<p><img src="/Users/chenbai/Library/Application Support/typora-user-images/image-20210208105235892.png" alt="image-20210208105235892"></p>
+<figure>
+<img src="/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208105235892.png" alt="image-20210208105235892"><figcaption aria-hidden="true">image-20210208105235892</figcaption>
+</figure>
 <p>也就是说在高偏差/欠拟合的情况下，增加数据到训练集不一定能有帮助。</p>
 <p>如何利用学习曲线识别高方差/过拟合：假设我们使用一个非常高次的多项式模型，并且正则化非常小，可以看出，当交叉验证集误差远大于训练集误差时，往训练集增加更多数据可以提高模型的效果。</p>
-<p><img src="/Users/chenbai/Library/Application Support/typora-user-images/image-20210208105344402.png" alt="image-20210208105344402"></p>
+<figure>
+<img src="/Users/chenbai/Library/Application%20Support/typora-user-images/image-20210208105344402.png" alt="image-20210208105344402"><figcaption aria-hidden="true">image-20210208105344402</figcaption>
+</figure>
 <p><strong>也就是说在高方差/过拟合的情况下，增加更多数据到训练集可能可以提高算法效果。</strong></p>
-<h2 id="决定下一步做什么"><a href="#决定下一步做什么" class="headerlink" title="决定下一步做什么"></a>决定下一步做什么</h2><ol>
+<h2 id="决定下一步做什么">决定下一步做什么</h2>
+<ol type="1">
 <li>获得更多的训练样本——解决高方差</li>
 <li>尝试减少特征的数量——解决高方差</li>
 <li>尝试获得更多的特征——解决高偏差</li>
@@ -445,7 +451,7 @@
 <li>尝试增加正则化程度λ——解决高方差</li>
 </ol>
 <blockquote>
-<p>高方差==过拟合  高偏差==欠拟合</p>
+<p>高方差==过拟合 高偏差==欠拟合</p>
 </blockquote>
 
       
@@ -639,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E8%AE%BE%E8%AF%84%E4%BC%B0"><span class="nav-number">1.</span> <span class="nav-text">假设评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">模型选择和交叉验证集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E5%92%8C%E6%96%B9%E5%B7%AE"><span class="nav-number">3.</span> <span class="nav-text">诊断偏差和方差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8C%E5%81%8F%E5%B7%AE-%E6%96%B9%E5%B7%AE"><span class="nav-number">4.</span> <span class="nav-text">正则化和偏差&#x2F;方差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF"><span class="nav-number">5.</span> <span class="nav-text">学习曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E5%AE%9A%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">6.</span> <span class="nav-text">决定下一步做什么</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E8%AE%BE%E8%AF%84%E4%BC%B0"><span class="nav-number">1.</span> <span class="nav-text">假设评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">模型选择和交叉验证集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E5%92%8C%E6%96%B9%E5%B7%AE"><span class="nav-number">3.</span> <span class="nav-text">诊断偏差和方差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8C%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE"><span class="nav-number">4.</span> <span class="nav-text">正则化和偏差&#x2F;方差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF"><span class="nav-number">5.</span> <span class="nav-text">学习曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E5%AE%9A%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">6.</span> <span class="nav-text">决定下一步做什么</span></a></li></ol></div>
             
 
           </div>

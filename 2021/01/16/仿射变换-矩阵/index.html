@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="平移$(x, y)  -&gt;  (u, y)$ $u &#x3D; a_1x+b_1y+c_1$ $v &#x3D; a_2x+b_2+c_2$">
+<meta name="description" content="平移 \((x, y) -&gt; (u, y)\) \(u &#x3D; a_1x+b_1y+c_1\) \(v &#x3D; a_2x+b_2+c_2\)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="仿射变换 矩阵运算">
 <meta property="og:url" content="http://blacston.com/2021/01/16/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2-%E7%9F%A9%E9%98%B5/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="平移$(x, y)  -&gt;  (u, y)$ $u &#x3D; a_1x+b_1y+c_1$ $v &#x3D; a_2x+b_2+c_2$">
+<meta property="og:description" content="平移 \((x, y) -&gt; (u, y)\) \(u &#x3D; a_1x+b_1y+c_1\) \(v &#x3D; a_2x+b_2+c_2\)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-16T04:58:39.000Z">
 <meta property="article:modified_time" content="2021-01-16T04:56:37.683Z">
@@ -360,20 +360,20 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><p>$(x, y)  -&gt;  (u, y)$</p>
-<p>$u = a_1x+b_1y+c_1$</p>
-<p>$v = a_2x+b_2+c_2$</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="平移">平移</h2>
+<p><span class="math inline">\((x, y) -&gt; (u, y)\)</span></p>
+<p><span class="math inline">\(u = a_1x+b_1y+c_1\)</span></p>
+<p><span class="math inline">\(v = a_2x+b_2+c_2\)</span></p>
 <a id="more"></a>
-<p>矩阵形式</p>
-<script type="math/tex; mode=display">
+<p>矩阵形式 <span class="math display">\[
 \begin{pmatrix}
 u\\
 v\\
 \end{pmatrix}
 =
 \begin{pmatrix}
-a_1 & b_1\\
-a_2 & b_2\\
+a_1 &amp; b_1\\
+a_2 &amp; b_2\\
 \end{pmatrix}
 \begin{pmatrix}
 x\\
@@ -383,16 +383,19 @@ y\\
 \begin{pmatrix}
 c_1\\
 c_2\\
-\end{pmatrix}</script><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>绕原点旋转。</p>
-<script type="math/tex; mode=display">
+\end{pmatrix}
+\]</span></p>
+<h2 id="旋转">旋转</h2>
+<p>绕原点旋转。</p>
+<p><span class="math display">\[
 \begin{pmatrix}
 u\\
 v\\
 \end{pmatrix}
 =
 \begin{pmatrix}
-cos\theta & -sin\theta\\
--sin\theta & cos\theta\\
+cos\theta &amp; -sin\theta\\
+-sin\theta &amp; cos\theta\\
 \end{pmatrix}
 \begin{pmatrix}
 x\\
@@ -402,16 +405,18 @@ y\\
 \begin{pmatrix}
 0\\
 0\\
-\end{pmatrix}</script><h2 id="刚体变换"><a href="#刚体变换" class="headerlink" title="刚体变换"></a>刚体变换</h2><p>旋转+平移也称刚体变换（Rigid Transform），就是说如果图像变换前后<strong>两点间的距离</strong>仍然保持不变，那么这种变化就称为刚体变换。</p>
-<script type="math/tex; mode=display">
+\end{pmatrix}
+\]</span></p>
+<h2 id="刚体变换">刚体变换</h2>
+<p>旋转+平移也称刚体变换（Rigid Transform），就是说如果图像变换前后<strong>两点间的距离</strong>仍然保持不变，那么这种变化就称为刚体变换。 <span class="math display">\[
 \begin{pmatrix}
 u\\
 v\\
 \end{pmatrix}
 =
 \begin{pmatrix}
-cos\theta & -sin\theta\\
-sin\theta & cos\theta\\
+cos\theta &amp; -sin\theta\\
+sin\theta &amp; cos\theta\\
 \end{pmatrix}
 \begin{pmatrix}
 x\\
@@ -421,17 +426,87 @@ y\\
 \begin{pmatrix}
 t_X\\
 t_y\\
-\end{pmatrix}</script><h2 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h2><h3 id="垂直翻转"><a href="#垂直翻转" class="headerlink" title="垂直翻转"></a>垂直翻转</h3><p>$u=x; v=-y$</p>
+\end{pmatrix}
+\]</span></p>
+<h2 id="翻转">翻转</h2>
+<h3 id="垂直翻转">垂直翻转</h3>
+<p><span class="math inline">\(u=x; v=-y\)</span></p>
+<p>矩阵形式 <span class="math display">\[
+\begin{pmatrix}
+u\\
+v\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 &amp; 0\\
+0 &amp; -1\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix}
++
+\begin{pmatrix}
+0\\
+0\\
+\end{pmatrix}
+\]</span></p>
+<h3 id="水平翻转">水平翻转</h3>
+<p><span class="math inline">\(u=-x; v=y\)</span></p>
+<p>矩阵形式 <span class="math display">\[
+\begin{pmatrix}
+u\\
+v\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 &amp; 0\\
+0 &amp; 1\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix}
++
+\begin{pmatrix}
+0\\
+0\\
+\end{pmatrix}
+\]</span></p>
+<h3 id="垂直水平翻转">垂直水平翻转</h3>
+<p><span class="math inline">\(u=-x; v=-y\)</span></p>
+<p>矩阵形式 <span class="math display">\[
+\begin{pmatrix}
+u\\
+v\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 &amp; 0\\
+0 &amp; -1\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix}
++
+\begin{pmatrix}
+0\\
+0\\
+\end{pmatrix}
+\]</span></p>
+<h2 id="缩放">缩放</h2>
+<p><span class="math inline">\(u = s_xx; v = s_yy\)</span></p>
 <p>矩阵形式</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{pmatrix}
 u\\
 v\\
 \end{pmatrix}
 =
 \begin{pmatrix}
-1 & 0\\
-0 & -1\\
+s_x &amp; 0\\
+0 &amp; s_y\\
 \end{pmatrix}
 \begin{pmatrix}
 x\\
@@ -441,17 +516,18 @@ y\\
 \begin{pmatrix}
 0\\
 0\\
-\end{pmatrix}</script><h3 id="水平翻转"><a href="#水平翻转" class="headerlink" title="水平翻转"></a>水平翻转</h3><p>$u=-x; v=y$</p>
-<p>矩阵形式</p>
-<script type="math/tex; mode=display">
+\end{pmatrix}
+\]</span></p>
+<h2 id="相似变换">相似变换</h2>
+<p>相似变换又称缩放旋转，相似变换包含了旋转、等比例缩放和平移等变换。 若缩放比例为scale，旋转角度为θ，旋转中心是$ (center_x,center_y) $，则仿射变换可以表示为： <span class="math display">\[
 \begin{pmatrix}
 u\\
 v\\
 \end{pmatrix}
 =
 \begin{pmatrix}
--1 & 0\\
-0 & 1\\
+\alpha &amp; \beta\\
+-\beta &amp; \alpha\\
 \end{pmatrix}
 \begin{pmatrix}
 x\\
@@ -459,72 +535,15 @@ y\\
 \end{pmatrix}
 +
 \begin{pmatrix}
-0\\
-0\\
-\end{pmatrix}</script><h3 id="垂直水平翻转"><a href="#垂直水平翻转" class="headerlink" title="垂直水平翻转"></a>垂直水平翻转</h3><p>$u=-x; v=-y$</p>
-<p>矩阵形式</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
-u\\
-v\\
+(1-\alpha)center_x &amp; -\beta center_y\\
+\beta center_x &amp; (1-\alpha)center_y\\
 \end{pmatrix}
-=
-\begin{pmatrix}
--1 & 0\\
-0 & -1\\
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix}
-+
-\begin{pmatrix}
-0\\
-0\\
-\end{pmatrix}</script><h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>$u = s_xx; v = s_yy$</p>
-<p>矩阵形式</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
-u\\
-v\\
-\end{pmatrix}
-=
-\begin{pmatrix}
-s_x & 0\\
-0 & s_y\\
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix}
-+
-\begin{pmatrix}
-0\\
-0\\
-\end{pmatrix}</script><h2 id="相似变换"><a href="#相似变换" class="headerlink" title="相似变换"></a>相似变换</h2><p>相似变换又称缩放旋转，相似变换包含了旋转、等比例缩放和平移等变换。<br>若缩放比例为scale，旋转角度为θ，旋转中心是$ (center_x,center_y) $，则仿射变换可以表示为：</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
-u\\
-v\\
-\end{pmatrix}
-=
-\begin{pmatrix}
-\alpha & \beta\\
--\beta & \alpha\\
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix}
-+
-\begin{pmatrix}
-(1-\alpha)center_x & -\beta center_y\\
-\beta center_x & (1-\alpha)center_y\\
-\end{pmatrix}</script><h2 id="透视变换"><a href="#透视变换" class="headerlink" title="透视变换"></a>透视变换</h2><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/透视变换">透视变换</a>（Perspective Transformation）是将二维的图片投影到一个三维视平面上，然后再转换到二维坐标下，所以也称为投影映射（Projective Mapping）。简单来说就是二维→三维→二维的一个过程。</p>
+\]</span></p>
+<h2 id="透视变换">透视变换</h2>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/透视变换">透视变换</a>（Perspective Transformation）是将二维的图片投影到一个三维视平面上，然后再转换到二维坐标下，所以也称为投影映射（Projective Mapping）。简单来说就是二维→三维→二维的一个过程。</p>
 <p>$X=a_1x+b_1y+c_1 $</p>
-<p>$Y=a_2x+b_2y+c_2$</p>
-<p>$Z=a_3x+b_3y+c_3$</p>
-<script type="math/tex; mode=display">
+<p><span class="math inline">\(Y=a_2x+b_2y+c_2\)</span></p>
+<p><span class="math inline">\(Z=a_3x+b_3y+c_3\)</span> <span class="math display">\[
 \begin{pmatrix}
 X\\
 Y\\
@@ -532,15 +551,17 @@ Z
 \end{pmatrix}
 =
 \begin{pmatrix}
-a_1 & b_1 & c_1\\
-a_1 & b_1 & c_1\\
-a_1 & b_1 & c_1\\
+a_1 &amp; b_1 &amp; c_1\\
+a_1 &amp; b_1 &amp; c_1\\
+a_1 &amp; b_1 &amp; c_1\\
 \end{pmatrix}
 \begin{pmatrix}
 x\\
 y\\
 1
-\end{pmatrix}</script>
+\end{pmatrix}
+\]</span></p>
+
       
     </div>
     

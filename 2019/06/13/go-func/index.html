@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="特点 多个返回值 参数传递都是值传递 函数可以作为变量值 函数可以作为参数和返回值  可变参数参数数量可变1234567func sum(ops ...int)int &amp;#123;  res &#x3D; 0  for _, op :&#x3D; range ops &amp;#123;    res +&#x3D; op  &amp;#125;  return res&amp;#125; defer defer会在函数执行完成后调用 panic不会">
+<meta name="description" content="特点  多个返回值 参数传递都是值传递 函数可以作为变量值 函数可以作为参数和返回值  可变参数 参数数量可变 1234567func sum(ops ...int)int &amp;#123;  res &#x3D; 0  for _, op :&#x3D; range ops &amp;#123;    res +&#x3D; op  &amp;#125;  return res&amp;#125; ## defer  defer会在函数执行完成后调用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="go func">
 <meta property="og:url" content="http://blacston.com/2019/06/13/go-func/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="特点 多个返回值 参数传递都是值传递 函数可以作为变量值 函数可以作为参数和返回值  可变参数参数数量可变1234567func sum(ops ...int)int &amp;#123;  res &#x3D; 0  for _, op :&#x3D; range ops &amp;#123;    res +&#x3D; op  &amp;#125;  return res&amp;#125; defer defer会在函数执行完成后调用 panic不会">
+<meta property="og:description" content="特点  多个返回值 参数传递都是值传递 函数可以作为变量值 函数可以作为参数和返回值  可变参数 参数数量可变 1234567func sum(ops ...int)int &amp;#123;  res &#x3D; 0  for _, op :&#x3D; range ops &amp;#123;    res +&#x3D; op  &amp;#125;  return res&amp;#125; ## defer  defer会在函数执行完成后调用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-06-13T14:10:00.000Z">
 <meta property="article:modified_time" content="2021-01-16T03:39:21.281Z">
@@ -361,14 +361,16 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="特点">特点</h2>
+<ol type="1">
 <li>多个返回值</li>
 <li>参数传递都是值传递</li>
 <li>函数可以作为变量值</li>
 <li>函数可以作为参数和返回值</li>
 </ol>
-<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><p>参数数量可变<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sum</span><span class="params">(ops ...<span class="keyword">int</span>)</span><span class="title">int</span></span> &#123;</span><br><span class="line">  res = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> _, op := <span class="keyword">range</span> ops &#123;</span><br><span class="line">    res += op</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h2><ol>
+<h2 id="可变参数">可变参数</h2>
+<p>参数数量可变 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sum</span><span class="params">(ops ...<span class="keyword">int</span>)</span><span class="title">int</span></span> &#123;</span><br><span class="line">  res = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> _, op := <span class="keyword">range</span> ops &#123;</span><br><span class="line">    res += op</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> ## defer</p>
+<ol type="1">
 <li>defer会在函数执行完成后调用</li>
 <li>panic不会影响defer的执行</li>
 </ol>
@@ -404,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/13/go-object/" rel="next" title="go 面向对象">
-                <i class="fa fa-chevron-left"></i> go 面向对象
+              <a href="/2019/06/13/go-map/" rel="next" title="go map">
+                <i class="fa fa-chevron-left"></i> go map
               </a>
             
           </div>
@@ -564,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">可变参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defer"><span class="nav-number">3.</span> <span class="nav-text">defer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">可变参数</span></a></li></ol></div>
             
 
           </div>

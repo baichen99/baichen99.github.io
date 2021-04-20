@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="参考文章 以下操作都针对mac 安装pyenv12brew updatebrew install pyenv 安装pyenv-virtualenv12brew updatebrew install pyenv-virtualenv 在.zshrc或者.bash_profile中写入 1234# pyenv-virtualenvif which pyenv-virtualenv-init &gt;">
+<meta name="description" content="参考文章 以下操作都针对mac 安装pyenv 12brew updatebrew install pyenv 安装pyenv-virtualenv 12brew updatebrew install pyenv-virtualenv 在.zshrc或者.bash_profile中写入 1234# pyenv-virtualenvif which pyenv-virtualenv-init &amp;gt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pyenv使用">
 <meta property="og:url" content="http://blacston.com/2021/02/07/pyenv/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="参考文章 以下操作都针对mac 安装pyenv12brew updatebrew install pyenv 安装pyenv-virtualenv12brew updatebrew install pyenv-virtualenv 在.zshrc或者.bash_profile中写入 1234# pyenv-virtualenvif which pyenv-virtualenv-init &gt;">
+<meta property="og:description" content="参考文章 以下操作都针对mac 安装pyenv 12brew updatebrew install pyenv 安装pyenv-virtualenv 12brew updatebrew install pyenv-virtualenv 在.zshrc或者.bash_profile中写入 1234# pyenv-virtualenvif which pyenv-virtualenv-init &amp;gt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-07T14:59:50.000Z">
 <meta property="article:modified_time" content="2021-02-14T07:20:59.394Z">
@@ -363,21 +363,27 @@
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903861979709453#heading-9">参考文章</a></p>
 <p>以下操作都针对mac</p>
-<h2 id="安装pyenv"><a href="#安装pyenv" class="headerlink" title="安装pyenv"></a>安装pyenv</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install pyenv</span><br></pre></td></tr></table></figure>
-<h2 id="安装pyenv-virtualenv"><a href="#安装pyenv-virtualenv" class="headerlink" title="安装pyenv-virtualenv"></a>安装pyenv-virtualenv</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install pyenv-virtualenv</span><br></pre></td></tr></table></figure>
+<h2 id="安装pyenv">安装pyenv</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install pyenv</span><br></pre></td></tr></table></figure>
+<h2 id="安装pyenv-virtualenv">安装pyenv-virtualenv</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install pyenv-virtualenv</span><br></pre></td></tr></table></figure>
 <p>在.zshrc或者.bash_profile中写入</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pyenv-virtualenv</span></span><br><span class="line"><span class="keyword">if</span> which pyenv-virtualenv-init &gt; /dev/null;</span><br><span class="line">  then <span class="built_in">eval</span> <span class="string">&quot;$(pyenv virtualenv-init -)&quot;</span>;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source ~&#x2F;.zshrc</span><br><span class="line"># or</span><br><span class="line">source ~&#x2F;.bash_profile</span><br></pre></td></tr></table></figure>
-<h2 id="安装python"><a href="#安装python" class="headerlink" title="安装python"></a>安装python</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.8.0</span><br></pre></td></tr></table></figure>
+<h2 id="安装python">安装python</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.8.0</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>在mac big sur 11.2可能出现安装失败的情况</p>
 <p>使用如下指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set -ex</span><br><span class="line"></span><br><span class="line">export CFLAGS&#x3D;&quot;-I$(brew --prefix openssl)&#x2F;include -I$(brew --prefix readline)&#x2F;include -I$(xcrun --show-sdk-path)&#x2F;usr&#x2F;include&quot;</span><br><span class="line">export LDFLAGS&#x3D;&quot;-L$(brew --prefix openssl)&#x2F;lib -L$(brew --prefix readline)&#x2F;lib -L$(xcrun --show-sdk-path)&#x2F;usr&#x2F;lib -L&#x2F;usr&#x2F;local&#x2F;opt&#x2F;zlib&#x2F;lib&quot;</span><br><span class="line">export CPPFLAGS&#x3D;&quot;-I&#x2F;usr&#x2F;local&#x2F;opt&#x2F;zlib&#x2F;include&quot;</span><br><span class="line">export PKG_CONFIG_PATH&#x3D;&quot;&#x2F;usr&#x2F;local&#x2F;opt&#x2F;zlib&#x2F;lib&#x2F;pkgconfig&quot;</span><br><span class="line"></span><br><span class="line">pyenv install --patch 3.5.9 &lt; &lt;(curl -sSL https:&#x2F;&#x2F;github.com&#x2F;python&#x2F;cpython&#x2F;commit&#x2F;8ea6353.patch)</span><br></pre></td></tr></table></figure>
-<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2></blockquote>
+<h2 id="创建虚拟环境">创建虚拟环境</h2>
+</blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv 3.8.0 ML</span><br></pre></td></tr></table></figure>
 <p>切换到项目文件夹后，输入<code>pyenv local ML</code> ，之后这个目录的python版本就是ML对应的环境。也可以<code>pyenv activate ML</code>暂时激活</p>
-<h2 id="解决下载速度慢的问题"><a href="#解决下载速度慢的问题" class="headerlink" title="解决下载速度慢的问题"></a>解决下载速度慢的问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">version&#x3D;&quot;3.7.4&quot;; echo $version; wget &quot;https:&#x2F;&#x2F;mirrors.huaweicloud.com&#x2F;python&#x2F;$version&#x2F;Python-$version.tar.xz&quot; -P ~&#x2F;.pyenv&#x2F;cache&#x2F;;pyenv install $version</span><br></pre></td></tr></table></figure>
-<h2 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/krais_wk/article/details/103741854">ubuntu16.06用pyenv安装python时出现BUILD FAILED</a></p>
+<h2 id="解决下载速度慢的问题">解决下载速度慢的问题</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">version&#x3D;&quot;3.7.4&quot;; echo $version; wget &quot;https:&#x2F;&#x2F;mirrors.huaweicloud.com&#x2F;python&#x2F;$version&#x2F;Python-$version.tar.xz&quot; -P ~&#x2F;.pyenv&#x2F;cache&#x2F;;pyenv install $version</span><br></pre></td></tr></table></figure>
+<h2 id="疑难杂症">疑难杂症</h2>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/krais_wk/article/details/103741854">ubuntu16.06用pyenv安装python时出现BUILD FAILED</a></p>
 
       
     </div>

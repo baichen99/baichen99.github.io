@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="可变对象 不可变对象参考内容:  python可变对象与不可变对象 Python的函数参数传递：传值？引用？ 可变对象：list dict set不可变对象：tuple string int float bool 可变对象修改后地址不会改变，不可变对象修改后地址会改变。因为修改不可变对象时，原来的对象被丢弃，变量指向新的对象。修改可变对象时，比如修改列表中的第一个元素，是有一个新的对象被指定给列表">
+<meta name="description" content="可变对象 不可变对象 参考内容: python可变对象与不可变对象 Python的函数参数传递：传值？引用？ 可变对象：list dict set 不可变对象：tuple string int float bool 可变对象修改后地址不会改变，不可变对象修改后地址会改变。因为修改不可变对象时，原来的对象被丢弃，变量指向新的对象。修改可变对象时，比如修改列表中的第一个元素，是有一个新的对象被指定给列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 深浅拷贝 值传递 引用传递">
 <meta property="og:url" content="http://blacston.com/2021/01/14/python-copy/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="可变对象 不可变对象参考内容:  python可变对象与不可变对象 Python的函数参数传递：传值？引用？ 可变对象：list dict set不可变对象：tuple string int float bool 可变对象修改后地址不会改变，不可变对象修改后地址会改变。因为修改不可变对象时，原来的对象被丢弃，变量指向新的对象。修改可变对象时，比如修改列表中的第一个元素，是有一个新的对象被指定给列表">
+<meta property="og:description" content="可变对象 不可变对象 参考内容: python可变对象与不可变对象 Python的函数参数传递：传值？引用？ 可变对象：list dict set 不可变对象：tuple string int float bool 可变对象修改后地址不会改变，不可变对象修改后地址会改变。因为修改不可变对象时，原来的对象被丢弃，变量指向新的对象。修改可变对象时，比如修改列表中的第一个元素，是有一个新的对象被指定给列">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/01/14/RkraAjZYH2gJtKq.jpg">
 <meta property="og:image" content="https://i.loli.net/2021/01/14/qQBzXxC2iUbEsYo.png">
@@ -367,22 +367,26 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="可变对象-不可变对象"><a href="#可变对象-不可变对象" class="headerlink" title="可变对象 不可变对象"></a>可变对象 不可变对象</h2><p>参考内容:</p>
-<p> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34395671">python可变对象与不可变对象</a></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="可变对象-不可变对象">可变对象 不可变对象</h2>
+<p>参考内容:</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34395671">python可变对象与不可变对象</a></p>
 <p><a target="_blank" rel="noopener" href="http://winterttr.me/2015/10/24/python-passing-arguments-as-value-or-reference/">Python的函数参数传递：传值？引用？</a></p>
-<p>可变对象：list dict set<br>不可变对象：tuple string int float bool</p>
+<p>可变对象：list dict set 不可变对象：tuple string int float bool</p>
 <p>可变对象修改后地址不会改变，不可变对象修改后地址会改变。因为修改不可变对象时，原来的对象被丢弃，变量指向新的对象。修改可变对象时，比如修改列表中的第一个元素，是有一个新的对象被指定给列表对象的第一个元素，但是列表本身没有变化，只是内容发生了变化。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nfoo = <span class="number">1</span></span><br><span class="line">nfoo = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">lstFoo = [<span class="number">1</span>]</span><br><span class="line">lstFoo[<span class="number">0</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
 <p>代码第2行中，内存中原始的1对象因为不能改变，于是被“抛弃”，另nfoo指向一个新的int对象，其值为2</p>
 <p>代码第5行中，更改list中第一个元素的值，因为list是可改变的，所以，第一个元素变更为2。其实应该说，lstFoo指向一个<code>包含一个对象的数组</code>。赋值所发生的事情，是有一个新int对象被指定给lstFoo所指向的数组对象的第一个元素，但是对于lstFoo本身来说，所指向的数组对象并没有变化，只是数组对象的内容发生变化了。这个看似void*的变量所指向的对象仍旧是刚刚的那个有一个int对象的list。</p>
-<p><img src="https://i.loli.net/2021/01/14/RkraAjZYH2gJtKq.jpg" alt=""></p>
+<p><img src="https://i.loli.net/2021/01/14/RkraAjZYH2gJtKq.jpg"></p>
 <p>所以函数传参的时候不要传可变对象，否则可能会影响传入对象的值。</p>
 <p>深浅拷贝的例子都可以在<a target="_blank" rel="noopener" href="http://pythontutor.com/">这个网站</a>上可视化编程，非常直观。</p>
-<h2 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h2><p>赋值是将一个对象的地址赋值给一个变量，让变量指向该地址。<br>修改不可变对象（int, str、tuple）需要开辟新的空间<br>修改可变对象（list等）不需要开辟新的空间</p>
+<h2 id="赋值">赋值</h2>
+<p>赋值是将一个对象的地址赋值给一个变量，让变量指向该地址。 修改不可变对象（int, str、tuple）需要开辟新的空间 修改可变对象（list等）不需要开辟新的空间</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">1</span>, <span class="number">2</span>]]</span><br><span class="line">b = a</span><br><span class="line">b[<span class="number">0</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>a和b两个变量指向的内存空间完全相同，此时对a修改会影响b的值。<br><img src="https://i.loli.net/2021/01/14/qQBzXxC2iUbEsYo.png" alt=""></p>
-<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>浅拷贝是在另一块地址中创建一个新的变量或容器，但是容器内的元素的地址均是源对象的元素的地址的拷贝。也就是说新的容器中指向了旧的元素（ 新瓶装旧酒 ）。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">1</span>, <span class="number">2</span>]]</span><br><span class="line">b = a.copy()</span><br></pre></td></tr></table></figure><br><img src="https://i.loli.net/2021/01/14/EqosgdjKfwL6Tva.png" alt=""></p>
-<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>深拷贝完全拷贝了一个副本，容器内部元素地址都不一样</p>
+<p>a和b两个变量指向的内存空间完全相同，此时对a修改会影响b的值。 <img src="https://i.loli.net/2021/01/14/qQBzXxC2iUbEsYo.png"></p>
+<h2 id="浅拷贝">浅拷贝</h2>
+<p>浅拷贝是在另一块地址中创建一个新的变量或容器，但是容器内的元素的地址均是源对象的元素的地址的拷贝。也就是说新的容器中指向了旧的元素（ 新瓶装旧酒 ）。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">1</span>, <span class="number">2</span>]]</span><br><span class="line">b = a.copy()</span><br></pre></td></tr></table></figure> <img src="https://i.loli.net/2021/01/14/EqosgdjKfwL6Tva.png"></p>
+<h2 id="深拷贝">深拷贝</h2>
+<p>深拷贝完全拷贝了一个副本，容器内部元素地址都不一样</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">1</span>, <span class="number">2</span>]]</span><br><span class="line">b = copy.deepcopy(a)</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://imgchr.com/i/sdcv8K"><img src="https://s3.ax1x.com/2021/01/14/sdcv8K.png" alt="sdcv8K.png"></a></p>
 

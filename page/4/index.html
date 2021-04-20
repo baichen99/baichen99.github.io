@@ -362,7 +362,9 @@
       
         
           
-          get, post基本用法1234567891011121314resp, err := http.Get(&quot;http://example.com/&quot;)resp, err := http.Post(&quot;http://example.com/upload&quot;, &q
+          get, post
+基本用法
+1234567891011121314resp, err := http.Get(&quot;http://example.com/&quot;)resp, err := http.Post(&quot;http://example.com/upload&quot;, 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -521,8 +523,11 @@
       
         
           
-          gocv读取图片1234img := gocv.IMRead(&quot;test.png&quot;, gocv.IMReadColor)win := gocv.NewWindow(&quot;hi&quot;)win.IMShow(img)win.WaitKey(0)
-创建纯色图片1234fun
+          gocv
+读取图片
+1234img := gocv.IMRead(&quot;test.png&quot;, gocv.IMReadColor)win := gocv.NewWindow(&quot;hi&quot;)win.IMShow(img)win.WaitKey(0)
+创建纯色图片
+1234
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -670,10 +675,12 @@
       
         
           
-          go jwt什么是jwtJSON Web Token通常用于 Oauth 2中的Bearer tokens
+          go jwt
+什么是jwt
+JSON Web Token通常用于 Oauth 2中的Bearer tokens
 一个token分成三个部分，用.连接，前两个部分是用base64url编码的json对象，最后一部分是签名，使用相同的编码方式编码。
 
-第一部分叫header，包含JWT和签名算法比如HMAC
+第一部分叫header，包含JWT和签名算法比如HM
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -822,165 +829,18 @@
         
           
           特点
+
 多个返回值
 参数传递都是值传递
 函数可以作为变量值
 函数可以作为参数和返回值
 
-可变参数参数数量可变1234567func sum(ops ...int)int &#123;  res = 0  for _, op := range ops &#123;    res += op  &#125
+可变参数
+参数数量可变 1234567func sum(ops ...int)int &#123;  res = 0  for _, op := range ops &#123;    res += op  &#
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/13/go-func/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/06/13/go-object/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/13/go-object/" itemprop="url">go 面向对象</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-13T22:10:00+08:00">
-                2019-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          封装数据和方法结构体1234type Employee struct &#123;  ID    int  Name  string&#125;
-初始化:1234e := Employee(1, &quot;bob&quot;)e1 := Employee(ID: 2, Name: &quot;bo
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/13/go-object/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1124,7 +984,8 @@
       
         
           
-          声明赋值初始化1234var a = map[string]int&#123;&quot;one&quot;: 1, &quot;two&quot;: 2&#125;var b = map[string]int&#123;&#125;b[&quot;age&quot;] = 1c = make(ma
+          声明赋值初始化
+1234var a = map[string]int&#123;&quot;one&quot;: 1, &quot;two&quot;: 2&#125;var b = map[string]int&#123;&#125;b[&quot;age&quot;] = 1c = make(m
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1272,14 +1133,166 @@
       
         
           
-          数组和切片区别数组容量固定，不可伸缩，相同维数和长度的数组可以比较，但是切片不可比较
-切片声明12345var a []intvar b []string&#123;&#125;fmt.println(a == nil)fmt.println(b == nil)
-输出结果为true, false
-原
+          数组和切片区别 数组容量固定，不可伸缩，相同维数和长度的数组可以比较，但是切片不可比较
+切片
+声明
+12345var a []intvar b []string&#123;&#125;fmt.println(a == nil)fmt.println(b == nil)
+输出结果为true, fals
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/13/go-slice/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/06/13/go-object/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/13/go-object/" itemprop="url">go 面向对象</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-13T22:10:00+08:00">
+                2019-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          封装数据和方法
+结构体
+1234type Employee struct &#123;  ID    int  Name  string&#125;
+初始化: 1234e := Employee(1, &quot;bob&quot;)e1 := Employee(ID: 2, Name: &quot
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/13/go-object/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1423,9 +1436,10 @@
       
         
           
-          定义赋值初始化string是不可变的只读的[]byte类型unicode是一种字符集UTF-8是unicode的一种实现，是变长编码
+          定义赋值初始化
+string是不可变的只读的[]byte类型 unicode是一种字符集 UTF-8是unicode的一种实现，是变长编码
 123var s stringvar str string = &quot;中国&quot;var a = &quot;中国&quot;
-len(str)获取的是字节
+len(str)获取的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1573,10 +1587,11 @@ len(str)获取的是字节
       
         
           
-          ORM在web应用里使用原声sql语句操作数据库主要存在以下两类问题:
+          ORM
+在web应用里使用原声sql语句操作数据库主要存在以下两类问题:
 
 手动编写sql语句乏味，而且会降低代码易读性。还会出现安全问题
-常见的开发模式时在开发时使用简单的SQLite，在部署时切换到MySQL等更健壮的DBMS。但是对于不同的DMBS，我们需要使用不同的python借口库，这让DB
+常见的开发模式时在开发时使用简单的SQLite，在部署时切换到MySQL等更健壮的DBMS。但是对于不同的DMBS，我们需要使用不同的python借口库，这让D
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1724,8 +1739,10 @@ len(str)获取的是字节
       
         
           
-          表单html表单在html表单中，&lt;input&gt;标签表示各种输入字段，&lt;label&gt;标签则用文字来定义字段的标签文字。
-123456789&lt;form mehtod=&quot;post&quot;&gt;    &lt;label for=&quot;username&
+          表单
+html表单
+在html表单中，&lt;input&gt;标签表示各种输入字段，&lt;label&gt;标签则用文字来定义字段的标签文字。
+123456789&lt;form mehtod=&quot;post&quot;&gt;    &lt;label for=&quot;usernam
           ...
           <!--noindex-->
           <div class="post-button text-center">

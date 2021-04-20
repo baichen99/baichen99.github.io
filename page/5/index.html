@@ -363,9 +363,10 @@
         
           
           机械分词法
+
 它是按照一定的策略将待分析的汉字串与一个“充分大的”机器词典中的词条进行配，若在词典中找到某个字符串，则匹配成功。按照扫描方向的不同，串匹配分词方法可以分为正向匹配和逆向匹配；按照不同长度优先匹配的情况，可以分为最大匹配和最小匹配。
 
-正向最大匹配算法是从左到右将待分词文本中的几个连续字
+正向最大匹配算法是从左到右将待分词文本中的几个连续
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -514,8 +515,9 @@
         
           
           在C/C++中，在进行数组传参时，c虽然传递的是收地址，但是在函数内部就成了普通指针，不是数组首地址了，所以在函数里得到数组长度是不可以的，所以函数参数中有数组时一般要传入数组大小
-错误示范12int GetLen(int *arr)return sizeof(arr)/sizeof(*a);
-正确
+错误示范
+12int GetLen(int *arr)return sizeof(arr)/sizeof(*a);
+正
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -664,7 +666,9 @@
         
           
           flask使用的默认模板引擎是jinja2
-模板语法三种界定符
+模板语法
+三种界定符
+
 语句，比如if、for
 
 
@@ -682,7 +686,7 @@
 
 {# ... #}
 
-在jinja2使用.来获取变量的属性，比如user字典中的username键值通过.来获
+在jinja2使用.来获取变量的属性，比如user字典中的username键值通过.
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -829,7 +833,8 @@
 
       
         
-          <h2 id="文本类型"><a href="#文本类型" class="headerlink" title="文本类型"></a>文本类型</h2><p>文件的类型分为文本文件和二进制文件，<br>
+          <h2 id="文本类型">文本类型</h2>
+<p>文件的类型分为文本文件和二进制文件，</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/23/iocaozuo/#more" rel="contents">
@@ -977,8 +982,10 @@
         
           
           使用session和cookies制作一个简单的登录系统
-cookie设置cookie在flask中，在响应中添加cookie最方便的方法是使用Response类提供的set_cookie()方法，要使用这个方法需要先试用make_response()方法生成一个response对象
-set_coo
+cookie
+设置cookie
+在flask中，在响应中添加cookie最方便的方法是使用Response类提供的set_cookie()方法，要使用这个方法需要先试用make_response()方法生成一个response对象
+set_c
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1125,7 +1132,7 @@ set_coo
 
       
         
-          <p>flask通过依赖包Click安装了一个CLI(命令行交互界面)系统, 可以通过flask命令执行内置命令<br>使用<code>flask run</code>来启动内置的开发服务器<br>
+          <p>flask通过依赖包Click安装了一个CLI(命令行交互界面)系统, 可以通过flask命令执行内置命令 使用<code>flask run</code>来启动内置的开发服务器</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/22/flask02/#more" rel="contents">
@@ -1271,7 +1278,8 @@ set_coo
 
       
         
-          <h3 id="route装饰器"><a href="#route装饰器" class="headerlink" title="route装饰器"></a>route装饰器</h3><p>route()装饰器的第一个参数是<strong>URL规则</strong>，用字符串表示，必须以斜杠开始，这里的URL是相对URL。<br>以<code>www.blacston.com</code>为例，’/‘ 对应的是根地址 <code>www.blacton.com</code>, ‘/hello’对应的是 <code>www.blacton.com/hello</code><br>
+          <h3 id="route装饰器">route装饰器</h3>
+<p>route()装饰器的第一个参数是<strong>URL规则</strong>，用字符串表示，必须以斜杠开始，这里的URL是相对URL。 以<code>www.blacston.com</code>为例，'/' 对应的是根地址 <code>www.blacton.com</code>, '/hello'对应的是 <code>www.blacton.com/hello</code></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/22/flask01-1/#more" rel="contents">
@@ -1417,9 +1425,10 @@ set_coo
 
       
         
-          <h3 id="常量指针和指针常量"><a href="#常量指针和指针常量" class="headerlink" title="常量指针和指针常量"></a>常量指针和指针常量</h3><p><strong>常量指针</strong>是指向常量的指针，如：<code>const int* p</code> 其中p是一个指针，指向了一个常量，也就是<code>*p</code>不能修改，而p的值可以修改</p>
+          <h3 id="常量指针和指针常量">常量指针和指针常量</h3>
+<p><strong>常量指针</strong>是指向常量的指针，如：<code>const int* p</code> 其中p是一个指针，指向了一个常量，也就是<code>*p</code>不能修改，而p的值可以修改</p>
 <p><strong>指针常量</strong>是个常量，如：<code>int *const p</code> p是个指针，p（指针的指向）不能修改，但是<code>*p</code>可以修改</p>
-<p><strong>指向常量的指针常量</strong>，如：<code>const int const* p</code> p是个指针常量，而且指向的值也是个常量<br>
+<p><strong>指向常量的指针常量</strong>，如：<code>const int const* p</code> p是个指针常量，而且指向的值也是个常量</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/13/pointer-reference-constant/#more" rel="contents">
@@ -1565,8 +1574,7 @@ set_coo
 
       
         
-          <p>以登录上海大学教务处并获取课程表为例, 分析cookie处理</p>
-<h3 id="cookie与session"><a href="#cookie与session" class="headerlink" title="cookie与session"></a>cookie与session</h3><p>session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cookie又叫会话跟踪机制。打开一次浏览器到关闭浏览器算是一次会话。说到这里，讲下HTTP协议，前面提到，HTTP协议是一种无状态协议，在数据交换完毕后，服务器端和客户端的链接就会关闭，每次交换数据都需要建立新的链接。此时，服务器无法从链接上跟踪会话。cookie可以跟踪会话，弥补HTTP无状态协议的不足。<br>
+          <p>以登录上海大学教务处并获取课程表为例, 分析cookie处理 ### cookie与session session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cookie又叫会话跟踪机制。打开一次浏览器到关闭浏览器算是一次会话。说到这里，讲下HTTP协议，前面提到，HTTP协议是一种无状态协议，在数据交换完毕后，服务器端和客户端的链接就会关闭，每次交换数据都需要建立新的链接。此时，服务器无法从链接上跟踪会话。cookie可以跟踪会话，弥补HTTP无状态协议的不足。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/25/shu-cookies/#more" rel="contents">
@@ -1712,7 +1720,7 @@ set_coo
 
       
         
-          <p>Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading<br>
+          <p>Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/17/threads/#more" rel="contents">

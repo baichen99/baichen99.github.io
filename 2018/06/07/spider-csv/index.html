@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据">
+<meta name="description" content="csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号 文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫-数据存储(二)">
 <meta property="og:url" content="http://blacston.com/2018/06/07/spider-csv/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据">
+<meta property="og:description" content="csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号 文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-06-07T01:16:39.000Z">
 <meta property="article:modified_time" content="2021-01-16T03:39:21.294Z">
@@ -362,11 +362,9 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号</strong><br><strong>文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据</strong><br><a id="more"></a></p>
-<h1 id="csv文件实例"><a href="#csv文件实例" class="headerlink" title="csv文件实例"></a>csv文件实例</h1> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ID,UserName,PassWord</span><br><span class="line">1,bc,123</span><br><span class="line"> 2,dis,456</span><br><span class="line">3,ad,789</span><br></pre></td></tr></table></figure>
-<h1 id="储存为csv文件的实例"><a href="#储存为csv文件的实例" class="headerlink" title="储存为csv文件的实例"></a>储存为csv文件的实例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import csv</span><br><span class="line">headers &#x3D; [&quot;ID&quot;,&quot;UserName&quot;,&quot;PassWord&quot;]</span><br><span class="line">rows &#x3D; [</span><br><span class="line">    (&quot;1&quot;,&quot;bc&quot;,&quot;123&quot;),</span><br><span class="line">    (&quot;2&quot;,&quot;dis&quot;,&quot;456&quot;),</span><br><span class="line">    (&quot;3&quot;,&quot;ad&quot;,&quot;789&quot;)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">with open(&#39;csv_test.csv&#39;, &#39;w&#39;, newline&#x3D;&#39;&#39;) as f:  # 如果没有newline参数会有空行出现  参考资料 https:&#x2F;&#x2F;blog.csdn.net&#x2F;chuan_yu_chuan&#x2F;article&#x2F;details&#x2F;53671587</span><br><span class="line">    f_csv &#x3D; csv.writer(f)  # 构造一个csv.writer类的实例</span><br><span class="line">    f_csv.writerow(headers)</span><br><span class="line">    f_csv.writerows(rows)</span><br></pre></td></tr></table></figure>
-<h1 id="rows列表中的数据元组也可以是字典"><a href="#rows列表中的数据元组也可以是字典" class="headerlink" title="rows列表中的数据元组也可以是字典"></a>rows列表中的数据元组也可以是字典</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rows &#x3D; [</span><br><span class="line">    (&#123;&quot;ID&quot;:&quot;1&quot;, &quot;UserName&quot;:&quot;bc&quot;, &quot;PassWord&quot;:&quot;123&quot;&#125;),</span><br><span class="line">    (&#123;&quot;ID&quot;:&quot;2&quot;, &quot;UserName&quot;:&quot;dis&quot;, &quot;PassWord&quot;:&quot;456&quot;&#125;),</span><br><span class="line">    (&#123;&quot;ID&quot;:&quot;3&quot;, &quot;UserName&quot;:&quot;ad&quot;, &quot;PassWord&quot;:&quot;789&quot;&#125;)</span><br><span class="line">]</span><br><span class="line">with open(&#39;csv_dict.csv&#39;, &#39;w&#39;) as f:</span><br><span class="line">    f_csv &#x3D; csv.DictWriter(f, headers)</span><br><span class="line">    f_csv.writeheader()</span><br><span class="line">    f_csv.writerows(rows)</span><br></pre></td></tr></table></figure>
-<h1 id="读取csv文件需要创建reader对象"><a href="#读取csv文件需要创建reader对象" class="headerlink" title="读取csv文件需要创建reader对象"></a>读取csv文件需要创建reader对象</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">with open(&#39;csv_test.csv&#39;) as f:</span><br><span class="line">    f_csv &#x3D; csv.reader(f)</span><br><span class="line">    headers &#x3D; next(f_csv)</span><br><span class="line">    print(headers)</span><br><span class="line">    for row in f_csv:</span><br><span class="line">        print(row)</span><br></pre></td></tr></table></figure>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号</strong> <strong>文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据</strong> <a id="more"></a> # csv文件实例 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ID,UserName,PassWord</span><br><span class="line">1,bc,123</span><br><span class="line"> 2,dis,456</span><br><span class="line">3,ad,789</span><br></pre></td></tr></table></figure> # 储存为csv文件的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import csv</span><br><span class="line">headers &#x3D; [&quot;ID&quot;,&quot;UserName&quot;,&quot;PassWord&quot;]</span><br><span class="line">rows &#x3D; [</span><br><span class="line">    (&quot;1&quot;,&quot;bc&quot;,&quot;123&quot;),</span><br><span class="line">    (&quot;2&quot;,&quot;dis&quot;,&quot;456&quot;),</span><br><span class="line">    (&quot;3&quot;,&quot;ad&quot;,&quot;789&quot;)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">with open(&#39;csv_test.csv&#39;, &#39;w&#39;, newline&#x3D;&#39;&#39;) as f:  # 如果没有newline参数会有空行出现  参考资料 https:&#x2F;&#x2F;blog.csdn.net&#x2F;chuan_yu_chuan&#x2F;article&#x2F;details&#x2F;53671587</span><br><span class="line">    f_csv &#x3D; csv.writer(f)  # 构造一个csv.writer类的实例</span><br><span class="line">    f_csv.writerow(headers)</span><br><span class="line">    f_csv.writerows(rows)</span><br></pre></td></tr></table></figure>
+<p># rows列表中的数据元组也可以是字典 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rows &#x3D; [</span><br><span class="line">    (&#123;&quot;ID&quot;:&quot;1&quot;, &quot;UserName&quot;:&quot;bc&quot;, &quot;PassWord&quot;:&quot;123&quot;&#125;),</span><br><span class="line">    (&#123;&quot;ID&quot;:&quot;2&quot;, &quot;UserName&quot;:&quot;dis&quot;, &quot;PassWord&quot;:&quot;456&quot;&#125;),</span><br><span class="line">    (&#123;&quot;ID&quot;:&quot;3&quot;, &quot;UserName&quot;:&quot;ad&quot;, &quot;PassWord&quot;:&quot;789&quot;&#125;)</span><br><span class="line">]</span><br><span class="line">with open(&#39;csv_dict.csv&#39;, &#39;w&#39;) as f:</span><br><span class="line">    f_csv &#x3D; csv.DictWriter(f, headers)</span><br><span class="line">    f_csv.writeheader()</span><br><span class="line">    f_csv.writerows(rows)</span><br></pre></td></tr></table></figure> # 读取csv文件需要创建reader对象 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">with open(&#39;csv_test.csv&#39;) as f:</span><br><span class="line">    f_csv &#x3D; csv.reader(f)</span><br><span class="line">    headers &#x3D; next(f_csv)</span><br><span class="line">    print(headers)</span><br><span class="line">    for row in f_csv:</span><br><span class="line">        print(row)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -465,17 +463,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -551,22 +540,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#csv%E6%96%87%E4%BB%B6%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">csv文件实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%82%A8%E5%AD%98%E4%B8%BAcsv%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">储存为csv文件的实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rows%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%85%83%E7%BB%84%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%AD%97%E5%85%B8"><span class="nav-number">3.</span> <span class="nav-text">rows列表中的数据元组也可以是字典</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96csv%E6%96%87%E4%BB%B6%E9%9C%80%E8%A6%81%E5%88%9B%E5%BB%BAreader%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">读取csv文件需要创建reader对象</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

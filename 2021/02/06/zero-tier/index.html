@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="我的情况设备：PC, mbp, vps 需求：想通过PC直接远程mbp 流程准备工作官网注册，并且创建一个网络，这个网络有个ID， 创建moon节点参考这篇文章  安装zerotier  1curl -s https:&#x2F;&#x2F;install.zerotier.com&#x2F; | sudo bash 加入网络，zerotier-cli join &lt;network id&gt;  生成moon模板  12">
+<meta name="description" content="我的情况 设备：PC, mbp, vps 需求：想通过PC直接远程mbp 流程 准备工作 官网注册，并且创建一个网络，这个网络有个ID， 创建moon节点 参考这篇文章  安装zerotier  1curl -s https:&#x2F;&#x2F;install.zerotier.com&#x2F; | sudo bash 加入网络，zerotier-cli join &lt;network id&gt;  生成moon模板">
 <meta property="og:type" content="article">
 <meta property="og:title" content="zero-tier使用">
 <meta property="og:url" content="http://blacston.com/2021/02/06/zero-tier/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="我的情况设备：PC, mbp, vps 需求：想通过PC直接远程mbp 流程准备工作官网注册，并且创建一个网络，这个网络有个ID， 创建moon节点参考这篇文章  安装zerotier  1curl -s https:&#x2F;&#x2F;install.zerotier.com&#x2F; | sudo bash 加入网络，zerotier-cli join &lt;network id&gt;  生成moon模板  12">
+<meta property="og:description" content="我的情况 设备：PC, mbp, vps 需求：想通过PC直接远程mbp 流程 准备工作 官网注册，并且创建一个网络，这个网络有个ID， 创建moon节点 参考这篇文章  安装zerotier  1curl -s https:&#x2F;&#x2F;install.zerotier.com&#x2F; | sudo bash 加入网络，zerotier-cli join &lt;network id&gt;  生成moon模板">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-06T12:35:36.000Z">
 <meta property="article:modified_time" content="2021-02-06T15:00:34.992Z">
@@ -362,43 +362,50 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="我的情况"><a href="#我的情况" class="headerlink" title="我的情况"></a>我的情况</h2><p>设备：PC, mbp, vps</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="我的情况">我的情况</h2>
+<p>设备：PC, mbp, vps</p>
 <p>需求：想通过PC直接远程mbp</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>官网注册，并且创建一个网络，这个网络有个ID，</p>
-<h3 id="创建moon节点"><a href="#创建moon节点" class="headerlink" title="创建moon节点"></a>创建moon节点</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Yogile/p/12642423.html">参考这篇文章</a></p>
-<ol>
+<h2 id="流程">流程</h2>
+<h2 id="准备工作">准备工作</h2>
+<p>官网注册，并且创建一个网络，这个网络有个ID，</p>
+<h3 id="创建moon节点">创建moon节点</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Yogile/p/12642423.html">参考这篇文章</a></p>
+<ol type="1">
 <li>安装zerotier</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -s https://install.zerotier.com/ | sudo bash</span><br></pre></td></tr></table></figure>
 <p>加入网络，<code>zerotier-cli join &lt;network id&gt;</code></p>
-<ol>
+<ol start="2" type="1">
 <li>生成moon模板</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /var/lib/zerotier-one</span><br><span class="line">zerotier-idtool initmoon identity.public &gt; moon.json</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>修改moon.json 的endpoint选项<code>&quot;stableEndpoints&quot;: [ &quot;x.x.x.x/9993&quot; ]</code> 9993是zerotier端口，记得在vps开放udp端口</p>
-</li>
-<li><p>生成签名文件 <code>zerotier-idtool genmoon moon.json</code>  之后会生成一个000000xxxx.moon 文件。</p>
-</li>
-<li><p><strong>将 moon 节点加入网络</strong></p>
+<ol start="3" type="1">
+<li><p>修改moon.json 的endpoint选项<code>"stableEndpoints": [ "x.x.x.x/9993" ]</code> 9993是zerotier端口，记得在vps开放udp端口</p></li>
+<li><p>生成签名文件 <code>zerotier-idtool genmoon moon.json</code> 之后会生成一个000000xxxx.moon 文件。</p></li>
+<li><p><strong>将 moon 节点加入网络</strong></p></li>
+</ol>
 <p>在 VPS 的 Zerotier 安装目录下（/var/lib/zerotier-one）建立文件夹 moons.d，将生成的 .moon文件拷贝进去。<code>cp 0000006xxxxxxxxx.moon moons.d/</code></p>
 <p>重启 zerotier，重启服务。<code>/etc/init.d/zerotier-one restart</code>至此，VPS 上（moon 服务器）配置完成。 记住moon.json中的id</p>
-</li>
-</ol>
-<h3 id="设备端"><a href="#设备端" class="headerlink" title="设备端"></a>设备端</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Yogile/p/12502311.html">参考这篇文章</a></p>
+<h3 id="设备端">设备端</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Yogile/p/12502311.html">参考这篇文章</a></p>
 <p>不同系统都不一样</p>
-<h4 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h4><ul>
-<li>加入moon节点  <code>sudo zeroiter-one orbit &lt;id&gt; &lt;repeart_id&gt;</code> id是moon.json中的</li>
+<h4 id="mac">MAC</h4>
+<ul>
+<li>加入moon节点 <code>sudo zeroiter-one orbit &lt;id&gt; &lt;repeart_id&gt;</code> id是moon.json中的</li>
 <li>检验是否成功<code>sudo zeroiter-one listpeers</code></li>
 <li></li>
 </ul>
-<h2 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h2><h3 id="pc-gt-mac"><a href="#pc-gt-mac" class="headerlink" title="pc -&gt; mac"></a>pc -&gt; mac</h3><p>首先在PC上开启共享功能，以及选择共享文件夹 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/110788184">参考此文章</a></p>
+<h2 id="文件共享">文件共享</h2>
+<h3 id="pc---mac">pc -&gt; mac</h3>
+<p>首先在PC上开启共享功能，以及选择共享文件夹 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/110788184">参考此文章</a></p>
 <p>在zerotier官网的网络中可以看leaf的局域网ip，这个ip是固定的</p>
-<p>之后到finder中按下command+k输入cifs://<ip></p>
+<p>之后到finder中按下command+k输入cifs://<ip></ip></p>
 <p>然后对话框中输入pc的登录账户和密码就可以连接了</p>
-<h3 id="mac-gt-pc"><a href="#mac-gt-pc" class="headerlink" title="mac -&gt; pc"></a>mac -&gt; pc</h3><p><a target="_blank" rel="noopener" href="http://www.xitongcheng.com/jiaocheng/dnrj_article_48868.html">参考这篇文章</a></p>
+<h3 id="mac---pc">mac -&gt; pc</h3>
+<p><a target="_blank" rel="noopener" href="http://www.xitongcheng.com/jiaocheng/dnrj_article_48868.html">参考这篇文章</a></p>
 <p>在mac上设置好共享文件夹后，直接打开pc的网络就能看到共享文件夹</p>
-<h2 id="远程桌面"><a href="#远程桌面" class="headerlink" title="远程桌面"></a>远程桌面</h2>
+<h2 id="远程桌面">远程桌面</h2>
+
       
     </div>
     
@@ -592,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.</span> <span class="nav-text">我的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAmoon%E8%8A%82%E7%82%B9"><span class="nav-number">3.1.</span> <span class="nav-text">创建moon节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E7%AB%AF"><span class="nav-number">3.2.</span> <span class="nav-text">设备端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MAC"><span class="nav-number">3.2.1.</span> <span class="nav-text">MAC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB"><span class="nav-number">4.</span> <span class="nav-text">文件共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pc-gt-mac"><span class="nav-number">4.1.</span> <span class="nav-text">pc -&gt; mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mac-gt-pc"><span class="nav-number">4.2.</span> <span class="nav-text">mac -&gt; pc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2"><span class="nav-number">5.</span> <span class="nav-text">远程桌面</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.</span> <span class="nav-text">我的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAmoon%E8%8A%82%E7%82%B9"><span class="nav-number">3.1.</span> <span class="nav-text">创建moon节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E7%AB%AF"><span class="nav-number">3.2.</span> <span class="nav-text">设备端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mac"><span class="nav-number">3.2.1.</span> <span class="nav-text">MAC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB"><span class="nav-number">4.</span> <span class="nav-text">文件共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pc---mac"><span class="nav-number">4.1.</span> <span class="nav-text">pc -&gt; mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mac---pc"><span class="nav-number">4.2.</span> <span class="nav-text">mac -&gt; pc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2"><span class="nav-number">5.</span> <span class="nav-text">远程桌面</span></a></li></ol></div>
             
 
           </div>
