@@ -83,15 +83,15 @@
 
 
 
-<meta name="description" content="给定主存地址，如何访存？ 直接映射eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：$256M &#x3D; 2^{28}$，所以有28位  对于直接映射，主存结构如下：     标记 cache行号 行内地址           行长$64B &#x3D; 2^6B$，说明行内地址占6位 cache有$8&#x3D;2^3个$，所以cache行号占3位 所以标">
+<meta name="description" content="给定主存地址，如何访存？ 直接映射eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：$256M &#x3D; 2^{28}$，所以有28位  对于直接映射，主存结构如下：     标记 cache行号 行内地址           行长$64B &#x3D; 2^6B$，说明行内地址占6位 cache有$8&#x3D;2^3个$，所以cache行号占3位 标记位">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cache映射方法">
 <meta property="og:url" content="http://blacston.com/2021/06/30/cache-mapping/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="给定主存地址，如何访存？ 直接映射eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：$256M &#x3D; 2^{28}$，所以有28位  对于直接映射，主存结构如下：     标记 cache行号 行内地址           行长$64B &#x3D; 2^6B$，说明行内地址占6位 cache有$8&#x3D;2^3个$，所以cache行号占3位 所以标">
+<meta property="og:description" content="给定主存地址，如何访存？ 直接映射eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：$256M &#x3D; 2^{28}$，所以有28位  对于直接映射，主存结构如下：     标记 cache行号 行内地址           行长$64B &#x3D; 2^6B$，说明行内地址占6位 cache有$8&#x3D;2^3个$，所以cache行号占3位 标记位">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-30T13:20:43.000Z">
-<meta property="article:modified_time" content="2021-06-30T13:30:47.906Z">
+<meta property="article:modified_time" content="2021-07-01T06:22:50.844Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机组成原理">
 <meta property="article:tag" content="cache">
@@ -398,10 +398,8 @@
 <ul>
 <li>行长$64B = 2^6B$，说明行内地址占6位</li>
 <li>cache有$8=2^3个$，所以cache行号占3位</li>
-<li><p>所以标记是$28-6-3=19位$</p>
-</li>
-<li><p>因此，给定一个主存地址，可以将其分为三部分，根据这三部分来寻址，步骤如下：</p>
-<ol>
+<li><strong>标记位数有两种计算方式，一是$28-6-3=19位$，二是用主存容量/cache容量得到，$256MB/(64B*8) = 2^{19}$，所以有19位</strong></li>
+<li>因此，给定一个主存地址，可以将其分为三部分，根据这三部分来寻址，步骤如下：<ol>
 <li>根据行号找到cache对应行，检查标记与cache行标记是否一致</li>
 <li>若一致，且有效位为1，则命中</li>
 <li>若不一致或有效位为0，则不命中</li>
@@ -451,6 +449,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/09/pipline-data-conflict/" rel="prev" title="流水线数据冲突等问题">
+                流水线数据冲突等问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -527,7 +529,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -538,7 +540,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -549,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

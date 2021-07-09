@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="https://s2.ax1x.com/2019/06/13/VhRMGV.pngg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机组成原理,考研,流水线,数据冲突," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="五段流水线通常指令周期分为五个部分：  IF(Instruction Fetch) 取指 ID(Instruction Decode)译码&amp;取数 EX(Execute) 执行 M&#x2F;MEM(Memory) 访存 WB(Write back)写回寄存器   基本流程简单介绍一下指令执行过程，注意：以下不是所有指令都具有，只是为了方便设计流水线，每个指令周期都有这几个机器周期，但周期内可能为空指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流水线数据冲突等问题">
+<meta property="og:url" content="http://blacston.com/2021/07/09/pipline-data-conflict/index.html">
+<meta property="og:site_name" content="黑石的技术笔记">
+<meta property="og:description" content="五段流水线通常指令周期分为五个部分：  IF(Instruction Fetch) 取指 ID(Instruction Decode)译码&amp;取数 EX(Execute) 执行 M&#x2F;MEM(Memory) 访存 WB(Write back)写回寄存器   基本流程简单介绍一下指令执行过程，注意：以下不是所有指令都具有，只是为了方便设计流水线，每个指令周期都有这几个机器周期，但周期内可能为空指">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png">
+<meta property="article:published_time" content="2021-07-09T15:47:31.000Z">
+<meta property="article:modified_time" content="2021-07-09T17:16:46.550Z">
+<meta property="article:author" content="baichen">
+<meta property="article:tag" content="计算机组成原理">
+<meta property="article:tag" content="考研">
+<meta property="article:tag" content="流水线">
+<meta property="article:tag" content="数据冲突">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blacston.com/2021/07/09/pipline-data-conflict/"/>
+
+
+
+
+
+  <title>流水线数据冲突等问题 | 黑石的技术笔记</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黑石的技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/07/09/pipline-data-conflict/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">流水线数据冲突等问题</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-07-09T23:47:31+08:00">
+                2021-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机组成原理</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="五段流水线"><a href="#五段流水线" class="headerlink" title="五段流水线"></a>五段流水线</h2><p>通常指令周期分为五个部分：</p>
+<ol>
+<li>IF(Instruction Fetch) 取指</li>
+<li>ID(Instruction Decode)译码&amp;取数</li>
+<li>EX(Execute) 执行</li>
+<li>M/MEM(Memory) 访存</li>
+<li>WB(Write back)写回寄存器</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png" alt></p>
+<h3 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h3><p>简单介绍一下指令执行过程，<strong>注意：以下不是所有指令都具有，只是为了方便设计流水线，每个指令周期都有这几个机器周期，但周期内可能为空指令，具体会在后面对不同种类指令进行讨论。</strong></p>
+<ol>
+<li>IF阶段，根据PC值从指令cache中取出指令，并将指令放在指令寄存器中，这是每个指令都要做的</li>
+<li>ID阶段，对指令译码，并从cache中取操作数(取不到则从主存找)，并存放到ID段的锁存器中，这里有三个：A、B、Imm，Imm代表立即数</li>
+<li>EX阶段，ALU将上一步得到的操作信息进行运算，运算结果放入EX段锁存器</li>
+<li>M阶段，</li>
+<li>WB阶段，将数据写回寄存器</li>
+</ol>
+<h3 id="运算类指令"><a href="#运算类指令" class="headerlink" title="运算类指令"></a>运算类指令</h3><p>如ADD，SUB，SHL等，其指令周期为：</p>
+<ol>
+<li>IF</li>
+<li>ID，取出需要进行运算的操作数</li>
+<li>EX，将运算结果放入寄存器中，等待WB阶段写回寄存器</li>
+<li><strong>M ，空段</strong>，因为运算器运算的结果肯定是要直接放入某个寄存器中，因此不需要访存，例如ADD Rs, Rd的功能为$(Rs)+(Rd) \rarr Rd$，无访存阶段</li>
+<li>WB</li>
+</ol>
+<h3 id="LOAD指令"><a href="#LOAD指令" class="headerlink" title="LOAD指令"></a>LOAD指令</h3><p>LOAD Rd,996(Rs)，其功能为$(996 + (Rs)) \rarr Rd$，通常情况下，LOAD指令都要使用基址寻址，从表达式中可以看出进行了加法运算，因此必定有EX阶段</p>
+<ol>
+<li>IF，每个指令都要有这个阶段</li>
+<li>ID，将基地址(Rs)取出，放到锁存器A中，偏移量的值放入Imm中</li>
+<li>EX，得到有效地址EA</li>
+<li>M，从cache的EA地址取数，并存放到锁存器</li>
+<li>WB，将该数写回Rd寄存器</li>
+</ol>
+<h3 id="STORE指令"><a href="#STORE指令" class="headerlink" title="STORE指令"></a>STORE指令</h3><p>STORE Rs, 996(Rd)，其功能为$Rs \rarr (996+(Rd))$，其前三个步骤都与LOAD一样</p>
+<ol>
+<li>M，写入数据到cache，这一步就完成了STORE指令目的</li>
+<li><strong>WB，空</strong></li>
+</ol>
+<h3 id="条件转移"><a href="#条件转移" class="headerlink" title="条件转移"></a>条件转移</h3><p>采用相对寻址，如beq Rs, Rt, #偏移量，其功能为：若Rs==Rt，则(PC) + 指令字长 + (偏移量x指令字长) -&gt; PC，否则(PC) + 指令字长 -&gt; PC(即顺序执行)</p>
+<blockquote>
+<p>注：跳转到相对于下一条指令的偏移地址</p>
+</blockquote>
+<ol>
+<li>IF</li>
+<li>ID，取出要比较的两个数，放入A、B锁存器，偏移量放入Imm中</li>
+<li>EX，运算，比较两个数</li>
+<li>M，不访存，这个阶段更新PC值</li>
+<li><strong>WB， 空</strong></li>
+</ol>
+<h3 id="条件转移-1"><a href="#条件转移-1" class="headerlink" title="条件转移"></a>条件转移</h3><p>采用相对寻址，如jmp #偏移量，其功能为：(PC) + 指令字长 + (偏移量x指令字长) -&gt; PC</p>
+<blockquote>
+<p>注：跳转到相对于下一条指令的偏移地址</p>
+</blockquote>
+<ol>
+<li>IF</li>
+<li>ID，偏移量放入Imm中</li>
+<li>EX，这个阶段更新PC值</li>
+<li><strong>M，空</strong></li>
+<li><strong>WB， 空</strong></li>
+</ol>
+<h2 id="数据冲突"><a href="#数据冲突" class="headerlink" title="数据冲突"></a>数据冲突</h2><h3 id="RAW"><a href="#RAW" class="headerlink" title="RAW"></a>RAW</h3><h3 id="WAR"><a href="#WAR" class="headerlink" title="WAR"></a>WAR</h3><h3 id="WAW"><a href="#WAW" class="headerlink" title="WAW"></a>WAW</h3><h2 id="考试形式"><a href="#考试形式" class="headerlink" title="考试形式"></a>考试形式</h2><h4 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h4><p>在无转发机制的五段基本流水线（取指、译码/读寄存器、运算、访存、写回寄存器）中，下列指令存在数据冒险的指令对是（）</p>
+<p>I1: add R1, R2, R3; (R2) + (R3) -&gt; R1</p>
+<p>I2: add R5, R2, R4; (R2) + (R4) -&gt; R5</p>
+<p>I3: add R4, R5, R3; (R5) + (R3) -&gt; R4</p>
+<p>I4: add R5, R2, R6; (R2) + (R6) -&gt; R5</p>
+<p>A I1, I2</p>
+<p>B I2, I3</p>
+<p>C I2, I4</p>
+<p>D I3, I4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I1</td>
+<td>IE</td>
+<td>ID(R2, R3)</td>
+<td>EX</td>
+<td>M</td>
+<td>WB(R1)</td>
+<td></td>
+</tr>
+<tr>
+<td>I2</td>
+<td></td>
+<td>IE</td>
+<td>ID(R2, R4)</td>
+<td>EX</td>
+<td>M</td>
+<td>WB(R5)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看到I1在5写的寄存器R1和I2使用到的寄存器无关，因此不存在冲突，继续添加指令<br>| 指令 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  |  |<br>| —— | —— | ————— | ————— | —— | ——— | ——— | ——— | ——— | ——— |<br>| I1 | IE   | ID(R2, R3) | EX         | M    | WB(R1) |       |       |       |       |<br>| I2 |      | IE         | ID(R2, R4) | EX   | M      |WB(R5)|  |  |  |<br>| I3 |      |          | IE | ID(R5, R3) |       ||  |  |  |</p>
+<p>写到这一步发现，I3在4要读R5，但是上一条指令还没写完，于是便出现了WAR冲突，所以选B</p>
+<p>解决方法是等待</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I1</td>
+<td>IE</td>
+<td>ID(R2, R3)</td>
+<td>EX</td>
+<td>M(空)</td>
+<td>WB(R1)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>I2</td>
+<td></td>
+<td>IE</td>
+<td>ID(R2, R4)</td>
+<td>EX</td>
+<td>M(空)</td>
+<td>WB(R5)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>I3</td>
+<td></td>
+<td></td>
+<td>IE</td>
+<td></td>
+<td></td>
+<td></td>
+<td>ID(R5, R3)</td>
+<td>EX</td>
+<td>M(空)</td>
+<td>WB(R4)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h4><p>判断：流水线按序流动时，在RAW、WAR和WAW中，只可能出现RAW相关。</p>
+<p>对。当流水线按序流动，其图像如下：</p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png" alt></p>
+<ol>
+<li>I1的2是读数据，I2、I3中的WB是写，都在2其之后，所以不存在WAR(读后写)相关</li>
+<li>I1的5是写数据，如果I2的3访问到了I1写的寄存器，就出现了RAW(写后读)相关</li>
+<li>I1的5是写，I2的6是写，在I1的写之后，所以不存在WAW相关</li>
+</ol>
+<h4 id="例3"><a href="#例3" class="headerlink" title="例3"></a>例3</h4><h4 id="例4"><a href="#例4" class="headerlink" title="例4"></a>例4</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
+          
+            <a href="/tags/%E8%80%83%E7%A0%94/" rel="tag"># 考研</a>
+          
+            <a href="/tags/%E6%B5%81%E6%B0%B4%E7%BA%BF/" rel="tag"># 流水线</a>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%86%B2%E7%AA%81/" rel="tag"># 数据冲突</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/06/30/cache-mapping/" rel="next" title="cache映射方法">
+                <i class="fa fa-chevron-left"></i> cache映射方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/baichen99" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blackstone_99@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-Email"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E6%AE%B5%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">1.</span> <span class="nav-text">五段流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">基本流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%B1%BB%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">运算类指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LOAD%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">LOAD指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STORE%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">STORE指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB"><span class="nav-number">1.5.</span> <span class="nav-text">条件转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB-1"><span class="nav-number">1.6.</span> <span class="nav-text">条件转移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%86%B2%E7%AA%81"><span class="nav-number">2.</span> <span class="nav-text">数据冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RAW"><span class="nav-number">2.1.</span> <span class="nav-text">RAW</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WAR"><span class="nav-number">2.2.</span> <span class="nav-text">WAR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WAW"><span class="nav-number">2.3.</span> <span class="nav-text">WAW</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E5%BD%A2%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">考试形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B1"><span class="nav-number">3.0.1.</span> <span class="nav-text">例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B2"><span class="nav-number">3.0.2.</span> <span class="nav-text">例2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B3"><span class="nav-number">3.0.3.</span> <span class="nav-text">例3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B4"><span class="nav-number">3.0.4.</span> <span class="nav-text">例4</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baichen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
