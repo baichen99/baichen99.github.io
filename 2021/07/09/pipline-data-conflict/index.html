@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png">
 <meta property="article:published_time" content="2021-07-09T15:47:31.000Z">
-<meta property="article:modified_time" content="2021-07-09T17:16:46.550Z">
+<meta property="article:modified_time" content="2021-07-09T17:20:25.957Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机组成原理">
 <meta property="article:tag" content="考研">
@@ -481,8 +481,8 @@
 </tbody>
 </table>
 </div>
-<p>可以看到I1在5写的寄存器R1和I2使用到的寄存器无关，因此不存在冲突，继续添加指令<br>| 指令 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  |  |<br>| —— | —— | ————— | ————— | —— | ——— | ——— | ——— | ——— | ——— |<br>| I1 | IE   | ID(R2, R3) | EX         | M    | WB(R1) |       |       |       |       |<br>| I2 |      | IE         | ID(R2, R4) | EX   | M      |WB(R5)|  |  |  |<br>| I3 |      |          | IE | ID(R5, R3) |       ||  |  |  |</p>
-<p>写到这一步发现，I3在4要读R5，但是上一条指令还没写完，于是便出现了WAR冲突，所以选B</p>
+<p>可以看到I1在5写的寄存器R1和I2使用到的寄存器无关，因此不存在冲突，继续添加指令<br>| 指令 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |<br>| —— | —— | ————— | ————— | —— | ——— | ——— | ——— |<br>| I1 | IE   | ID(R2, R3) | EX         | M          | WB(R1) |       |  |<br>| I2 |      | IE         | ID(R2, R4) | EX         | M      |WB(R5) |  |<br>| I3 |      |            | IE         | ID(R5, R3) |        |       |  |</p>
+<p>写到这一步发现，I3在4要读R5，但是上一条指令还没写完，于是便出现了RAW冲突，所以选B</p>
 <p>解决方法是等待</p>
 <div class="table-container">
 <table>
@@ -496,9 +496,9 @@
 <th>5</th>
 <th>6</th>
 <th>7</th>
-<th></th>
-<th></th>
-<th></th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
 </tr>
 </thead>
 <tbody>
