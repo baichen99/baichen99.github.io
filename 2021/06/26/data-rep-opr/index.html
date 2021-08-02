@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="二进制,补码,计算机组成原理," />
+  <meta name="keywords" content="计算机组成原理,二进制,补码," />
 
 
 
@@ -83,19 +83,19 @@
 
 
 
-<meta name="description" content="各种码的转换原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围因为原码中有+0，-0之分，所以其取值范围为$[-(2^n-1), 2^n-1]$ 对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数$-2^n$ 对于定点数，原码最小值为1.11111，转为补码为1">
+<meta name="description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 因为原码中有+0，-0之分，所以其取值范围为\([-(2^n-1), 2^n-1]\) 对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数\(-2^n\) 对于定点数，原码最小值为1.11111，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="考研笔记：数据的表示与运算">
 <meta property="og:url" content="http://blacston.com/2021/06/26/data-rep-opr/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="各种码的转换原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围因为原码中有+0，-0之分，所以其取值范围为$[-(2^n-1), 2^n-1]$ 对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数$-2^n$ 对于定点数，原码最小值为1.11111，转为补码为1">
+<meta property="og:description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 因为原码中有+0，-0之分，所以其取值范围为\([-(2^n-1), 2^n-1]\) 对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数\(-2^n\) 对于定点数，原码最小值为1.11111，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-26T06:48:12.000Z">
 <meta property="article:modified_time" content="2021-06-26T07:55:31.411Z">
 <meta property="article:author" content="baichen">
+<meta property="article:tag" content="计算机组成原理">
 <meta property="article:tag" content="二进制">
 <meta property="article:tag" content="补码">
-<meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
 
 
@@ -373,60 +373,61 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="各种码的转换"><a href="#各种码的转换" class="headerlink" title="各种码的转换"></a>各种码的转换</h2><p>原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="各种码的转换">各种码的转换</h2>
+<p>原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号</p>
 <p>补-&gt;原：同上</p>
 <p>移-&gt;补：符号位取反</p>
 <p>[x]补-&gt;[-x]补:同第一</p>
-<h2 id="补码范围"><a href="#补码范围" class="headerlink" title="补码范围"></a>补码范围</h2><p>因为原码中有+0，-0之分，所以其取值范围为$[-(2^n-1), 2^n-1]$</p>
-<p>对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数$-2^n$</p>
+<h2 id="补码范围">补码范围</h2>
+<p>因为原码中有+0，-0之分，所以其取值范围为<span class="math inline">\([-(2^n-1), 2^n-1]\)</span></p>
+<p>对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数<span class="math inline">\(-2^n\)</span></p>
 <p>对于定点数，原码最小值为1.11111，转为补码为1.000001， 但这不是最小负数，最小负数是人为规定的1.00000</p>
-<h2 id="浮点数的范围"><a href="#浮点数的范围" class="headerlink" title="浮点数的范围"></a>浮点数的范围</h2><h3 id="IEEE-754-float"><a href="#IEEE-754-float" class="headerlink" title="IEEE 754 float"></a>IEEE 754 float</h3><p>以IEEE 754为例，其格式如下：</p>
-<div class="table-container">
+<h2 id="浮点数的范围">浮点数的范围</h2>
+<h3 id="ieee-754-float">IEEE 754 float</h3>
+<p>以IEEE 754为例，其格式如下：</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">数符</th>
-<th style="text-align:center">阶码</th>
-<th style="text-align:center">尾数</th>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">数符</th>
+<th style="text-align: center;">阶码</th>
+<th style="text-align: center;">尾数</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">位数</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">23(补码)</td>
+<tr class="odd">
+<td style="text-align: center;">位数</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">23(补码)</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>最大正数：</p>
 <ul>
 <li>阶码：8位能表示的范围是0-255，去掉最高和最低位范围是1-254，减去偏置<code>2^&#123;8-1&#125;-1=127</code>范围是-126-127。</li>
-<li>尾数：注意隐含位1，其他为全为1，根据n项和求和公式可得尾数最大为$1+\frac{1}{2} + … + (\frac{1}{2})^{23} = \frac{1\times (1-2^{-24}) }{1- 1/2} = 2 - 2^{-23}$</li>
+<li>尾数：注意隐含位1，其他为全为1，根据n项和求和公式可得尾数最大为<span class="math inline">\(1+\frac{1}{2} + ... + (\frac{1}{2})^{23} = \frac{1\times (1-2^{-24}) }{1- 1/2} = 2 - 2^{-23}\)</span></li>
 </ul>
-<p>所以最大正数为$2^{127} \times (2-2^{-23})$</p>
+<p>所以最大正数为<span class="math inline">\(2^{127} \times (2-2^{-23})\)</span></p>
 <p>最小正数：</p>
 <ul>
 <li>阶码最小为-126</li>
 <li>尾数最小为1.0</li>
 </ul>
-<p>所以最小正数为$1.0 \times 2^{-126}$</p>
-<h3 id="题目中给定格式"><a href="#题目中给定格式" class="headerlink" title="题目中给定格式"></a>题目中给定格式</h3><p>如：7位阶码，1位数符，8位尾数，阶码用移码，尾数用补码，求表示范围：</p>
+<p>所以最小正数为<span class="math inline">\(1.0 \times 2^{-126}\)</span></p>
+<h3 id="题目中给定格式">题目中给定格式</h3>
+<p>如：7位阶码，1位数符，8位尾数，阶码用移码，尾数用补码，求表示范围：</p>
 <p>分析：</p>
 <ul>
-<li>7位无符号数，其表示范围为$0-127$，减去偏置$2^{6} = 64$，范围是-64~63</li>
-<li>尾数为8位补码，首先在定点数补码中，将<code>1.0000</code>规定位最小负数代表-1，最大正数为8位全1，即$1-2^{-8}$</li>
+<li>7位无符号数，其表示范围为<span class="math inline">\(0-127\)</span>，减去偏置<span class="math inline">\(2^{6} = 64\)</span>，范围是-64~63</li>
+<li>尾数为8位补码，首先在定点数补码中，将<code>1.0000</code>规定位最小负数代表-1，最大正数为8位全1，即<span class="math inline">\(1-2^{-8}\)</span></li>
 </ul>
-<p>因此表示范围为$[-2^{63}, (1-2^{-8})\times 2^{63}]$</p>
+<p>因此表示范围为<span class="math inline">\([-2^{63}, (1-2^{-8})\times 2^{63}]\)</span></p>
 <p>注意：</p>
 <ul>
-<li>IEEE 754中有隐含位，其他情况不考虑</li>
-<li><p>IEEE 754中移码偏置为$2^{r-1}-1$，而其他情况偏置为$2^{r-1}$</p>
-</li>
-<li><p>规格化后的浮点数范围看王道书P65</p>
-</li>
+<li><p>IEEE 754中有隐含位，其他情况不考虑</p></li>
+<li><p>IEEE 754中移码偏置为<span class="math inline">\(2^{r-1}-1\)</span>，而其他情况偏置为<span class="math inline">\(2^{r-1}\)</span></p></li>
+<li><p>规格化后的浮点数范围看王道书P65</p></li>
 </ul>
 
       
@@ -445,11 +446,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
+          
             <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/" rel="tag"># 二进制</a>
           
             <a href="/tags/%E8%A1%A5%E7%A0%81/" rel="tag"># 补码</a>
-          
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
           
         </div>
       
@@ -622,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E7%A0%81%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">各种码的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E8%8C%83%E5%9B%B4"><span class="nav-number">2.</span> <span class="nav-text">补码范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-number">3.</span> <span class="nav-text">浮点数的范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE-754-float"><span class="nav-number">3.1.</span> <span class="nav-text">IEEE 754 float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%AD%E7%BB%99%E5%AE%9A%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">题目中给定格式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E7%A0%81%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">各种码的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E8%8C%83%E5%9B%B4"><span class="nav-number">2.</span> <span class="nav-text">补码范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-number">3.</span> <span class="nav-text">浮点数的范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ieee-754-float"><span class="nav-number">3.1.</span> <span class="nav-text">IEEE 754 float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%AD%E7%BB%99%E5%AE%9A%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">题目中给定格式</span></a></li></ol></li></ol></div>
             
 
           </div>

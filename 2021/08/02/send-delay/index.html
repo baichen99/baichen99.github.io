@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时 则发送延时为：$\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}$​  k+1是因为发送端也有发送延时  例题在P9 第4题，P45 第37题">
+<meta name="description" content="假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时 则发送延时为：\(\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}\)​  k+1是因为发送端也有发送延时  例题在P9 第4题，P45 第37题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分组交换的发送延迟">
 <meta property="og:url" content="http://blacston.com/2021/08/02/send-delay/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时 则发送延时为：$\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}$​  k+1是因为发送端也有发送延时  例题在P9 第4题，P45 第37题">
+<meta property="og:description" content="假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时 则发送延时为：\(\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}\)​  k+1是因为发送端也有发送延时  例题在P9 第4题，P45 第37题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-02T06:09:35.000Z">
 <meta property="article:modified_time" content="2021-08-02T06:16:04.406Z">
@@ -372,7 +372,7 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：<strong>第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时</strong></p>
-<p>则发送延时为：$\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}$​</p>
+<p>则发送延时为：<span class="math inline">\(\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}\)</span>​</p>
 <blockquote>
 <p>k+1是因为发送端也有发送延时</p>
 </blockquote>
