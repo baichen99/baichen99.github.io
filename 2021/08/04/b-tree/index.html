@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="数据结构,B树,B-tree," />
+  <meta name="keywords" content="数据结构,B树,B-tree,树,二叉树," />
 
 
 
@@ -83,19 +83,21 @@
 
 
 
-<meta name="description" content="结点数、关键字数、高度相关计算 基本性质 设有m阶B树，设\(k &#x3D; \lceil \frac{m}{2} \rceil\) 关键字数的取值范围：  根结点 \(\in [1, m-1]\) 其他 \(\in [k-1, m-1]\)  结点数&#x2F;分支数的取值范围：  根结点 \(\in [2, m]\) 其他 \(\in [k, m]\)  最大最小高度 根据以上基本性质，可推导出给定关键字数\(">
+<meta name="description" content="树 基本性质  节点数 &#x3D; 总度数 + 1 度为m的树，第i层最多有\(1 \times m \times m^{2} ... &#x3D; m^{i-1}\)个节点 高度为h的m叉树最多有\(1+m+m^{2}+... &#x3D; \frac{m^{h} - 1}{m-1}\)​​  求n个节点m叉树的最小高度  高度最小，肯定为完全m叉树，$0 &lt; h层节点个数 &lt; m^{h-1} $ 所以$1+m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="B-tree B-树">
-<meta property="og:url" content="http://blacston.com/2021/04/06/b-tree/index.html">
+<meta property="og:title" content="二叉树、B-树">
+<meta property="og:url" content="http://blacston.com/2021/08/04/b-tree/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="结点数、关键字数、高度相关计算 基本性质 设有m阶B树，设\(k &#x3D; \lceil \frac{m}{2} \rceil\) 关键字数的取值范围：  根结点 \(\in [1, m-1]\) 其他 \(\in [k-1, m-1]\)  结点数&#x2F;分支数的取值范围：  根结点 \(\in [2, m]\) 其他 \(\in [k, m]\)  最大最小高度 根据以上基本性质，可推导出给定关键字数\(">
+<meta property="og:description" content="树 基本性质  节点数 &#x3D; 总度数 + 1 度为m的树，第i层最多有\(1 \times m \times m^{2} ... &#x3D; m^{i-1}\)个节点 高度为h的m叉树最多有\(1+m+m^{2}+... &#x3D; \frac{m^{h} - 1}{m-1}\)​​  求n个节点m叉树的最小高度  高度最小，肯定为完全m叉树，$0 &lt; h层节点个数 &lt; m^{h-1} $ 所以$1+m">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-06T07:16:58.000Z">
-<meta property="article:modified_time" content="2021-04-06T10:43:53.976Z">
+<meta property="article:published_time" content="2021-08-04T07:16:58.000Z">
+<meta property="article:modified_time" content="2021-08-05T01:36:19.106Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="B树">
 <meta property="article:tag" content="B-tree">
+<meta property="article:tag" content="树">
+<meta property="article:tag" content="二叉树">
 <meta name="twitter:card" content="summary">
 
 
@@ -126,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://blacston.com/2021/04/06/b-tree/"/>
+  <link rel="canonical" href="http://blacston.com/2021/08/04/b-tree/"/>
 
 
 
 
 
-  <title>B-tree B-树 | 黑石的技术笔记</title>
+  <title>二叉树、B-树 | 黑石的技术笔记</title>
   
 
 
@@ -273,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/04/06/b-tree/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/04/b-tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -290,7 +292,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">B-tree B-树</h2>
+          <h2 class="post-title" itemprop="name headline">二叉树、B-树</h2>
         
 
         <div class="post-meta">
@@ -302,8 +304,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-06T15:16:58+08:00">
-                2021-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-04T15:16:58+08:00">
+                2021-08-04
               </time>
             
 
@@ -327,6 +329,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
                     <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
                   </a>
                 </span>
 
@@ -362,8 +375,52 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="结点数关键字数高度相关计算">结点数、关键字数、高度相关计算</h2>
-<h3 id="基本性质">基本性质</h3>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="树">树</h2>
+<h4 id="基本性质">基本性质</h4>
+<ul>
+<li>节点数 = 总度数 + 1</li>
+<li>度为m的树，第i层<strong>最多</strong>有<span class="math inline">\(1 \times m \times m^{2} ... = m^{i-1}\)</span>个节点</li>
+<li>高度为h的m叉树<strong>最多</strong>有<span class="math inline">\(1+m+m^{2}+... = \frac{m^{h} - 1}{m-1}\)</span>​​</li>
+</ul>
+<h5 id="求n个节点m叉树的最小高度">求n个节点m叉树的最小高度</h5>
+<ol type="1">
+<li><p>高度最小，肯定为完全m叉树，$0 &lt; h层节点个数 &lt; m^{h-1} $</p></li>
+<li><p>所以$1+m+...+m^{h-2} &lt; n +m+...+m^{h-1} $​​​</p></li>
+<li><p>$  &lt; n  $​</p></li>
+<li><p>$ m^{h-1} &lt; n(m-1)+1 m^h $​​</p></li>
+<li><p><span class="math inline">\(h-1&lt; log_m[n(m-1)] \le h\)</span>​​</p></li>
+<li><p>最小高度为<span class="math inline">\(h = \lceil log_{m}n(m-1) \rceil\)</span>​​​</p></li>
+</ol>
+<h4 id="顺序存储的m叉树">顺序存储的m叉树</h4>
+<p>若从1开始编号，对于节点i有以下性质：</p>
+<ul>
+<li><p>双亲节点编号为<span class="math inline">\(\lfloor \frac{i-2}{m} \rfloor + 1\)</span>​</p>
+<blockquote>
+<p>节点i的第一个孩子节点编号=上一个节点编号+m个孩子的个数+1+1，所以j=(i-1)*m+2</p>
+</blockquote></li>
+<li><p>第k个孩子编号为<span class="math inline">\((i-1)m+k+1\)</span></p>
+<blockquote>
+<p>由上述可知，第1个子女编号j=(i-1)*m+2，所以第k个孩子编号为(i-1)m+k+1</p>
+</blockquote></li>
+<li><p>所在层数为<span class="math inline">\(\lfloor log_2i \rfloor + 1\)</span></p></li>
+</ul>
+<h2 id="二叉树">二叉树</h2>
+<h4 id="基本性质-1">基本性质</h4>
+<ul>
+<li><p><span class="math inline">\(n_0 = n_2 + 1\)</span>​</p></li>
+<li><p>高度为h的二叉树<strong>最多</strong>有<span class="math inline">\(m^{h} - 1\)</span>​​个节点（满二叉树）</p></li>
+<li><p>n个节点的二叉树（完全二叉树）最小高度为<span class="math inline">\(h = \lceil log_{m}n(m-1) \rceil\)</span>​​</p></li>
+</ul>
+<h4 id="顺序存储的二叉树">顺序存储的二叉树</h4>
+<p>若从1开始编号，对于节点i有以下性质：</p>
+<ul>
+<li><p>双亲节点编号为<span class="math inline">\(\lfloor \frac{i}{2} \rfloor\)</span></p></li>
+<li><p>左孩子编号为2i</p></li>
+<li><p>右孩子编号为2i+1</p></li>
+<li><p>所在层数为<span class="math inline">\(\lfloor log_2i \rfloor + 1\)</span></p></li>
+</ul>
+<h2 id="b树">B树</h2>
+<h4 id="基本性质-2">基本性质</h4>
 <p>设有m阶B树，设<span class="math inline">\(k = \lceil \frac{m}{2} \rceil\)</span></p>
 <p>关键字数的取值范围：</p>
 <ul>
@@ -375,7 +432,7 @@
 <li>根结点 <span class="math inline">\(\in [2, m]\)</span></li>
 <li>其他 <span class="math inline">\(\in [k, m]\)</span></li>
 </ul>
-<h3 id="最大最小高度">最大最小高度</h3>
+<h4 id="最大最小高度">最大最小高度</h4>
 <p>根据以上基本性质，可推导出给定关键字数<span class="math inline">\(n\)</span>下的最大和最小高度</p>
 <p><strong>最大高度推导：</strong></p>
 <p>关键字数一定，想要高度最大，则每个结点的关键字数是最少的，这样高度就能尽可能大，这样每层的关键字数如下</p>
@@ -456,7 +513,7 @@
 <p>这样结点最少，有<span class="math inline">\((1 + 2 + 2^2 + ... + 2^4) = 2^5 -1 = 31\)</span></p>
 <p>节点数最多，即每个结点的子树数最多：</p>
 <p>结点最多有<span class="math inline">\((1 + 3 + 3^2 + ... + 3^4) = （3^5 -1）/（3-1） = 121\)</span></p>
-<h3 id="总结">总结</h3>
+<h4 id="总结">总结</h4>
 <p>不管出什么题都是有基本性质推导的，最大最小高度的性质记住，其他的可以现推。</p>
 
       
@@ -481,6 +538,10 @@
           
             <a href="/tags/B-tree/" rel="tag"># B-tree</a>
           
+            <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
+          
+            <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag"># 二叉树</a>
+          
         </div>
       
 
@@ -492,8 +553,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/21/docker-notes/" rel="next" title="docker笔记">
-                <i class="fa fa-chevron-left"></i> docker笔记
+              <a href="/2021/08/02/send-delay/" rel="next" title="分组交换的发送延迟">
+                <i class="fa fa-chevron-left"></i> 分组交换的发送延迟
               </a>
             
           </div>
@@ -501,10 +562,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/04/06/limit/" rel="prev" title="考研数学：极限中拆不拆的问题">
-                考研数学：极限中拆不拆的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -592,7 +649,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -603,7 +660,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -652,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E6%95%B0%E5%85%B3%E9%94%AE%E5%AD%97%E6%95%B0%E9%AB%98%E5%BA%A6%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">结点数、关键字数、高度相关计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.</span> <span class="nav-text">基本性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">最大最小高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="nav-number">1.0.1.</span> <span class="nav-text">基本性质</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B1%82n%E4%B8%AA%E8%8A%82%E7%82%B9m%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">求n个节点m叉树的最小高度</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%9A%84m%E5%8F%89%E6%A0%91"><span class="nav-number">1.0.2.</span> <span class="nav-text">顺序存储的m叉树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">基本性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.0.2.</span> <span class="nav-text">顺序存储的二叉树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">B树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">基本性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6"><span class="nav-number">3.0.2.</span> <span class="nav-text">最大最小高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
