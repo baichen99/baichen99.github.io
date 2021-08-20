@@ -83,15 +83,15 @@
 
 
 
-<meta name="description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 因为原码中有+0，-0之分，所以其取值范围为\([-(2^n-1), 2^n-1]\) 对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数\(-2^n\) 对于定点数，原码最小值为1.11111，">
+<meta name="description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 假设补码一共有n位。原码和补码都有一位符号位，所以只有n-1位可以表示数值大小。 因为原码中有+0，-0之分，所以其取值范围为\([-(2^{n-1}-1), 2^{n-1}-1]\) 对于补码，认为其只有+0，因此-0(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="考研笔记：数据的表示与运算">
 <meta property="og:url" content="http://blacston.com/2021/06/26/data-rep-opr/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 因为原码中有+0，-0之分，所以其取值范围为\([-(2^n-1), 2^n-1]\) 对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数\(-2^n\) 对于定点数，原码最小值为1.11111，">
+<meta property="og:description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 假设补码一共有n位。原码和补码都有一位符号位，所以只有n-1位可以表示数值大小。 因为原码中有+0，-0之分，所以其取值范围为\([-(2^{n-1}-1), 2^{n-1}-1]\) 对于补码，认为其只有+0，因此-0(">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-26T06:48:12.000Z">
-<meta property="article:modified_time" content="2021-06-26T07:55:31.411Z">
+<meta property="article:modified_time" content="2021-08-20T01:05:44.418Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机组成原理">
 <meta property="article:tag" content="二进制">
@@ -325,19 +325,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机组成原理</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-cvb-c/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机组成原理 cvb c</span>
                   </a>
                 </span>
 
@@ -379,9 +368,11 @@
 <p>移-&gt;补：符号位取反</p>
 <p>[x]补-&gt;[-x]补:同第一</p>
 <h2 id="补码范围">补码范围</h2>
-<p>因为原码中有+0，-0之分，所以其取值范围为<span class="math inline">\([-(2^n-1), 2^n-1]\)</span></p>
-<p>对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数<span class="math inline">\(-2^n\)</span></p>
-<p>对于定点数，原码最小值为1.11111，转为补码为1.000001， 但这不是最小负数，最小负数是人为规定的1.00000</p>
+<p>假设补码一共有n位。原码和补码都有一位符号位，所以只有n-1位可以表示数值大小。</p>
+<p>因为原码中有+0，-0之分，所以其取值范围为<span class="math inline">\([-(2^{n-1}-1), 2^{n-1}-1]\)</span></p>
+<p>对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数<span class="math inline">\(-2^{n-1}\)</span>其最大值和原码一样，因此补码的范围是<span class="math inline">\([-2^{n-1}, 2^{n-1}-1]\)</span></p>
+<p>例子1：对于定点数，原码最小值为1.11111，转为补码为1.000001， 但这不是最小负数，最小负数是人为规定的1.00000</p>
+<p>例子2：如果用8位表示补码整数，其范围是<span class="math inline">\([-128, 127]\)</span></p>
 <h2 id="浮点数的范围">浮点数的范围</h2>
 <h3 id="ieee-754-float">IEEE 754 float</h3>
 <p>以IEEE 754为例，其格式如下：</p>
@@ -405,7 +396,7 @@
 </table>
 <p>最大正数：</p>
 <ul>
-<li>阶码：8位能表示的范围是0-255，去掉最高和最低位范围是1-254，减去偏置<code>2^&#123;8-1&#125;-1=127</code>范围是-126-127。</li>
+<li>阶码：8位能表示的范围是0-255，<strong>去掉最高和最低位</strong>范围是1-254，减去偏置<code>2^&#123;8-1&#125;-1=127</code>范围是-126-127。</li>
 <li>尾数：注意隐含位1，其他为全为1，根据n项和求和公式可得尾数最大为<span class="math inline">\(1+\frac{1}{2} + ... + (\frac{1}{2})^{23} = \frac{1\times (1-2^{-24}) }{1- 1/2} = 2 - 2^{-23}\)</span></li>
 </ul>
 <p>所以最大正数为<span class="math inline">\(2^{127} \times (2-2^{-23})\)</span></p>
@@ -563,7 +554,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
