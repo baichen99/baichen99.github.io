@@ -362,8 +362,14 @@
       
         
           
-          
-          
+          各层/协议代价TCP  20B（固定首部）
+UDP 8B（首部）
+IP   20B（固定首部）
+以太网帧  26B(18B首部尾部，7B前同步码，1B帧开始定界符)
+以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）
+以太网数据最多1500B
+私有网段地址给出私有网段地址，推出可能使用了N
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/08/27/network-implied-term/#more" rel="contents">
