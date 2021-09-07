@@ -83,20 +83,22 @@
 
 
 
-<meta name="description" content="给定主存地址，如何访存？ 直接映射 eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：\(256M &#x3D; 2^{28}\)，所以有28位  对于直接映射，主存结构如下：    标记 cache行号 行内地址       行长\(64B &#x3D; 2^6B\)，说明行内地址占6位 cache有\(8&#x3D;2^3个\)，所以cache行号占3位 标">
+<meta name="description" content="cache和主存交换单位是块  给定主存地址，如何访存？ 直接映射eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：$256M &#x3D; 2^{28}$，所以有28位  对于直接映射，主存结构如下：     标记 cache行号 块内地址           行长(块大小)$64B &#x3D; 2^6B$，说明行内地址占6位 cache有$8&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cache映射方法">
 <meta property="og:url" content="http://blacston.com/2021/06/30/cache-mapping/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="给定主存地址，如何访存？ 直接映射 eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：\(256M &#x3D; 2^{28}\)，所以有28位  对于直接映射，主存结构如下：    标记 cache行号 行内地址       行长\(64B &#x3D; 2^6B\)，说明行内地址占6位 cache有\(8&#x3D;2^3个\)，所以cache行号占3位 标">
+<meta property="og:description" content="cache和主存交换单位是块  给定主存地址，如何访存？ 直接映射eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。  确定主存地址位数：$256M &#x3D; 2^{28}$，所以有28位  对于直接映射，主存结构如下：     标记 cache行号 块内地址           行长(块大小)$64B &#x3D; 2^6B$，说明行内地址占6位 cache有$8&#x3D;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-07%20%E4%B8%8B%E5%8D%882.45.35.png">
 <meta property="article:published_time" content="2021-06-30T13:20:43.000Z">
-<meta property="article:modified_time" content="2021-07-01T06:22:50.844Z">
+<meta property="article:modified_time" content="2021-09-07T11:48:39.566Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="cache">
 <meta property="article:tag" content="映射">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-07%20%E4%B8%8B%E5%8D%882.45.35.png">
 
 
 
@@ -373,34 +375,102 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>给定主存地址，如何访存？</strong></p>
-<h2 id="直接映射">直接映射</h2>
-<p>eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li>cache和主存交换单位是块</li>
+</ul>
+<p><strong>给定主存地址，如何访存？</strong></p>
+<h2 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h2><p>eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。</p>
 <ul>
-<li>确定主存地址位数：<span class="math inline">\(256M = 2^{28}\)</span>，所以有28位</li>
+<li>确定主存地址位数：$256M = 2^{28}$，所以有28位</li>
 </ul>
 <p>对于直接映射，主存结构如下：</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">标记</th>
-<th style="text-align: center;">cache行号</th>
-<th style="text-align: center;">行内地址</th>
+<tr>
+<th style="text-align:center">标记</th>
+<th style="text-align:center">cache行号</th>
+<th style="text-align:center">块内地址</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:center"></td>
+</tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li>行长<span class="math inline">\(64B = 2^6B\)</span>，说明行内地址占6位</li>
-<li>cache有<span class="math inline">\(8=2^3个\)</span>，所以cache行号占3位</li>
-<li><strong>标记位数有两种计算方式，一是<span class="math inline">\(28-6-3=19位\)</span>，二是用主存容量/cache容量得到，<span class="math inline">\(256MB/(64B*8) = 2^{19}\)</span>，所以有19位</strong></li>
-<li>因此，给定一个主存地址，可以将其分为三部分，根据这三部分来寻址，步骤如下：
-<ol type="1">
+<li>行长(块大小)$64B = 2^6B$，说明行内地址占6位</li>
+<li>cache有$8=2^3个$，所以cache行号占3位</li>
+<li><p><strong>标记位数有两种计算方式，一是$28-6-3=19位$，二是用主存容量/cache容量得到，$256MB/(64B*8) = 2^{19}$，所以有19位</strong>。（这两种方式本质都一样，除法也只是用指数相减）。</p>
+<p>因此，给定一个主存地址，可以将其分为三部分，根据这三部分来寻址，步骤如下：</p>
+<ol>
 <li>根据行号找到cache对应行，检查标记与cache行标记是否一致</li>
 <li>若一致，且有效位为1，则命中</li>
 <li>若不一致或有效位为0，则不命中</li>
-</ol></li>
+</ol>
+</li>
+</ul>
+<h2 id="全相连映射"><a href="#全相连映射" class="headerlink" title="全相连映射"></a>全相连映射</h2><p>主存每一块可以装入cache任何位置</p>
+<p><strong>主存地址如下</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标记</th>
+<th style="text-align:center">块内地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>标记为<strong>主存块号</strong>，其长度为主存地址长度</li>
+<li>块内地址长度为$log_2(块大小)$</li>
+</ul>
+<p>过程：根据主存地址，取出其标记部分，<strong>然后对cache中所有块的标记进行比较</strong></p>
+<h2 id="组相连映射"><a href="#组相连映射" class="headerlink" title="组相连映射"></a>组相连映射</h2><p>将cache分成多个组，<strong>主存的数据块可以装入组内的任何一个位置</strong>，即组间直接映射，组内全相连映射</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标记</th>
+<th style="text-align:center">组号</th>
+<th style="text-align:center">块内地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>若cache行个数=$2^n$，行号长度为n</li>
+<li>块内地址根据块大小计算</li>
+<li>$标记长度=主存地址长度-cache行号长度-块内地址长度$</li>
+</ul>
+<p>过程：根据组号找到cache组，将组中每个行与标记比较</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>直接映射和组相连映射主存结构相同</p>
+</li>
+<li><p><strong>三种映射方式的标记长度计算方法不同</strong></p>
+</li>
+<li><p>cache地址结构为：<strong>行号+块内地址</strong>，知道cache大小可以直接得知其地址长度，比如Cache行大小为16KB，可知其<strong>行号+块内地址</strong>长度为14。</p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-07%20%E4%B8%8B%E5%8D%882.45.35.png" alt=""></p>
+</li>
+<li><p>主存地址除掉低位的块内地址部分，就是主存块号</p>
+</li>
+<li><p>cache块=标记位+数据位。</p>
+</li>
+<li><p>标记项包括有效位、标记位tag、一致性维护位、替换算法控制位。标记项长度一般用<strong>主存地址长度-组号-块内地址</strong>算得。如果使用写回法，必须设置一个脏位，全写法则不用</p>
+</li>
 </ul>
 
       
@@ -525,7 +595,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -596,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84"><span class="nav-number">1.</span> <span class="nav-text">直接映射</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84"><span class="nav-number">1.</span> <span class="nav-text">直接映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E7%9B%B8%E8%BF%9E%E6%98%A0%E5%B0%84"><span class="nav-number">2.</span> <span class="nav-text">全相连映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E7%9B%B8%E8%BF%9E%E6%98%A0%E5%B0%84"><span class="nav-number">3.</span> <span class="nav-text">组相连映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
