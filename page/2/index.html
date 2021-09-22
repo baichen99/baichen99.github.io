@@ -269,6 +269,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/02/isoosi-tcp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/08/02/isoosi-tcp/" itemprop="url">ISO/OSI模型、TCP模型</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-02T10:23:40+08:00">
+                2021-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          功能
+
+
+
+层
+功能
+协议
+
+
+
+
+
+应用层
+用户和网络的界面
+
+
+
+
+表示层
+数据格式变换、加密解密、数据压缩恢复
+
+
+
+
+会话层
+建立同步、校验点恢复通信
+
+
+
+
+传输层
+差错控制、流量控制、提供端到端通信、复用分用
+
+
+
+
+网络层
+差错控制、路由选择、流量控制、拥塞控制
+
+
+
+
+数据链路层
+差
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/08/02/isoosi-tcp/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/07/09/pipline-data-conflict/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -545,20 +747,13 @@ WB(Write back)写回寄存器
           
           
 cache和主存交换单位是块
+下面的地址结构都是主存地址，因为cpu在访问主存地址时，先根据这个地址在cache找，再再主存中找
 
 给定主存地址，如何访存？
-直接映射eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。
+直接映射
+eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。
 
-确定主存地址位数：$256M = 2^{28}$，所以有28位
-
-对于直接映射，主存结构如下：
-
-
-
-
-标记
-cache行号
-块内地址
+确定主存地址位数：\(256M 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -710,10 +905,10 @@ cache行号
 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号
 补-&gt;原：同上
 移-&gt;补：符号位取反
-[x]补-&gt;[-x]补:同第一
-补码范围
-假设补码一共有n位。原码和补码都有一位符号位，所以只有n-1位可以表示数值大小。
-因为原码中有+0，-0之分，所以其取值范
+[x]补-&gt;[-x]补:右边开始数，第一个1后面的数字都变号，包括符号位
+特殊二进制数
+n位全1=\(2^n-1\)，如1111=15
+最高位为1，其余全为0=\(
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1705,160 +1900,6 @@ l层的输出
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/02/21/docker-notes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/02/21/docker-notes/" itemprop="url">docker笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-21T22:43:20+08:00">
-                2021-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          常用命令
-后台运行
-
-首先可以docker run -it &lt;image_id&gt; bash，在容器运行bash。
-如果想退出docker但是不停止容器，可以按ctrl+p+q来退出
-如果想回到容器继续执行指令，docker attatch &lt;container_id&gt;
-也可以
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/02/21/docker-notes/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1909,7 +1950,7 @@ l层的输出
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

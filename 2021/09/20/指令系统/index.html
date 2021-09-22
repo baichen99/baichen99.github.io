@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="极限,高数,考研数学," />
+  <meta name="keywords" content="计算机组成原理," />
 
 
 
@@ -83,20 +83,21 @@
 
 
 
-<meta name="description" content="原则 如果分子消不了，就可以拆。 具体来说，设\(\alpha \sim \alpha&#39;, \beta \sim \beta&#39;\) \(lim\frac{\alpha}{\beta} &#x3D; C\) 若 \(C\ne-1\) 则\(\alpha + \beta \sim \alpha&#39; + \beta&#39;\) 若 \(C\ne1\) 则\(\alpha - \beta \">
+<meta name="description" content="ALU加减法，标志位  上图电路可以实现无符号数的加法和减法，当为加法时，sub&#x3D;0，X和Y作为加法器的输入。当sub&#x3D;1时，Y被取反，并且加上了Cin&#x3D;1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。 ZF： 零标志（Zero Flag），ZF&#x3D;1表示有符号&#x2F;无符号计算结果为0。用于判断while条件中的相等 OF： 溢出标志(Overflow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="考研数学：极限中拆不拆的问题">
-<meta property="og:url" content="http://blacston.com/2021/04/06/limit/index.html">
+<meta property="og:title" content="指令系统综合">
+<meta property="og:url" content="http://blacston.com/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="原则 如果分子消不了，就可以拆。 具体来说，设\(\alpha \sim \alpha&#39;, \beta \sim \beta&#39;\) \(lim\frac{\alpha}{\beta} &#x3D; C\) 若 \(C\ne-1\) 则\(\alpha + \beta \sim \alpha&#39; + \beta&#39;\) 若 \(C\ne1\) 则\(\alpha - \beta \">
+<meta property="og:description" content="ALU加减法，标志位  上图电路可以实现无符号数的加法和减法，当为加法时，sub&#x3D;0，X和Y作为加法器的输入。当sub&#x3D;1时，Y被取反，并且加上了Cin&#x3D;1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。 ZF： 零标志（Zero Flag），ZF&#x3D;1表示有符号&#x2F;无符号计算结果为0。用于判断while条件中的相等 OF： 溢出标志(Overflow">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-06T13:11:58.000Z">
-<meta property="article:modified_time" content="2021-04-13T08:32:42.784Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-22%20%E4%B8%8B%E5%8D%884.45.52.png">
+<meta property="article:published_time" content="2021-09-20T07:57:45.000Z">
+<meta property="article:modified_time" content="2021-09-22T11:27:31.939Z">
 <meta property="article:author" content="baichen">
-<meta property="article:tag" content="极限">
-<meta property="article:tag" content="高数">
-<meta property="article:tag" content="考研数学">
+<meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png">
 
 
 
@@ -126,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://blacston.com/2021/04/06/limit/"/>
+  <link rel="canonical" href="http://blacston.com/2021/09/20/指令系统/"/>
 
 
 
 
 
-  <title>考研数学：极限中拆不拆的问题 | 黑石的技术笔记</title>
+  <title>指令系统综合 | 黑石的技术笔记</title>
   
 
 
@@ -273,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/04/06/limit/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -290,7 +291,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">考研数学：极限中拆不拆的问题</h2>
+          <h2 class="post-title" itemprop="name headline">指令系统综合</h2>
         
 
         <div class="post-meta">
@@ -302,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-06T21:11:58+08:00">
-                2021-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-20T15:57:45+08:00">
+                2021-09-20
               </time>
             
 
@@ -325,8 +326,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机组成原理</span>
                   </a>
                 </span>
 
@@ -362,16 +363,34 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="原则">原则</h2>
-<p>如果分子消不了，就可以拆。</p>
-<p>具体来说，设<span class="math inline">\(\alpha \sim \alpha&#39;, \beta \sim \beta&#39;\)</span></p>
-<p><span class="math inline">\(lim\frac{\alpha}{\beta} = C\)</span></p>
-<p>若 <span class="math inline">\(C\ne-1\)</span> 则<span class="math inline">\(\alpha + \beta \sim \alpha&#39; + \beta&#39;\)</span></p>
-<p>若 <span class="math inline">\(C\ne1\)</span> 则<span class="math inline">\(\alpha - \beta \sim \alpha&#39; - \beta&#39;\)</span></p>
-<h2 id="例子">例子</h2>
-<p><span class="math inline">\(limit_{x \rightarrow 0}\frac{tan2x^2 - x^2}{sinx^2+3x^2}\)</span></p>
-<p>当<span class="math inline">\(x \rightarrow 0\)</span>时，<span class="math inline">\(\frac{tan2x^2}{x^2}=2\ne1, \frac{sinx^2}{3x^2}=\frac1 3\ne-1\)</span></p>
-<p>所以原式= <span class="math inline">\(\frac 1 4\)</span></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="alu加减法标志位">ALU加减法，标志位</h2>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png" /></p>
+<p>上图电路可以实现无符号数的加法和减法，当为加法时，sub=0，X和Y作为加法器的输入。当sub=1时，Y被取反，并且加上了Cin=1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。</p>
+<p><strong>ZF：</strong> 零标志（Zero Flag），ZF=1表示有符号/无符号计算结果为0。用于判断while条件中的相等</p>
+<p><strong>OF：</strong> 溢出标志(Overflow Flag)，OF=1表示<strong>有符号整数</strong>溢出，无符号数看CF</p>
+<p><strong>CF：</strong> 进/借位标志（Carry Flag），判断<strong>无符号数</strong>溢出，CF=1时，若sub=0,加法,则表示进位溢出，若sub=1, 为减法, 则表示借位溢出（不够减）。<span class="math inline">\(CF= Sub \oplus Cout（Sub==Cin）\)</span>。CF=1表示溢出</p>
+<p><strong>SF：</strong> 符号标志（Sign Flag），SF=两个数最高位异或，<strong>计算结果的符号</strong>。根OF搭配实现大小关系。</p>
+<p>这些标志位都属于PSW（程序状态寄存器），与跳转条件指令有关，条件判断的本质位一个减法，如当a==1时跳转，会计算a-1，判断ZF是否位0，若位0则jmp</p>
+<p>计算a-b</p>
+<p>若OF=SF，表示大于，如OF=0，SF=0，没有溢出，结果符号为0，说明a&gt;b</p>
+<p>若OF<span class="math inline">\(\ne\)</span>SF，表示小于，OF=0, SF=1，没有溢出，结果符号为1，说明a&lt;b</p>
+<p>ZF=1，a=b</p>
+<p>例题</p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-22%20%E4%B8%8B%E5%8D%884.45.52.png" /></p>
+<p>（3）无符号数相减，a-b，若a&lt;b，肯定发生了借位即CF=1，若a=b，结果为0，ZF=0，所以C，Z，N应该为1, 1, 0</p>
+<h2 id="溢出判断">溢出判断</h2>
+<h3 id="无符号数">无符号数</h3>
+<p><span class="math inline">\(CF = Sub \oplus Cout\)</span> ，sub代表减法，Cout代表进位。如0110+0100，cout=0，sub=0，所以CF=0</p>
+<h3 id="有符号数">有符号数</h3>
+<ol type="1">
+<li><p>一位符号位，只有符号相同的数相加才会发生溢出，因此判断条件：两个正数相加，结果为负，则溢出。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/265388131">如何确定数值计算后的SF,ZF,CF,OF？ - 知乎 (zhihu.com)</a></p></li>
+<li><p>一位符号位，符号位进位与最高数位进位相同则无溢出，否则溢出。</p></li>
+<li><p>两位符号位，01正溢出，10负溢出。</p></li>
+</ol>
+<h3 id="移位操作">移位操作</h3>
+<p>对于<span class="math inline">\([X]_补=X_0.X_1X_2...X_n\)</span>，补码左移，什么情况会发生溢出？</p>
+<p>​ <span class="math inline">\(X_0 \ne X1\)</span>时会溢出，可以用双符号位理解，当左移双符号位变为<span class="math inline">\(X_0X_1\)</span>，不相等肯定溢出。</p>
 
       
     </div>
@@ -389,11 +408,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%9E%81%E9%99%90/" rel="tag"># 极限</a>
-          
-            <a href="/tags/%E9%AB%98%E6%95%B0/" rel="tag"># 高数</a>
-          
-            <a href="/tags/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6/" rel="tag"># 考研数学</a>
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
           
         </div>
       
@@ -406,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/21/docker-notes/" rel="next" title="docker笔记">
-                <i class="fa fa-chevron-left"></i> docker笔记
+              <a href="/2021/09/07/408-tricks/" rel="next" title="408技巧">
+                <i class="fa fa-chevron-left"></i> 408技巧
               </a>
             
           </div>
@@ -415,10 +430,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/04/15/network-dimension/" rel="prev" title="神经网络的维数">
-                神经网络的维数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -566,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#alu%E5%8A%A0%E5%87%8F%E6%B3%95%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="nav-number">1.</span> <span class="nav-text">ALU加减法，标志位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-number">2.</span> <span class="nav-text">溢出判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">无符号数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">有符号数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.</span> <span class="nav-text">移位操作</span></a></li></ol></li></ol></div>
             
 
           </div>

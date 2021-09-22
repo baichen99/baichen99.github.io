@@ -83,15 +83,15 @@
 
 
 
-<meta name="description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 假设补码一共有n位。原码和补码都有一位符号位，所以只有n-1位可以表示数值大小。 因为原码中有+0，-0之分，所以其取值范围为\([-(2^{n-1}-1), 2^{n-1}-1]\) 对于补码，认为其只有+0，因此-0(">
+<meta name="description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:右边开始数，第一个1后面的数字都变号，包括符号位 特殊二进制数 n位全1&#x3D;\(2^n-1\)，如1111&#x3D;15 最高位为1，其余全为0&#x3D;\(2^{n-1}\)，如1000&#x3D;\(2^3&#x3D;8\) 采用补码表示时，数值位越大，码值越大。如1011">
 <meta property="og:type" content="article">
 <meta property="og:title" content="考研笔记：数据的表示与运算">
 <meta property="og:url" content="http://blacston.com/2021/06/26/data-rep-opr/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:同第一 补码范围 假设补码一共有n位。原码和补码都有一位符号位，所以只有n-1位可以表示数值大小。 因为原码中有+0，-0之分，所以其取值范围为\([-(2^{n-1}-1), 2^{n-1}-1]\) 对于补码，认为其只有+0，因此-0(">
+<meta property="og:description" content="各种码的转换 原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号 补-&gt;原：同上 移-&gt;补：符号位取反 [x]补-&gt;[-x]补:右边开始数，第一个1后面的数字都变号，包括符号位 特殊二进制数 n位全1&#x3D;\(2^n-1\)，如1111&#x3D;15 最高位为1，其余全为0&#x3D;\(2^{n-1}\)，如1000&#x3D;\(2^3&#x3D;8\) 采用补码表示时，数值位越大，码值越大。如1011">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-26T06:48:12.000Z">
-<meta property="article:modified_time" content="2021-08-20T01:05:44.418Z">
+<meta property="article:modified_time" content="2021-09-22T07:32:23.486Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机组成原理">
 <meta property="article:tag" content="二进制">
@@ -366,13 +366,30 @@
 <p>原-&gt;补：符号为不变，右边开始数，第一个1后面的数字都变号</p>
 <p>补-&gt;原：同上</p>
 <p>移-&gt;补：符号位取反</p>
-<p>[x]补-&gt;[-x]补:同第一</p>
-<h2 id="补码范围">补码范围</h2>
+<p>[x]补-&gt;[-x]补:右边开始数，第一个1后面的数字都变号，包括符号位</p>
+<h2 id="特殊二进制数">特殊二进制数</h2>
+<p>n位全1=<span class="math inline">\(2^n-1\)</span>，如1111=15</p>
+<p>最高位为1，其余全为0=<span class="math inline">\(2^{n-1}\)</span>，如1000=<span class="math inline">\(2^3=8\)</span></p>
+<p>采用补码表示时，数值位越大，码值越大。如1011&lt;1101</p>
+<pre><code>-  如1.abcd需要满足什么条件才可以&lt;-1/2? $-\frac&#123;1&#125;&#123;2&#125;$对应的补码为1.1000，数值部分比1000小，条件为a为0，其余任意。
+-  参考[再谈二进制补码 - sinkinben](https://www.cnblogs.com/sinkinben/p/12377232.html)</code></pre>
+<h2 id="范围">范围</h2>
+<h3 id="补码">补码</h3>
 <p>假设补码一共有n位。原码和补码都有一位符号位，所以只有n-1位可以表示数值大小。</p>
 <p>因为原码中有+0，-0之分，所以其取值范围为<span class="math inline">\([-(2^{n-1}-1), 2^{n-1}-1]\)</span></p>
-<p>对于补码，认为其只有+0，因此-0(10000)空余出来，规定其表示最小负数<span class="math inline">\(-2^{n-1}\)</span>其最大值和原码一样，因此补码的范围是<span class="math inline">\([-2^{n-1}, 2^{n-1}-1]\)</span></p>
+<p>对于补码，认为其只有+0，因此-0(即10000)空余出来，<strong>规定</strong>其表示最小负数<span class="math inline">\(-2^{n-1}\)</span>其最大值和原码一样，因此补码的范围是<span class="math inline">\([-2^{n-1}, 2^{n-1}-1]\)</span></p>
 <p>例子1：对于定点数，原码最小值为1.11111，转为补码为1.000001， 但这不是最小负数，最小负数是人为规定的1.00000</p>
 <p>例子2：如果用8位表示补码整数，其范围是<span class="math inline">\([-128, 127]\)</span></p>
+<h3 id="移码">移码</h3>
+<p>只有一个+0，范围是<span class="math inline">\([-2^n, 2^n-1]\)</span></p>
+<p>移码转补码：</p>
+<ul>
+<li>符号位取反</li>
+</ul>
+<p>求移码真值：</p>
+<ul>
+<li>将移码看作无符号数，将其真值减去偏置<span class="math inline">\(2^{n-1}\)</span>，如0000 0000对应真值为<span class="math inline">\(0-2^7=-128\)</span></li>
+</ul>
 <h2 id="浮点数的范围">浮点数的范围</h2>
 <h3 id="ieee-754-float">IEEE 754 float</h3>
 <p>以IEEE 754为例，其格式如下：</p>
@@ -420,6 +437,16 @@
 <li><p>IEEE 754中移码偏置为<span class="math inline">\(2^{r-1}-1\)</span>，而其他情况偏置为<span class="math inline">\(2^{r-1}\)</span></p></li>
 <li><p>规格化后的浮点数范围看王道书P65</p></li>
 </ul>
+<h2 id="移位补什么">移位补什么</h2>
+<h3 id="算术移位">算术移位</h3>
+<p>原码：左移右移都补0</p>
+<p>反码：左移右移补符号位</p>
+<p><strong>补码：</strong>正数跟原码一样，均补0。负数：左移补0，右移补1</p>
+<blockquote>
+<p>回想负数原码转补码，是将第一个1左边取反，因此可以将“1”看作分界线，“1”左边位反码，右边位原码。当负数补码左移，右边有空位，按照原码的方式补0，右移时，左边有空位，按照反码的方式补1</p>
+</blockquote>
+<h3 id="逻辑移位">逻辑移位</h3>
+<p>补0</p>
 
       
     </div>
@@ -543,7 +570,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -614,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E7%A0%81%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">各种码的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E8%8C%83%E5%9B%B4"><span class="nav-number">2.</span> <span class="nav-text">补码范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-number">3.</span> <span class="nav-text">浮点数的范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ieee-754-float"><span class="nav-number">3.1.</span> <span class="nav-text">IEEE 754 float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%AD%E7%BB%99%E5%AE%9A%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">题目中给定格式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E7%A0%81%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">各种码的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">特殊二进制数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4"><span class="nav-number">3.</span> <span class="nav-text">范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">3.1.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">移码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-number">4.</span> <span class="nav-text">浮点数的范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ieee-754-float"><span class="nav-number">4.1.</span> <span class="nav-text">IEEE 754 float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%AD%E7%BB%99%E5%AE%9A%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">题目中给定格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E4%BD%8D%E8%A1%A5%E4%BB%80%E4%B9%88"><span class="nav-number">5.</span> <span class="nav-text">移位补什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E7%A7%BB%E4%BD%8D"><span class="nav-number">5.1.</span> <span class="nav-text">算术移位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%A7%BB%E4%BD%8D"><span class="nav-number">5.2.</span> <span class="nav-text">逻辑移位</span></a></li></ol></li></ol></div>
             
 
           </div>
