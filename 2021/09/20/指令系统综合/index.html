@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png">
 <meta property="article:published_time" content="2021-09-20T07:57:45.000Z">
-<meta property="article:modified_time" content="2021-09-28T02:21:24.526Z">
+<meta property="article:modified_time" content="2021-10-10T09:07:59.007Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -470,8 +470,9 @@
 <p>汇编语言：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Loop1: </span><br><span class="line">	&lt;do something&gt;</span><br><span class="line"></span><br><span class="line">inc i</span><br><span class="line">cmp i, N</span><br><span class="line">jl Loop1		&#x2F;&#x2F; i&lt;N满足条件，继续循环</span><br></pre></td></tr></table></figure>
 <h4 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h4><p>call/ret与push、pop搭配使用，call则将<strong>当前PC地址、函数实参、栈底指针</strong>入栈，ret则弹出上一层函数的地址，继续执行。比如:</p>
+<p><strong>当前PC地址是：call指令的下一条指令地址。</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f1()&#123;</span><br><span class="line">  f2();</span><br><span class="line">  f3();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在执行完f2，接下来应该执行f3，ret，pop出一个地址，这个地址是f3函数的地址，栈底指针式f1函数的栈底指针。</p>
+<p>现在执行完f2，接下来应该执行f3，ret，pop出一个地址，这个地址是f3函数的地址，栈底指针是f1函数的栈底指针。</p>
 <blockquote>
 <p>栈底指针： 每个函数都有一个栈和栈底指针，在函数定义局部变量时相当于把变量的值入栈，因此要保存函数现场，要把栈底指针保存，要找局部变量时，要先找到当前调用程序的栈底指针，再根据偏移找到变量。EBP栈底指针，ESP栈顶指针。</p>
 </blockquote>
@@ -730,8 +731,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/09/07/408-tricks/" rel="next" title="408技巧">
-                <i class="fa fa-chevron-left"></i> 408技巧
+              <a href="/2021/09/07/408-tricks/" rel="next" title="408常见题">
+                <i class="fa fa-chevron-left"></i> 408常见题
               </a>
             
           </div>
@@ -739,6 +740,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/10/06/408-ds-algorithm/" rel="prev" title="408-数据结构常见算法">
+                408-数据结构常见算法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -815,7 +820,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -269,6 +269,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/10/06/408-ds-algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/10/06/408-ds-algorithm/" itemprop="url">408-数据结构常见算法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-06T16:11:55+08:00">
+                2021-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          线性表原地逆置链表法1：因为头插法获得的顺序是逆序，所以可以利用头插法来实现原地逆置：将头节点取下，一次用头插法插入后面的节点。
+
+123456789101112LinkList Reverse(LinkList L) &#123;  LNode *p, *r;  p = L-&gt;next;	/
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/06/408-ds-algorithm/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -438,7 +588,7 @@ ZF： 零标志（Zero Flag），ZF=1表
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/09/07/408-tricks/" itemprop="url">408技巧</a></h2>
+                <a class="post-title-link" href="/2021/09/07/408-tricks/" itemprop="url">408常见题</a></h2>
         
 
         <div class="post-meta">
@@ -512,13 +662,17 @@ ZF： 零标志（Zero Flag），ZF=1表
       
         
           
-          组成原理流水线时间计算m端流水线，n个指令，时钟周期为t，总时间为 $m+(n-1)t$
-经常于低位交叉存储结合起来考。2012真题，P310  .6
-单/双缓冲区时间原则：
-
-C和M不能同时发生，且C结束紧跟着M：CPU处理完才能接收
-单缓冲下T和M不能同时发生：因为T和M都用到了同一个缓冲
-由1
+          组成原理对程序员透明的部件透明：
+- ALU（加法器、乘法器、移位器）
+- IR指令寄存器（CPU自动取指，程序员只能通过PC来改变指令）
+- MAR
+- MDR
+不透明：（可以操控、编程的）
+- PC（跳转指令）
+- 通用寄存器
+- 程序状态字寄存器
+- ACC 累加寄存器
+流水线时间计算m端流水
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -573,7 +727,7 @@ C和M不能同时发生，且C结束紧跟着M：CPU处理完才能接收
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/27/network-implied-term/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/27/implied-term/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -592,7 +746,7 @@ C和M不能同时发生，且C结束紧跟着M：CPU处理完才能接收
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/08/27/network-implied-term/" itemprop="url">计算机网络考题中常见的隐含条件</a></h2>
+                <a class="post-title-link" href="/2021/08/27/implied-term/" itemprop="url">408考题中常见的隐含条件</a></h2>
         
 
         <div class="post-meta">
@@ -666,17 +820,17 @@ C和M不能同时发生，且C结束紧跟着M：CPU处理完才能接收
       
         
           
-          各层/协议代价TCP  20B（固定首部）
+          计算机网络各层/协议代价TCP  20B（固定首部）
 UDP 8B（首部）
 IP   20B（固定首部）
 以太网帧  26B(18B首部尾部，7B前同步码，1B帧开始定界符)
 以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）
 以太网数据最多1500B
-私有网段地址给出私有网段地址，推出可能使用了N
+私有网段地址给出私有网段地址，推出可
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/08/27/network-implied-term/#more" rel="contents">
+            <a class="btn" href="/2021/08/27/implied-term/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1648,168 +1802,6 @@ $W_T \ge W_R$，否则接收窗口永远不满，无意义
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/02/send-delay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/08/02/send-delay/" itemprop="url">分组交换的发送延迟</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-02T14:09:35+08:00">
-                2021-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时
-则发送延时为：\(\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}\)​
-
-k+1是因为发送端
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/08/02/send-delay/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1860,7 +1852,7 @@ k+1是因为发送端
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
