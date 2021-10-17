@@ -83,15 +83,15 @@
 
 
 
-<meta name="description" content="功能    层 功能 协议      应用层 用户和网络的界面     表示层 数据格式变换、加密解密、数据压缩恢复     会话层 建立同步、校验点恢复通信     传输层 差错控制、流量控制、提供端到端通信、复用分用     网络层 差错控制、路由选择、流量控制、拥塞控制     数据链路层 差错控制、流量控制、传输管理     物理层 定义接口特性       通信子网是下面三层，实现点到点">
+<meta name="description" content="功能    层 功能 协议      应用层 用户和网络的界面 smtp&#x2F;pop3&#x2F;dns&#x2F;BGP(基于TCP)， DHCP，Ping（使用ICMP）,RIP, MIME, HTTP,    表示层 数据格式变换、加密解密、数据压缩恢复     会话层 建立同步、校验点恢复通信     传输层 差错控制、流量控制、提供端到端通信、复用分用 TCP, UDP    网络层 差错控制、路由选择、流量控">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ISO&#x2F;OSI模型、TCP模型">
 <meta property="og:url" content="http://blacston.com/2021/08/02/isoosi-tcp/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="功能    层 功能 协议      应用层 用户和网络的界面     表示层 数据格式变换、加密解密、数据压缩恢复     会话层 建立同步、校验点恢复通信     传输层 差错控制、流量控制、提供端到端通信、复用分用     网络层 差错控制、路由选择、流量控制、拥塞控制     数据链路层 差错控制、流量控制、传输管理     物理层 定义接口特性       通信子网是下面三层，实现点到点">
+<meta property="og:description" content="功能    层 功能 协议      应用层 用户和网络的界面 smtp&#x2F;pop3&#x2F;dns&#x2F;BGP(基于TCP)， DHCP，Ping（使用ICMP）,RIP, MIME, HTTP,    表示层 数据格式变换、加密解密、数据压缩恢复     会话层 建立同步、校验点恢复通信     传输层 差错控制、流量控制、提供端到端通信、复用分用 TCP, UDP    网络层 差错控制、路由选择、流量控">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-02T02:23:40.000Z">
-<meta property="article:modified_time" content="2021-08-02T02:35:48.987Z">
+<meta property="article:modified_time" content="2021-10-17T10:48:47.903Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -371,86 +371,87 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="功能">功能</h2>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">层</th>
-<th style="text-align: center;">功能</th>
-<th style="text-align: center;">协议</th>
-<th style="text-align: center;"></th>
+<tr>
+<th style="text-align:center">层</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">协议</th>
+<th style="text-align:center"></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">应用层</td>
-<td style="text-align: center;">用户和网络的界面</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">用户和网络的界面</td>
+<td style="text-align:center">smtp/pop3/dns/BGP(基于TCP)， DHCP，Ping（使用ICMP）,RIP, MIME, HTTP,</td>
+<td style="text-align:center"></td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">表示层</td>
-<td style="text-align: center;">数据格式变换、加密解密、数据压缩恢复</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style="text-align:center">表示层</td>
+<td style="text-align:center">数据格式变换、加密解密、数据压缩恢复</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">会话层</td>
-<td style="text-align: center;">建立同步、校验点恢复通信</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style="text-align:center">会话层</td>
+<td style="text-align:center">建立同步、校验点恢复通信</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">传输层</td>
-<td style="text-align: center;">差错控制、流量控制、提供端到端通信、复用分用</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">差错控制、流量控制、提供端到端通信、复用分用</td>
+<td style="text-align:center">TCP, UDP</td>
+<td style="text-align:center"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">网络层</td>
-<td style="text-align: center;">差错控制、路由选择、流量控制、拥塞控制</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center">差错控制、路由选择、流量控制、拥塞控制</td>
+<td style="text-align:center">IP，ARP，ICMP, OSPF</td>
+<td style="text-align:center"></td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">数据链路层</td>
-<td style="text-align: center;">差错控制、流量控制、传输管理</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style="text-align:center">数据链路层</td>
+<td style="text-align:center">差错控制、流量控制、传输管理</td>
+<td style="text-align:center">PPP, CSMA, HDLC</td>
+<td style="text-align:center"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">物理层</td>
-<td style="text-align: center;">定义接口特性</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style="text-align:center">物理层</td>
+<td style="text-align:center">定义接口特性</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
+</div>
 <blockquote>
 <p>通信子网是下面三层，实现点到点的传输，资源子网是上面三层，实现端到端的传输，传输层是中介</p>
 </blockquote>
-<h2 id="两个模型网络层和传输层差别">两个模型网络层和传输层差别</h2>
+<h2 id="两个模型网络层和传输层差别"><a href="#两个模型网络层和传输层差别" class="headerlink" title="两个模型网络层和传输层差别"></a>两个模型网络层和传输层差别</h2><div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">ISO/OSI</th>
-<th style="text-align: center;">TCP/IP</th>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">ISO/OSI</th>
+<th style="text-align:center">TCP/IP</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">传输层</td>
-<td style="text-align: center;">面向连接</td>
-<td style="text-align: center;">无连接+面向连接</td>
+<tr>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">面向连接</td>
+<td style="text-align:center">无连接+面向连接</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">网络层</td>
-<td style="text-align: center;">无连接+面向连接</td>
-<td style="text-align: center;">面向连接</td>
+<tr>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center">无连接+面向连接</td>
+<td style="text-align:center">面向连接</td>
 </tr>
 </tbody>
 </table>
+</div>
 <blockquote>
 <p>无连接意味着不可靠传输，面向连接意味着可靠传输</p>
 </blockquote>
@@ -494,8 +495,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/08/02/send-delay/" rel="prev" title="分组交换的发送延迟">
-                分组交换的发送延迟 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/08/02/send-delay/" rel="prev" title="数据交换时间">
+                数据交换时间 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

@@ -820,21 +820,186 @@ ZF： 零标志（Zero Flag），ZF=1表
       
         
           
-          组成原理对程序员透明的部件透明：
-- ALU（加法器、乘法器、移位器）
-- IR指令寄存器（CPU自动取指，程序员只能通过PC来改变指令）
-- MAR
-- MDR
-不透明：（可以操控、编程的）
-- PC（跳转指令）
-- 通用寄存器
-- 程序状态字寄存器
-- ACC 累加寄存器
-流水线时间计算m端流水
+          组成原理性能计算
+主频
+CPI
+总线带宽=总线工作频率x总线宽度/8
+处理速率$MIPS=\frac{主频}{CPI}$
+平均访问时间=命中率x访问cache时间+（1-命中率）x访问内存时间
+cache-主存效率=$\frac{cache存取周期}{平均访问时间}$
+
+对程序员透明的部件透明：
+
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/09/07/408-tricks/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/09/04/tree-feature/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/04/tree-feature/" itemprop="url">二叉树、B-树的一些性质</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-04T15:16:58+08:00">
+                2021-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          树基本性质
+节点数 = 总度数 + 1
+度为m的树，第i层最多有$1 \times m \times m^{2} … = m^{i-1}$个节点
+高度为h的m叉树最多有$1+m+m^{2}+… = \frac{m^{h} - 1}{m-1}$​​
+
+求n个节点m叉树的最小高度
+高度最小，肯定为完全m
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/09/04/tree-feature/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1605,159 +1770,6 @@ ASL = \sum^n_{i=1} \frac{
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/08/09/hexo-bug/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/06/flow-control-cal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/08/06/flow-control-cal/" itemprop="url">窗口大小、有效数据率、信道利用率计算</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-06T18:25:53+08:00">
-                2021-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          窗口大小停止等待协议$W_T = W_R = 1$
-GBN协议$W_T \ge 1,  W_R = 1$
-若用n个bit对帧序列进行编号，$W_T \le 2^{n}-1 $​
-选择重传协议$ W_T \ge 1, W_R \ge 1$
-$W_T \ge W_R$，否则接收窗口永远不满，无意义
-若用
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/08/06/flow-control-cal/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

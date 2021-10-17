@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/04/tree-feature/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/06/flow-control-cal/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -288,7 +288,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/08/04/tree-feature/" itemprop="url">二叉树、B-树的一些性质</a></h2>
+                <a class="post-title-link" href="/2021/08/06/flow-control-cal/" itemprop="url">窗口大小、有效数据率、信道利用率计算</a></h2>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-04T15:16:58+08:00">
-                2021-08-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-06T18:25:53+08:00">
+                2021-08-06
               </time>
             
 
@@ -323,19 +323,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
                   </a>
                 </span>
 
@@ -373,17 +362,16 @@
       
         
           
-          树基本性质
-节点数 = 总度数 + 1
-度为m的树，第i层最多有$1 \times m \times m^{2} … = m^{i-1}$个节点
-高度为h的m叉树最多有$1+m+m^{2}+… = \frac{m^{h} - 1}{m-1}$​​
-
-求n个节点m叉树的最小高度
-高度最小，肯定为完全m
+          窗口大小停止等待协议$W_T = W_R = 1$
+GBN协议$W_T \ge 1,  W_R = 1$
+若用n个bit对帧序列进行编号，$W_T \le 2^{n}-1 $​
+选择重传协议$ W_T \ge 1, W_R \ge 1$
+$W_T \ge W_R$，否则接收窗口永远不满，无意义
+若用
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/08/04/tree-feature/#more" rel="contents">
+            <a class="btn" href="/2021/08/06/flow-control-cal/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -453,7 +441,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/08/02/send-delay/" itemprop="url">分组交换的发送延迟</a></h2>
+                <a class="post-title-link" href="/2021/08/02/send-delay/" itemprop="url">数据交换时间</a></h2>
         
 
         <div class="post-meta">
@@ -538,10 +526,9 @@
       
         
           
-          假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时
-则发送延时为：\(\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}\)​
-
-k+1是因为发送端
+          分组交换发送时间+传播时间
+假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时
+则发送延时为：$\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}$
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -714,7 +701,7 @@ k+1是因为发送端
 
 应用层
 用户和网络的界面
-
+smtp/pop3/dns/BGP(基于TCP)， DHCP，Ping（使用ICMP）,RIP, MIME, HTTP,
 
 
 
@@ -731,19 +718,7 @@ k+1是因为发送端
 
 
 传输层
-差错控制、流量控制、提供端到端通信、复用分用
-
-
-
-
-网络层
-差错控制、路由选择、流量控制、拥塞控制
-
-
-
-
-数据链路层
-差
+差错
           ...
           <!--noindex-->
           <div class="post-button text-center">
