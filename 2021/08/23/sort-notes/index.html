@@ -1,97 +1,35 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="https://s2.ax1x.com/2019/06/13/VhRMGV.pngg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="数据结构,排序,效率," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="总结稳定性稳定的算法：插、归、基、冒泡  巧记稳定的排序 复杂度时间复杂度插入、冒泡、选择：$O(n^2)$ 快排、堆、2归：$O(nlog_2{n})$ 基：$O(d(n+r))$ 空间复杂度快排：$O(log2_n)$ 2归：$O(n)$ 基数：$O(r)$ 每趟确定一个元素位置插入排序不能，因为每次讲一个元素插入已经有序的列表，之后的元素还可能影响有序表元素的位置。 希尔排序不能，每次只能保">
+  <meta name="description" content="总结 稳定性 稳定的算法：插、归、基、冒泡 巧记稳定的排序 复杂度 时间复杂度 插入、冒泡、选择：\(O(n^2)\) 快排、堆、2归：\(O(nlog_2{n})\) 基：\(O(d(n+r))\) 空间复杂度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序效率">
 <meta property="og:url" content="http://blacston.com/2021/08/23/sort-notes/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="总结稳定性稳定的算法：插、归、基、冒泡  巧记稳定的排序 复杂度时间复杂度插入、冒泡、选择：$O(n^2)$ 快排、堆、2归：$O(nlog_2{n})$ 基：$O(d(n+r))$ 空间复杂度快排：$O(log2_n)$ 2归：$O(n)$ 基数：$O(r)$ 每趟确定一个元素位置插入排序不能，因为每次讲一个元素插入已经有序的列表，之后的元素还可能影响有序表元素的位置。 希尔排序不能，每次只能保">
+<meta property="og:description" content="总结 稳定性 稳定的算法：插、归、基、冒泡 巧记稳定的排序 复杂度 时间复杂度 插入、冒泡、选择：\(O(n^2)\) 快排、堆、2归：\(O(nlog_2{n})\) 基：\(O(d(n+r))\) 空间复杂度">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%884.03.30.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/截屏2021-09-04 上午11.06.31.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/截屏2021-09-04%20上午11.06.31.png">
 <meta property="article:published_time" content="2021-08-23T08:07:40.000Z">
 <meta property="article:modified_time" content="2021-10-16T08:09:40.167Z">
 <meta property="article:author" content="baichen">
@@ -101,39 +39,18 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%884.03.30.png">
 
+<link rel="canonical" href="http://blacston.com/2021/08/23/sort-notes/">
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://blacston.com/2021/08/23/sort-notes/"/>
-
-
-
-
 
   <title>排序效率 | 黑石的技术笔记</title>
   
@@ -143,236 +60,212 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+<!-- hexo injector head_end end --></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">黑石的技术笔记</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description"></h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">黑石的技术笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
 
+
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
-        
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 </nav>
 
 
 
- </div>
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content post posts-expand">
             
 
-  <div id="posts" class="posts-expand">
     
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/23/sort-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="黑石的技术笔记">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">排序效率</h2>
-        
+        <h1 class="post-title" itemprop="name headline">
+          排序效率
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-23T16:07:40+08:00">
-                2021-08-23
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
+              <time title="创建时间：2021-08-23 16:07:40" itemprop="dateCreated datePublished" datetime="2021-08-23T16:07:40+08:00">2021-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-16 16:09:40" itemprop="dateModified" datetime="2021-10-16T16:09:40+08:00">2021-10-16</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
                 </span>
-
-                
-                
-              
             </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
     
-    <div class="post-body han-init-context" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>稳定的算法：插、归、基、冒泡  <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12699857?from=articleDetail&amp;spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.4">巧记稳定的排序</a></p>
-<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>插入、冒泡、选择：$O(n^2)$</p>
-<p>快排、堆、2归：$O(nlog_2{n})$</p>
-<p>基：$O(d(n+r))$</p>
-<h4 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h4><p>快排：$O(log2_n)$</p>
-<p>2归：$O(n)$</p>
-<p>基数：$O(r)$</p>
-<h3 id="每趟确定一个元素位置"><a href="#每趟确定一个元素位置" class="headerlink" title="每趟确定一个元素位置"></a>每趟确定一个元素位置</h3><p>插入排序不能，因为每次讲一个元素插入已经有序的列表，之后的元素还可能影响有序表元素的位置。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="总结">总结</h2>
+<h3 id="稳定性">稳定性</h3>
+<p>稳定的算法：插、归、基、冒泡 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12699857?from=articleDetail&amp;spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.4">巧记稳定的排序</a></p>
+<h3 id="复杂度">复杂度</h3>
+<h4 id="时间复杂度">时间复杂度</h4>
+<p>插入、冒泡、选择：<span class="math inline">\(O(n^2)\)</span></p>
+<p>快排、堆、2归：<span class="math inline">\(O(nlog_2{n})\)</span></p>
+<p>基：<span class="math inline">\(O(d(n+r))\)</span></p>
+<h4 id="空间复杂度">空间复杂度</h4>
+<p>快排：<span class="math inline">\(O(log2_n)\)</span></p>
+<p>2归：<span class="math inline">\(O(n)\)</span></p>
+<p>基数：<span class="math inline">\(O(r)\)</span></p>
+<h3 id="每趟确定一个元素位置">每趟确定一个元素位置</h3>
+<p>插入排序不能，因为每次讲一个元素插入已经有序的列表，之后的元素还可能影响有序表元素的位置。</p>
 <p>希尔排序不能，每次只能保证一个组内相对有序</p>
 <p>归并排序不能，每次只能保证组内有序</p>
 <p>基数排序：不能</p>
@@ -383,67 +276,77 @@
 <li>选择排序（选择最小的放在前面）</li>
 <li>堆排序</li>
 </ul>
-<h3 id="排序效率与初始状态关系"><a href="#排序效率与初始状态关系" class="headerlink" title="排序效率与初始状态关系"></a>排序效率与初始状态关系</h3><p>选择排序、堆排序、归并排序与原状态无关</p>
+<h3 id="排序效率与初始状态关系">排序效率与初始状态关系</h3>
+<p>选择排序、堆排序、归并排序与原状态无关</p>
 <ul>
 <li>冒泡，若顺序，一趟过后flag==True，退出循环</li>
-<li>快排，每次平均划分效率最高，如果有序或逆序，时间复杂度为$O(n^2)$，空间复杂度为$O(n)$</li>
+<li>快排，每次平均划分效率最高，如果有序或逆序，时间复杂度为<span class="math inline">\(O(n^2)\)</span>，空间复杂度为<span class="math inline">\(O(n)\)</span></li>
 <li>插入排序，有序最好，逆序最坏</li>
 </ul>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="直接插入"><a href="#直接插入" class="headerlink" title="直接插入"></a>直接插入</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(A[i] &lt; A[i<span class="number">-1</span>]) &#123;   <span class="comment">// 后面&gt;=前面时，不用继续比较</span></span><br><span class="line">      temp = A[i];</span><br><span class="line">      <span class="comment">// 在有序列表中从后往前比</span></span><br><span class="line">      <span class="comment">// 因为i-1处无序了，所以将这个数插入到前面比他小的后面</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>; j&gt;=<span class="number">0</span> &amp;&amp; temp &lt; A[j]; j--)  <span class="comment">// 要找到比temp小的 或 相等的</span></span><br><span class="line">        A[j+<span class="number">1</span>] = A[j]</span><br><span class="line">      A[j+<span class="number">1</span>] = temp</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="插入排序">插入排序</h2>
+<h3 id="直接插入">直接插入</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(A[i] &lt; A[i<span class="number">-1</span>]) &#123;   <span class="comment">// 后面&gt;=前面时，不用继续比较</span></span><br><span class="line">      temp = A[i];</span><br><span class="line">      <span class="comment">// 在有序列表中从后往前比</span></span><br><span class="line">      <span class="comment">// 因为i-1处无序了，所以将这个数插入到前面比他小的后面</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>; j&gt;=<span class="number">0</span> &amp;&amp; temp &lt; A[j]; j--)  <span class="comment">// 要找到比temp小的 或 相等的</span></span><br><span class="line">        A[j+<span class="number">1</span>] = A[j]</span><br><span class="line">      A[j+<span class="number">1</span>] = temp</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>思想：</strong>每次将一个记录插入有序序列中</p>
 <p><strong>空间复杂度</strong>：因为只用到了temp额外变量，所以空间复杂度为<strong>O(1)</strong></p>
 <p><strong>时间复杂度：</strong> 比较次数*移动次数</p>
 <ul>
-<li>最坏：逆序，比较总次数为$1+2+…+n-1 = \frac{n(n-1)}{2}$，移动总次数为$2+3+…+n = \frac{(n-1)(n+2)}{2}$，时间复杂度为$O(n^2)$</li>
-<li>最好：顺序，比较总次数为$1+1+…+1=n-1$，不需要移动，所以时间复杂度为$O(n)$</li>
-<li>平均：$O(n^2)$</li>
+<li>最坏：逆序，比较总次数为<span class="math inline">\(1+2+...+n-1 = \frac{n(n-1)}{2}\)</span>，移动总次数为<span class="math inline">\(2+3+...+n = \frac{(n-1)(n+2)}{2}\)</span>，时间复杂度为<span class="math inline">\(O(n^2)\)</span></li>
+<li>最好：顺序，比较总次数为<span class="math inline">\(1+1+...+1=n-1\)</span>，不需要移动，所以时间复杂度为<span class="math inline">\(O(n)\)</span></li>
+<li>平均：<span class="math inline">\(O(n^2)\)</span></li>
 </ul>
 <blockquote>
 <p>适用于<strong>链式存储</strong>(注意)、顺序存储</p>
 </blockquote>
-<h3 id="折半插入"><a href="#折半插入" class="headerlink" title="折半插入"></a>折半插入</h3><p><strong>思想：</strong>直接插入排序是顺序找到有序表的插入位置，折半插入则是用折半查找</p>
+<h3 id="折半插入">折半插入</h3>
+<p><strong>思想：</strong>直接插入排序是顺序找到有序表的插入位置，折半插入则是用折半查找</p>
 <p><strong>空间复杂度：</strong>O(1)</p>
-<p><strong>时间复杂度：</strong> 和直接插入的<strong>唯一区别在于</strong>减少了比较次数，移动次数未改变，因为折半查找的复杂度为$O(log_{2}n)$，所以折半插入的时间复杂度为$O(nlog_{2}n)$</p>
-<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p><strong>思想：</strong>选定步长d，对每个子序列$[i, i+d, …, i+kd]$进行<strong>直接插入排序</strong>，不断缩小d直到为1，即可完成排序。</p>
-<p><strong>空间复杂度：</strong>本质上是多次直接插入排序，所以为$O(1)$</p>
-<p><strong>时间复杂度：</strong>很难计算，最坏情况为d=1，即直接插入排序，$O(n^2)$</p>
+<p><strong>时间复杂度：</strong> 和直接插入的<strong>唯一区别在于</strong>减少了比较次数，移动次数未改变，因为折半查找的复杂度为<span class="math inline">\(O(log_{2}n)\)</span>，所以折半插入的时间复杂度为<span class="math inline">\(O(nlog_{2}n)\)</span></p>
+<h3 id="希尔排序">希尔排序</h3>
+<p><strong>思想：</strong>选定步长d，对每个子序列<span class="math inline">\([i, i+d, ..., i+kd]\)</span>进行<strong>直接插入排序</strong>，不断缩小d直到为1，即可完成排序。</p>
+<p><strong>空间复杂度：</strong>本质上是多次直接插入排序，所以为<span class="math inline">\(O(1)\)</span></p>
+<p><strong>时间复杂度：</strong>很难计算，最坏情况为d=1，即直接插入排序，<span class="math inline">\(O(n^2)\)</span></p>
 <p><strong>不稳定！！！</strong></p>
-<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p><strong>思想：</strong>两个两个比较，每趟确定一个最小/大值</p>
+<h2 id="交换排序">交换排序</h2>
+<h3 id="冒泡排序">冒泡排序</h3>
+<p><strong>思想：</strong>两个两个比较，每趟确定一个最小/大值</p>
 <p><strong>空间复杂度：</strong>O(1)</p>
-<p><strong>时间复杂度:</strong> </p>
+<p><strong>时间复杂度:</strong></p>
 <ul>
 <li><strong>最好：</strong>本身有序，需要比较n-1次，移动0次，所以O(n)</li>
-<li><strong>最坏:</strong> 逆序，需要进行n-1躺排序，每趟比较次数为$n-1, n-2, …, 1$，且每次比较移动次数为3（temp=a, a=b, b=temp），比较次数为$1+2+…+n-1 = \frac{n(n-1)}{2}$，移动次数为$\frac{3n(n-1)}{2}$</li>
+<li><strong>最坏:</strong> 逆序，需要进行n-1躺排序，每趟比较次数为<span class="math inline">\(n-1, n-2, ..., 1\)</span>，且每次比较移动次数为3（temp=a, a=b, b=temp），比较次数为<span class="math inline">\(1+2+...+n-1 = \frac{n(n-1)}{2}\)</span>，移动次数为<span class="math inline">\(\frac{3n(n-1)}{2}\)</span></li>
 </ul>
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot = A[low];  <span class="comment">// 第一个为枢轴</span></span><br><span class="line">  <span class="keyword">while</span>(low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[high] &gt;= pivot) high--;</span><br><span class="line">    A[low] = A[hight];</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[low] &lt;= pivot) low--;</span><br><span class="line">    A[high] = A[low];</span><br><span class="line">  &#125;</span><br><span class="line">  A[low] = pivot;</span><br><span class="line">  <span class="keyword">return</span> low;   <span class="comment">// 返回枢轴的位置</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuikSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot_pos = Partition(A, low, high);</span><br><span class="line">  QuickSort(A, low, pivot_pos<span class="number">-1</span>);</span><br><span class="line">  QuickSort(A, pivot_pos+<span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="快速排序">快速排序</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot = A[low];  <span class="comment">// 第一个为枢轴</span></span><br><span class="line">  <span class="keyword">while</span>(low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[high] &gt;= pivot) high--;</span><br><span class="line">    A[low] = A[hight];</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[low] &lt;= pivot) low--;</span><br><span class="line">    A[high] = A[low];</span><br><span class="line">  &#125;</span><br><span class="line">  A[low] = pivot;</span><br><span class="line">  <span class="keyword">return</span> low;   <span class="comment">// 返回枢轴的位置</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuikSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot_pos = Partition(A, low, high);</span><br><span class="line">  QuickSort(A, low, pivot_pos<span class="number">-1</span>);</span><br><span class="line">  QuickSort(A, pivot_pos+<span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>思想：</strong>分治，是<strong>内部排序</strong>算法中<strong>平均性能</strong>最好的</p>
 <p><strong>空间复杂度：</strong>快排是递归的，因此需要借助栈，栈的深度与调用深度一致</p>
 <ul>
-<li><strong>最好：</strong>每次都分一半，即$2^h &gt;= n, h=log_2n$，因此$O(log_2n)$</li>
-<li><strong>最坏：</strong>每次都取到最大值，要调用n-1次，$O(n)$</li>
+<li><strong>最好：</strong>每次都分一半，即<span class="math inline">\(2^h &gt;= n, h=log_2n\)</span>，因此<span class="math inline">\(O(log_2n)\)</span></li>
+<li><strong>最坏：</strong>每次都取到最大值，要调用n-1次，<span class="math inline">\(O(n)\)</span></li>
 </ul>
 <p><strong>时间复杂度：</strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/weshjiness/article/details/8660583">快速排序最好，最坏，平均复杂度分析</a></p>
 <ul>
-<li><strong>最好：</strong> $O(nlog_2n)$</li>
-<li><strong>最坏：</strong>$O(n)$</li>
+<li><strong>最好：</strong> <span class="math inline">\(O(nlog_2n)\)</span></li>
+<li><strong>最坏：</strong><span class="math inline">\(O(n)\)</span></li>
 </ul>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> min=i;  <span class="comment">// min指向最小元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">      <span class="keyword">if</span>(A[j] &lt; A[min])</span><br><span class="line">        min=j;</span><br><span class="line">   	<span class="keyword">if</span>(min!=i)</span><br><span class="line">      swap(A[i], A[min])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序">选择排序</h2>
+<h3 id="简单选择排序">简单选择排序</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> min=i;  <span class="comment">// min指向最小元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">      <span class="keyword">if</span>(A[j] &lt; A[min])</span><br><span class="line">        min=j;</span><br><span class="line">   	<span class="keyword">if</span>(min!=i)</span><br><span class="line">      swap(A[i], A[min])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>思想：</strong>每次找到关键字最小的放在有序子序列</p>
 <p><strong>空间复杂度：</strong>O(1)</p>
 <p><strong>时间复杂度：</strong></p>
-<p>一共进行n-1趟比较， <strong>比较次数与初始状态无关</strong>为$n-1+n-2+…+1 = \frac{n(n-1)}{2}$，在有序情况下交换次数为0，最坏为$3(n-1)$，因此时间复杂度为$O(n^2)$</p>
+<p>一共进行n-1趟比较， <strong>比较次数与初始状态无关</strong>为<span class="math inline">\(n-1+n-2+...+1 = \frac{n(n-1)}{2}\)</span>，在有序情况下交换次数为0，最坏为<span class="math inline">\(3(n-1)\)</span>，因此时间复杂度为<span class="math inline">\(O(n^2)\)</span></p>
 <p>因为比较过程中进行了交换，<strong>不稳定</strong></p>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p><strong>空间复杂度：</strong>O(1)</p>
-<p><strong>时间复杂度：</strong>：<code>buildHeap</code>复杂度为O(n)，每次<code>heapify</code>需要调整$O(h)=O(log_2{n})$次，所以时间复杂度为$O(nlog_2{n})$</p>
+<h3 id="堆排序">堆排序</h3>
+<p><strong>空间复杂度：</strong>O(1)</p>
+<p><strong>时间复杂度：</strong>：<code>buildHeap</code>复杂度为O(n)，每次<code>heapify</code>需要调整<span class="math inline">\(O(h)=O(log_2{n})\)</span>次，所以时间复杂度为<span class="math inline">\(O(nlog_2{n})\)</span></p>
 <p>顺序存储的二叉树，若从0开始编号，对于节点i有以下性质：</p>
 <ul>
-<li><p>双亲节点编号为 (i-1)/2</p>
-</li>
-<li><p>左孩子编号为2i+1</p>
-</li>
-<li>右孩子编号为2i+2</li>
+<li><p>双亲节点编号为 (i-1)/2</p></li>
+<li><p>左孩子编号为2i+1</p></li>
+<li><p>右孩子编号为2i+2</p></li>
 </ul>
-<h4 id="建立最大堆"><a href="#建立最大堆" class="headerlink" title="建立最大堆"></a>建立最大堆</h4><p>假设数组长度为n</p>
+<h4 id="建立最大堆">建立最大堆</h4>
+<p>假设数组长度为n</p>
 <p><strong>调整条件</strong>：</p>
 <ul>
 <li>当前节点大于两个孩子时，不调整</li>
@@ -458,300 +361,222 @@
 <p>因为<strong>叶子节点不需要调整</strong>，我们只需要从<strong>最后一个分支节点</strong>开始调整，也就是<strong>最后一个节点的父节点</strong>，其坐标为(n-1-1)/2</p>
 <p>从后往前依次进行调整：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// O(n) * O(log2n)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">(<span class="keyword">int</span> arr[], n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> last = n - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> last_parent = (last<span class="number">-1</span>)/<span class="number">2</span>;   <span class="comment">// 第一个分支节点</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=last_parent; i&gt;=<span class="number">0</span>; i--)</span><br><span class="line">    heapify(arr, n, i);    <span class="comment">// 对每个分支进行调整</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="堆排序-1"><a href="#堆排序-1" class="headerlink" title="堆排序"></a>堆排序</h4><p>建立了堆就可以<strong>堆排序</strong>了，步骤为：</p>
-<ol>
-<li><p>将根节点与最后一个节点交换，拿出最后一个节点（最大值）</p>
-</li>
-<li><p>对根节点进行调整</p>
-</li>
+<h4 id="堆排序-1">堆排序</h4>
+<p>建立了堆就可以<strong>堆排序</strong>了，步骤为：</p>
+<ol type="1">
+<li><p>将根节点与最后一个节点交换，拿出最后一个节点（最大值）</p></li>
+<li><p>对根节点进行调整</p></li>
 </ol>
 <p>代码为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  buildHeap(arr, n);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">    swap(arr[<span class="number">0</span>], arr[i]);  <span class="comment">// 跟节点和最后一个节点交换 然后取出删除最后一个</span></span><br><span class="line">    heapify(arr, i, <span class="number">0</span>);  <span class="comment">// 因为堆大小在减少，i为剩余堆大小</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="插入、删除的调整（比较过程）"><a href="#插入、删除的调整（比较过程）" class="headerlink" title="插入、删除的调整（比较过程）"></a>插入、删除的调整（比较过程）</h4><p><strong>插入</strong></p>
-<p>插入元素，即把元素放在最后，然后从第一个分支节点开始调整，接下来递归调整其父节点。调整次数就是层数-1，时间复杂度为$O(log_{2}n)$</p>
+<h4 id="插入删除的调整比较过程">插入、删除的调整（比较过程）</h4>
+<p><strong>插入</strong></p>
+<p>插入元素，即把元素放在最后，然后从第一个分支节点开始调整，接下来递归调整其父节点。调整次数就是层数-1，时间复杂度为<span class="math inline">\(O(log_{2}n)\)</span></p>
 <p>可以看作是<strong>结点上浮</strong>的过程。</p>
 <p><strong>删除</strong></p>
-<p>删除根元素，即把根元素与最后一个元素交换，然后移除最后一个元素。接下来对根节点调用<code>heapify(arr, n-1, 0)</code>。（整个过程就是堆排序的过程）。时间复杂度为$O(log_{2}n)$</p>
+<p>删除根元素，即把根元素与最后一个元素交换，然后移除最后一个元素。接下来对根节点调用<code>heapify(arr, n-1, 0)</code>。（整个过程就是堆排序的过程）。时间复杂度为<span class="math inline">\(O(log_{2}n)\)</span></p>
 <p>可以看作是<strong><em>堆的最后一个结点的下沉</em></strong></p>
 <p>若小根堆，节点i与两个孩子<strong>都比较</strong>，选择更小的交换</p>
 <p>eg：8，15，10，21，34，16，12。删除8之后重建堆</p>
-<ol>
+<ol type="1">
 <li>12， 15， 10， 21， 34， 16</li>
 <li>调整根节点：15与10比较，10更小，10与12比较，10更小，所以10和12交换：10，15，12，21，34，16</li>
 <li>调整12节点：只有一个孩子，所以12与16比较，12更小，所以不动</li>
 </ol>
 <p>例题：</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%884.03.30.png" alt=""></p>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>合并有序列表。二路排序是递归合并2个有序数组。</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/截屏2021-09-04 上午11.06.31.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%884.03.30.png" /></p>
+<h2 id="归并排序">归并排序</h2>
+<p>合并有序列表。二路排序是递归合并2个有序数组。</p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/截屏2021-09-04%20上午11.06.31.png" /></p>
 <p>上面是一个4层的二叉树，从下往上为1，2，3，4层</p>
 <p>可以将归并排序过程看作倒置的二叉树：</p>
 <ul>
-<li>将其看作高度为h的树，第h层最多$2^{h-1}$个节点，所以$n  \le 2^{h-1}$，$h -1 = \lceil log_2n \rceil$</li>
-<li>高度为h，需要$h -1 = \lceil log_2n \rceil$趟排序</li>
-<li>每趟对两个<strong>有序</strong>列表排序，每比较一次，就可以得出一个元素位置，所以<strong>每趟最多比较n-1次，O(n)</strong>，n为全部元素个数</li>
-<li><p>趟数$O(log_2{n})$  每趟$O(n)$  时间复杂度$O(nlog_2{n})$  空间复杂度$O(n)$</p>
-</li>
-<li><p><strong>稳定</strong></p>
-</li>
+<li><p>将其看作高度为h的树，第h层最多<span class="math inline">\(2^{h-1}\)</span>个节点，所以<span class="math inline">\(n \le 2^{h-1}\)</span>，<span class="math inline">\(h -1 = \lceil log_2n \rceil\)</span></p></li>
+<li><p>高度为h，需要<span class="math inline">\(h -1 = \lceil log_2n \rceil\)</span>趟排序</p></li>
+<li><p>每趟对两个<strong>有序</strong>列表排序，每比较一次，就可以得出一个元素位置，所以<strong>每趟最多比较n-1次，O(n)</strong>，n为全部元素个数</p></li>
+<li><p>趟数<span class="math inline">\(O(log_2{n})\)</span> 每趟<span class="math inline">\(O(n)\)</span> 时间复杂度<span class="math inline">\(O(nlog_2{n})\)</span> 空间复杂度<span class="math inline">\(O(n)\)</span></p></li>
+<li><p><strong>稳定</strong></p></li>
 </ul>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p><strong>不是基于比较的算法</strong></p>
+<h2 id="基数排序">基数排序</h2>
+<p><strong>不是基于比较的算法</strong></p>
 <p>多关键字排序，比如数字123，<strong>先对个位排序，再对十位排序，再对百位排序</strong></p>
 <ul>
 <li>用到了队列进行分配和收集，如果基数为r，那么就有r个队列，比如数字0-9，基数为10，10个队列</li>
 <li>如果有d个关键字位，就需要d躺排序</li>
-<li>时间复杂度：O(d(n+r))    收集为O(r)，分配为O(n)   与初始状态无关</li>
+<li>时间复杂度：O(d(n+r)) 收集为O(r)，分配为O(n) 与初始状态无关</li>
 <li>空间复杂度：r个队列，O(r)</li>
 </ul>
-<h2 id="外部排序"><a href="#外部排序" class="headerlink" title="外部排序"></a>外部排序</h2><p>采用归并排序</p>
+<h2 id="外部排序">外部排序</h2>
+<p>采用归并排序</p>
 <ul>
-<li><p>初始归并段r</p>
-</li>
-<li><p>归并路数k</p>
-</li>
-<li><p>趟数S</p>
-</li>
+<li><p>初始归并段r</p></li>
+<li><p>归并路数k</p></li>
+<li><p>趟数S</p></li>
 </ul>
-<p>趟数：$S = log_k{r}$</p>
+<p>趟数：<span class="math inline">\(S = log_k{r}\)</span></p>
 <p>读写磁盘次数=(磁盘块数+趟数*磁盘块数)x2</p>
 <blockquote>
 <p>生成初始归并段需要磁盘块数的读和写，每趟都要堆所有磁盘块进行读和写</p>
 </blockquote>
 <p>内部归并，k个元素中选择最小的需要比较(k-1)次</p>
-<p>每趟归并n个元素，比较次数为$(n-1)(k-1)$</p>
-<p>S趟归并需要比较$S(n-1)(k-1)$次</p>
-<p><strong>败者树</strong>：k个元素中选择最小的只需要比较$\lceil log_2k \rceil$次</p>
+<p>每趟归并n个元素，比较次数为<span class="math inline">\((n-1)(k-1)\)</span></p>
+<p>S趟归并需要比较<span class="math inline">\(S(n-1)(k-1)\)</span>次</p>
+<p><strong>败者树</strong>：k个元素中选择最小的只需要比较<span class="math inline">\(\lceil log_2k \rceil\)</span>次</p>
 
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
+      <footer class="post-footer">
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
-          
-            <a href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag"># 排序</a>
-          
-            <a href="/tags/%E6%95%88%E7%8E%87/" rel="tag"># 效率</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2021/08/17/ASL/" rel="next" title="平均查找长度总结">
-                <i class="fa fa-chevron-left"></i> 平均查找长度总结
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+              <a href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag"><i class="fa fa-tag"></i> 排序</a>
+              <a href="/tags/%E6%95%88%E7%8E%87/" rel="tag"><i class="fa fa-tag"></i> 效率</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/08/25/css-notes/" rel="prev" title="css笔记">
-                css笔记 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
         
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/17/ASL/" rel="prev" title="平均查找长度总结">
+      <i class="fa fa-chevron-left"></i> 平均查找长度总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/25/css-notes/" rel="next" title="css笔记">
+      css笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%7C%7C%20archive">
-              
-                  <span class="site-state-item-count">65</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
-                  <span class="site-state-item-name">categories</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/baichen99" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://blackstone_99@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-Email"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.2.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.2.2.</span> <span class="nav-text">空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%8F%E8%B6%9F%E7%A1%AE%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">每趟确定一个元素位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%95%88%E7%8E%87%E4%B8%8E%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81%E5%85%B3%E7%B3%BB"><span class="nav-number">1.4.</span> <span class="nav-text">排序效率与初始状态关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5"><span class="nav-number">2.1.</span> <span class="nav-text">直接插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E5%8D%8A%E6%8F%92%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">折半插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">希尔排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">3.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">3.2.</span> <span class="nav-text">快速排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">4.1.</span> <span class="nav-text">简单选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">4.2.</span> <span class="nav-text">堆排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%9C%80%E5%A4%A7%E5%A0%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">建立最大堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E7%9A%84%E8%B0%83%E6%95%B4%EF%BC%88%E6%AF%94%E8%BE%83%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="nav-number">4.2.3.</span> <span class="nav-text">插入、删除的调整（比较过程）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F"><span class="nav-number">7.</span> <span class="nav-text">外部排序</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.2.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.2.2.</span> <span class="nav-text">空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%8F%E8%B6%9F%E7%A1%AE%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">每趟确定一个元素位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%95%88%E7%8E%87%E4%B8%8E%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81%E5%85%B3%E7%B3%BB"><span class="nav-number">1.4.</span> <span class="nav-text">排序效率与初始状态关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5"><span class="nav-number">2.1.</span> <span class="nav-text">直接插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E5%8D%8A%E6%8F%92%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">折半插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">希尔排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">3.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">3.2.</span> <span class="nav-text">快速排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">4.1.</span> <span class="nav-text">简单选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">4.2.</span> <span class="nav-text">堆排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%9C%80%E5%A4%A7%E5%A0%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">建立最大堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4%E7%9A%84%E8%B0%83%E6%95%B4%E6%AF%94%E8%BE%83%E8%BF%87%E7%A8%8B"><span class="nav-number">4.2.3.</span> <span class="nav-text">插入、删除的调整（比较过程）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F"><span class="nav-number">7.</span> <span class="nav-text">外部排序</span></a></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">baichen</p>
+  <div class="site-description" itemprop="description">黑石的技术笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/baichen99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;baichen99" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blackstone_99@163.com" title="E-Mail → mailto:blackstone_99@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">baichen</span>
-
-  
 </div>
 
-
-
-
-
-
-
-
-
         
 
 
@@ -760,116 +585,28 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
   </div>
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js"></script>
 
-
-
-
-
-
+<script src="/js/motion.js"></script>
 
 
-
-  
-
+<script src="/js/schemes/muse.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -879,8 +616,9 @@
 
 
 
-
   
+<script src="/js/local-search.js"></script>
+
 
 
 
@@ -894,43 +632,6 @@
 
 
   
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
 
   
 

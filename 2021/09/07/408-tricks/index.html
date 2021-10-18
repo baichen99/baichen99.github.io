@@ -1,94 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="https://s2.ax1x.com/2019/06/13/VhRMGV.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="https://s2.ax1x.com/2019/06/13/VhRMGV.pngg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="考研," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="组成原理性能计算 主频 CPI 总线带宽&#x3D;总线工作频率x总线宽度&#x2F;8 处理速率$MIPS&#x3D;\frac{主频}{CPI}$ 平均访问时间&#x3D;命中率x访问cache时间+（1-命中率）x访问内存时间 cache-主存效率&#x3D;$\frac{cache存取周期}{平均访问时间}$  对程序员透明的部件透明：  ALU（加法器、乘法器、移位器） IR指令寄存器（CPU自动取指，程序员只能通过PC来改变指令） M">
+  <meta name="description" content="组成原理 性能计算  主频 CPI 总线带宽&#x3D;总线工作频率x总线宽度&#x2F;8 处理速率\(MIPS&#x3D;\frac{主频}{CPI}\) 平均访问时间&#x3D;命中率x访问cache时间+（1-命中率）x访问内存时间 cache-主存效率&#x3D;\(\frac{cache存取周期}{平均访问时间}\)  对程序员透明的部件 透明：  ALU（加法器、乘法器、移位器） IR指令寄存器（CPU自动取指，程序员只能通过PC来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="408常见题">
 <meta property="og:url" content="http://blacston.com/2021/09/07/408-tricks/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="组成原理性能计算 主频 CPI 总线带宽&#x3D;总线工作频率x总线宽度&#x2F;8 处理速率$MIPS&#x3D;\frac{主频}{CPI}$ 平均访问时间&#x3D;命中率x访问cache时间+（1-命中率）x访问内存时间 cache-主存效率&#x3D;$\frac{cache存取周期}{平均访问时间}$  对程序员透明的部件透明：  ALU（加法器、乘法器、移位器） IR指令寄存器（CPU自动取指，程序员只能通过PC来改变指令） M">
+<meta property="og:description" content="组成原理 性能计算  主频 CPI 总线带宽&#x3D;总线工作频率x总线宽度&#x2F;8 处理速率\(MIPS&#x3D;\frac{主频}{CPI}\) 平均访问时间&#x3D;命中率x访问cache时间+（1-命中率）x访问内存时间 cache-主存效率&#x3D;\(\frac{cache存取周期}{平均访问时间}\)  对程序员透明的部件 透明：  ALU（加法器、乘法器、移位器） IR指令寄存器（CPU自动取指，程序员只能通过PC来">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-17%20%E4%B8%8B%E5%8D%888.09.03.png">
@@ -108,39 +46,18 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg">
 
+<link rel="canonical" href="http://blacston.com/2021/09/07/408-tricks/">
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://blacston.com/2021/09/07/408-tricks/"/>
-
-
-
-
 
   <title>408常见题 | 黑石的技术笔记</title>
   
@@ -150,237 +67,210 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+<!-- hexo injector head_end end --></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">黑石的技术笔记</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description"></h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">黑石的技术笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
 
+
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
-        
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 </nav>
 
 
 
- </div>
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content post posts-expand">
             
 
-  <div id="posts" class="posts-expand">
     
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/09/07/408-tricks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="黑石的技术笔记">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">408常见题</h2>
-        
+        <h1 class="post-title" itemprop="name headline">
+          408常见题
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-07T14:15:34+08:00">
-                2021-09-07
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
+              <time title="创建时间：2021-09-07 14:15:34" itemprop="dateCreated datePublished" datetime="2021-09-07T14:15:34+08:00">2021-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-17 20:49:48" itemprop="dateModified" datetime="2021-10-17T20:49:48+08:00">2021-10-17</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
-                  </a>
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
                 </span>
-
-                
-                
-              
             </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
     
-    <div class="post-body han-init-context" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="性能计算"><a href="#性能计算" class="headerlink" title="性能计算"></a>性能计算</h3><ul>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理">组成原理</h2>
+<h3 id="性能计算">性能计算</h3>
+<ul>
 <li>主频</li>
 <li>CPI</li>
 <li>总线带宽=总线工作频率x总线宽度/8</li>
-<li>处理速率$MIPS=\frac{主频}{CPI}$</li>
+<li>处理速率<span class="math inline">\(MIPS=\frac{主频}{CPI}\)</span></li>
 <li>平均访问时间=命中率x访问cache时间+（1-命中率）x访问内存时间</li>
-<li>cache-主存效率=$\frac{cache存取周期}{平均访问时间}$</li>
+<li>cache-主存效率=<span class="math inline">\(\frac{cache存取周期}{平均访问时间}\)</span></li>
 </ul>
-<h3 id="对程序员透明的部件"><a href="#对程序员透明的部件" class="headerlink" title="对程序员透明的部件"></a>对程序员透明的部件</h3><p><strong>透明：</strong></p>
+<h3 id="对程序员透明的部件">对程序员透明的部件</h3>
+<p><strong>透明：</strong></p>
 <ul>
 <li>ALU（加法器、乘法器、移位器）</li>
 <li>IR指令寄存器（CPU自动取指，程序员只能通过PC来改变指令）</li>
@@ -394,10 +284,12 @@
 <li>程序状态字寄存器</li>
 <li>ACC 累加寄存器</li>
 </ul>
-<h3 id="流水线时间计算"><a href="#流水线时间计算" class="headerlink" title="流水线时间计算"></a>流水线时间计算</h3><p>m端流水线，n个指令，时钟周期为t，总时间为 $m+(n-1)t$</p>
-<p>经常于低位交叉存储结合起来考。2012真题，P310  .6</p>
-<h3 id="单-双缓冲区时间"><a href="#单-双缓冲区时间" class="headerlink" title="单/双缓冲区时间"></a>单/双缓冲区时间</h3><p>原则：</p>
-<ol>
+<h3 id="流水线时间计算">流水线时间计算</h3>
+<p>m端流水线，n个指令，时钟周期为t，总时间为 <span class="math inline">\(m+(n-1)t\)</span></p>
+<p>经常于低位交叉存储结合起来考。2012真题，P310 .6</p>
+<h3 id="单双缓冲区时间">单/双缓冲区时间</h3>
+<p>原则：</p>
+<ol type="1">
 <li>C和M不能同时发生，且<strong>C结束紧跟着M</strong>：CPU处理完才能接收</li>
 <li>单缓冲下T和M不能同时发生：因为T和M都用到了同一个缓冲</li>
 <li>由1、2可知，单缓冲下只能T和C同时发生</li>
@@ -405,15 +297,15 @@
 <p><strong>画图分析时假设一个初始状态，计算下次达到这种状态的时间</strong></p>
 <p>对于单缓冲来说，初始是缓冲区满</p>
 <p>对于双缓冲来说，初始是一个空一个满</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg" /></p>
 <p><strong>注意：</strong>若题中要计算从读入到分析数据的总时间，要从缓冲区为空开始算起，计算公式为：第一个数据时间+（n-1）x上面计算的花费时间</p>
-<h3 id="LRU"><a href="#LRU" class="headerlink" title="LRU"></a>LRU</h3><p><strong>方法</strong>：每次替换时往前数，找到cache中，离当前位置最远的替换。做题时画下面的表，命中时在下面打勾，标记。</p>
-<p>eg: cache大小为4，访问序列是1  8  1  7  8  2  7  2  1  8  3  8  2  1  3  1  7  1  3  7</p>
+<h3 id="lru">LRU</h3>
+<p><strong>方法</strong>：每次替换时往前数，找到cache中，离当前位置最远的替换。做题时画下面的表，命中时在下面打勾，标记。</p>
+<p>eg: cache大小为4，访问序列是1 8 1 7 8 2 7 2 1 8 3 8 2 1 3 1 7 1 3 7</p>
 <p>注意下面第一次遇到3时需要替换，往前看分别出现 8, 1, 2 因此选择替换7</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>1</th>
 <th>8</th>
 <th>1</th>
@@ -437,7 +329,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>1</td>
 <td>1</td>
@@ -459,7 +351,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>8</td>
 <td>8</td>
@@ -481,7 +373,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td></td>
 <td></td>
@@ -503,7 +395,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td></td>
 <td></td>
@@ -525,7 +417,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td></td>
 <td>✅</td>
@@ -549,14 +441,14 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>最后发现✅有14个，总次数为20，因此命中率为70%。</p>
-<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><p>画表最好算，最方便</p>
+<h2 id="操作系统">操作系统</h2>
+<h3 id="进程调度算法">进程调度算法</h3>
+<p>画表最好算，最方便</p>
 <p>不管什么算法，先画下面这个表</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -565,7 +457,8 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -573,18 +466,18 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>根据不同算法填表，最后通过表来计算等待时间、周转时间、带权周转时间</p>
 <p>例题：</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-17%20%E4%B8%8B%E5%8D%888.09.03.png" alt=""></p>
-<h4 id="FCFS"><a href="#FCFS" class="headerlink" title="FCFS"></a>FCFS</h4><p>太简单</p>
-<h4 id="短作业优先"><a href="#短作业优先" class="headerlink" title="短作业优先"></a>短作业优先</h4><ol>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-17%20%E4%B8%8B%E5%8D%888.09.03.png" /></p>
+<h4 id="fcfs">FCFS</h4>
+<p>太简单</p>
+<h4 id="短作业优先">短作业优先</h4>
+<ol type="1">
 <li>根据题目补全信息</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -593,50 +486,49 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td></td>
 <td>6</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol type="1">
 <li>P1来先运行，结束时间为3，将3与提交时间这一列比较，只有P2小于3，所以P2开始时间为3</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -645,50 +537,49 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td><strong>3</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td><strong>3</strong></td>
 <td>6</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="2" type="1">
 <li>P2结束时间为3+6=9， 将9与提交时间这一列比较，发现都小于9，找到除结束进程外运行时间最小的进程，为P5，所以P5开始时间为9</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -697,50 +588,49 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
 <td>6</td>
 <td><strong>9</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td><strong>9</strong></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="3" type="1">
 <li>P5结束时间为9+2=11，因为现在知道所有进程都到了，直接找到运行时间最小的P3，所以P3开始时间为11，其余的也可以填出来</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -749,35 +639,35 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
 <td>6</td>
 <td>9</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td><strong>11</strong></td>
 <td>4</td>
 <td><strong>15</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td><strong>15</strong></td>
 <td>5</td>
 <td><strong>20</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>9</td>
@@ -786,19 +676,16 @@
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="4" type="1">
 <li><p>根据这个表计算</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_A24FDAA9C2AB-1.jpeg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_A24FDAA9C2AB-1.jpeg" /></p>
 <p>等待时间 = 开始-就绪=周转-运行</p>
 <p>周转时间 = 结束-就绪</p>
-<p>带权周转时间 = 周转时间/运行时间</p>
-</li>
+<p>带权周转时间 = 周转时间/运行时间</p></li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -810,7 +697,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -820,7 +707,7 @@
 <td>3</td>
 <td>3/3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
@@ -830,7 +717,7 @@
 <td>7</td>
 <td>7/6</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td>11</td>
@@ -840,7 +727,7 @@
 <td>11</td>
 <td>11/4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td>15</td>
@@ -850,7 +737,7 @@
 <td>14</td>
 <td>14/5</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>9</td>
@@ -862,13 +749,14 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="高响应比优先"><a href="#高响应比优先" class="headerlink" title="高响应比优先"></a>高响应比优先</h4><script type="math/tex; mode=display">
-响应比 = \frac{等待时间+运行时间}{运行时间}</script><p>仿照上面的方法，<strong>但是每次进程结束都需要计算一次响应比</strong></p>
-<div class="table-container">
+<h4 id="高响应比优先">高响应比优先</h4>
+<p><span class="math display">\[
+响应比 = \frac{等待时间+运行时间}{运行时间}
+\]</span></p>
+<p>仿照上面的方法，<strong>但是每次进程结束都需要计算一次响应比</strong></p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -880,7 +768,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -890,7 +778,7 @@
 <td>3</td>
 <td>3/3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
@@ -900,7 +788,7 @@
 <td>7</td>
 <td>7/6</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td>9</td>
@@ -910,7 +798,7 @@
 <td>9</td>
 <td>9/4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td>15</td>
@@ -920,7 +808,7 @@
 <td>14</td>
 <td>14/5</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>13</td>
@@ -932,48 +820,51 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="open系统调用"><a href="#open系统调用" class="headerlink" title="open系统调用"></a>open系统调用</h3><ol>
+<h3 id="open系统调用">open系统调用</h3>
+<ol type="1">
 <li>根据文件存放路径找到相应的目录文件，从目录中找到文件名对应的目录项，并检查权限</li>
 <li>将目录项复制到内存中的打开文件表，返回表目对应的编号，用户使用这个编号来指明要操作的文件</li>
 </ol>
-<h3 id="进程资源图简化，判断死锁"><a href="#进程资源图简化，判断死锁" class="headerlink" title="进程资源图简化，判断死锁"></a>进程资源图简化，判断死锁</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/coding1994/article/details/52474731">资源分配图化简法</a></p>
-<h3 id="大端小端"><a href="#大端小端" class="headerlink" title="大端小端"></a>大端小端</h3><p>人看的是小端，机器存的是小端。（<strong>小人</strong>）</p>
+<h3 id="进程资源图简化判断死锁">进程资源图简化，判断死锁</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/coding1994/article/details/52474731">资源分配图化简法</a></p>
+<h3 id="大端小端">大端小端</h3>
+<p>人看的是小端，机器存的是小端。（<strong>小人</strong>）</p>
 <p>小端：12 34 56，12存储在低位。大端相反。</p>
-<h3 id="分页确定逻辑地址结构"><a href="#分页确定逻辑地址结构" class="headerlink" title="分页确定逻辑地址结构"></a>分页确定逻辑地址结构</h3><ul>
-<li><p>虚拟存储器最大容量：看MAR有多少位</p>
-</li>
-<li><p>页号+页内偏移。页号包括页表索引</p>
-</li>
+<h3 id="分页确定逻辑地址结构">分页确定逻辑地址结构</h3>
+<ul>
+<li><p>虚拟存储器最大容量：看MAR有多少位</p></li>
+<li><p>页号+页内偏移。页号包括页表索引</p></li>
 <li><p>多级页表逻辑地址确定：</p>
 <p>页内偏移由页大小决定</p>
 <p>最高一级页表位数不能超过<strong>log(一页的页表项数)</strong>，其他级的位数都为<strong>log(一页的页表项数)</strong></p>
 <p>eg：48位虚地址，页面大小为4KB，页表项大小为8B</p>
-<p>页面大小为4KB，所以页面偏移为12，一页的页表项数 = $4KB/8B = 2^{9}$，剩下的48-12=36位按每级9位分配，36/9=4，所以4级</p>
-</li>
+<p>页面大小为4KB，所以页面偏移为12，一页的页表项数 = <span class="math inline">\(4KB/8B = 2^{9}\)</span>，剩下的48-12=36位按每级9位分配，36/9=4，所以4级</p></li>
 <li><p>cache组相连映射确定地址结构：</p>
 <p>标记+组号+偏移</p>
-<p>偏移由页大小确定，组号由组数确定，组数=cache条数/m路，剩下的是标记</p>
-</li>
+<p>偏移由页大小确定，组号由组数确定，组数=cache条数/m路，剩下的是标记</p></li>
 </ul>
-<h3 id="TLB、页表、cache"><a href="#TLB、页表、cache" class="headerlink" title="TLB、页表、cache"></a>TLB、页表、cache</h3><p>cpu根据虚拟地址中的虚拟页号去TLB中找页，若存在将虚拟地址转换为物理地址。根据物理地址去cache中找块，若找到无需到主存中找。</p>
+<h3 id="tlb页表cache">TLB、页表、cache</h3>
+<p>cpu根据虚拟地址中的虚拟页号去TLB中找页，若存在将虚拟地址转换为物理地址。根据物理地址去cache中找块，若找到无需到主存中找。</p>
 <ul>
 <li>页表是为了实现虚拟内存，完成对<strong>内存</strong>的扩容。cache是为了解决cpu与主存速度不匹配的问题</li>
 <li>缺页要从<strong>磁盘</strong>中取出<strong>页</strong>到内存，cache不命中要从<strong>主存</strong>去取出<strong>块</strong>到cache。因此缺页开销更大</li>
 <li>TLB表项为虚拟页号+物理页号（主存）。cache表项为标记+数据。快表是慢表的一个副本，结构一样。cache中存放了数据，因此取数时最少访问主存0次。</li>
 </ul>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+<h2 id="数据结构">数据结构</h2>
+<ul>
 <li>单链表头插法、尾插法、插入、删除</li>
 <li>双链表、静态链表</li>
 <li>共享栈</li>
 </ul>
-<h3 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
-<h4 id="循环队列判满、判空"><a href="#循环队列判满、判空" class="headerlink" title="循环队列判满、判空"></a>循环队列判满、判空</h4><p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png" alt=""></p>
+<h3 id="中缀表达式转后缀表达式">中缀表达式转后缀表达式</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
+<h4 id="循环队列判满判空">循环队列判满、判空</h4>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png" /></p>
 <p>牺牲额外一块空间。</p>
 <p>空条件：front == rear</p>
 <p>满条件：front == (rear+1)%maxsize</p>
 <p>元素个数：(rear-front+maxsize)%maxsize</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%889.01.14.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%889.01.14.png" /></p>
 <ul>
 <li>栈括号匹配</li>
 <li>栈求表达式</li>
@@ -987,10 +878,11 @@
 <li>线索二叉树构造、前驱后继、根据中序前序构造二叉树</li>
 <li>树和森林的遍历</li>
 </ul>
-<h4 id="B树插入、删除、高度"><a href="#B树插入、删除、高度" class="headerlink" title="B树插入、删除、高度"></a>B树插入、删除、高度</h4><p>高度：看树、二叉树性质那一篇笔记</p>
+<h4 id="b树插入删除高度">B树插入、删除、高度</h4>
+<p>高度：看树、二叉树性质那一篇笔记</p>
 <p>插入：大于最大关键字树则分裂，可能会导致父节点也分裂</p>
 <p>删除：</p>
-<ol>
+<ol type="1">
 <li>直接删除</li>
 <li>兄弟够借：若被删除节点右（左）兄弟够借，先将共同父亲放入被删除节点，再把右（左）兄弟的最左（右）边的孩子放入父节点。</li>
 <li>不够借：被删除节点左右兄弟都不够借，则与父节点交换然后与兄弟合并。</li>
@@ -999,18 +891,20 @@
 <li><strong>排序二叉树——平衡二叉树</strong></li>
 <li><strong>二叉搜索树</strong></li>
 </ul>
-<h4 id="哈夫曼树：构造、前缀、性质"><a href="#哈夫曼树：构造、前缀、性质" class="headerlink" title="哈夫曼树：构造、前缀、性质"></a><strong>哈夫曼树：构造、前缀、性质</strong></h4><p>性质：只能度为0和2的节点</p>
+<h4 id="哈夫曼树构造前缀性质"><strong>哈夫曼树：构造、前缀、性质</strong></h4>
+<p>性质：只能度为0和2的节点</p>
 <ul>
 <li>并查集</li>
 <li>B树的查找、插入、删除</li>
 </ul>
-<h4 id="邻接矩阵、邻接表、邻接多重表、十字链表定义和画法"><a href="#邻接矩阵、邻接表、邻接多重表、十字链表定义和画法" class="headerlink" title="邻接矩阵、邻接表、邻接多重表、十字链表定义和画法"></a>邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</h4><p><strong>邻接矩阵</strong></p>
-<p>顶点表是一维数组，边表是二维数组 </p>
+<h4 id="邻接矩阵邻接表邻接多重表十字链表定义和画法">邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</h4>
+<p><strong>邻接矩阵</strong></p>
+<p>顶点表是一维数组，边表是二维数组</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex[vNum];		<span class="comment">//  定点可以是char型、int型</span></span><br><span class="line">  <span class="keyword">int</span> Edge[vNum][vNum];	<span class="comment">// 1代表有边</span></span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnmum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>邻接表</strong></p>
 <p>分为顶点节点和边表节点，每个顶点节点是一个单链表，连接着与这个顶点相连的边节点（有向图则与出边相连）</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/20130429141926037.jpg" alt=""></p>
- <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex;</span><br><span class="line">  ArcNode* first;</span><br><span class="line">&#125;VNode, AdjList[Vnum];</span><br><span class="line"><span class="comment">// VNode AdjList[Vnum];		//   邻接表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> Vex;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  AdjList vertices;</span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/20130429141926037.jpg" /></p>
+<p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex;</span><br><span class="line">  ArcNode* first;</span><br><span class="line">&#125;VNode, AdjList[Vnum];</span><br><span class="line"><span class="comment">// VNode AdjList[Vnum];		//   邻接表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> Vex;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  AdjList vertices;</span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>十字链表</strong></p>
 <p>十字链表是<strong>有向图</strong>的链式存储</p>
 <p>顶点节点：</p>
@@ -1026,9 +920,9 @@
 <li>hlink：下一条弧头节点相同的弧</li>
 <li>tlink：下一条弧尾节点相同的弧</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114948819-61490260.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114814046-2079914035.png" alt=""><br>十字链表画法：先画同一行（弧尾相同)，再垂直连接弧头相同的边，最后连接顶点的第一个入边弧并补全空符号。</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E7%94%BB%E6%B3%952.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114948819-61490260.png" /></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114814046-2079914035.png" /> 十字链表画法：先画同一行（弧尾相同)，再垂直连接弧头相同的边，最后连接顶点的第一个入边弧并补全空符号。</p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E7%94%BB%E6%B3%952.jpg" /></p>
 <p><strong>邻接多重表</strong></p>
 <p>是<strong>无向图</strong>的链式表示，无向图的邻接矩阵中，一条边要占2个格子，删除的时候需要分别修改两个位，邻接多重表中有几条边就有几个弧节点。</p>
 <p>顶点节点：</p>
@@ -1043,43 +937,45 @@
 <li>jvex，若一条弧连接0-1，jvex为1</li>
 <li>jlink，与jvex相连的下一条弧</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-05%20%E4%B8%8B%E5%8D%8810.05.08.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-05%20%E4%B8%8B%E5%8D%8810.05.08.png" /></p>
 <ul>
 <li>DFS、BFS</li>
 </ul>
-<h4 id="最小生成树MST：Prim算法、Kruskal算法"><a href="#最小生成树MST：Prim算法、Kruskal算法" class="headerlink" title="最小生成树MST：Prim算法、Kruskal算法"></a>最小生成树MST：Prim算法、Kruskal算法</h4><p>Prim（选点，Point，PP）：任选初始点，选择与此点<strong>相连</strong>边中权值最小的边，不断重复，<strong>直到将所有点加入</strong>。复杂度$O(V^2)$</p>
-<p>Kruskal（选边）：不断选择权值最小的边，<strong>直到连通分量为</strong>1。因为用最小堆实现每次选择最小的边，所以复杂度$O(Elog_2(E))$</p>
-<h4 id="最短路径：DFS、Dijkstra算法、Floyd算法"><a href="#最短路径：DFS、Dijkstra算法、Floyd算法" class="headerlink" title="最短路径：DFS、Dijkstra算法、Floyd算法"></a>最短路径：DFS、Dijkstra算法、Floyd算法</h4><p>都不考算法，只需要会手动模拟</p>
-<p>Dijkstra  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zz4y1m7Nq">https://www.bilibili.com/video/BV1zz4y1m7Nq</a></p>
-<p>floyd <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16w411o76v">https://www.bilibili.com/video/BV16w411o76v</a></p>
-<ol>
-<li><p>十字区域照抄</p>
-<ol>
-<li>十字区域中含∞的行或列照抄</li>
-<li>对角线都是0</li>
-<li>剩余部分，比较对应红色部分的行与列值之和 and 原值的大小，谁小取谁</li>
-<li>剩余部分若不是原值，下标就是红色区域的行与列下标合并去重</li>
+<h4 id="最小生成树mstprim算法kruskal算法">最小生成树MST：Prim算法、Kruskal算法</h4>
+<p>Prim（选点，Point，PP）：任选初始点，选择与此点<strong>相连</strong>边中权值最小的边，不断重复，<strong>直到将所有点加入</strong>。复杂度<span class="math inline">\(O(V^2)\)</span></p>
+<p>Kruskal（选边）：不断选择权值最小的边，<strong>直到连通分量为</strong>1。因为用最小堆实现每次选择最小的边，所以复杂度<span class="math inline">\(O(Elog_2(E))\)</span></p>
+<h4 id="最短路径dfsdijkstra算法floyd算法">最短路径：DFS、Dijkstra算法、Floyd算法</h4>
+<p>都不考算法，只需要会手动模拟</p>
+<p>Dijkstra https://www.bilibili.com/video/BV1zz4y1m7Nq</p>
+<p>floyd https://www.bilibili.com/video/BV16w411o76v</p>
+<ol type="1">
+<li><p>十字区域照抄</p></li>
+<li><p>十字区域中含∞的行或列照抄</p></li>
+<li><p>对角线都是0</p></li>
+<li><p>剩余部分，比较对应红色部分的行与列值之和 and 原值的大小，谁小取谁</p></li>
+<li><p>剩余部分若不是原值，下标就是红色区域的行与列下标合并去重</p></li>
 </ol>
-</li>
-</ol>
-<h4 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h4><p>结合工程背景，用节点表示先后顺序。选择某种数据结构，基于该数据结构来解决问题。eg：工厂流水线</p>
+<h4 id="拓扑排序">拓扑排序</h4>
+<p>结合工程背景，用节点表示先后顺序。选择某种数据结构，基于该数据结构来解决问题。eg：工厂流水线</p>
 <p>拓扑序列：陆续删除入度为0的节点。</p>
 <p>有可能考算法：indegree数组 or DFS</p>
 <p>indegree实现法：</p>
-<ol>
+<ol type="1">
 <li>用邻接表实现简单</li>
 <li>遍历所有边，统计每个顶点的入度并存储在 <code>indgree</code> 中</li>
 <li>将所有入度为0的点入栈</li>
 <li>栈顶元素出栈，遍历其所有出边（这里用邻接矩阵方便），将出边指向的顶点入度-1，入度为0则进栈</li>
 <li>栈为空停止，此时如果还有顶点未输出则有<strong>回路</strong></li>
 </ol>
-<h4 id="关键路径：AOE网、最早发生、最晚发生、最早开始、最迟开始"><a href="#关键路径：AOE网、最早发生、最晚发生、最早开始、最迟开始" class="headerlink" title="关键路径：AOE网、最早发生、最晚发生、最早开始、最迟开始"></a>关键路径：AOE网、最早发生、最晚发生、最早开始、最迟开始</h4><p>若只需要知道关键路径可以看：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fq4y1X7Tb">求解关键路径</a></p>
-<p> <img src="https://raw.githubusercontent.com/baichen99/pics/master/img/2313asdas.png" alt=""></p>
-<p> 最早发生ve：从前往后，选择大的。对于V4: 3+2 &lt; 2+4，所以ve(4) =6</p>
+<h4 id="关键路径aoe网最早发生最晚发生最早开始最迟开始">关键路径：AOE网、最早发生、最晚发生、最早开始、最迟开始</h4>
+<p>若只需要知道关键路径可以看：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fq4y1X7Tb">求解关键路径</a></p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/2313asdas.png" /></p>
+<p>最早发生ve：从前往后，选择大的。对于V4: 3+2 &lt; 2+4，所以ve(4) =6</p>
 <p>最晚发生vl：从后往前，选择小的。对于V2: 7-3&gt;6-2，所以vl(2)=4</p>
 <p>最早开始：对于图中的边a3，从V2指向V4，因此e(3) = ve(2) = 3</p>
 <p>最晚开始：对于图中的边a3，从V2指向V4，因此l(3) = vl(4) - weight = 6-2=4</p>
-<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p>开放定址法：线性探测+0，+1…+n。平方探测：$0^2, 1, -1, 2^2, -2^2…$。再散列</p>
+<h4 id="哈希算法">哈希算法</h4>
+<p>开放定址法：线性探测+0，+1…+n。平方探测：<span class="math inline">\(0^2, 1, -1, 2^2, -2^2...\)</span>。再散列</p>
 <p>拉链法：掌握存储结构，类似于孩子表示法（顺序表+链表）。定义结构，实现插入、删除、查找。</p>
 <p><a target="_blank" rel="noopener" href="http://data.biancheng.net/view/30.html">树的双亲表示法、孩子表示法和孩子兄弟表示法 (biancheng.net)</a></p>
 <p>成功/失败查找长度。装填因子。</p>
@@ -1087,278 +983,209 @@
 <li>查找算法</li>
 <li>排序算法</li>
 </ul>
-<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="极限传输速率"><a href="#极限传输速率" class="headerlink" title="极限传输速率"></a>极限传输速率</h3><p> 无噪声，奈氏定理$V = f \times log_{2}N$，f为带宽</p>
-<p>有噪声，香农$V = Wlog_2(1+\frac{S}{N})$    W为带宽，S/N为信噪比</p>
+<h2 id="计算机网络">计算机网络</h2>
+<h3 id="极限传输速率">极限传输速率</h3>
+<p>无噪声，奈氏定理<span class="math inline">\(V = f \times log_{2}N\)</span>，f为带宽</p>
+<p>有噪声，香农<span class="math inline">\(V = Wlog_2(1+\frac{S}{N})\)</span> W为带宽，S/N为信噪比</p>
 <blockquote>
 <p>带宽单位为MHz，为最高频率-最低频率</p>
-<p>若给出信噪比为30dB，需要将其转换为S/N，关系是$30 = 10log_{10}1000$,所以S/N=1000</p>
+<p>若给出信噪比为30dB，需要将其转换为S/N，关系是<span class="math inline">\(30 = 10log_{10}1000\)</span>,所以S/N=1000</p>
 </blockquote>
 <p>eg：一个传输数字信号的模拟信道的功率是0.62W，噪声功率是0.02W，频率范围是3.5～3.9MHz，该信道最高数据传输率是：</p>
-<p>有噪声，用香农公式，带宽为0.4MHz，$V = 0.4 \times log_2(1+31) = 2Mbps$</p>
-<h3 id="有效数据率-信道利用率"><a href="#有效数据率-信道利用率" class="headerlink" title="有效数据率, 信道利用率"></a>有效数据率, 信道利用率</h3><p>首先要知道<em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率$V=\frac{m}{T}$​</p>
+<p>有噪声，用香农公式，带宽为0.4MHz，<span class="math inline">\(V = 0.4 \times log_2(1+31) = 2Mbps\)</span></p>
+<h3 id="有效数据率-信道利用率">有效数据率, 信道利用率</h3>
+<p>首先要知道<em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率<span class="math inline">\(V=\frac{m}{T}\)</span>​</p>
 <p>设：</p>
 <ul>
-<li><p>帧大小：L</p>
-</li>
-<li><p>两主机间单向传播时间：t，则RTT为2t</p>
-</li>
-<li><p>信道带宽/数据传输率：M</p>
-</li>
-<li><p>发送周期：$T = \frac{L}{M} + 2t + (确认帧发送时间)$​​ </p>
-</li>
+<li><p>帧大小：L</p></li>
+<li><p>两主机间单向传播时间：t，则RTT为2t</p></li>
+<li><p>信道带宽/数据传输率：M</p></li>
+<li><p>发送周期：<span class="math inline">\(T = \frac{L}{M} + 2t + (确认帧发送时间)\)</span>​​</p></li>
 </ul>
 <blockquote>
-<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为$\frac{L}{M}$​, 王道P81</p>
+<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为<span class="math inline">\(\frac{L}{M}\)</span>​, 王道P81</p>
 </blockquote>
 <p>信道利用率=数据发送时间/（数据发送时间+传输时间）</p>
-<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><script type="math/tex; mode=display">
-吞吐量 = \frac{窗口大小}{RTT+发送时间+确认时间}</script><h4 id="CSMA-CD"><a href="#CSMA-CD" class="headerlink" title="CSMA/CD"></a>CSMA/CD</h4><p><strong>截断二进制指数退让算法：</strong></p>
-<ol>
-<li>确定基本退让时间$2\tau$</li>
-<li>$k = min[重传次数, 10]$</li>
-<li>从$[0, 1, …, 2^k-1]$中选一个数$r$，退避时间为$r.2\tau$</li>
+<h3 id="吞吐量">吞吐量</h3>
+<p><span class="math display">\[
+吞吐量 = \frac{窗口大小}{RTT+发送时间+确认时间}
+\]</span></p>
+<h4 id="csmacd">CSMA/CD</h4>
+<p><strong>截断二进制指数退让算法：</strong></p>
+<ol type="1">
+<li>确定基本退让时间<span class="math inline">\(2\tau\)</span></li>
+<li><span class="math inline">\(k = min[重传次数, 10]\)</span></li>
+<li>从<span class="math inline">\([0, 1, …, 2^k-1]\)</span>中选一个数<span class="math inline">\(r\)</span>，退避时间为<span class="math inline">\(r.2\tau\)</span></li>
 <li>重传16次抛弃此帧</li>
 </ol>
-<p><strong>最小帧长：</strong>$总线传播时延 \times 数据传输率 \times 2 = 2\tau v$</p>
+<p><strong>最小帧长：</strong><span class="math inline">\(总线传播时延 \times 数据传输率 \times 2 = 2\tau v\)</span></p>
 <blockquote>
 <p>注意传播和传输的区别，数据大小/传输速率=发送时延</p>
 </blockquote>
 <ul>
 <li>以太网规定最短帧长为64B，凡长度小于64B的都是由于冲突而异常终止的无效帧</li>
 </ul>
-<h3 id="IP数据报"><a href="#IP数据报" class="headerlink" title="IP数据报"></a>IP数据报</h3><p>分片改变的字段：</p>
+<h3 id="ip数据报">IP数据报</h3>
+<p>分片改变的字段：</p>
 <ul>
 <li>标志位FLAG的MF、DF</li>
 <li>总长度，总长度是分片后的首部长度和数据长度之和</li>
 <li>首部校验和，首部发生改变，校验和也发生改变</li>
 </ul>
-<h3 id="转发表"><a href="#转发表" class="headerlink" title="转发表"></a>转发表</h3>
-      
+<h3 id="转发表">转发表</h3>
+
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
+      <footer class="post-footer">
           
-            <a href="/tags/%E8%80%83%E7%A0%94/" rel="tag"># 考研</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2021/09/04/tree-feature/" rel="next" title="二叉树、B-树的一些性质">
-                <i class="fa fa-chevron-left"></i> 二叉树、B-树的一些性质
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/%E8%80%83%E7%A0%94/" rel="tag"><i class="fa fa-tag"></i> 考研</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/" rel="prev" title="指令系统、CPU、流水线综合">
-                指令系统、CPU、流水线综合 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
         
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/04/tree-feature/" rel="prev" title="二叉树、B-树的一些性质">
+      <i class="fa fa-chevron-left"></i> 二叉树、B-树的一些性质
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/" rel="next" title="指令系统、CPU、流水线综合">
+      指令系统、CPU、流水线综合 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%7C%7C%20archive">
-              
-                  <span class="site-state-item-count">65</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
-                  <span class="site-state-item-name">categories</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/baichen99" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://blackstone_99@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-Email"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">组成原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.</span> <span class="nav-text">性能计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A8%8B%E5%BA%8F%E5%91%98%E9%80%8F%E6%98%8E%E7%9A%84%E9%83%A8%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">对程序员透明的部件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">流水线时间计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95-%E5%8F%8C%E7%BC%93%E5%86%B2%E5%8C%BA%E6%97%B6%E9%97%B4"><span class="nav-number">1.4.</span> <span class="nav-text">单&#x2F;双缓冲区时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU"><span class="nav-number">1.5.</span> <span class="nav-text">LRU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">进程调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FCFS"><span class="nav-number">2.1.1.</span> <span class="nav-text">FCFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88"><span class="nav-number">2.1.2.</span> <span class="nav-text">短作业优先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88"><span class="nav-number">2.1.3.</span> <span class="nav-text">高响应比优先</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#open%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">open系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90%E5%9B%BE%E7%AE%80%E5%8C%96%EF%BC%8C%E5%88%A4%E6%96%AD%E6%AD%BB%E9%94%81"><span class="nav-number">2.3.</span> <span class="nav-text">进程资源图简化，判断死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF"><span class="nav-number">2.4.</span> <span class="nav-text">大端小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E7%A1%AE%E5%AE%9A%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84"><span class="nav-number">2.5.</span> <span class="nav-text">分页确定逻辑地址结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLB%E3%80%81%E9%A1%B5%E8%A1%A8%E3%80%81cache"><span class="nav-number">2.6.</span> <span class="nav-text">TLB、页表、cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">中缀表达式转后缀表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E5%88%A4%E6%BB%A1%E3%80%81%E5%88%A4%E7%A9%BA"><span class="nav-number">3.1.1.</span> <span class="nav-text">循环队列判满、判空</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B%E6%A0%91%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E9%AB%98%E5%BA%A6"><span class="nav-number">3.1.2.</span> <span class="nav-text">B树插入、删除、高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%EF%BC%9A%E6%9E%84%E9%80%A0%E3%80%81%E5%89%8D%E7%BC%80%E3%80%81%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.3.</span> <span class="nav-text">哈夫曼树：构造、前缀、性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E3%80%81%E9%82%BB%E6%8E%A5%E8%A1%A8%E3%80%81%E9%82%BB%E6%8E%A5%E5%A4%9A%E9%87%8D%E8%A1%A8%E3%80%81%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E5%AE%9A%E4%B9%89%E5%92%8C%E7%94%BB%E6%B3%95"><span class="nav-number">3.1.4.</span> <span class="nav-text">邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91MST%EF%BC%9APrim%E7%AE%97%E6%B3%95%E3%80%81Kruskal%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.5.</span> <span class="nav-text">最小生成树MST：Prim算法、Kruskal算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%EF%BC%9ADFS%E3%80%81Dijkstra%E7%AE%97%E6%B3%95%E3%80%81Floyd%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.6.</span> <span class="nav-text">最短路径：DFS、Dijkstra算法、Floyd算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">3.1.7.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84%EF%BC%9AAOE%E7%BD%91%E3%80%81%E6%9C%80%E6%97%A9%E5%8F%91%E7%94%9F%E3%80%81%E6%9C%80%E6%99%9A%E5%8F%91%E7%94%9F%E3%80%81%E6%9C%80%E6%97%A9%E5%BC%80%E5%A7%8B%E3%80%81%E6%9C%80%E8%BF%9F%E5%BC%80%E5%A7%8B"><span class="nav-number">3.1.8.</span> <span class="nav-text">关键路径：AOE网、最早发生、最晚发生、最早开始、最迟开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.9.</span> <span class="nav-text">哈希算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">4.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E4%BC%A0%E8%BE%93%E9%80%9F%E7%8E%87"><span class="nav-number">4.1.</span> <span class="nav-text">极限传输速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE%E7%8E%87-%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">有效数据率, 信道利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-number">4.3.</span> <span class="nav-text">吞吐量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSMA-CD"><span class="nav-number">4.3.1.</span> <span class="nav-text">CSMA&#x2F;CD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="nav-number">4.4.</span> <span class="nav-text">IP数据报</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8F%91%E8%A1%A8"><span class="nav-number">4.5.</span> <span class="nav-text">转发表</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">组成原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.</span> <span class="nav-text">性能计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A8%8B%E5%BA%8F%E5%91%98%E9%80%8F%E6%98%8E%E7%9A%84%E9%83%A8%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">对程序员透明的部件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">流水线时间计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%8F%8C%E7%BC%93%E5%86%B2%E5%8C%BA%E6%97%B6%E9%97%B4"><span class="nav-number">1.4.</span> <span class="nav-text">单&#x2F;双缓冲区时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lru"><span class="nav-number">1.5.</span> <span class="nav-text">LRU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">进程调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fcfs"><span class="nav-number">2.1.1.</span> <span class="nav-text">FCFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88"><span class="nav-number">2.1.2.</span> <span class="nav-text">短作业优先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88"><span class="nav-number">2.1.3.</span> <span class="nav-text">高响应比优先</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#open%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">open系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90%E5%9B%BE%E7%AE%80%E5%8C%96%E5%88%A4%E6%96%AD%E6%AD%BB%E9%94%81"><span class="nav-number">2.3.</span> <span class="nav-text">进程资源图简化，判断死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF"><span class="nav-number">2.4.</span> <span class="nav-text">大端小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E7%A1%AE%E5%AE%9A%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84"><span class="nav-number">2.5.</span> <span class="nav-text">分页确定逻辑地址结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tlb%E9%A1%B5%E8%A1%A8cache"><span class="nav-number">2.6.</span> <span class="nav-text">TLB、页表、cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">中缀表达式转后缀表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E5%88%A4%E6%BB%A1%E5%88%A4%E7%A9%BA"><span class="nav-number">3.1.1.</span> <span class="nav-text">循环队列判满、判空</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b%E6%A0%91%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4%E9%AB%98%E5%BA%A6"><span class="nav-number">3.1.2.</span> <span class="nav-text">B树插入、删除、高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E6%9E%84%E9%80%A0%E5%89%8D%E7%BC%80%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.3.</span> <span class="nav-text">哈夫曼树：构造、前缀、性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E9%82%BB%E6%8E%A5%E8%A1%A8%E9%82%BB%E6%8E%A5%E5%A4%9A%E9%87%8D%E8%A1%A8%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E5%AE%9A%E4%B9%89%E5%92%8C%E7%94%BB%E6%B3%95"><span class="nav-number">3.1.4.</span> <span class="nav-text">邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91mstprim%E7%AE%97%E6%B3%95kruskal%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.5.</span> <span class="nav-text">最小生成树MST：Prim算法、Kruskal算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84dfsdijkstra%E7%AE%97%E6%B3%95floyd%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.6.</span> <span class="nav-text">最短路径：DFS、Dijkstra算法、Floyd算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">3.1.7.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84aoe%E7%BD%91%E6%9C%80%E6%97%A9%E5%8F%91%E7%94%9F%E6%9C%80%E6%99%9A%E5%8F%91%E7%94%9F%E6%9C%80%E6%97%A9%E5%BC%80%E5%A7%8B%E6%9C%80%E8%BF%9F%E5%BC%80%E5%A7%8B"><span class="nav-number">3.1.8.</span> <span class="nav-text">关键路径：AOE网、最早发生、最晚发生、最早开始、最迟开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.9.</span> <span class="nav-text">哈希算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">4.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E4%BC%A0%E8%BE%93%E9%80%9F%E7%8E%87"><span class="nav-number">4.1.</span> <span class="nav-text">极限传输速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE%E7%8E%87-%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">有效数据率, 信道利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-number">4.3.</span> <span class="nav-text">吞吐量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#csmacd"><span class="nav-number">4.3.1.</span> <span class="nav-text">CSMA&#x2F;CD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ip%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="nav-number">4.4.</span> <span class="nav-text">IP数据报</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8F%91%E8%A1%A8"><span class="nav-number">4.5.</span> <span class="nav-text">转发表</span></a></li></ol></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">baichen</p>
+  <div class="site-description" itemprop="description">黑石的技术笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/baichen99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;baichen99" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blackstone_99@163.com" title="E-Mail → mailto:blackstone_99@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">baichen</span>
-
-  
 </div>
 
-
-
-
-
-
-
-
-
         
 
 
@@ -1367,116 +1194,28 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
   </div>
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js"></script>
 
-
-
-
-
-
+<script src="/js/motion.js"></script>
 
 
-
-  
-
+<script src="/js/schemes/muse.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -1486,8 +1225,9 @@
 
 
 
-
   
+<script src="/js/local-search.js"></script>
+
 
 
 
@@ -1501,43 +1241,6 @@
 
 
   
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
 
   
 
