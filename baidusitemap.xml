@@ -2,11 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://blacston.com/2021/09/07/408-problems/</loc>
-    <lastmod>2021-10-18</lastmod>
+    <lastmod>2021-10-28</lastmod>
   </url>
   <url>
     <loc>http://blacston.com/2021/08/27/implied-term/</loc>
-    <lastmod>2021-10-18</lastmod>
+    <lastmod>2021-10-27</lastmod>
+  </url>
+  <url>
+    <loc>http://blacston.com/2021/01/14/python-copy/</loc>
+    <lastmod>2021-10-26</lastmod>
+  </url>
+  <url>
+    <loc>http://blacston.com/2021/10/06/408-ds-algorithm/</loc>
+    <lastmod>2021-10-26</lastmod>
   </url>
   <url>
     <loc>http://blacston.com/2021/08/06/flow-control-cal/</loc>
@@ -34,10 +42,6 @@
   </url>
   <url>
     <loc>http://blacston.com/2021/10/11/408-file-system/</loc>
-    <lastmod>2021-10-15</lastmod>
-  </url>
-  <url>
-    <loc>http://blacston.com/2021/10/06/408-ds-algorithm/</loc>
     <lastmod>2021-10-15</lastmod>
   </url>
   <url>
@@ -214,10 +218,6 @@
   </url>
   <url>
     <loc>http://blacston.com/2018/10/23/iocaozuo/</loc>
-    <lastmod>2021-01-16</lastmod>
-  </url>
-  <url>
-    <loc>http://blacston.com/2021/01/14/python-copy/</loc>
     <lastmod>2021-01-16</lastmod>
   </url>
   <url>

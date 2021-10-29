@@ -195,7 +195,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
+                <time title="修改时间：2021-10-26 10:36:32" itemprop="dateModified" datetime="2021-10-26T10:36:32+08:00">2021-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,11 +218,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="可变对象-不可变对象">可变对象 不可变对象</h2>
-<p>参考内容:</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34395671">python可变对象与不可变对象</a></p>
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="可变对象-不可变对象"><a href="#可变对象-不可变对象" class="headerlink" title="可变对象 不可变对象"></a>可变对象 不可变对象</h2><p>参考内容:</p>
+<p> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34395671">python可变对象与不可变对象</a></p>
 <p><a target="_blank" rel="noopener" href="http://winterttr.me/2015/10/24/python-passing-arguments-as-value-or-reference/">Python的函数参数传递：传值？引用？</a></p>
-<p>可变对象：list dict set 不可变对象：tuple string int float bool</p>
+<p>可变对象：list dict set<br>不可变对象：tuple string int float bool</p>
 <p>可变对象修改后地址不会改变，不可变对象修改后地址会改变。因为修改不可变对象时，原来的对象被丢弃，变量指向新的对象。修改可变对象时，比如修改列表中的第一个元素，是有一个新的对象被指定给列表对象的第一个元素，但是列表本身没有变化，只是内容发生了变化。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nfoo = <span class="number">1</span></span><br><span class="line">nfoo = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">lstFoo = [<span class="number">1</span>]</span><br><span class="line">lstFoo[<span class="number">0</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
 <p>代码第2行中，内存中原始的1对象因为不能改变，于是被“抛弃”，另nfoo指向一个新的int对象，其值为2</p>
