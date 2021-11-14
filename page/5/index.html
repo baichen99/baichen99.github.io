@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="黑石的技术笔记">
@@ -145,12 +145,7 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
   <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -164,7 +159,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/09/13/pointer-reference-constant/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/11/22/flask05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +173,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/09/13/pointer-reference-constant/" class="post-title-link" itemprop="url">指针,引用和常量</a>
+            <a href="/2018/11/22/flask05/" class="post-title-link" itemprop="url">flask05-表单</a>
         </h2>
 
         <div class="post-meta">
@@ -188,7 +183,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-09-13 07:44:15" itemprop="dateCreated datePublished" datetime="2018-09-13T07:44:15+08:00">2018-09-13</time>
+              <time title="创建时间：2018-11-22 13:17:00" itemprop="dateCreated datePublished" datetime="2018-11-22T13:17:00+08:00">2018-11-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -203,7 +198,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                  <a href="/categories/flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">flask学习笔记</span></a>
                 </span>
             </span>
 
@@ -218,13 +213,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="常量指针和指针常量">常量指针和指针常量</h3>
-<p><strong>常量指针</strong>是指向常量的指针，如：<code>const int* p</code> 其中p是一个指针，指向了一个常量，也就是<code>*p</code>不能修改，而p的值可以修改</p>
-<p><strong>指针常量</strong>是个常量，如：<code>int *const p</code> p是个指针，p（指针的指向）不能修改，但是<code>*p</code>可以修改</p>
-<p><strong>指向常量的指针常量</strong>，如：<code>const int const* p</code> p是个指针常量，而且指向的值也是个常量
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="表单">表单</h2>
+<h2 id="html表单">html表单</h2>
+<p>在html表单中，<code>&lt;input&gt;</code>标签表示各种输入字段，<code>&lt;label&gt;</code>标签则用文字来定义字段的标签文字。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">mehtod</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;username&quot;</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password&quot;</span>&gt;</span>Password<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;1414124&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remenber&quot;</span> <span class="attr">id</span>=<span class="string">&quot;remember&quot;</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;remenber&quot;</span>&gt;</span>Remember me<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;login&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="wtforms">WTForms</h2>
+<p>WTForms支持在python中使用<strong>类</strong>来定义表单，然后通过类定义生成对应的html代码，这种方式方面，易于重用，所以一般不会再模板中直接使用html编写表单。</p>
+<h2 id="使用flask-wtf处理表单">使用Flask-WTF处理表单</h2>
+<p>Flask-WTF集成了WTForms使用它可以在flask中更方便地使用WTFormss。Flask-WTF将表单数据解析，CSRF保护，文件上传等功能与flask集成，还增加了reCAPTCHA支持。</p>
+<p>安装Flask-WTF及其依赖 <code>$ pipenv install flask-wtf</code></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/09/13/pointer-reference-constant/#more" rel="contents">
+              <a class="btn" href="/2018/11/22/flask05/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -248,7 +248,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/25/shu-cookies/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/07/26/jwt-go/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -262,7 +262,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/06/25/shu-cookies/" class="post-title-link" itemprop="url">Cookie处理(requests库)</a>
+            <a href="/2019/07/26/jwt-go/" class="post-title-link" itemprop="url">jwt-go的使用</a>
         </h2>
 
         <div class="post-meta">
@@ -272,7 +272,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-06-25 08:23:48" itemprop="dateCreated datePublished" datetime="2018-06-25T08:23:48+08:00">2018-06-25</time>
+              <time title="创建时间：2019-07-26 12:58:39" itemprop="dateCreated datePublished" datetime="2019-07-26T12:58:39+08:00">2019-07-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -287,7 +287,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spider/" itemprop="url" rel="index"><span itemprop="name">spider</span></a>
+                  <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
                 </span>
             </span>
 
@@ -302,10 +302,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>以登录上海大学教务处并获取课程表为例, 分析cookie处理 ### cookie与session session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cookie又叫会话跟踪机制。打开一次浏览器到关闭浏览器算是一次会话。说到这里，讲下HTTP协议，前面提到，HTTP协议是一种无状态协议，在数据交换完毕后，服务器端和客户端的链接就会关闭，每次交换数据都需要建立新的链接。此时，服务器无法从链接上跟踪会话。cookie可以跟踪会话，弥补HTTP无状态协议的不足。
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="go-jwt">go jwt</h1>
+<h2 id="什么是jwt">什么是jwt</h2>
+<p>JSON Web Token通常用于 Oauth 2中的<code>Bearer</code> tokens</p>
+<p>一个token分成三个部分，用<code>.</code>连接，前两个部分是用base64url编码的json对象，最后一部分是签名，使用相同的编码方式编码。</p>
+<ol type="1">
+<li><p>第一部分叫header，包含JWT和签名算法比如HMAC, SHA256, RSA </p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span>,</span><br><span class="line"><span class="string">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p></li>
+<li><p>第二部分叫Playload(Claims)，存储数据 </p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;userId&quot;</span>: <span class="string">&quot;23581935-afsakngh12i-asdfaf&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> JWT规定了7个官方字段 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iss (issuer)：签发人</span><br><span class="line">exp (expiration time)：过期时间</span><br><span class="line">sub (subject)：主题</span><br><span class="line">aud (audience)：受众</span><br><span class="line">nbf (Not Before)：生效时间</span><br><span class="line">iat (Issued At)：签发时间</span><br><span class="line">jti (JWT ID)：编号</span><br></pre></td></tr></table></figure><p></p></li>
+<li><p>Signature signature是对前两部分的签名，首先需要指定一个算法，按照下面的公式产生 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)</p></li>
+</ol>
+<h2 id="jwt使用方式">jwt使用方式</h2>
+<p>客户端收到服务器的JWT后，可以放在cookie里和localstorage里，但是这样不能跨域，更好的方法是放在请求头信息。 以后每次客户端与服务器通信都要带上jwt <code>Authorization: Bearer &lt;token&gt;</code> 另一种做法是跨域的时候，jwt放在post数据体中</p>
+<h2 id="对称加密方法">对称加密方法</h2>
+<p>比如HSA使用单个密钥，所以任意<code>[]byte</code>类型都可以当作一个合法的密钥。对称加密在双方都被信任的情况下最好用。因为签名和验证使用相同的算法，所以不能简单地分发key来验证。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/06/25/shu-cookies/#more" rel="contents">
+              <a class="btn" href="/2019/07/26/jwt-go/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -329,7 +341,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/17/threads/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/11/05/flask04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -343,7 +355,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/06/17/threads/" class="post-title-link" itemprop="url">线程</a>
+            <a href="/2018/11/05/flask04/" class="post-title-link" itemprop="url">flask04-模板</a>
         </h2>
 
         <div class="post-meta">
@@ -353,7 +365,114 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-06-17 16:31:04" itemprop="dateCreated datePublished" datetime="2018-06-17T16:31:04+08:00">2018-06-17</time>
+              <time title="创建时间：2018-11-05 19:42:03" itemprop="dateCreated datePublished" datetime="2018-11-05T19:42:03+08:00">2018-11-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">flask学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>flask使用的默认模板引擎是<code>jinja2</code></p>
+<h2 id="模板语法">模板语法</h2>
+<h3 id="三种界定符">三种界定符</h3>
+<ol type="1">
+<li>语句，比如if、for</li>
+</ol>
+
+{% ... %} 
+
+<ol start="2" type="1">
+<li>表达式比如字符串，变量，函数调用</li>
+</ol>
+
+{{ ... }}
+
+<ol start="3" type="1">
+<li>注释</li>
+</ol>
+
+{# ... #}
+
+<p>在jinja2使用<code>.</code>来获取变量的属性，比如user字典中的username键值通过<code>.</code>来获取j，即<code>user.username</code>, 等同于<code>user[username]</code></p>
+<ol type="1">
+<li>jinja2并不支持所有Python所有语法，使用处于效率和代码组织等方面考虑<strong>应该适度使用模板，仅把和输出控制有关的逻辑操作放到模板中</strong></li>
+<li>Jinja2提供了多种控制结构来控制模板的输出，其中<code>for</code> 和 <code>if</code> 是最常用的两种，在语句结束时要添加 <strong>结束标签</strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if user.bio %&#125;</span><br><span class="line">&lt;i&gt; &#123;&#123; user.bio &#125;&#125; &lt;&#x2F;i&gt;</span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">&lt;i&gt; This user has not provided a bio. &lt;&#x2F;i&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/11/05/flask04/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2020/12/17/pyton-commandline-arguments/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/17/pyton-commandline-arguments/" class="post-title-link" itemprop="url">python 命令行参数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-17 22:44:40" itemprop="dateCreated datePublished" datetime="2020-12-17T22:44:40+08:00">2020-12-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -383,10 +502,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本分翻译自 https://realpython.com/python-command-line-arguments</p>
+<p>python处理命令行参数的功能为一些<strong>基于文本命令行</strong>的程序提供了一个用户友好的界面。这类似于图形用户界面（一个由图形元素或部件操作的可视化应用程序）。</p>
+<p>python提供了可以获取、提取命令行参数的机制。这些参数可以用来更改程序的行为。举个例子，假如你的程序要处理一个文件中的数据，那么你可以把文件路径传给程序，而不是在源代码中写死。</p>
+<p><strong>通过此教程，你将会了解：</strong></p>
+<ul>
+<li>python命令行参数的起源</li>
+<li>python命令行参数的底层支持</li>
+<li>设计命令行界面的指导标准</li>
+<li>手动定制以及处理命令行参数的简单方法</li>
+<li>使用python中的库简化复杂命令行界面的开发</li>
+</ul>
+<p>如果你想在不使用专用库的情况下开发一个用户友好的命令行界面，或者是想更好的理解现有的python命令行参数库的一些共识，那么请继续阅读！</p>
+<h2 id="命令行界面-the-command-line-interface">命令行界面 The Command Line Interface</h2>
+<p><strong>命令行界面(CLI)</strong> 为用户提供了一种方式，使用户可以和运行在<strong>基于文本的shell解释器</strong>中的程序进行交互。</p>
+<p>shell解释器有Linux上的bash，windows上的命令提示行等。命令行界面由能显示命令提示符的shell解释器支持。它一般有以下几个要素：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/06/17/threads/#more" rel="contents">
+              <a class="btn" href="/2020/12/17/pyton-commandline-arguments/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -410,7 +543,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/15/jincheng/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/11/18/Vuejs%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%92%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -424,7 +557,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/06/15/jincheng/" class="post-title-link" itemprop="url">进程</a>
+            <a href="/2019/11/18/Vuejs%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%92%8C/" class="post-title-link" itemprop="url">webpack和vue配合使用</a>
         </h2>
 
         <div class="post-meta">
@@ -434,7 +567,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-06-15 20:52:45" itemprop="dateCreated datePublished" datetime="2018-06-15T20:52:45+08:00">2018-06-15</time>
+              <time title="创建时间：2019-11-18 12:33:48" itemprop="dateCreated datePublished" datetime="2019-11-18T12:33:48+08:00">2019-11-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -449,7 +582,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                  <a href="/categories/frontend/" itemprop="url" rel="index"><span itemprop="name">frontend</span></a>
                 </span>
             </span>
 
@@ -464,13 +597,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="单核如何实现多任务">单核如何实现多任务?</h3>
-<p>依次轮流执行, 看上去像是同时进行</p>
-<h3 id="并发与并行">并发与并行?</h3>
-<p><strong>并发</strong>是看上去一起执行,任务数大于CPU核心数 <strong>并行</strong>是真正的一起执行, 任务数小于CPU核心数
+          <h2 id="目录结构">目录结构</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">├── dist  					# 打包后的资源</span><br><span class="line">│   ├── bundle.js  	# 打包后的js文件</span><br><span class="line">│   └── img					</span><br><span class="line">├── index.html			# 最外层文件</span><br><span class="line">├── node_modules		# 模块</span><br><span class="line">├── src							# 源代码，在此编写代码</span><br><span class="line">│   ├── css</span><br><span class="line">│   ├── img</span><br><span class="line">│   ├── js</span><br><span class="line">│   ├── main.js			# </span><br><span class="line">│   └── vue					# 存放vue组件文件</span><br><span class="line">└── webpack.config.js	# 配置</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/06/15/jincheng/#more" rel="contents">
+              <a class="btn" href="/2019/11/18/Vuejs%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%92%8C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -494,7 +625,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/07/spider-csv/">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/08/13/go-http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -508,7 +639,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/06/07/spider-csv/" class="post-title-link" itemprop="url">python爬虫-数据存储(二)</a>
+            <a href="/2019/08/13/go-http/" class="post-title-link" itemprop="url">go net/http使用方法</a>
         </h2>
 
         <div class="post-meta">
@@ -518,7 +649,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-06-07 09:16:39" itemprop="dateCreated datePublished" datetime="2018-06-07T09:16:39+08:00">2018-06-07</time>
+              <time title="创建时间：2019-08-13 22:10:00" itemprop="dateCreated datePublished" datetime="2019-08-13T22:10:00+08:00">2019-08-13</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -533,7 +664,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spider/" itemprop="url" rel="index"><span itemprop="name">spider</span></a>
+                  <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
                 </span>
             </span>
 
@@ -548,91 +679,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>csv 逗号分隔值, 有时也称为字符分隔值, 因为分隔字符可以不是逗号</strong> <strong>文件以 纯文本 形式存储表格数据(数字和文本), 纯文本不含必须像二进制数字那样被解读的数据</strong>
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="get-post">get, post</h2>
+<h3 id="基本用法">基本用法</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">resp, err := http.Get(<span class="string">&quot;http://example.com/&quot;</span>)</span><br><span class="line"></span><br><span class="line">resp, err := http.Post(<span class="string">&quot;http://example.com/upload&quot;</span>, <span class="string">&quot;image/jpeg&quot;</span>, &amp;buf)</span><br><span class="line"></span><br><span class="line">resp, err := http.PostForm(<span class="string">&quot;http://example.com/form&quot;</span>,</span><br><span class="line">	url.Values&#123;<span class="string">&quot;key&quot;</span>: &#123;<span class="string">&quot;Value&quot;</span>&#125;, <span class="string">&quot;id&quot;</span>: &#123;<span class="string">&quot;123&quot;</span>&#125;&#125;)</span><br><span class="line">	</span><br><span class="line"><span class="comment">// 使用完respone后要关闭连接</span></span><br><span class="line"><span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取响应中的内容</span></span><br><span class="line">b, _ := ioutil.ReadAll(resp.Body) <span class="comment">// b 为[]byte类型 需要类型转换</span></span><br><span class="line">s := <span class="keyword">string</span>(b)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Post方法参数分别为 url, content-type, data。data要和content-type对应。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129057481">具体看这里</a></p>
+<h2 id="client">client</h2>
+<p>要管理HTTP客户端的头域、重定向策略和其他设置，创建一个Client： </p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Client <span class="keyword">struct</span> &#123;</span><br><span class="line">	Transport RoundTripper</span><br><span class="line">  CheckRedirect <span class="function"><span class="keyword">func</span><span class="params">(req *Request, via []*Request)</span> <span class="title">error</span></span></span><br><span class="line">  Jar CookieJar <span class="comment">// 给client插入cookie，每次请求都会带上它</span></span><br><span class="line">  Timeout time.Duration <span class="comment">// 说明每次请求的最大时间</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<h2 id="header">header</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/06/07/spider-csv/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/06/spider-json/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/06/06/spider-json/" class="post-title-link" itemprop="url">python爬虫-数据存储(一)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-06-06 19:06:54" itemprop="dateCreated datePublished" datetime="2018-06-06T19:06:54+08:00">2018-06-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spider/" itemprop="url" rel="index"><span itemprop="name">spider</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><em>JSON的格式是 <code>键:值</code> 类似于python中的字典</em> <em>JSON数组: JSON数组在方括号中书写,可包含多个对象 如<code>[&#123;'name':'blackstone', 'age', 21&#125;,&#123;'name':'marry', 'age', 19&#125;]</code></em>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/06/06/spider-json/#more" rel="contents">
+              <a class="btn" href="/2019/08/13/go-http/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -751,6 +807,10 @@
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -806,8 +866,6 @@
 
 
 <script src="/js/next-boot.js"></script>
-
-<script src="/js/bookmark.js"></script>
 
 
 
