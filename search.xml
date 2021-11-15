@@ -2908,10 +2908,11 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}</script><h3 id="选择重传协议-
 <p>下面是能确定的：（选堆快泡）</p>
 <ul>
 <li>冒泡</li>
-<li>快排，每趟确定枢轴元素的的位置</li>
 <li>选择排序（选择最小的放在前面）</li>
 <li>堆排序</li>
+<li><strong>快排比较特殊！</strong> 如果选择枢轴在边界，第二趟确定2个元素位置，如果在中间，第二趟确定3个</li>
 </ul>
+<p>​    <img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.37.39.png" alt=""></p>
 <h3 id="排序效率与初始状态关系"><a href="#排序效率与初始状态关系" class="headerlink" title="排序效率与初始状态关系"></a>排序效率与初始状态关系</h3><p>选择排序、堆排序、归并排序与原状态无关</p>
 <ul>
 <li>冒泡，若顺序，一趟过后flag==True，退出循环</li>
@@ -4543,10 +4544,14 @@ y\\
 <li>中断和trap区别：trap是有意识安排的，目的是为了实现用户态和核心态的转换</li>
 <li>中断传输数据以字节为单位，</li>
 <li>中断优先级：<ul>
-<li>DMA优先级比外中断高</li>
+<li>DMA优先级比外中断高，（避免数据丢失）</li>
 </ul>
 </li>
 </ul>
+<h3 id="DMA过程"><a href="#DMA过程" class="headerlink" title="DMA过程"></a>DMA过程</h3><p>DMA分为预处理、数据传送、后处理3个阶段</p>
+<p>预处理：由CPU完成必要的准备工作，数据传送前由<strong>DMA控制器请求总线使用权</strong></p>
+<p>数据传送：由<strong>DMA控制器直接控制总线完成</strong></p>
+<p>后处理：DMA控制器<strong>向CPU发送中断请求</strong></p>
 <h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>有符号数和无符号数转换：</p>
 <ul>
 <li>只改变解释方式</li>
@@ -4761,7 +4766,29 @@ y\\
 <p>最后发现✅有14个，总次数为20，因此命中率为70%。</p>
 <h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h3 id="CLOCK算法"><a href="#CLOCK算法" class="headerlink" title="CLOCK算法"></a>CLOCK算法</h3><p>（A，M）分别代表（访问位，修改位）</p>
 <p>替换顺序为（0，0）、（0，1）、（1，0）、（1，1）</p>
-<h3 id="只有FIFO会导致Bleady异常"><a href="#只有FIFO会导致Bleady异常" class="headerlink" title="只有FIFO会导致Bleady异常"></a>只有FIFO会导致Bleady异常</h3><h3 id="工作集概念"><a href="#工作集概念" class="headerlink" title="工作集概念"></a>工作集概念</h3><h3 id="内中断、外中断、子函数"><a href="#内中断、外中断、子函数" class="headerlink" title="内中断、外中断、子函数"></a>内中断、外中断、子函数</h3><ul>
+<h3 id="只有FIFO会导致Bleady异常"><a href="#只有FIFO会导致Bleady异常" class="headerlink" title="只有FIFO会导致Bleady异常"></a>只有FIFO会导致Bleady异常</h3><h3 id="工作集概念"><a href="#工作集概念" class="headerlink" title="工作集概念"></a>工作集概念</h3><p>t时刻前n个访问的页面去重的结果，所以数量$\le$n</p>
+<h3 id="内核级线程、用户级线程"><a href="#内核级线程、用户级线程" class="headerlink" title="内核级线程、用户级线程"></a>内核级线程、用户级线程</h3><h4 id="用户级线程"><a href="#用户级线程" class="headerlink" title="用户级线程"></a>用户级线程</h4><ol>
+<li>线程的调度不需要内核直接参与，控制简单。</li>
+<li>可以在不支持线程的操作系统中实现。</li>
+</ol>
+<h4 id="内核级线程"><a href="#内核级线程" class="headerlink" title="内核级线程"></a>内核级线程</h4><ol>
+<li>线程在用户态的运行，而线程的调度和管理在内核实现，在控制权从一个线程传送到另一个线程需要用户态到内核态再到用户态的模式切换，比较占用系统资源。</li>
+</ol>
+<h4 id="区别和联系"><a href="#区别和联系" class="headerlink" title="区别和联系"></a>区别和联系</h4><ol>
+<li>内核支持线程是<strong>操作系统</strong>内核可感知的，而用户级线程是OS内核不可感知的。</li>
+<li>用户级线程的创建、撤消和调度不需要OS内核的支持。</li>
+<li>用户级线程的程序实体是运行在用户态下的程序，而内核支持线程的程序实体则是可以运行在任何状态下的程序。</li>
+</ol>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.00.15.png" alt=""></p>
+<h3 id="共享段"><a href="#共享段" class="headerlink" title="共享段"></a>共享段</h3><p>为了实现分段共享，可在系统中配置一张共享段表，所有各共享段都在共享段表中占有一表项。</p>
+<p>表项中记录了共享段的段号、段长、内存始址、存在位（是否已调入内存）等信息，并记录了共享此分段的每个进程的情况。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.04.48.png" alt=""></p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>考选择题</p>
+<p>死锁预防：破坏 互斥条件、不可剥夺条件、请求并保持条件、循环等待条件</p>
+<p>死锁避免：银行家算法</p>
+<p>死锁检测：资源分配图</p>
+<p>死锁解除：资源剥夺、撤销进程、进程回退</p>
+<h3 id="内中断、外中断、子函数"><a href="#内中断、外中断、子函数" class="headerlink" title="内中断、外中断、子函数"></a>内中断、外中断、子函数</h3><ul>
 <li>內中断处理后直接终止，外中断处理后返回原指令执行</li>
 <li>内中断发送必须立即处理，外中断在指令周期结束处理</li>
 <li>外中断和子函数区别：外中断保存PC和PSW，子函数保存寄存器</li>
@@ -5193,7 +5220,49 @@ y\\
 <ul>
 <li>对一个序列进行折半查找，问查找到某个数字需要找几次，用表的长度判断，而不是数字的值</li>
 </ul>
-<h3 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2015.32.34.png" alt=""></p>
+<h3 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.28.57.png" alt=""></p>
+<ol>
+<li>计算next数组</li>
+</ol>
+<p>​    next数组前两个为-1，0，后面的按照后缀长度填</p>
+<p>​    如abaabc的next数组</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>ab</td>
+<td>aba</td>
+<td>abaa</td>
+<td>abaab</td>
+<td>abaabc</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>i指向主串不回退，j指向模式串，比较到abaabc发现不同，将j从5改为2，此时i=5，j=2</li>
+<li>比较4次完成匹配。</li>
+<li>总比较次数为6+4</li>
+</ol>
 <h3 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h3><p><a href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
 <ol>
 <li>（直接入栈</li>
@@ -5224,8 +5293,16 @@ y\\
 <li>兄弟够借：若被删除节点右（左）兄弟够借，先将共同父亲放入被删除节点，再把右（左）兄弟的最左（右）边的孩子放入父节点。</li>
 <li>不够借：被删除节点左右兄弟都不够借，则与父节点交换然后与兄弟合并。</li>
 </ol>
+<h3 id="排序二叉树——平衡二叉树"><a href="#排序二叉树——平衡二叉树" class="headerlink" title="排序二叉树——平衡二叉树"></a><strong>排序二叉树——平衡二叉树</strong></h3><p>平衡二叉树是特殊的排序二叉树</p>
+<p>删除操作与排序二叉树一样：</p>
+<ol>
+<li>叶节点直接删除</li>
+<li>如果只有一个子树，用子树替代</li>
+<li>如果有两个子树，用直接后继替代，然后删除直接后继</li>
+</ol>
+<p>平衡二叉树插入操作：</p>
+<p>RL LR LL RR</p>
 <ul>
-<li><strong>排序二叉树——平衡二叉树</strong></li>
 <li><strong>二叉搜索树</strong></li>
 </ul>
 <h3 id="哈夫曼树：构造、前缀、性质"><a href="#哈夫曼树：构造、前缀、性质" class="headerlink" title="哈夫曼树：构造、前缀、性质"></a><strong>哈夫曼树：构造、前缀、性质</strong></h3><p>性质：只能度为0和2的节点</p>
