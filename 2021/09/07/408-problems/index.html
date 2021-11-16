@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="组成原理多长时间响应一次才能不丢失数据查询&#x2F;中断响应时间&gt;传输（准备）数据时间  1）设备A每次传输数据时间&#x3D;$\frac{32bit}{2MB&#x2F;s} &#x3D; 2us$，必须每2us查询一次 2） 设备B传输数据时间&#x3D;$\frac{32bit}{40MB&#x2F;s} &#x3D; 0.1us$ 中断处理时间&#x3D;$400 &#x2F; 500MHz &#x3D; 0.8us$  因为中断处理时间大于数据传输时间，数据会被刷新，造成丢失">
+  <meta name="description" content="组成原理 jmp和call跳转指令的偏移量 jmp和call的偏移量为 相对于跳转指令的下一条指令的偏移，用补码表示。 2019真题 45 3） 多道程序、多任务 多道程序设计是并行处理的一种基本形式，意味着多个进程同时在一个处理器上运行。在现代操作系统中，当多个程序或进程在单个处理器上运行时，操作系统的工作就是有效地管理所有进程。 多道程序特点：  CPU利用率高 系统吞吐量达 IO设备利用率高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="408常见题">
 <meta property="og:url" content="http://blacston.com/2021/09/07/408-problems/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="组成原理多长时间响应一次才能不丢失数据查询&#x2F;中断响应时间&gt;传输（准备）数据时间  1）设备A每次传输数据时间&#x3D;$\frac{32bit}{2MB&#x2F;s} &#x3D; 2us$，必须每2us查询一次 2） 设备B传输数据时间&#x3D;$\frac{32bit}{40MB&#x2F;s} &#x3D; 0.1us$ 中断处理时间&#x3D;$400 &#x2F; 500MHz &#x3D; 0.8us$  因为中断处理时间大于数据传输时间，数据会被刷新，造成丢失">
+<meta property="og:description" content="组成原理 jmp和call跳转指令的偏移量 jmp和call的偏移量为 相对于跳转指令的下一条指令的偏移，用补码表示。 2019真题 45 3） 多道程序、多任务 多道程序设计是并行处理的一种基本形式，意味着多个进程同时在一个处理器上运行。在现代操作系统中，当多个程序或进程在单个处理器上运行时，操作系统的工作就是有效地管理所有进程。 多道程序特点：  CPU利用率高 系统吞吐量达 IO设备利用率高">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/1202.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-09%20at%2016.34.50.png">
@@ -36,6 +36,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.51.07.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2019.14.30.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2019.00.32.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.00.15.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.04.48.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2015.53.53.png">
@@ -44,7 +46,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.28.57.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2019.03.44.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%889.01.14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-16%20at%2014.44.44.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-16%20at%2014.45.08.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/20130429141926037.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114948819-61490260.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114814046-2079914035.png">
@@ -55,9 +58,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.44.42.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.45.24.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.40.34.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_359FD85BD012-1.jpeg">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-12%20at%2015.59.31.png">
 <meta property="article:published_time" content="2021-09-07T06:15:34.000Z">
-<meta property="article:modified_time" content="2021-11-15T08:07:37.098Z">
+<meta property="article:modified_time" content="2021-11-16T08:33:36.768Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="考研">
 <meta name="twitter:card" content="summary">
@@ -222,7 +226,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-15 16:07:37" itemprop="dateModified" datetime="2021-11-15T16:07:37+08:00">2021-11-15</time>
+                <time title="修改时间：2021-11-16 16:33:36" itemprop="dateModified" datetime="2021-11-16T16:33:36+08:00">2021-11-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,22 +249,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="多长时间响应一次才能不丢失数据"><a href="#多长时间响应一次才能不丢失数据" class="headerlink" title="多长时间响应一次才能不丢失数据"></a>多长时间响应一次才能不丢失数据</h3><p><strong>查询/中断响应时间&gt;传输（准备）数据时间</strong></p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1202.png" alt=""></p>
-<p>1）设备A每次传输数据时间=$\frac{32bit}{2MB/s} = 2us$，必须每2us查询一次</p>
-<p>2） 设备B传输数据时间=$\frac{32bit}{40MB/s} = 0.1us$ 中断处理时间=$400 / 500MHz = 0.8us$  因为中断处理时间大于数据传输时间，<strong>数据会被刷新，造成丢失</strong></p>
-<h3 id="I-O接口"><a href="#I-O接口" class="headerlink" title="I/O接口"></a>I/O接口</h3><p>数据流动方向：CPU从主存去数据，放入通用寄存器，再传送给I/O端口</p>
-<h3 id="寄存器位数取决于"><a href="#寄存器位数取决于" class="headerlink" title="寄存器位数取决于"></a>寄存器位数取决于</h3><p>PC位数取决于内存容量和指令字长</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-09%20at%2016.34.50.png" alt=""></p>
-<p>内存为4GB=$2^{32B}$   指令字长为32bit = $2^2B$  所以PC位数为30</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理">组成原理</h2>
+<h3 id="jmp和call跳转指令的偏移量">jmp和call跳转指令的偏移量</h3>
+<p>jmp和call的偏移量为 相对于<strong>跳转指令的下一条指令</strong>的偏移，用补码表示。</p>
+<p>2019真题 45 3）</p>
+<h3 id="多道程序多任务">多道程序、多任务</h3>
+<p>多道程序设计是并行处理的一种基本形式，意味着多个进程同时在一个处理器上运行。在现代操作系统中，当多个程序或进程在单个处理器上运行时，操作系统的工作就是有效地管理所有进程。</p>
+<p>多道程序特点：</p>
+<ul>
+<li>CPU利用率高</li>
+<li>系统吞吐量达</li>
+<li>IO设备利用率高：多个程序使用IO设备，IO设备一直工作</li>
+</ul>
+<p>多任务是指操作系统使用多个CPU一次执行多个任务的能力。它基本上在一个系统中使用两个或多个CPU来分配共享公共资源（包括CPU和内存）的任务。</p>
+<p>多任务特点：</p>
+<ul>
+<li>并行：CPU和I/O设备并行</li>
+<li>并发：同一时间间隔内执行多个任务</li>
+<li>对共享资源进行保护</li>
+<li>单个CPU也可满足（2018 23）</li>
+</ul>
+<h3 id="多长时间响应一次才能不丢失数据">多长时间响应一次才能不丢失数据</h3>
+<p>对于定时查询，查询时间必须小于传输（准备）数据时间</p>
+<p>对于中断查询，中断响应时间小于传输（准备）数据时间</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1202.png" /></p>
+<p>1）设备A每次传输数据时间=<span class="math inline">\(\frac{32bit}{2MB/s} = 2us\)</span>，必须每2us查询一次，</p>
+<p>因为传输速率为2MB/S，所以每秒查询<span class="math inline">\(\frac{2MB}{4B}=0.5M\)</span>次，每次10条指令，IO时间占CPU总时间=<span class="math inline">\(\frac{0.5M \times 10 \times 4}{500M}= 4\%\)</span></p>
+<p>2） 设备B传输数据时间=<span class="math inline">\(\frac{32bit}{40MB/s} = 0.1us\)</span> 中断处理时间=<span class="math inline">\(400 / 500MHz = 0.8us\)</span> 因为中断处理时间大于数据传输时间，<strong>数据会被刷新，造成丢失</strong></p>
+<p>3）DMA方式使用CPU的时间只有预处理和后处理，每次传1000B，一秒传<span class="math inline">\(\frac{40MB}{1000B}=40000\)</span>次，百分比=<span class="math inline">\(\frac{40000 \times 500}{500M}=4\%\)</span></p>
+<blockquote>
+<p>IO时间占CPU占用百分比计算方法必须掌握，真题2019 21</p>
+</blockquote>
+<h3 id="io接口">I/O接口</h3>
+<p>数据流动方向：CPU从主存取数据，放入通用寄存器，再传送给I/O端口</p>
+<p>2017考题：IO指令实现的数据传送通常发生在（通用寄存器和IO端口之间）</p>
+<h3 id="寄存器位数取决于">寄存器位数取决于</h3>
+<p>PC位数取决于内存容量和指令字长</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-09%20at%2016.34.50.png" /></p>
+<p>内存为4GB=<span class="math inline">\(2^{32B}\)</span> 指令字长为32bit = <span class="math inline">\(2^2B\)</span> 所以PC位数为30</p>
 <p>解释：PC的每个值对应一个指令，所以PC位数取决于内存中能保存的指令条数</p>
-<h3 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h3><ul>
-<li>高级语言程序  （编译） 目标文件（链接）机器代码</li>
+<h3 id="编译过程">编译过程</h3>
+<ul>
+<li>高级语言程序 （编译） 目标文件（链接）机器代码</li>
 <li>汇编程序（汇编）目标文件</li>
 <li>解释程序不生成目标代码，每一行指令直接解释执行</li>
 <li>汇编与编译的区别在于源文件不同</li>
 </ul>
-<h3 id="中断流程"><a href="#中断流程" class="headerlink" title="中断流程"></a>中断流程</h3><h4 id="多级中断"><a href="#多级中断" class="headerlink" title="多级中断"></a>多级中断</h4><ol>
+<h3 id="中断流程">中断流程</h3>
+<h4 id="多级中断">多级中断</h4>
+<ol type="1">
 <li>关中断</li>
 <li>保存断点</li>
 <li>中断服务寻址程序</li>
@@ -272,7 +309,8 @@
 <li>开中断</li>
 <li>中断返回</li>
 </ol>
-<h4 id="单重中断"><a href="#单重中断" class="headerlink" title="单重中断"></a>单重中断</h4><ol>
+<h4 id="单重中断">单重中断</h4>
+<ol type="1">
 <li>关中断</li>
 <li>保存断点</li>
 <li>中断服务程序寻址</li>
@@ -285,21 +323,24 @@
 <blockquote>
 <p>总结：前三步是由硬件完成的（中断隐指令），因为单重中断不允许在中断程序时再相应，所以在执行结束之前一直处于关中断状态</p>
 </blockquote>
-<h4 id="其他总结"><a href="#其他总结" class="headerlink" title="其他总结"></a>其他总结</h4><ul>
+<h4 id="其他总结">其他总结</h4>
+<ul>
 <li>中断向量是中断服务程序的<strong>地址</strong>，由硬件产生，速度快</li>
 <li>中断服务程序一般是由操作系统提供</li>
 <li>中断和trap区别：trap是有意识安排的，目的是为了实现用户态和核心态的转换</li>
 <li>中断传输数据以字节为单位，</li>
-<li>中断优先级：<ul>
+<li>中断优先级：
+<ul>
 <li>DMA优先级比外中断高，（避免数据丢失）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="DMA过程"><a href="#DMA过程" class="headerlink" title="DMA过程"></a>DMA过程</h3><p>DMA分为预处理、数据传送、后处理3个阶段</p>
+<h3 id="dma过程">DMA过程</h3>
+<p>DMA分为预处理、数据传送、后处理3个阶段</p>
 <p>预处理：由CPU完成必要的准备工作，数据传送前由<strong>DMA控制器请求总线使用权</strong></p>
 <p>数据传送：由<strong>DMA控制器直接控制总线完成</strong></p>
 <p>后处理：DMA控制器<strong>向CPU发送中断请求</strong></p>
-<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>有符号数和无符号数转换：</p>
+<h3 id="数据类型转换">数据类型转换</h3>
+<p>有符号数和无符号数转换：</p>
 <ul>
 <li>只改变解释方式</li>
 </ul>
@@ -314,15 +355,17 @@
 <li>精度小转精度大：数值不变</li>
 <li>精度大转精度小：舍入，有损失，如float 3.14转int变为3</li>
 </ul>
-<h3 id="性能计算"><a href="#性能计算" class="headerlink" title="性能计算"></a>性能计算</h3><ul>
+<h3 id="性能计算">性能计算</h3>
+<ul>
 <li>主频</li>
 <li>CPI</li>
 <li>总线带宽=总线工作频率x总线宽度/8</li>
-<li>处理速率$MIPS=\frac{主频}{CPI}$</li>
+<li>处理速率<span class="math inline">\(MIPS=\frac{主频}{CPI}\)</span></li>
 <li>平均访问时间=命中率x访问cache时间+（1-命中率）x访问内存时间</li>
-<li>cache-主存效率=$\frac{cache存取周期}{平均访问时间}$</li>
+<li>cache-主存效率=<span class="math inline">\(\frac{cache存取周期}{平均访问时间}\)</span></li>
 </ul>
-<h3 id="对程序员透明的部件"><a href="#对程序员透明的部件" class="headerlink" title="对程序员透明的部件"></a>对程序员透明的部件</h3><p><strong>透明：</strong></p>
+<h3 id="对程序员透明的部件">对程序员透明的部件</h3>
+<p><strong>透明：</strong></p>
 <ul>
 <li>ALU（加法器、乘法器、移位器）</li>
 <li>IR指令寄存器（CPU自动取指，程序员只能通过PC来改变指令）</li>
@@ -336,28 +379,29 @@
 <li>程序状态字寄存器</li>
 <li>ACC 累加寄存器</li>
 </ul>
-<h3 id="流水线时间计算"><a href="#流水线时间计算" class="headerlink" title="流水线时间计算"></a>流水线时间计算</h3><p>m端流水线，n个指令，时钟周期为t，总时间为 $m+(n-1)t$</p>
-<p>经常于低位交叉存储结合起来考。2012真题，P310  .6     </p>
+<h3 id="流水线时间计算">流水线时间计算</h3>
+<p>m端流水线，n个指令，时钟周期为t，总时间为 <span class="math inline">\(m+(n-1)t\)</span></p>
+<p>经常于低位交叉存储结合起来考。2012真题，P310 .6</p>
 <p>2013真题，第三问</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" /></p>
 <p>一次突发传送总线事务时间=送首地址和命令时间（一个总线时钟周期）+存储器准备数据时间+传送数据时间</p>
-<p>存储器准备数据时间即为8体交叉存储器传送32B数据时间，因为一个体字长32b，8个体把存储周期分为8份，每份40/8=5ns，8个体需要传$[8+(8-1)]*5 = 75ns$</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.36.39.png" alt=""></p>
+<p>存储器准备数据时间即为8体交叉存储器传送32B数据时间，因为一个体字长32b，<strong>8个体把存储周期分为8份</strong>，每份40/8=5ns，8个体需要传<span class="math inline">\([8+(8-1)]*5 = 75ns\)</span></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.36.39.png" /></p>
 <p>每准备好32b就把它传送出去，传送时间为1个时钟周期 =5ns，第二个准备好时，第一个刚好传送完，以此类推，最后第8个传送完后再花5ns</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.38.06.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.38.06.png" /></p>
 <p>所以总时间= 5+75+5</p>
-<h3 id="CPU执行时间"><a href="#CPU执行时间" class="headerlink" title="CPU执行时间"></a>CPU执行时间</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" alt=""></p>
+<h3 id="cpu执行时间">CPU执行时间</h3>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" /></p>
 <p>第四问，2种思路：</p>
-<ol>
-<li><p>计算平均每条指令的CPI，再乘指令条数 </p>
-<p>$一条指令执行过程中因cache缺失导致平均额外开销=平均访存次数xcache缺失率x一次突发传送总线事务时间$</p>
-</li>
-<li><p>计算所有指令命中时花费时间+不命中时花费时间</p>
-</li>
+<ol type="1">
+<li><p>计算平均每条指令的CPI，再乘指令条数</p>
+<p><span class="math inline">\(一条指令执行过程中因cache缺失导致平均额外开销=平均访存次数xcache缺失率x一次突发传送总线事务时间\)</span></p></li>
+<li><p>计算所有指令命中时花费时间+不命中时花费时间</p></li>
 </ol>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.51.07.png" alt=""></p>
-<h3 id="单-双缓冲区时间"><a href="#单-双缓冲区时间" class="headerlink" title="单/双缓冲区时间"></a>单/双缓冲区时间</h3><p>原则：</p>
-<ol>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.51.07.png" /></p>
+<h3 id="单双缓冲区时间">单/双缓冲区时间</h3>
+<p>原则：</p>
+<ol type="1">
 <li>C和M不能同时发生，且<strong>C结束紧跟着M</strong>：CPU处理完才能接收</li>
 <li>单缓冲下T和M不能同时发生：因为T和M都用到了同一个缓冲</li>
 <li>由1、2可知，单缓冲下只能T和C同时发生</li>
@@ -365,15 +409,15 @@
 <p><strong>画图分析时假设一个初始状态，计算下次达到这种状态的时间</strong></p>
 <p>对于单缓冲来说，初始是缓冲区满</p>
 <p>对于双缓冲来说，初始是一个空一个满</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg" /></p>
 <p><strong>注意：</strong>若题中要计算从读入到分析数据的总时间，要从缓冲区为空开始算起，计算公式为：第一个数据时间+（n-1）x上面计算的花费时间</p>
-<h3 id="LRU"><a href="#LRU" class="headerlink" title="LRU"></a>LRU</h3><p><strong>方法</strong>：每次替换时往前数，找到cache中，离当前位置最远的替换。做题时画下面的表，命中时在下面打勾，标记。</p>
-<p>eg: cache大小为4，访问序列是1  8  1  7  8  2  7  2  1  8  3  8  2  1  3  1  7  1  3  7</p>
+<h3 id="lru">LRU</h3>
+<p><strong>方法</strong>：每次替换时往前数，找到cache中，离当前位置最远的替换。做题时画下面的表，命中时在下面打勾，标记。</p>
+<p>eg: cache大小为4，访问序列是1 8 1 7 8 2 7 2 1 8 3 8 2 1 3 1 7 1 3 7</p>
 <p>注意下面第一次遇到3时需要替换，往前看分别出现 8, 1, 2 因此选择替换7</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>1</th>
 <th>8</th>
 <th>1</th>
@@ -397,7 +441,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>1</td>
 <td>1</td>
@@ -419,7 +463,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>8</td>
 <td>8</td>
@@ -441,7 +485,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td></td>
 <td></td>
@@ -463,7 +507,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td></td>
 <td></td>
@@ -485,7 +529,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td></td>
 <td>✅</td>
@@ -509,45 +553,76 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>最后发现✅有14个，总次数为20，因此命中率为70%。</p>
-<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h3 id="CLOCK算法"><a href="#CLOCK算法" class="headerlink" title="CLOCK算法"></a>CLOCK算法</h3><p>（A，M）分别代表（访问位，修改位）</p>
+<h2 id="操作系统">操作系统</h2>
+<h3 id="虚拟地址和物理地址低xx位相同">虚拟地址和物理地址低xx位相同</h3>
+<p>若页大小为4KB=<span class="math inline">\(2^{12}B\)</span>，则物理地址和虚拟地址低12位相同，根据这一点知道虚拟地址可以判断cache组号</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2019.14.30.png" /></p>
+<p>答：call指令虚拟地址为00401025，因为页大小为4KB，所以物理地址和虚拟地址低12位相同，所以7-10位代表组号，所以在第0组</p>
+<p>2018年44题也考了这个知识点</p>
+<h3 id="磁盘物理地址">磁盘物理地址</h3>
+<p>结构：柱面号，盘面/磁头号，扇区号</p>
+<blockquote>
+<p>柱面就是磁道</p>
+</blockquote>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2019.00.32.png" /></p>
+<p>3）每个柱面10x200/2=1000个簇</p>
+<p>每个磁道200/2=100个簇</p>
+<p>所以柱面号=100 530/1000 = 100</p>
+<p>磁道号=100530%1000/100=5</p>
+<p>扇区号=100530%100x2=60</p>
+<h3 id="动态分区">动态分区</h3>
+<p>首次适应：地址递增。产生碎片</p>
+<p>最佳适应：容量递增。<strong>产生最多的外部碎片</strong></p>
+<p>最坏适应：容量递减。不容易产生碎片，但是浪费空间</p>
+<p>临近适应：循环首次适应。</p>
+<h3 id="clock算法">CLOCK算法</h3>
+<p>（A，M）分别代表（访问位，修改位）</p>
 <p>替换顺序为（0，0）、（0，1）、（1，0）、（1，1）</p>
-<h3 id="只有FIFO会导致Bleady异常"><a href="#只有FIFO会导致Bleady异常" class="headerlink" title="只有FIFO会导致Bleady异常"></a>只有FIFO会导致Bleady异常</h3><h3 id="工作集概念"><a href="#工作集概念" class="headerlink" title="工作集概念"></a>工作集概念</h3><p>t时刻前n个访问的页面去重的结果，所以数量$\le$n</p>
-<h3 id="内核级线程、用户级线程"><a href="#内核级线程、用户级线程" class="headerlink" title="内核级线程、用户级线程"></a>内核级线程、用户级线程</h3><h4 id="用户级线程"><a href="#用户级线程" class="headerlink" title="用户级线程"></a>用户级线程</h4><ol>
+<h3 id="只有fifo会导致bleady异常">只有FIFO会导致Bleady异常</h3>
+<h3 id="工作集概念">工作集概念</h3>
+<p>t时刻前n个访问的页面去重的结果，所以数量<span class="math inline">\(\le\)</span>n</p>
+<h3 id="内核级线程用户级线程">内核级线程、用户级线程</h3>
+<h4 id="用户级线程">用户级线程</h4>
+<ol type="1">
 <li>线程的调度不需要内核直接参与，控制简单。</li>
 <li>可以在不支持线程的操作系统中实现。</li>
 </ol>
-<h4 id="内核级线程"><a href="#内核级线程" class="headerlink" title="内核级线程"></a>内核级线程</h4><ol>
+<h4 id="内核级线程">内核级线程</h4>
+<ol type="1">
 <li>线程在用户态的运行，而线程的调度和管理在内核实现，在控制权从一个线程传送到另一个线程需要用户态到内核态再到用户态的模式切换，比较占用系统资源。</li>
 </ol>
-<h4 id="区别和联系"><a href="#区别和联系" class="headerlink" title="区别和联系"></a>区别和联系</h4><ol>
+<h4 id="区别和联系">区别和联系</h4>
+<ol type="1">
 <li>内核支持线程是<strong>操作系统</strong>内核可感知的，而用户级线程是OS内核不可感知的。</li>
 <li>用户级线程的创建、撤消和调度不需要OS内核的支持。</li>
 <li>用户级线程的程序实体是运行在用户态下的程序，而内核支持线程的程序实体则是可以运行在任何状态下的程序。</li>
 </ol>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.00.15.png" alt=""></p>
-<h3 id="共享段"><a href="#共享段" class="headerlink" title="共享段"></a>共享段</h3><p>为了实现分段共享，可在系统中配置一张共享段表，所有各共享段都在共享段表中占有一表项。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.00.15.png" /></p>
+<h3 id="共享段">共享段</h3>
+<p>为了实现分段共享，可在系统中配置一张共享段表，所有各共享段都在共享段表中占有一表项。</p>
 <p>表项中记录了共享段的段号、段长、内存始址、存在位（是否已调入内存）等信息，并记录了共享此分段的每个进程的情况。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.04.48.png" alt=""></p>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>考选择题</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.04.48.png" /></p>
+<h3 id="死锁">死锁</h3>
+<p>考选择题</p>
 <p>死锁预防：破坏 互斥条件、不可剥夺条件、请求并保持条件、循环等待条件</p>
 <p>死锁避免：银行家算法</p>
 <p>死锁检测：资源分配图</p>
 <p>死锁解除：资源剥夺、撤销进程、进程回退</p>
-<h3 id="内中断、外中断、子函数"><a href="#内中断、外中断、子函数" class="headerlink" title="内中断、外中断、子函数"></a>内中断、外中断、子函数</h3><ul>
+<h3 id="内中断外中断子函数">内中断、外中断、子函数</h3>
+<ul>
 <li>內中断处理后直接终止，外中断处理后返回原指令执行</li>
 <li>内中断发送必须立即处理，外中断在指令周期结束处理</li>
 <li>外中断和子函数区别：外中断保存PC和PSW，子函数保存寄存器</li>
 <li></li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2015.53.53.png" alt=""></p>
-<h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><p>画表最好算，最方便</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2015.53.53.png" /></p>
+<h3 id="进程调度算法">进程调度算法</h3>
+<p>画表最好算，最方便</p>
 <p>不管什么算法，先画下面这个表</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -556,7 +631,8 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -564,18 +640,18 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>根据不同算法填表，最后通过表来计算等待时间、周转时间、带权周转时间</p>
 <p>例题：</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-17%20%E4%B8%8B%E5%8D%888.09.03.png" alt=""></p>
-<h4 id="FCFS"><a href="#FCFS" class="headerlink" title="FCFS"></a>FCFS</h4><p>太简单，画甘特图都可以解决</p>
-<h4 id="短作业优先"><a href="#短作业优先" class="headerlink" title="短作业优先"></a>短作业优先</h4><ol>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-17%20%E4%B8%8B%E5%8D%888.09.03.png" /></p>
+<h4 id="fcfs">FCFS</h4>
+<p>太简单，画甘特图都可以解决</p>
+<h4 id="短作业优先">短作业优先</h4>
+<ol type="1">
 <li>根据题目补全信息</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -584,50 +660,49 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td></td>
 <td>6</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol type="1">
 <li>P1来先运行，结束时间为3，将3与提交时间这一列比较，只有P2小于3，所以P2开始时间为3</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -636,50 +711,49 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td><strong>3</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td><strong>3</strong></td>
 <td>6</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="2" type="1">
 <li>P2结束时间为3+6=9， 将9与提交时间这一列比较，发现都小于9，找到除结束进程外运行时间最小的进程，为P5，所以P5开始时间为9</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -688,50 +762,49 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
 <td>6</td>
 <td><strong>9</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td><strong>9</strong></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="3" type="1">
 <li>P5结束时间为9+2=11，因为现在知道所有进程都到了，直接找到运行时间最小的P3，所以P3开始时间为11，其余的也可以填出来</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -740,35 +813,35 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
 <td>6</td>
 <td>9</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td><strong>11</strong></td>
 <td>4</td>
 <td><strong>15</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td><strong>15</strong></td>
 <td>5</td>
 <td><strong>20</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>9</td>
@@ -777,19 +850,16 @@
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="4" type="1">
 <li><p>根据这个表计算</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_A24FDAA9C2AB-1.jpeg" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_A24FDAA9C2AB-1.jpeg" /></p>
 <p>等待时间 = 开始-就绪=周转-运行</p>
 <p>周转时间 = 结束-就绪</p>
-<p>带权周转时间 = 周转时间/运行时间</p>
-</li>
+<p>带权周转时间 = 周转时间/运行时间</p></li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -801,7 +871,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -811,7 +881,7 @@
 <td>3</td>
 <td>3/3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
@@ -821,7 +891,7 @@
 <td>7</td>
 <td>7/6</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td>11</td>
@@ -831,7 +901,7 @@
 <td>11</td>
 <td>11/4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td>15</td>
@@ -841,7 +911,7 @@
 <td>14</td>
 <td>14/5</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>9</td>
@@ -853,13 +923,14 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="高响应比优先"><a href="#高响应比优先" class="headerlink" title="高响应比优先"></a>高响应比优先</h4><script type="math/tex; mode=display">
-响应比 = \frac{等待时间+运行时间}{运行时间}</script><p>仿照上面的方法，<strong>但是每次进程结束都需要计算一次响应比</strong></p>
-<div class="table-container">
+<h4 id="高响应比优先">高响应比优先</h4>
+<p><span class="math display">\[
+响应比 = \frac{等待时间+运行时间}{运行时间}
+\]</span></p>
+<p>仿照上面的方法，<strong>但是每次进程结束都需要计算一次响应比</strong></p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -871,7 +942,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -881,7 +952,7 @@
 <td>3</td>
 <td>3/3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
@@ -891,7 +962,7 @@
 <td>7</td>
 <td>7/6</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td>9</td>
@@ -901,7 +972,7 @@
 <td>9</td>
 <td>9/4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td>15</td>
@@ -911,7 +982,7 @@
 <td>14</td>
 <td>14/5</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>13</td>
@@ -923,60 +994,62 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="open、read系统调用"><a href="#open、read系统调用" class="headerlink" title="open、read系统调用"></a>open、read系统调用</h3><ol>
+<h3 id="openread系统调用">open、read系统调用</h3>
+<ol type="1">
 <li>open根据（路径、文件名）找到相应的目录文件，从目录中找到文件名对应的目录项，并检查权限</li>
 <li>将目录项复制到内存中的打开文件表，返回表目对应的编号，用户使用这个编号来指明要操作的文件</li>
 <li>read根据（文件描述符、buf缓冲区地址、字节数）从fd的位置读数据</li>
 </ol>
-<h3 id="进程资源图简化，判断死锁"><a href="#进程资源图简化，判断死锁" class="headerlink" title="进程资源图简化，判断死锁"></a>进程资源图简化，判断死锁</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/coding1994/article/details/52474731">资源分配图化简法</a></p>
-<h3 id="大端小端"><a href="#大端小端" class="headerlink" title="大端小端"></a>大端小端</h3><p>人看的是大端，机器存的是小端。（<strong>小机</strong>）</p>
+<h3 id="进程资源图简化判断死锁">进程资源图简化，判断死锁</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/coding1994/article/details/52474731">资源分配图化简法</a></p>
+<h3 id="大端小端">大端小端</h3>
+<p>人看的是大端，机器存的是小端。（<strong>小机</strong>）</p>
 <p>小端：12 34 56，12存储在低位。大端相反。</p>
-<h3 id="分页确定逻辑地址结构"><a href="#分页确定逻辑地址结构" class="headerlink" title="分页确定逻辑地址结构"></a>分页确定逻辑地址结构</h3><ul>
-<li><p>虚拟存储器最大容量：看MAR有多少位</p>
-</li>
-<li><p>页号+页内偏移。页号包括页表索引</p>
-</li>
+<h3 id="分页确定逻辑地址结构">分页确定逻辑地址结构</h3>
+<ul>
+<li><p>虚拟存储器最大容量：看MAR有多少位</p></li>
+<li><p>页号+页内偏移。页号包括页表索引</p></li>
 <li><p>多级页表逻辑地址确定：</p>
 <p>页内偏移由页大小决定</p>
 <p>最高一级页表位数不能超过<strong>log(一页的页表项数)</strong>，其他级的位数都为<strong>log(一页的页表项数)</strong></p>
 <p>eg：48位虚地址，页面大小为4KB，页表项大小为8B</p>
-<p>页面大小为4KB，所以页面偏移为12，一页的页表项数 = $4KB/8B = 2^{9}$，剩下的48-12=36位按每级9位分配，36/9=4，所以4级</p>
-</li>
+<p>页面大小为4KB，所以页面偏移为12，一页的页表项数 = <span class="math inline">\(4KB/8B = 2^{9}\)</span>，剩下的48-12=36位按每级9位分配，36/9=4，所以4级</p></li>
 <li><p>cache组相连映射确定地址结构：</p>
 <p>标记+组号+偏移</p>
-<p>偏移由页大小确定，组号由组数确定，组数=cache条数/m路，剩下的是标记</p>
-</li>
+<p>偏移由页大小确定，组号由组数确定，组数=cache条数/m路，剩下的是标记</p></li>
 </ul>
-<h3 id="TLB、页表、cache"><a href="#TLB、页表、cache" class="headerlink" title="TLB、页表、cache"></a>TLB、页表、cache</h3><p>cpu根据虚拟地址中的虚拟页号去TLB中找页，若存在将虚拟地址转换为物理地址。根据物理地址去cache中找块，若找到无需到主存中找。</p>
+<h3 id="tlb页表cache">TLB、页表、cache</h3>
+<p>cpu根据虚拟地址中的虚拟页号去TLB中找页，若存在将虚拟地址转换为物理地址。根据物理地址去cache中找块，若找到无需到主存中找。</p>
 <ul>
 <li>页表是为了实现虚拟内存，完成对<strong>内存</strong>的扩容。cache是为了解决cpu与主存速度不匹配的问题</li>
 <li>缺页要从<strong>磁盘</strong>中取出<strong>页</strong>到内存，cache不命中要从<strong>主存</strong>去取出<strong>块</strong>到cache。因此缺页开销更大</li>
 <li>TLB表项为虚拟页号+物理页号（主存）。cache表项为标记+数据。快表是慢表的一个副本，结构一样。cache中存放了数据，因此取数时最少访问主存0次。</li>
 </ul>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+<h2 id="数据结构">数据结构</h2>
+<ul>
 <li>双链表、静态链表</li>
 <li>共享栈</li>
 </ul>
-<h3 id="折半查找判定树画法"><a href="#折半查找判定树画法" class="headerlink" title="折半查找判定树画法"></a>折半查找判定树画法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/BlevMeM/article/details/84672731">数据结构学习记录（二）——折半查找二叉判定树的画法</a></p>
-<p>原则：若向上取整，说明分界点在右边，右子树节点数$\le$左子树节点数，向上取整则反</p>
-<ol>
+<h3 id="折半查找判定树画法">折半查找判定树画法</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/BlevMeM/article/details/84672731">数据结构学习记录（二）——折半查找二叉判定树的画法</a></p>
+<p>原则：若向上取整，说明分界点在右边，右子树节点数<span class="math inline">\(\le\)</span>左子树节点数，向上取整则反</p>
+<ol type="1">
 <li>先画满二叉树，再一个一个加节点，要按照上面的原则</li>
 <li>按中序遍历填入从小到大的数字</li>
 </ol>
 <ul>
 <li>对一个序列进行折半查找，问查找到某个数字需要找几次，用表的长度判断，而不是数字的值</li>
 </ul>
-<h3 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.28.57.png" alt=""></p>
-<ol>
+<h3 id="kmp">KMP</h3>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.28.57.png" /></p>
+<ol type="1">
 <li>计算next数组</li>
 </ol>
-<p>​    next数组前两个为-1，0，后面的按照后缀长度填</p>
-<p>​    如abaabc的next数组</p>
-<div class="table-container">
+<p>​ next数组前两个为-1，0，后面的按照后缀长度填</p>
+<p>​ 如abaabc的next数组</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>0</th>
 <th>1</th>
 <th>2</th>
@@ -986,7 +1059,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>a</td>
 <td>ab</td>
 <td>aba</td>
@@ -994,7 +1067,7 @@
 <td>abaab</td>
 <td>abaabc</td>
 </tr>
-<tr>
+<tr class="even">
 <td>-1</td>
 <td>0</td>
 <td>0</td>
@@ -1004,45 +1077,75 @@
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="2" type="1">
 <li>i指向主串不回退，j指向模式串，比较到abaabc发现不同，将j从5改为2，此时i=5，j=2</li>
 <li>比较4次完成匹配。</li>
 <li>总比较次数为6+4</li>
 </ol>
-<h3 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
-<ol>
+<h3 id="中缀表达式转后缀表达式">中缀表达式转后缀表达式</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
+<ol type="1">
 <li>（直接入栈</li>
 <li>其他符号入栈时要保证自己比栈顶元素优先级高</li>
 <li>遇到）全部出栈，直到把（出栈</li>
 </ol>
-<h3 id="WPL"><a href="#WPL" class="headerlink" title="WPL"></a>WPL</h3><p>定义要搞清楚：所有<strong>叶节点</strong>的带权路径之和</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2019.03.44.png" alt=""></p>
-<h3 id="循环队列判满、判空"><a href="#循环队列判满、判空" class="headerlink" title="循环队列判满、判空"></a>循环队列判满、判空</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png" alt=""></p>
+<h3 id="wpl">WPL</h3>
+<p>定义要搞清楚：所有<strong>叶节点</strong>的带权路径之和</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2019.03.44.png" /></p>
+<h3 id="循环队列">循环队列</h3>
+<h4 id="顺序表示">顺序表示</h4>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png" /></p>
 <p>牺牲额外一块空间。</p>
 <p>空条件：front == rear</p>
 <p>满条件：front == (rear+1)%maxsize</p>
 <p>元素个数：(rear-front+maxsize)%maxsize</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%889.01.14.png" alt=""></p>
+<h4 id="链式表示">链式表示</h4>
+<p>初始状态：</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-16%20at%2014.44.44.png" /></p>
+<p>从尾部插入：</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-16%20at%2014.45.08.png" /></p>
+<p>判空：front==rear</p>
+<p>判满：rear-&gt;next = front</p>
 <ul>
 <li>栈括号匹配</li>
 <li>栈递归应用</li>
 <li>栈层次遍历</li>
-<li>二叉树的表示方法、存储结构</li>
-<li>树的双亲表示法、孩子兄弟表示法</li>
-<li>树和森林的遍历</li>
 </ul>
-<h3 id="B树插入、删除、高度"><a href="#B树插入、删除、高度" class="headerlink" title="B树插入、删除、高度"></a>B树插入、删除、高度</h3><p>高度：看树、二叉树性质那一篇笔记</p>
+<h3 id="树和森林的遍历">树和森林的遍历</h3>
+<table>
+<thead>
+<tr class="header">
+<th>树</th>
+<th>森林</th>
+<th>二叉树</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>先根</td>
+<td>先序</td>
+<td>先序</td>
+</tr>
+<tr class="even">
+<td>后根</td>
+<td>中序</td>
+<td>中序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b树插入删除高度">B树插入、删除、高度</h3>
+<p>高度：看树、二叉树性质那一篇笔记</p>
 <p>插入：大于最大关键字树则分裂，可能会导致父节点也分裂</p>
 <p>删除：</p>
-<ol>
+<ol type="1">
 <li>直接删除</li>
 <li>兄弟够借：若被删除节点右（左）兄弟够借，先将共同父亲放入被删除节点，再把右（左）兄弟的最左（右）边的孩子放入父节点。</li>
 <li>不够借：被删除节点左右兄弟都不够借，则与父节点交换然后与兄弟合并。</li>
 </ol>
-<h3 id="排序二叉树——平衡二叉树"><a href="#排序二叉树——平衡二叉树" class="headerlink" title="排序二叉树——平衡二叉树"></a><strong>排序二叉树——平衡二叉树</strong></h3><p>平衡二叉树是特殊的排序二叉树</p>
+<h3 id="排序二叉树平衡二叉树"><strong>排序二叉树——平衡二叉树</strong></h3>
+<p>平衡二叉树是特殊的排序二叉树</p>
 <p>删除操作与排序二叉树一样：</p>
-<ol>
+<ol type="1">
 <li>叶节点直接删除</li>
 <li>如果只有一个子树，用子树替代</li>
 <li>如果有两个子树，用直接后继替代，然后删除直接后继</li>
@@ -1052,14 +1155,16 @@
 <ul>
 <li><strong>二叉搜索树</strong></li>
 </ul>
-<h3 id="哈夫曼树：构造、前缀、性质"><a href="#哈夫曼树：构造、前缀、性质" class="headerlink" title="哈夫曼树：构造、前缀、性质"></a><strong>哈夫曼树：构造、前缀、性质</strong></h3><p>性质：只能度为0和2的节点</p>
-<h3 id="邻接矩阵、邻接表、邻接多重表、十字链表定义和画法"><a href="#邻接矩阵、邻接表、邻接多重表、十字链表定义和画法" class="headerlink" title="邻接矩阵、邻接表、邻接多重表、十字链表定义和画法"></a>邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</h3><p><strong>邻接矩阵</strong></p>
-<p>顶点表是一维数组，边表是二维数组 </p>
+<h3 id="哈夫曼树构造前缀性质"><strong>哈夫曼树：构造、前缀、性质</strong></h3>
+<p>性质：只能度为0和2的节点</p>
+<h3 id="邻接矩阵邻接表邻接多重表十字链表定义和画法">邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</h3>
+<p><strong>邻接矩阵</strong></p>
+<p>顶点表是一维数组，边表是二维数组</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex[vNum];		<span class="comment">//  定点可以是char型、int型</span></span><br><span class="line">  <span class="keyword">int</span> Edge[vNum][vNum];	<span class="comment">// 1代表有边</span></span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnmum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>邻接表</strong></p>
 <p>分为顶点节点和边表节点，每个顶点节点是一个单链表，连接着与这个顶点相连的边节点（有向图则与出边相连）</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/20130429141926037.jpg" alt=""></p>
- <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex;</span><br><span class="line">  ArcNode* first;</span><br><span class="line">&#125;VNode, AdjList[Vnum];</span><br><span class="line"><span class="comment">// VNode AdjList[Vnum];		//   邻接表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> Vex;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  AdjList vertices;</span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/20130429141926037.jpg" /></p>
+<p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex;</span><br><span class="line">  ArcNode* first;</span><br><span class="line">&#125;VNode, AdjList[Vnum];</span><br><span class="line"><span class="comment">// VNode AdjList[Vnum];		//   邻接表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> Vex;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  AdjList vertices;</span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>十字链表</strong></p>
 <p>十字链表是<strong>有向图</strong>的链式存储</p>
 <p>顶点节点：</p>
@@ -1075,9 +1180,9 @@
 <li>hlink：下一条弧头节点相同的弧</li>
 <li>tlink：下一条弧尾节点相同的弧</li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114948819-61490260.png" alt=""></p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114814046-2079914035.png" alt=""><br>十字链表画法：先画同一行（弧尾相同)，再垂直连接弧头相同的边，最后连接顶点的第一个入边弧并补全空符号。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E7%94%BB%E6%B3%952.jpg" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114948819-61490260.png" /></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114814046-2079914035.png" /> 十字链表画法：先画同一行（弧尾相同)，再垂直连接弧头相同的边，最后连接顶点的第一个入边弧并补全空符号。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E7%94%BB%E6%B3%952.jpg" /></p>
 <p><strong>邻接多重表</strong></p>
 <p>是<strong>无向图</strong>的链式表示，无向图的邻接矩阵中，一条边要占2个格子，删除的时候需要分别修改两个位，邻接多重表中有几条边就有几个弧节点。</p>
 <p>顶点节点：</p>
@@ -1092,44 +1197,46 @@
 <li>jvex，若一条弧连接0-1，jvex为1</li>
 <li>jlink，与jvex相连的下一条弧</li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-05%20%E4%B8%8B%E5%8D%8810.05.08.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-05%20%E4%B8%8B%E5%8D%8810.05.08.png" /></p>
 <ul>
 <li>DFS、BFS</li>
 </ul>
-<h3 id="最小生成树MST：Prim算法、Kruskal算法"><a href="#最小生成树MST：Prim算法、Kruskal算法" class="headerlink" title="最小生成树MST：Prim算法、Kruskal算法"></a>最小生成树MST：Prim算法、Kruskal算法</h3><p>Prim（选点，Point，PP）：任选初始点，选择与此点<strong>相连</strong>边中权值最小的边，不断重复，<strong>直到将所有点加入</strong>。复杂度$O(V^2)$</p>
-<p>Kruskal（选边）：不断选择权值最小的边，<strong>直到连通分量为</strong>1。因为用最小堆实现每次选择最小的边，所以复杂度$O(Elog_2(E))$</p>
+<h3 id="最小生成树mstprim算法kruskal算法">最小生成树MST：Prim算法、Kruskal算法</h3>
+<p>Prim（选点，Point，PP）：任选初始点，选择与此点<strong>相连</strong>边中权值最小的边，不断重复，<strong>直到将所有点加入</strong>。复杂度<span class="math inline">\(O(V^2)\)</span></p>
+<p>Kruskal（选边）：不断选择权值最小的边，<strong>直到连通分量为</strong>1。因为用最小堆实现每次选择最小的边，所以复杂度<span class="math inline">\(O(Elog_2(E))\)</span></p>
 <p>最小生成树唯一的条件：所有边的权值不同</p>
-<h3 id="最短路径：DFS、Dijkstra算法、Floyd算法"><a href="#最短路径：DFS、Dijkstra算法、Floyd算法" class="headerlink" title="最短路径：DFS、Dijkstra算法、Floyd算法"></a>最短路径：DFS、Dijkstra算法、Floyd算法</h3><p>都不考算法，只需要会手动模拟</p>
-<p>Dijkstra  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zz4y1m7Nq">https://www.bilibili.com/video/BV1zz4y1m7Nq</a></p>
-<p>floyd <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16w411o76v">https://www.bilibili.com/video/BV16w411o76v</a></p>
-<ol>
-<li><p>十字区域照抄</p>
-<ol>
-<li>十字区域中含∞的行或列照抄</li>
-<li>对角线都是0</li>
-<li>剩余部分，比较对应红色部分的行与列值之和 and 原值的大小，谁小取谁</li>
-<li>剩余部分若不是原值，下标就是红色区域的行与列下标合并去重</li>
+<h3 id="最短路径dfsdijkstra算法floyd算法">最短路径：DFS、Dijkstra算法、Floyd算法</h3>
+<p>都不考算法，只需要会手动模拟</p>
+<p>Dijkstra https://www.bilibili.com/video/BV1zz4y1m7Nq</p>
+<p>floyd https://www.bilibili.com/video/BV16w411o76v</p>
+<ol type="1">
+<li><p>十字区域照抄</p></li>
+<li><p>十字区域中含∞的行或列照抄</p></li>
+<li><p>对角线都是0</p></li>
+<li><p>剩余部分，比较对应红色部分的行与列值之和 and 原值的大小，谁小取谁</p></li>
+<li><p>剩余部分若不是原值，下标就是红色区域的行与列下标合并去重</p></li>
 </ol>
-</li>
-</ol>
-<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>结合工程背景，用节点表示先后顺序。选择某种数据结构，基于该数据结构来解决问题。eg：工厂流水线</p>
+<h3 id="拓扑排序">拓扑排序</h3>
+<p>结合工程背景，用节点表示先后顺序。选择某种数据结构，基于该数据结构来解决问题。eg：工厂流水线</p>
 <p>拓扑序列：陆续删除入度为0的节点。</p>
 <p>有可能考算法：indegree数组 or DFS</p>
 <p>indegree实现法：</p>
-<ol>
+<ol type="1">
 <li>用邻接表实现简单</li>
 <li>遍历所有边，统计每个顶点的入度并存储在 <code>indgree</code> 中</li>
 <li>将所有入度为0的点入栈</li>
 <li>栈顶元素出栈，遍历其所有出边（这里用邻接矩阵方便），将出边指向的顶点入度-1，入度为0则进栈</li>
 <li>栈为空停止，此时如果还有顶点未输出则有<strong>回路</strong></li>
 </ol>
-<h4 id="关键路径：AOE网"><a href="#关键路径：AOE网" class="headerlink" title="关键路径：AOE网"></a>关键路径：AOE网</h4><p>若只需要知道关键路径可以看：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fq4y1X7Tb">求解关键路径</a></p>
-<p> <img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/2313asdas.png" alt=""></p>
-<p> 最早发生ve：从前往后，选择大的。对于V4: 3+2 &lt; 2+4，所以ve(4) =6</p>
+<h4 id="关键路径aoe网">关键路径：AOE网</h4>
+<p>若只需要知道关键路径可以看：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fq4y1X7Tb">求解关键路径</a></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/2313asdas.png" /></p>
+<p>最早发生ve：从前往后，选择大的。对于V4: 3+2 &lt; 2+4，所以ve(4) =6</p>
 <p>最晚发生vl：从后往前，选择小的。对于V2: 7-3&gt;6-2，所以vl(2)=4</p>
 <p>最早开始e：对于图中的边a3，从V2指向V4，因此e(3) = ve(2) = 3</p>
 <p>最晚开始l：对于图中的边a3，从V2指向V4，因此l(3) = vl(4) - we ight = 6-2=4</p>
-<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p>开放定址法：线性探测+0，+1…+n。平方探测：$0^2, 1, -1, 2^2, -2^2…$。再散列</p>
+<h4 id="哈希算法">哈希算法</h4>
+<p>开放定址法：线性探测+0，+1…+n。平方探测：<span class="math inline">\(0^2, 1, -1, 2^2, -2^2...\)</span>。再散列</p>
 <p>拉链法：掌握存储结构，类似于孩子表示法（顺序表+链表）。定义结构，实现插入、删除、查找。</p>
 <p><a target="_blank" rel="noopener" href="http://data.biancheng.net/view/30.html">树的双亲表示法、孩子表示法和孩子兄弟表示法 (biancheng.net)</a></p>
 <p>成功/失败查找长度。装填因子。</p>
@@ -1137,66 +1244,73 @@
 <li>查找算法</li>
 <li>排序算法</li>
 </ul>
-<h3 id="堆的插入删除"><a href="#堆的插入删除" class="headerlink" title="堆的插入删除"></a>堆的插入删除</h3><p>建立：从最后一个分支节点，往前调整每个分支节点</p>
+<h3 id="堆的插入删除">堆的插入删除</h3>
+<p>建立：从最后一个分支节点，往前调整每个分支节点</p>
 <p>插入：从下往上调整，只调整插入节点到根节点这个子树</p>
 <p>删除：从上往下调整，调整根节点</p>
-<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="物理层编码"><a href="#物理层编码" class="headerlink" title="物理层编码"></a>物理层编码</h3><ul>
+<h2 id="计算机网络">计算机网络</h2>
+<h3 id="物理层编码">物理层编码</h3>
+<ul>
 <li>以太网使用曼彻斯特编码</li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2016.04.40.png" alt=""></p>
-<h3 id="极限传输速率"><a href="#极限传输速率" class="headerlink" title="极限传输速率"></a>极限传输速率</h3><p> 无噪声，奈氏定理$V = 2f \times log_{2}N$，f为带宽</p>
-<p>有噪声，香农$V = Wlog_2(1+\frac{S}{N})$    W为带宽，S/N为信噪比</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2016.04.40.png" /></p>
+<h3 id="极限传输速率">极限传输速率</h3>
+<p>无噪声，奈氏定理<span class="math inline">\(V = 2f \times log_{2}N\)</span>，f为带宽</p>
+<p>有噪声，香农<span class="math inline">\(V = Wlog_2(1+\frac{S}{N})\)</span> W为带宽，S/N为信噪比</p>
 <blockquote>
 <p>带宽单位为MHz，为最高频率-最低频率</p>
-<p>若给出信噪比为30dB，需要将其转换为S/N，关系是$30 = 10log_{10}1000$,所以S/N=1000</p>
+<p>若给出信噪比为30dB，需要将其转换为S/N，关系是<span class="math inline">\(30 = 10log_{10}1000\)</span>,所以S/N=1000</p>
 </blockquote>
 <p>eg：一个传输数字信号的模拟信道的功率是0.62W，噪声功率是0.02W，频率范围是3.5～3.9MHz，该信道最高数据传输率是：</p>
-<p>有噪声，用香农公式，带宽为0.4MHz，$V = 0.4 \times log_2(1+31) = 2Mbps$</p>
-<h3 id="CDMA"><a href="#CDMA" class="headerlink" title="CDMA"></a>CDMA</h3><p>真实数据 = <strong>码片序列</strong> 与 <strong>叠加的序列</strong>的内积。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.44.42.png" alt=""></p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.45.24.png" alt=""></p>
-<h3 id="GBN最大传送速率"><a href="#GBN最大传送速率" class="headerlink" title="GBN最大传送速率"></a>GBN最大传送速率</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.40.34.png" alt=""></p>
+<p>有噪声，用香农公式，带宽为0.4MHz，<span class="math inline">\(V = 0.4 \times log_2(1+31) = 2Mbps\)</span></p>
+<h3 id="cdma">CDMA</h3>
+<p>真实数据 = <strong>码片序列</strong> 与 <strong>叠加的序列</strong>的内积。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.44.42.png" /></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.45.24.png" /></p>
+<h3 id="gbn最大传送速率">GBN最大传送速率</h3>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.40.34.png" /></p>
 <p>GBN在接收到一次确认帧之前可以发N个帧。</p>
 <p>此题发送一个确认帧时间为50x2=100ms，N个帧大小为1000x1000B=1MB，1MB/100ms=80Mbps</p>
-<h3 id="有效数据率-信道利用率"><a href="#有效数据率-信道利用率" class="headerlink" title="有效数据率, 信道利用率"></a>有效数据率, 信道利用率</h3><p><em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率$V=\frac{m}{T}$​</p>
-<p>有效数据率也=发送数据/发送周期</p>
-<p>设：</p>
+<h3 id="有效数据率-信道利用">有效数据率, 信道利用</h3>
 <ul>
-<li><p>帧大小：L</p>
-</li>
-<li><p>两主机间单向传播时间：t，则RTT为2t</p>
-</li>
-<li><p>信道带宽/数据传输率：M</p>
-</li>
-<li><p>发送周期：$T = \frac{L}{M} + 2t + (确认帧发送时间)$​​   </p>
-</li>
+<li><p>帧大小：L</p></li>
+<li><p>两主机间单向传播时间：t，则RTT为2t</p></li>
+<li><p>信道带宽/数据传输率：M</p></li>
+<li><p>发送周期：<span class="math inline">\(T = \frac{L}{M} + 2t + 确认帧发送时间\)</span>​​</p></li>
 </ul>
 <blockquote>
-<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为$\frac{L}{M}$​, 王道P81</p>
+<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为<span class="math inline">\(\frac{L}{M}\)</span>​, 王道P81</p>
 <p>发送周期：从开始发送<strong>第一个</strong>帧开始到收到<strong>第一个</strong>确认帧的时间，不是所有的</p>
 </blockquote>
-<p>信道利用率=数据发送时间/（数据发送时间+传输时间）</p>
+<p>信道利用率=数据发送时间/发送周期</p>
 <p>信道吞吐率=发送速率x信道利用率</p>
 <p>例题：若最大帧长1000B，用3bit编号，RTT=0.96ms，信道传输率为100Mb/s，捎带确认，求最大信道利用率</p>
-<p>​    3bit编号，窗口最大为8-1=7，所以一次最多发7000B</p>
-<p>​    发送周期=发送时间+传输时间+确认帧发送时间=$\frac{1000B}{100Mb/s} + 0.96 + \frac{1000B}{100Mb/s}$</p>
-<p>​    数据发送时间=$7 \times \frac{1000B}{100Mb/s}$</p>
-<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><script type="math/tex; mode=display">
-吞吐量 = \frac{窗口大小}{RTT+发送时间+确认时间}</script><h4 id="CSMA-CD"><a href="#CSMA-CD" class="headerlink" title="CSMA/CD"></a>CSMA/CD</h4><p><strong>截断二进制指数退让算法：</strong></p>
-<ol>
-<li>确定基本退让时间$2\tau$</li>
-<li>$k = min[重传次数, 10]$</li>
-<li>从$[0, 1, …, 2^k-1]$中选一个数$r$，退避时间为$r.2\tau$</li>
+<p>​ 3bit编号，发送窗口最大为8-1=7，所以一次最多发7000B</p>
+<p>​ 发送周期=发送时间+传输时间+确认帧发送时间=<span class="math inline">\(\frac{1000B}{100Mb/s} + 0.96 + \frac{1000B}{100Mb/s}\)</span></p>
+<p>​ 数据发送时间=<span class="math inline">\(7 \times \frac{1000B}{100Mb/s}\)</span></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_359FD85BD012-1.jpeg" /></p>
+<p>设数据帧长度=x，数据传输时间=<span class="math inline">\(\frac{x}{3kbps}\)</span>，信道利用率=<span class="math inline">\(\frac{x/3k}{200ms \times 2 + x/3k}=0.4\)</span>解得x=800bit</p>
+<h3 id="吞吐量">吞吐量</h3>
+<p><span class="math display">\[
+吞吐量 = \frac{窗口大小}{RTT+发送时间+确认时间}
+\]</span></p>
+<h4 id="csmacd">CSMA/CD</h4>
+<p><strong>截断二进制指数退让算法：</strong></p>
+<ol type="1">
+<li>确定基本退让时间<span class="math inline">\(2\tau\)</span></li>
+<li><span class="math inline">\(k = min[重传次数, 10]\)</span></li>
+<li>从<span class="math inline">\([0, 1, …, 2^k-1]\)</span>中选一个数<span class="math inline">\(r\)</span>，退避时间为<span class="math inline">\(r.2\tau\)</span></li>
 <li>重传16次抛弃此帧</li>
 </ol>
-<p><strong>最小帧长：</strong>$总线传播时延 \times 数据传输率 \times 2 = 2\tau v$</p>
+<p><strong>最小帧长：</strong><span class="math inline">\(总线传播时延 \times 数据传输率 \times 2 = 2\tau v\)</span></p>
 <blockquote>
 <p>注意传播和传输的区别，数据大小/传输速率=发送时延</p>
 </blockquote>
 <ul>
 <li>以太网规定最短帧长为64B，凡长度小于64B的都是由于冲突而异常终止的无效帧</li>
 </ul>
-<h3 id="IP数据报"><a href="#IP数据报" class="headerlink" title="IP数据报"></a>IP数据报</h3><p>分片后<strong>改变的字段：</strong></p>
+<h3 id="ip数据报">IP数据报</h3>
+<p>分片后<strong>改变的字段：</strong></p>
 <ul>
 <li>标志位FLAG的MF、DF</li>
 <li>总长度，总长度是分片后的首部长度和数据长度之和</li>
@@ -1204,50 +1318,58 @@
 </ul>
 <p>经过路由器TTL改变</p>
 <p>若采用NAT，则源IP地址改变。其他情况IP均不变</p>
-<h3 id="ARP建立过程"><a href="#ARP建立过程" class="headerlink" title="ARP建立过程"></a>ARP建立过程</h3><ol>
+<h3 id="arp建立过程">ARP建立过程</h3>
+<ol type="1">
 <li>检查ARP缓存，有对应表项写入MAC帧，没有则用目的地址为FF-FF-FF-FF-FF-FF(6B)发送广播ARP请求</li>
 <li>目的主机接收到请求会向源主机<strong>单播</strong>一个ARP相应分组</li>
 <li>源主机收到后写入ARP缓存</li>
 </ol>
-<h3 id="路由表建立过程"><a href="#路由表建立过程" class="headerlink" title="路由表建立过程"></a>路由表建立过程</h3><p>建立方法：静态路由、动态路由（RIP、OSPF）</p>
+<h3 id="路由表建立过程">路由表建立过程</h3>
+<p>建立方法：静态路由、动态路由（RIP、OSPF）</p>
 <ul>
 <li>表项：目的网络地址、子网掩码、下一跳<strong>IP地址</strong>、接口</li>
 <li>注意：默认路由的目的网络和子网掩码为0.0.0.0（如果用CIDR表示为0.0.0.0/0），下一跳IP地址为连接互联网的路由器IP</li>
 <li>主机路由（特定路由）的子网掩码为全1，255.255.255.255</li>
 </ul>
-<h3 id="DHCP过程"><a href="#DHCP过程" class="headerlink" title="DHCP过程"></a>DHCP过程</h3><ol>
+<h3 id="dhcp过程">DHCP过程</h3>
+<ol type="1">
 <li>主机广播DHCP<strong>发现</strong>消息，<strong>源IP为0.0.0.0，目的IP为255.255.255.255</strong></li>
 <li>DHCP服务器广播DHCP<strong>提供</strong>消息</li>
 <li>主机收到消息，广播DHCP<strong>请求</strong>消息</li>
 <li>服务器广播DHCP<strong>确认</strong>消息</li>
 </ol>
-<h3 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h3><p>更新策略</p>
-<ol>
+<h3 id="距离向量算法">距离向量算法</h3>
+<p>更新策略</p>
+<ol type="1">
 <li>新网络更新</li>
 <li>到<strong>相邻路由器</strong>的跳数变化也更新</li>
 <li>到其他网络跳数变短更新，否则不更新</li>
 </ol>
 <p><strong>坏消息传得慢</strong>，若与R2相邻的网络不可达时，R2通知相邻的R1，R1会把到网络的距离+1，告诉R2，这样来回直到为16</p>
-<h3 id="数据帧发送过程中地址变化"><a href="#数据帧发送过程中地址变化" class="headerlink" title="数据帧发送过程中地址变化"></a>数据帧发送过程中地址变化</h3><p><strong>路由器转发后</strong>，将数据帧的源MAC地址改为路由器的MAC地址，目的MAC地址不变</p>
+<h3 id="数据帧发送过程中地址变化">数据帧发送过程中地址变化</h3>
+<p><strong>路由器转发后</strong>，将数据帧的源MAC地址改为路由器的MAC地址，目的MAC地址不变</p>
 <p>IP地址不变。但当使用NAT是源IP改变</p>
 <p>mac帧的目的mac地址和源mac地址在转发过程中都会发生改变</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-12%20at%2015.59.31.png" alt=""></p>
-<h3 id="GBN和TCP区分"><a href="#GBN和TCP区分" class="headerlink" title="GBN和TCP区分"></a>GBN和TCP区分</h3><ul>
-<li>GBN中$ACK_n$表示对n号帧的确认，期望收到n+1号帧</li>
-<li>TCP中$ack_n$表示对n-1号帧的确认，期望收到n号帧</li>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-12%20at%2015.59.31.png" /></p>
+<h3 id="gbn和tcp区分">GBN和TCP区分</h3>
+<ul>
+<li>GBN中<span class="math inline">\(ACK_n\)</span>表示对n号帧的确认，期望收到n+1号帧</li>
+<li>TCP中<span class="math inline">\(ack_n\)</span>表示对n-1号帧的确认，期望收到n号帧</li>
 </ul>
 <p>在GBN中，发送方需要重发出错帧及之后的帧</p>
 <p>GBN中一个窗口包含一个帧，TCP一个窗口为一个MSS</p>
-<p> 要注意区分GBN、SR、TCP协议的确认机制:</p>
-<ol>
-<li><p>GBN和TCP都采用累计确认机制，SR协议不是</p>
-</li>
+<p>要注意区分GBN、SR、TCP协议的确认机制:</p>
+<ol type="1">
+<li><p>GBN和TCP都采用累计确认机制，SR协议不是</p></li>
 <li><p>关于ACK序号的问题:</p>
-<p>i. GBN:ACK N表示N及其之前的都正确接收 </p>
-<p>ii. SR:ACK N表示正确接收N号帧<br>iii. TCP:ACK N表示期待收到N号帧</p>
-</li>
+<ol type="i">
+<li><p>GBN:ACK N表示N及其之前的都正确接收</p></li>
+<li><p>SR:ACK N表示正确接收N号帧</p></li>
+<li><p>TCP:ACK N表示期待收到N号帧</p></li>
+</ol></li>
 </ol>
-<h3 id="慢开始、拥塞避免、快恢复、快重传区分"><a href="#慢开始、拥塞避免、快恢复、快重传区分" class="headerlink" title="慢开始、拥塞避免、快恢复、快重传区分"></a>慢开始、拥塞避免、快恢复、快重传区分</h3><ul>
+<h3 id="慢开始拥塞避免快恢复快重传区分">慢开始、拥塞避免、快恢复、快重传区分</h3>
+<ul>
 <li>慢开始、快恢复：当遇到<strong>超时</strong>执行慢开始即窗口设为1，sshthresh/=2</li>
 <li>当连续收到三个重复确认执行快恢复，窗口/=2，sshtresh/=2</li>
 <li>拥塞避免按线性增长</li>
@@ -1336,7 +1458,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">组成原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%95%BF%E6%97%B6%E9%97%B4%E5%93%8D%E5%BA%94%E4%B8%80%E6%AC%A1%E6%89%8D%E8%83%BD%E4%B8%8D%E4%B8%A2%E5%A4%B1%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.</span> <span class="nav-text">多长时间响应一次才能不丢失数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.2.</span> <span class="nav-text">I&#x2F;O接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E4%BD%8D%E6%95%B0%E5%8F%96%E5%86%B3%E4%BA%8E"><span class="nav-number">1.3.</span> <span class="nav-text">寄存器位数取决于</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">编译过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E6%B5%81%E7%A8%8B"><span class="nav-number">1.5.</span> <span class="nav-text">中断流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E4%B8%AD%E6%96%AD"><span class="nav-number">1.5.1.</span> <span class="nav-text">多级中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E9%87%8D%E4%B8%AD%E6%96%AD"><span class="nav-number">1.5.2.</span> <span class="nav-text">单重中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.3.</span> <span class="nav-text">其他总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA%E8%BF%87%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">DMA过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.7.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="nav-number">1.8.</span> <span class="nav-text">性能计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A8%8B%E5%BA%8F%E5%91%98%E9%80%8F%E6%98%8E%E7%9A%84%E9%83%A8%E4%BB%B6"><span class="nav-number">1.9.</span> <span class="nav-text">对程序员透明的部件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97"><span class="nav-number">1.10.</span> <span class="nav-text">流水线时间计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="nav-number">1.11.</span> <span class="nav-text">CPU执行时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95-%E5%8F%8C%E7%BC%93%E5%86%B2%E5%8C%BA%E6%97%B6%E9%97%B4"><span class="nav-number">1.12.</span> <span class="nav-text">单&#x2F;双缓冲区时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU"><span class="nav-number">1.13.</span> <span class="nav-text">LRU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CLOCK%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">CLOCK算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E6%9C%89FIFO%E4%BC%9A%E5%AF%BC%E8%87%B4Bleady%E5%BC%82%E5%B8%B8"><span class="nav-number">2.2.</span> <span class="nav-text">只有FIFO会导致Bleady异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E9%9B%86%E6%A6%82%E5%BF%B5"><span class="nav-number">2.3.</span> <span class="nav-text">工作集概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B%E3%80%81%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">内核级线程、用户级线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.4.1.</span> <span class="nav-text">用户级线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.4.2.</span> <span class="nav-text">内核级线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="nav-number">2.4.3.</span> <span class="nav-text">区别和联系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E6%AE%B5"><span class="nav-number">2.5.</span> <span class="nav-text">共享段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-number">2.6.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E4%B8%AD%E6%96%AD%E3%80%81%E5%A4%96%E4%B8%AD%E6%96%AD%E3%80%81%E5%AD%90%E5%87%BD%E6%95%B0"><span class="nav-number">2.7.</span> <span class="nav-text">内中断、外中断、子函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.8.</span> <span class="nav-text">进程调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FCFS"><span class="nav-number">2.8.1.</span> <span class="nav-text">FCFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88"><span class="nav-number">2.8.2.</span> <span class="nav-text">短作业优先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88"><span class="nav-number">2.8.3.</span> <span class="nav-text">高响应比优先</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#open%E3%80%81read%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.9.</span> <span class="nav-text">open、read系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90%E5%9B%BE%E7%AE%80%E5%8C%96%EF%BC%8C%E5%88%A4%E6%96%AD%E6%AD%BB%E9%94%81"><span class="nav-number">2.10.</span> <span class="nav-text">进程资源图简化，判断死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF"><span class="nav-number">2.11.</span> <span class="nav-text">大端小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E7%A1%AE%E5%AE%9A%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84"><span class="nav-number">2.12.</span> <span class="nav-text">分页确定逻辑地址结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLB%E3%80%81%E9%A1%B5%E8%A1%A8%E3%80%81cache"><span class="nav-number">2.13.</span> <span class="nav-text">TLB、页表、cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE%E5%88%A4%E5%AE%9A%E6%A0%91%E7%94%BB%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">折半查找判定树画法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KMP"><span class="nav-number">3.2.</span> <span class="nav-text">KMP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">中缀表达式转后缀表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WPL"><span class="nav-number">3.4.</span> <span class="nav-text">WPL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E5%88%A4%E6%BB%A1%E3%80%81%E5%88%A4%E7%A9%BA"><span class="nav-number">3.5.</span> <span class="nav-text">循环队列判满、判空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B%E6%A0%91%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E9%AB%98%E5%BA%A6"><span class="nav-number">3.6.</span> <span class="nav-text">B树插入、删除、高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91%E2%80%94%E2%80%94%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.7.</span> <span class="nav-text">排序二叉树——平衡二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%EF%BC%9A%E6%9E%84%E9%80%A0%E3%80%81%E5%89%8D%E7%BC%80%E3%80%81%E6%80%A7%E8%B4%A8"><span class="nav-number">3.8.</span> <span class="nav-text">哈夫曼树：构造、前缀、性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E3%80%81%E9%82%BB%E6%8E%A5%E8%A1%A8%E3%80%81%E9%82%BB%E6%8E%A5%E5%A4%9A%E9%87%8D%E8%A1%A8%E3%80%81%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E5%AE%9A%E4%B9%89%E5%92%8C%E7%94%BB%E6%B3%95"><span class="nav-number">3.9.</span> <span class="nav-text">邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91MST%EF%BC%9APrim%E7%AE%97%E6%B3%95%E3%80%81Kruskal%E7%AE%97%E6%B3%95"><span class="nav-number">3.10.</span> <span class="nav-text">最小生成树MST：Prim算法、Kruskal算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%EF%BC%9ADFS%E3%80%81Dijkstra%E7%AE%97%E6%B3%95%E3%80%81Floyd%E7%AE%97%E6%B3%95"><span class="nav-number">3.11.</span> <span class="nav-text">最短路径：DFS、Dijkstra算法、Floyd算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">3.12.</span> <span class="nav-text">拓扑排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84%EF%BC%9AAOE%E7%BD%91"><span class="nav-number">3.12.1.</span> <span class="nav-text">关键路径：AOE网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">3.12.2.</span> <span class="nav-text">哈希算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4"><span class="nav-number">3.13.</span> <span class="nav-text">堆的插入删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">4.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E7%BC%96%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">物理层编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E4%BC%A0%E8%BE%93%E9%80%9F%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">极限传输速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDMA"><span class="nav-number">4.3.</span> <span class="nav-text">CDMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBN%E6%9C%80%E5%A4%A7%E4%BC%A0%E9%80%81%E9%80%9F%E7%8E%87"><span class="nav-number">4.4.</span> <span class="nav-text">GBN最大传送速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE%E7%8E%87-%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-number">4.5.</span> <span class="nav-text">有效数据率, 信道利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-number">4.6.</span> <span class="nav-text">吞吐量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSMA-CD"><span class="nav-number">4.6.1.</span> <span class="nav-text">CSMA&#x2F;CD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="nav-number">4.7.</span> <span class="nav-text">IP数据报</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">4.8.</span> <span class="nav-text">ARP建立过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">4.9.</span> <span class="nav-text">路由表建立过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP%E8%BF%87%E7%A8%8B"><span class="nav-number">4.10.</span> <span class="nav-text">DHCP过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%9D%E7%A6%BB%E5%90%91%E9%87%8F%E7%AE%97%E6%B3%95"><span class="nav-number">4.11.</span> <span class="nav-text">距离向量算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%8F%91%E9%80%81%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%9C%B0%E5%9D%80%E5%8F%98%E5%8C%96"><span class="nav-number">4.12.</span> <span class="nav-text">数据帧发送过程中地址变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBN%E5%92%8CTCP%E5%8C%BA%E5%88%86"><span class="nav-number">4.13.</span> <span class="nav-text">GBN和TCP区分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%85%A2%E5%BC%80%E5%A7%8B%E3%80%81%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E3%80%81%E5%BF%AB%E6%81%A2%E5%A4%8D%E3%80%81%E5%BF%AB%E9%87%8D%E4%BC%A0%E5%8C%BA%E5%88%86"><span class="nav-number">4.14.</span> <span class="nav-text">慢开始、拥塞避免、快恢复、快重传区分</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">组成原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jmp%E5%92%8Ccall%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">jmp和call跳转指令的偏移量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.2.</span> <span class="nav-text">多道程序、多任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%95%BF%E6%97%B6%E9%97%B4%E5%93%8D%E5%BA%94%E4%B8%80%E6%AC%A1%E6%89%8D%E8%83%BD%E4%B8%8D%E4%B8%A2%E5%A4%B1%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.</span> <span class="nav-text">多长时间响应一次才能不丢失数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.</span> <span class="nav-text">I&#x2F;O接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E4%BD%8D%E6%95%B0%E5%8F%96%E5%86%B3%E4%BA%8E"><span class="nav-number">1.5.</span> <span class="nav-text">寄存器位数取决于</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">编译过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E6%B5%81%E7%A8%8B"><span class="nav-number">1.7.</span> <span class="nav-text">中断流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E4%B8%AD%E6%96%AD"><span class="nav-number">1.7.1.</span> <span class="nav-text">多级中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E9%87%8D%E4%B8%AD%E6%96%AD"><span class="nav-number">1.7.2.</span> <span class="nav-text">单重中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%80%BB%E7%BB%93"><span class="nav-number">1.7.3.</span> <span class="nav-text">其他总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dma%E8%BF%87%E7%A8%8B"><span class="nav-number">1.8.</span> <span class="nav-text">DMA过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.9.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="nav-number">1.10.</span> <span class="nav-text">性能计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A8%8B%E5%BA%8F%E5%91%98%E9%80%8F%E6%98%8E%E7%9A%84%E9%83%A8%E4%BB%B6"><span class="nav-number">1.11.</span> <span class="nav-text">对程序员透明的部件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97"><span class="nav-number">1.12.</span> <span class="nav-text">流水线时间计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cpu%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="nav-number">1.13.</span> <span class="nav-text">CPU执行时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%8F%8C%E7%BC%93%E5%86%B2%E5%8C%BA%E6%97%B6%E9%97%B4"><span class="nav-number">1.14.</span> <span class="nav-text">单&#x2F;双缓冲区时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lru"><span class="nav-number">1.15.</span> <span class="nav-text">LRU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E5%92%8C%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E4%BD%8Exx%E4%BD%8D%E7%9B%B8%E5%90%8C"><span class="nav-number">2.1.</span> <span class="nav-text">虚拟地址和物理地址低xx位相同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="nav-number">2.2.</span> <span class="nav-text">磁盘物理地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA"><span class="nav-number">2.3.</span> <span class="nav-text">动态分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clock%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">CLOCK算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E6%9C%89fifo%E4%BC%9A%E5%AF%BC%E8%87%B4bleady%E5%BC%82%E5%B8%B8"><span class="nav-number">2.5.</span> <span class="nav-text">只有FIFO会导致Bleady异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E9%9B%86%E6%A6%82%E5%BF%B5"><span class="nav-number">2.6.</span> <span class="nav-text">工作集概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.7.</span> <span class="nav-text">内核级线程、用户级线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.7.1.</span> <span class="nav-text">用户级线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.7.2.</span> <span class="nav-text">内核级线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="nav-number">2.7.3.</span> <span class="nav-text">区别和联系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E6%AE%B5"><span class="nav-number">2.8.</span> <span class="nav-text">共享段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-number">2.9.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E4%B8%AD%E6%96%AD%E5%A4%96%E4%B8%AD%E6%96%AD%E5%AD%90%E5%87%BD%E6%95%B0"><span class="nav-number">2.10.</span> <span class="nav-text">内中断、外中断、子函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.11.</span> <span class="nav-text">进程调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fcfs"><span class="nav-number">2.11.1.</span> <span class="nav-text">FCFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88"><span class="nav-number">2.11.2.</span> <span class="nav-text">短作业优先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88"><span class="nav-number">2.11.3.</span> <span class="nav-text">高响应比优先</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#openread%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.12.</span> <span class="nav-text">open、read系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90%E5%9B%BE%E7%AE%80%E5%8C%96%E5%88%A4%E6%96%AD%E6%AD%BB%E9%94%81"><span class="nav-number">2.13.</span> <span class="nav-text">进程资源图简化，判断死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF"><span class="nav-number">2.14.</span> <span class="nav-text">大端小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E7%A1%AE%E5%AE%9A%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84"><span class="nav-number">2.15.</span> <span class="nav-text">分页确定逻辑地址结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tlb%E9%A1%B5%E8%A1%A8cache"><span class="nav-number">2.16.</span> <span class="nav-text">TLB、页表、cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE%E5%88%A4%E5%AE%9A%E6%A0%91%E7%94%BB%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">折半查找判定树画法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kmp"><span class="nav-number">3.2.</span> <span class="nav-text">KMP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">中缀表达式转后缀表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wpl"><span class="nav-number">3.4.</span> <span class="nav-text">WPL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="nav-number">3.5.</span> <span class="nav-text">循环队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.5.1.</span> <span class="nav-text">顺序表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.5.2.</span> <span class="nav-text">链式表示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">3.6.</span> <span class="nav-text">树和森林的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b%E6%A0%91%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4%E9%AB%98%E5%BA%A6"><span class="nav-number">3.7.</span> <span class="nav-text">B树插入、删除、高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.8.</span> <span class="nav-text">排序二叉树——平衡二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E6%9E%84%E9%80%A0%E5%89%8D%E7%BC%80%E6%80%A7%E8%B4%A8"><span class="nav-number">3.9.</span> <span class="nav-text">哈夫曼树：构造、前缀、性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E9%82%BB%E6%8E%A5%E8%A1%A8%E9%82%BB%E6%8E%A5%E5%A4%9A%E9%87%8D%E8%A1%A8%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E5%AE%9A%E4%B9%89%E5%92%8C%E7%94%BB%E6%B3%95"><span class="nav-number">3.10.</span> <span class="nav-text">邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91mstprim%E7%AE%97%E6%B3%95kruskal%E7%AE%97%E6%B3%95"><span class="nav-number">3.11.</span> <span class="nav-text">最小生成树MST：Prim算法、Kruskal算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84dfsdijkstra%E7%AE%97%E6%B3%95floyd%E7%AE%97%E6%B3%95"><span class="nav-number">3.12.</span> <span class="nav-text">最短路径：DFS、Dijkstra算法、Floyd算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">3.13.</span> <span class="nav-text">拓扑排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84aoe%E7%BD%91"><span class="nav-number">3.13.1.</span> <span class="nav-text">关键路径：AOE网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">3.13.2.</span> <span class="nav-text">哈希算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4"><span class="nav-number">3.14.</span> <span class="nav-text">堆的插入删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">4.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E7%BC%96%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">物理层编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E4%BC%A0%E8%BE%93%E9%80%9F%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">极限传输速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cdma"><span class="nav-number">4.3.</span> <span class="nav-text">CDMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gbn%E6%9C%80%E5%A4%A7%E4%BC%A0%E9%80%81%E9%80%9F%E7%8E%87"><span class="nav-number">4.4.</span> <span class="nav-text">GBN最大传送速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE%E7%8E%87-%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8"><span class="nav-number">4.5.</span> <span class="nav-text">有效数据率, 信道利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-number">4.6.</span> <span class="nav-text">吞吐量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#csmacd"><span class="nav-number">4.6.1.</span> <span class="nav-text">CSMA&#x2F;CD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ip%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="nav-number">4.7.</span> <span class="nav-text">IP数据报</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arp%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">4.8.</span> <span class="nav-text">ARP建立过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">4.9.</span> <span class="nav-text">路由表建立过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dhcp%E8%BF%87%E7%A8%8B"><span class="nav-number">4.10.</span> <span class="nav-text">DHCP过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%9D%E7%A6%BB%E5%90%91%E9%87%8F%E7%AE%97%E6%B3%95"><span class="nav-number">4.11.</span> <span class="nav-text">距离向量算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%8F%91%E9%80%81%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%9C%B0%E5%9D%80%E5%8F%98%E5%8C%96"><span class="nav-number">4.12.</span> <span class="nav-text">数据帧发送过程中地址变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gbn%E5%92%8Ctcp%E5%8C%BA%E5%88%86"><span class="nav-number">4.13.</span> <span class="nav-text">GBN和TCP区分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%85%A2%E5%BC%80%E5%A7%8B%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E5%BF%AB%E6%81%A2%E5%A4%8D%E5%BF%AB%E9%87%8D%E4%BC%A0%E5%8C%BA%E5%88%86"><span class="nav-number">4.14.</span> <span class="nav-text">慢开始、拥塞避免、快恢复、快重传区分</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

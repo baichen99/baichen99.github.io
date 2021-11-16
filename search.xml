@@ -3,75 +3,113 @@
   <entry>
     <title>408-数据结构常见算法</title>
     <url>/2021/10/06/408-ds-algorithm/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="原地逆置"><a href="#原地逆置" class="headerlink" title="原地逆置"></a>原地逆置</h3><h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>法1：因为头插法获得的顺序是逆序，所以可以利用头插法来实现原地逆置：将头节点取下，一次用头插法插入后面的节点。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0475.jpg" alt=""></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="线性表">线性表</h2>
+<h3 id="原地逆置">原地逆置</h3>
+<h4 id="链表">链表</h4>
+<p>法1：因为头插法获得的顺序是逆序，所以可以利用头插法来实现原地逆置：将头节点取下，一次用头插法插入后面的节点。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0475.jpg" /></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">Reverse</span><span class="params">(LinkList L)</span> </span>&#123;</span><br><span class="line">  LNode *p, *r;</span><br><span class="line">  p = L-&gt;next;	<span class="comment">// p遍历节点</span></span><br><span class="line">  L-&gt;next = <span class="literal">NULL</span>; <span class="comment">//  头节点摘下</span></span><br><span class="line">  <span class="keyword">while</span>(p!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">    r = p-&gt;next;	<span class="comment">// 指向后继，防止断链</span></span><br><span class="line">		p-&gt;next = L-&gt;next;</span><br><span class="line">    L-&gt;next = p;</span><br><span class="line">    p = r;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> L</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>法2：三个指针pre, p, r，指向前驱、当前节点、后继。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0476.jpg" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0476.jpg" /></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">Reverse</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">  LNode *p, *pre, *r;</span><br><span class="line">  p = L-&gt;next;</span><br><span class="line">  r = p-&gt;next;</span><br><span class="line">  <span class="keyword">while</span>(r!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">    pre = p;</span><br><span class="line">    p = r;</span><br><span class="line">    r = r-&gt;next;</span><br><span class="line">    p-&gt;next = pre;	<span class="comment">//  逆置</span></span><br><span class="line">  &#125;</span><br><span class="line">  L-&gt;next = p;	<span class="comment">// 处理最后一个节点，因为p在倒数第二个节点时就结束循环了</span></span><br><span class="line">  <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h4><p>交换对称的两个元素，0与n-1对称，i与n-i-1对称。（加起来都为n-1）</p>
+<h4 id="顺序表">顺序表</h4>
+<p>交换对称的两个元素，0与n-1对称，i与n-i-1对称。（加起来都为n-1）</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Reverse</span><span class="params">(SqList &amp;L)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> temp;	<span class="comment">// 用来交换</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;L.length/<span class="number">2</span>; i++) &#123;</span><br><span class="line">    temp = L[i];</span><br><span class="line">    L[i] = L[L.length-i<span class="number">-1</span>];</span><br><span class="line">    L[L.length-i<span class="number">-1</span>] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="有序表去重"><a href="#有序表去重" class="headerlink" title="有序表去重"></a>有序表去重</h3><h4 id="顺序表-1"><a href="#顺序表-1" class="headerlink" title="顺序表"></a>顺序表</h4><p>双指针，i指向存储指针遇到不同才+1，j是工作指针每次循环+1</p>
+<h3 id="有序表去重">有序表去重</h3>
+<h4 id="顺序表-1">顺序表</h4>
+<p>双指针，i指向存储指针遇到不同才+1，j是工作指针每次循环+1</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteSame</span><span class="params">(SqList &amp;L)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;L.length; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(L[i] != L[j]) &#123;</span><br><span class="line">      L[++i] = L[j];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  L.length = i+<span class="number">1</span>;	<span class="comment">//修改长度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="链表-1"><a href="#链表-1" class="headerlink" title="链表"></a>链表</h4><p>双指针，p指向当前节点，r指向下一个节点，p、r若相同则直接删掉r指向的节点</p>
+<h4 id="链表-1">链表</h4>
+<p>双指针，p指向当前节点，r指向下一个节点，p、r若相同则直接删掉r指向的节点</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteSame</span><span class="params">(LinkList &amp;L)</span> </span>&#123;</span><br><span class="line">  LNode *p, *r;</span><br><span class="line">  p = L-&gt;next;</span><br><span class="line">  <span class="keyword">while</span>(p-&gt;next != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    r = p-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;data == r-&gt;data) &#123;</span><br><span class="line">      p-&gt;next = r-&gt;next;</span><br><span class="line">      <span class="built_in">free</span>(r);	<span class="comment">// 删除重复节点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      p = p-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="无序表去重"><a href="#无序表去重" class="headerlink" title="无序表去重"></a>无序表去重</h3><p>只需设置一个辅助数组，用哈希表的方式判断元素是否出现过。</p>
-<h3 id="找到链表倒数第k个元素"><a href="#找到链表倒数第k个元素" class="headerlink" title="找到链表倒数第k个元素"></a>找到链表倒数第k个元素</h3><p>双指针，一个先走k步，走到末尾停止。</p>
-<h3 id="判断链表是否有环"><a href="#判断链表是否有环" class="headerlink" title="判断链表是否有环"></a>判断链表是否有环</h3><p>快慢指针 王道P44，快慢指针还可以解决“找到链表中间节点”的问题（走一步，走两步）</p>
+<h3 id="无序表去重">无序表去重</h3>
+<p>只需设置一个辅助数组，用哈希表的方式判断元素是否出现过。</p>
+<h3 id="找到链表倒数第k个元素">找到链表倒数第k个元素</h3>
+<p>双指针，一个先走k步，走到末尾停止。</p>
+<h3 id="判断链表是否有环">判断链表是否有环</h3>
+<p>快慢指针 王道P44，快慢指针还可以解决“找到链表中间节点”的问题（走一步，走两步）</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 统计每个元素的出现次数</span><br><span class="line"></span><br><span class="line">可以引申出问题：查找出现次数超过一半的元素（<span class="number">2013</span>）、找到未出现的最小正整数（<span class="number">2018</span>）</span><br><span class="line"></span><br><span class="line">用哈希表时间最快。</span><br><span class="line"></span><br><span class="line">```c</span><br><span class="line"><span class="keyword">int</span> count[L.length];</span><br><span class="line"><span class="comment">//  初始化次数为0</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;L.length; i++) &#123;</span><br><span class="line">  count[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;L.length; i++) &#123;</span><br><span class="line">  count[L[i]] += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p>看排序算法笔记</p>
+<h3 id="找到中间节点">找到中间节点</h3>
+<p>使用快慢指针，一个走2步，一个走1步，当一个到头时，另一个边为中间节点</p>
+<h3 id="排序">排序</h3>
+<h4 id="堆排序">堆排序</h4>
+<p>看排序算法笔记</p>
 <p><a href="https://baichen99.github.io/2021/08/23/sort-notes/#more">排序效率 | 黑石的技术笔记 (baichen99.github.io)</a></p>
-<h4 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h4><p>必须熟练写出来</p>
+<h4 id="快排">快排</h4>
+<p>必须熟练写出来</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot = A[low];  <span class="comment">// 第一个为枢轴</span></span><br><span class="line">  <span class="keyword">while</span>(low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[high] &gt;= pivot) high--;</span><br><span class="line">    A[low] = A[hight];</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[low] &lt;= pivot) low--;</span><br><span class="line">    A[high] = A[low];</span><br><span class="line">  &#125;</span><br><span class="line">  A[low] = pivot;</span><br><span class="line">  <span class="keyword">return</span> low;   <span class="comment">// 返回枢轴的位置</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuikSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot_pos = Partition(A, low, high);</span><br><span class="line">  QuickSort(A, low, pivot_pos<span class="number">-1</span>);</span><br><span class="line">  QuickSort(A, pivot_pos+<span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="二路归并排序"><a href="#二路归并排序" class="headerlink" title="二路归并排序"></a>二路归并排序</h4><p>引申的问题：合并两个有序列表</p>
-<p>时间效率都为$O(m+n)$，空间效率：若使用辅助数组$O(m+n)$，链表$O(1)$</p>
-<h5 id="顺序表-2"><a href="#顺序表-2" class="headerlink" title="顺序表"></a>顺序表</h5><p><strong>使用辅助数组</strong></p>
-<ol>
+<h4 id="二路归并排序">二路归并排序</h4>
+<p>引申的问题：合并两个有序列表</p>
+<p>时间效率都为<span class="math inline">\(O(m+n)\)</span>，空间效率：若使用辅助数组<span class="math inline">\(O(m+n)\)</span>，链表<span class="math inline">\(O(1)\)</span></p>
+<h5 id="顺序表-2">顺序表</h5>
+<p><strong>使用辅助数组</strong></p>
+<ol type="1">
 <li>使用辅助数组C，其大小为A、B大小之和</li>
 <li>依次比较A、B元素，将较小的放入C</li>
 <li>当一个表遍历结束，要把另一个表剩余元素加入C</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(SqList &amp;A, SqList &amp;B, SqList &amp;C)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>, k=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; A.length &amp;&amp; j &lt; B.length) &#123;</span><br><span class="line">    <span class="keyword">if</span>(A[i] &lt; B[j])</span><br><span class="line">      C[k++] = A[i++];</span><br><span class="line">   	<span class="keyword">else</span></span><br><span class="line">      C[k++] = B[j++];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; A.length)	C[k++] = A[i++];</span><br><span class="line">  <span class="keyword">while</span>(j &lt; B.length)	C[k++] = B[i++];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度和空间复杂度都是$O(m+n)$</p>
+<p>时间复杂度和空间复杂度都是<span class="math inline">\(O(m+n)\)</span></p>
 <p><strong>不使用辅助数组，原地合并</strong></p>
 <p>插入排序的思想，从m开始插入</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i, j;</span><br><span class="line">  <span class="keyword">for</span>(i=m+<span class="number">1</span>; i&lt;m+n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(A[i<span class="number">-1</span>] &lt; A[i]) &#123;</span><br><span class="line">      temp = A[i<span class="number">-1</span>];</span><br><span class="line">      <span class="keyword">for</span>(j=i<span class="number">-1</span>; i&gt;=<span class="number">0</span> &amp;&amp; A[j]&gt;temp; j--)</span><br><span class="line">        A[j+<span class="number">1</span>] = A[j];</span><br><span class="line">      A[j+<span class="number">1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于后面n个数据，每次插入复杂度为$O(m)$，所以时间复杂度为$O(mn)$，空间复杂度为$O(1)$</p>
-<h5 id="链表-2"><a href="#链表-2" class="headerlink" title="链表"></a>链表</h5><p>注意插入时要采用头插法还是尾插法</p>
+<p>对于后面n个数据，每次插入复杂度为<span class="math inline">\(O(m)\)</span>，所以时间复杂度为<span class="math inline">\(O(mn)\)</span>，空间复杂度为<span class="math inline">\(O(1)\)</span></p>
+<h5 id="链表-2">链表</h5>
+<p>注意插入时要采用头插法还是尾插法</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(LinkList &amp;A, LinkList &amp;B)</span> </span>&#123;</span><br><span class="line">	LNode *pa = A-&gt;next, *pb = B-&gt;next, *r;</span><br><span class="line">  <span class="comment">// 将A作为结果链表</span></span><br><span class="line">  A-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">  <span class="keyword">while</span>(pa &amp;&amp; pb) &#123;</span><br><span class="line">    <span class="keyword">if</span>(pa-&gt;data &lt;= pb-&gt;data) &#123;</span><br><span class="line">      r = pa-&gt;next;</span><br><span class="line">			<span class="comment">// 采用头插法</span></span><br><span class="line">      pa-&gt;next = A-&gt;next;</span><br><span class="line">      A-&gt;next = pa;</span><br><span class="line">      pa = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      r = pb-&gt;next;</span><br><span class="line">      pb-&gt;next = A-&gt;next;</span><br><span class="line">      A-&gt;next = pb;</span><br><span class="line">      pb = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(pa)	<span class="comment">// pa还有剩余，就继续加入A中</span></span><br><span class="line">      pb = pa;</span><br><span class="line">    <span class="keyword">while</span>(pb) &#123;	<span class="comment">// 否则将pb加入A中</span></span><br><span class="line">      r = pb-&gt;next;</span><br><span class="line">      pb-&gt;next = A-&gt;next;</span><br><span class="line">      A-&gt;next = pb;</span><br><span class="line">      pb = r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">free</span>(B);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><h4 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h4><p>只适用于顺序表</p>
+<h3 id="查找">查找</h3>
+<h4 id="折半查找">折半查找</h4>
+<p>只适用于顺序表</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(SeqList L, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low=<span class="number">0</span>, hight=L.length, mid;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    mid = (high+low)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(L.data[mid] == key)</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(L.data[mid] &lt; key)</span><br><span class="line">      low = mid+<span class="number">1</span>;</span><br><span class="line">   	<span class="keyword">else</span></span><br><span class="line">      high = mid<span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BiTree T)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!T) &#123;</span><br><span class="line">    visit(T);</span><br><span class="line">    PreOrder(T-&gt;leftchild);</span><br><span class="line">    PreOrder(T-&gt;rightchild);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BiTree T)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!T) &#123;</span><br><span class="line">    PreOrder(T-&gt;leftchild);</span><br><span class="line">    visit(T);</span><br><span class="line">    PreOrder(T-&gt;rightchild);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BiTree T)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!T) &#123;</span><br><span class="line">    PreOrder(T-&gt;leftchild);</span><br><span class="line">    PreOrder(T-&gt;rightchild);</span><br><span class="line">    visit(T);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="层次遍历"><a href="#层次遍历" class="headerlink" title="层次遍历"></a>层次遍历</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IsComplete</span><span class="params">(BiTree T)</span> </span>&#123;</span><br><span class="line">  Queue Q;</span><br><span class="line">  TreeNode *p;</span><br><span class="line"></span><br><span class="line">  EnQueue(Q, T);</span><br><span class="line">  <span class="keyword">while</span>(!IsEmpty(Q)) &#123;</span><br><span class="line">    DeQueue(Q, p);</span><br><span class="line">    visit(p);</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;leftchild)</span><br><span class="line">	    EnQueue(Q, p-&gt;leftchild);</span><br><span class="line">    <span class="keyword">if</span>(-&gt;rightchild)</span><br><span class="line">  	  EnQueue(Q, p-&gt;rightchild);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="求WPL"><a href="#求WPL" class="headerlink" title="求WPL"></a>求WPL</h3><p>递归遍历</p>
+<h2 id="树">树</h2>
+<h3 id="前序遍历">前序遍历</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BiTree T)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!T) &#123;</span><br><span class="line">    visit(T);</span><br><span class="line">    PreOrder(T-&gt;leftchild);</span><br><span class="line">    PreOrder(T-&gt;rightchild);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="中序遍历">中序遍历</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BiTree T)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!T) &#123;</span><br><span class="line">    PreOrder(T-&gt;leftchild);</span><br><span class="line">    visit(T);</span><br><span class="line">    PreOrder(T-&gt;rightchild);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后序遍历">后序遍历</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BiTree T)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!T) &#123;</span><br><span class="line">    PreOrder(T-&gt;leftchild);</span><br><span class="line">    PreOrder(T-&gt;rightchild);</span><br><span class="line">    visit(T);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="层次遍历">层次遍历</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IsComplete</span><span class="params">(BiTree T)</span> </span>&#123;</span><br><span class="line">  Queue Q;</span><br><span class="line">  TreeNode *p;</span><br><span class="line"></span><br><span class="line">  EnQueue(Q, T);</span><br><span class="line">  <span class="keyword">while</span>(!IsEmpty(Q)) &#123;</span><br><span class="line">    DeQueue(Q, p);</span><br><span class="line">    visit(p);</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;leftchild)</span><br><span class="line">	    EnQueue(Q, p-&gt;leftchild);</span><br><span class="line">    <span class="keyword">if</span>(-&gt;rightchild)</span><br><span class="line">  	  EnQueue(Q, p-&gt;rightchild);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求wpl">求WPL</h3>
+<p>递归遍历</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">WPL</span><span class="params">(BiTree root)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> preOrder(root, <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> preOrder(BiTree *T, <span class="keyword">int</span> height) &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">int</span> wpl = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(T-&gt;left==<span class="literal">NULL</span> &amp;&amp; T-&gt;right==<span class="literal">NULL</span>)&#123;	<span class="comment">// 叶节点</span></span><br><span class="line">  	wpl += height*T-&gt;weight;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(T-&gt;left!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">    wpl += preOrder(T-&gt;left, height+<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(T-&gt;right!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">    wpl += preOrder(T-&gt;right, height+<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> wpl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="判断完全二叉树"><a href="#判断完全二叉树" class="headerlink" title="判断完全二叉树"></a>判断完全二叉树</h3><p>层次遍历，将所有节点入队 包括空节点，依次出队访问，当访问到空节点时，查看后面是否有非空节点，若有则非完全二叉树。</p>
+<h3 id="判断完全二叉树">判断完全二叉树</h3>
+<p>层次遍历，将所有节点入队 包括空节点，依次出队访问，当访问到空节点时，查看后面是否有非空节点，若有则非完全二叉树。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsComplete</span><span class="params">(BiTree T)</span> </span>&#123;</span><br><span class="line">  Queue Q;</span><br><span class="line">  TreeNode *p;	<span class="comment">// 暂存出队的二叉树节点</span></span><br><span class="line">  <span class="keyword">if</span>(!T)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;	<span class="comment">// 空树为完全二叉树</span></span><br><span class="line">  EnQueue(Q, T);</span><br><span class="line">  <span class="keyword">while</span>(!IsEmpty(Q)) &#123;</span><br><span class="line">    DeQueue(Q, p);</span><br><span class="line">    <span class="keyword">if</span>(p) &#123;	<span class="comment">// 非空则将孩子入对</span></span><br><span class="line">      EnQueue(Q, p-&gt;leftchild);</span><br><span class="line">      EnQueue(Q, p-&gt;rightchild);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;	<span class="comment">// 若空，看之后是否有非空节点。</span></span><br><span class="line">      <span class="keyword">while</span>(!IsEmpty(Q)) &#123;</span><br><span class="line">        DeQueue(Q, p);</span><br><span class="line">        <span class="keyword">if</span>(p)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>另一种方法：从上往下给每个节点编号i并入栈（包括空节点），然后依次出栈，检查第j个出栈的非空节点 是否<strong>i==j</strong>，不过只需要检查最后一个，因为编号最大</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isCompleteTree</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        nodes = [(root, <span class="number">1</span>)]</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nodes):</span><br><span class="line">            node, v = nodes[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                nodes.append((node.left, <span class="number">2</span>*v))</span><br><span class="line">                nodes.append((node.right, <span class="number">2</span>*v+<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>  nodes[-<span class="number">1</span>][<span class="number">1</span>] == <span class="built_in">len</span>(nodes)</span><br><span class="line"></span><br><span class="line">链接：https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/solution/er-cha-shu-de-wan-quan-xing-jian-yan-by-leetcode/</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isCompleteTree</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        nodes = [(root, <span class="number">1</span>)]</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nodes):</span><br><span class="line">            node, v = nodes[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                nodes.append((node.left, <span class="number">2</span>*v))</span><br><span class="line">                nodes.append((node.right, <span class="number">2</span>*v+<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>  nodes[-<span class="number">1</span>][<span class="number">1</span>] == <span class="built_in">len</span>(nodes)</span><br><span class="line"></span><br><span class="line">链接：https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/solution/er-cha-shu-de-wan-quan-xing-jian-yan-by-leetcode/</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>因为二叉树的层次遍历也是BFS，这题也可以用BFS来做。</p>
-<h3 id="求二叉树高度"><a href="#求二叉树高度" class="headerlink" title="求二叉树高度"></a>求二叉树高度</h3><p>递归实现简单。</p>
+<h3 id="求二叉树高度">求二叉树高度</h3>
+<p>递归实现简单。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BTDepth</span><span class="params">(BiTree T)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(T == <span class="literal">NULL</span>)</span><br><span class="line">    retrun <span class="number">0</span>;</span><br><span class="line">  ldep = BTDepth(T-&gt;leftchild);</span><br><span class="line">  rdep = BTDepth(T-&gt;rightchild);</span><br><span class="line">  <span class="keyword">if</span>(ldep &gt; rdep)</span><br><span class="line">    <span class="keyword">return</span> ldep+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> rdep+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="求二叉树宽度"><a href="#求二叉树宽度" class="headerlink" title="求二叉树宽度"></a>求二叉树宽度</h3><p>已知高度H，定义一个width[H]数组，遍历所有节点，每访问一个节点，将其所在层数+1</p>
+<h3 id="求二叉树宽度">求二叉树宽度</h3>
+<p>已知高度H，定义一个width[H]数组，遍历所有节点，每访问一个节点，将其所在层数+1</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">   </span><br><span class="line"><span class="comment">//先序遍历，同时统计各层结点总数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreOder</span><span class="params">(BiTree T, <span class="keyword">int</span> level, <span class="keyword">int</span> width[])</span></span>&#123;	<span class="comment">// level是当前层数</span></span><br><span class="line">	<span class="keyword">if</span> (T == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">	width[level]++; <span class="comment">//根据当前结点所处层数，累加该层结点总数 </span></span><br><span class="line">  PreOder(T-&gt;lchild, level + <span class="number">1</span>, width); <span class="comment">//遍历左子树 			</span></span><br><span class="line">	PreOder(T-&gt;rchild, level + <span class="number">1</span>, width); <span class="comment">//遍历右子树</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">TreeWidth</span><span class="params">(BiTree T)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> width[H];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;H; i++)	width[i] = <span class="number">0</span>;	<span class="comment">// 初始化	 </span></span><br><span class="line">  </span><br><span class="line">  PreOrder(T, <span class="number">0</span>, width);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 找到最大宽度</span></span><br><span class="line">  <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;H; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(width[i] &gt; max)</span><br><span class="line">      max = width[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> visited[vnum];</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">从序号为begin的顶点出发，递归深度优先遍历连通图Gp</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(Graph Gp, <span class="keyword">int</span> begin)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//遍历输出序号为begin的顶点的数据域，并保存遍历信息</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,Gp[begin].data);</span><br><span class="line">	visited[begin] = <span class="literal">true</span>; </span><br><span class="line"> </span><br><span class="line">	<span class="comment">//循环访问当前节点的所有邻接点（即该节点对应的链表）</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=first_vertex(Gp,begin); i&gt;=<span class="number">0</span>; i=next_vertex(Gp,begin,i))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!visited[i])  <span class="comment">//对于尚未遍历的邻接节点，递归调用DFS</span></span><br><span class="line">			DFS(Gp,i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">从序号为begin的节点开始深度优先遍历图Gp，Gp可以是连通图也可以是非连通图</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS_traverse</span><span class="params">(Graph Gp,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;NUM;i++)  visited[i] = <span class="literal">false</span>; </span><br><span class="line"> </span><br><span class="line">	DFS(Gp,v);</span><br><span class="line">	<span class="comment">//如果是非连通图，该循环保证每个极大连通子图中的顶点都能被遍历到   </span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;NUM;i++)&#123;	    </span><br><span class="line">		<span class="keyword">if</span>(!visited[i])</span><br><span class="line">			DFS(Gp,i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><p>用队列实现，类似于树的层次遍历。</p>
+<h2 id="图">图</h2>
+<h3 id="dfs">DFS</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> visited[vnum];</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">从序号为begin的顶点出发，递归深度优先遍历连通图Gp</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(Graph Gp, <span class="keyword">int</span> begin)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//遍历输出序号为begin的顶点的数据域，并保存遍历信息</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,Gp[begin].data);</span><br><span class="line">	visited[begin] = <span class="literal">true</span>; </span><br><span class="line"> </span><br><span class="line">	<span class="comment">//循环访问当前节点的所有邻接点（即该节点对应的链表）</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=first_vertex(Gp,begin); i&gt;=<span class="number">0</span>; i=next_vertex(Gp,begin,i))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!visited[i])  <span class="comment">//对于尚未遍历的邻接节点，递归调用DFS</span></span><br><span class="line">			DFS(Gp,i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">从序号为begin的节点开始深度优先遍历图Gp，Gp可以是连通图也可以是非连通图</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS_traverse</span><span class="params">(Graph Gp,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;NUM;i++)  visited[i] = <span class="literal">false</span>; </span><br><span class="line"> </span><br><span class="line">	DFS(Gp,v);</span><br><span class="line">	<span class="comment">//如果是非连通图，该循环保证每个极大连通子图中的顶点都能被遍历到   </span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;NUM;i++)&#123;	    </span><br><span class="line">		<span class="keyword">if</span>(!visited[i])</span><br><span class="line">			DFS(Gp,i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="bfs">BFS</h3>
+<p>用队列实现，类似于树的层次遍历。</p>
 <p>需要设置标记数组，标记是否访问过</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> visited[vnum];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">(Graph G, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">  visited[v] = <span class="literal">true</span>;</span><br><span class="line">  EnQueue(Q, v);</span><br><span class="line">  <span class="keyword">while</span>(!IsEmpty(Q))&#123;</span><br><span class="line">    DeQueue(Q, v);</span><br><span class="line">    <span class="keyword">for</span>(w=FirstNeighbor(G, v); w&gt;=<span class="number">0</span>; w=NextNeightbor(G, v)) &#123;	<span class="comment">// 邻接表实现</span></span><br><span class="line">      <span class="keyword">if</span>(!visited[w]) &#123;</span><br><span class="line">        visited[w] = <span class="literal">true</span>;</span><br><span class="line">        EnQueue(Q, w);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFSTraverse</span><span class="params">(Graph)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vum; i++)	visited[i] = <span class="literal">false</span>;</span><br><span class="line">  Queue Q;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vnum; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(!visited[i])</span><br><span class="line">      BFS(G, i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="拓扑排序-判断有环"><a href="#拓扑排序-判断有环" class="headerlink" title="拓扑排序/判断有环"></a>拓扑排序/判断有环</h3><p>indegree记录所有点的入度，将入度为0的节点入队，出队时将其指向的点入度-1，并判断入度是否为0。每出队一个节点，count+1，最后若count&lt;vnum，则说明有环。</p>
+<h3 id="拓扑排序判断有环">拓扑排序/判断有环</h3>
+<p>indegree记录所有点的入度，将入度为0的节点入队，出队时将其指向的点入度-1，并判断入度是否为0。每出队一个节点，count+1，最后若count&lt;vnum，则说明有环。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">TopSort</span><span class="params">(Graph G)</span> </span>&#123;</span><br><span class="line">  Queue Q;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;G.vexnum; i++)</span><br><span class="line">    <span class="keyword">if</span>(indegree[i] == <span class="number">0</span>)</span><br><span class="line">      EnQueue(Q, i);</span><br><span class="line"> 	</span><br><span class="line">  <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(!IsEmpty(Q)) &#123;</span><br><span class="line">    DeQueue(Q, i);</span><br><span class="line">    print(i);</span><br><span class="line">    <span class="keyword">for</span>(p=G.vertices[i].firstarc; p; p=p-&gt;nextarc) &#123;</span><br><span class="line">      v = p-&gt;adjvex;</span><br><span class="line">      indegree[v] -= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(indegree[v] == <span class="number">0</span>)</span><br><span class="line">        EnQueue(Q, v);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(count &lt; G.vexnum)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;			<span class="comment">// 有环</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="查找-1"><a href="#查找-1" class="headerlink" title="查找"></a>查找</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3> <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> high=n<span class="number">-1</span>, low=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> mid = (high+low)/<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] == key)</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] &lt; key)</span><br><span class="line">      low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> 	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>采用双亲表示法</p>
+<h2 id="查找-1">查找</h2>
+<h3 id="二分查找">二分查找</h3>
+<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> high=n<span class="number">-1</span>, low=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> mid = (high+low)/<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] == key)</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] &lt; key)</span><br><span class="line">      low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> 	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="并查集">并查集</h3>
+<h4 id="定义">定义</h4>
+<p>采用双亲表示法</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> UFSets[SIZE]</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Initial</span><span class="params">(<span class="keyword">int</span> S)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;SIZE; i++)</span><br><span class="line">    S[i] = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> S[], <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(x&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">    x = S[x];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> S[], <span class="keyword">int</span> r1, <span class="keyword">int</span> r2)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 小树合并到大树</span></span><br><span class="line">  <span class="keyword">if</span>(r1==r2) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span>(S[r1] &gt; S[r2])&#123;</span><br><span class="line">    S[r1] += S[r2];</span><br><span class="line">    S[r2] = r1;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    S[r2] += S[r1];</span><br><span class="line">    S[r1] = r2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>查找时间复杂度：$O(log_2n)$</p>
-<p>合并时间复杂度：$O(1)$</p>
-<h4 id="连通分量数-判断连通"><a href="#连通分量数-判断连通" class="headerlink" title="连通分量数/判断连通"></a>连通分量数/判断连通</h4><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-10-26%20at%2009.29.50.png" alt=""></p>
-<h4 id="判断有环"><a href="#判断有环" class="headerlink" title="判断有环"></a>判断有环</h4><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-10-26%20at%2009.32.07.png" alt=""></p>
+<p>查找时间复杂度：<span class="math inline">\(O(log_2n)\)</span></p>
+<p>合并时间复杂度：<span class="math inline">\(O(1)\)</span></p>
+<h4 id="连通分量数判断连通">连通分量数/判断连通</h4>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-10-26%20at%2009.29.50.png" /></p>
+<h4 id="判断有环">判断有环</h4>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-10-26%20at%2009.32.07.png" /></p>
 <p>图中，第一轮a、b、c合并，第二轮b、c合并时发现b、c已经在同一集合，直接return 1；</p>
 ]]></content>
       <categories>
@@ -99,40 +137,48 @@
 <li>第2块：存放位示图。</li>
 <li>接下来若干块存放inode节点，</li>
 </ul>
-<h2 id="打开文件过程"><a href="#打开文件过程" class="headerlink" title="打开文件过程"></a>打开文件过程</h2><p>系统会在内存中维护一个以打开文件列表，如果打开文的文件不在此列表中，会将该文件的FCB读取到内存，文件信息都存储在FCB中，然后更新已打开文件列表。</p>
+<h2 id="打开文件过程">打开文件过程</h2>
+<p>系统会在内存中维护一个以打开文件列表，如果打开文的文件不在此列表中，会将该文件的FCB读取到内存，文件信息都存储在FCB中，然后更新已打开文件列表。</p>
 <ul>
 <li>open 将文件控制信息从外存读入内存</li>
 <li>read，根据FCB将文件数据从外存读入内存</li>
 </ul>
-<h3 id="目录文件"><a href="#目录文件" class="headerlink" title="目录文件"></a>目录文件</h3><p>目录的表项：<strong>文件名、文件类型、起始块号、文件大小</strong>、其他（用来实现文件保护等），一行对应一个FCB</p>
+<h3 id="目录文件">目录文件</h3>
+<p>目录的表项：<strong>文件名、文件类型、起始块号、文件大小</strong>、其他（用来实现文件保护等），一行对应一个FCB</p>
 <p>目录文件所占块数量：目录项数量*目录项大小/块大小</p>
 <p>目录文件太大怎么办：如果目录文件大小超过一个块，从FAT表中取出一块空闲块，分配给他。</p>
 <p>从根目录开始查找，要将<code>“/A/Dm”</code>读入内存，过程</p>
 <pre><code>1. 因为根目录存放在磁盘固定位置，首先到根目录序寻找A对应的目录项，确定A的起始块号5
 2. 到5号物理块中尝试寻找Dm，若找不到则去下一块寻找（下一块物理地址由FAT表确定）。
-3. 找到Dm的目录项，就得到了Dm对应的起始物理块号，根据FAT表找其之后的物理块，将其读入内存
-</code></pre><h2 id="文件分配方式"><a href="#文件分配方式" class="headerlink" title="文件分配方式"></a>文件分配方式</h2><h3 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h3><h3 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h3><h4 id="隐式链接"><a href="#隐式链接" class="headerlink" title="隐式链接"></a>隐式链接</h4><h4 id="显式链接（FAT）"><a href="#显式链接（FAT）" class="headerlink" title="显式链接（FAT）"></a>显式链接（FAT）</h4><p>FAT表项为：下一块块号，<strong>当前块号是隐含的</strong>。</p>
+3. 找到Dm的目录项，就得到了Dm对应的起始物理块号，根据FAT表找其之后的物理块，将其读入内存</code></pre>
+<h2 id="文件分配方式">文件分配方式</h2>
+<h3 id="连续分配">连续分配</h3>
+<p>特点</p>
+<h3 id="链接分配">链接分配</h3>
+<h4 id="隐式链接">隐式链接</h4>
+<h4 id="显式链接fat">显式链接（FAT）</h4>
+<p>FAT表项为：下一块块号，<strong>当前块号是隐含的</strong>。</p>
 <p>每个FAT表项大小：由磁盘块数决定，根据题目条件确定FAT16就是16bit</p>
 <p>FAT表大小：磁盘块数*表项大小</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-11%20%E4%B8%8B%E5%8D%886.23.31.png" alt=""></p>
-<ol>
-<li>因为每个表项2B，所以用16bit表示块，一共有$2^{16}$个块，FAT大小为$2^{16} \times 2B = 128KB$ 。文件最大长度：FAT不限制文件大小，所以最大文件就是把所有FAT表项分给一个文件$2^{16} \times 4KB = 512MB$</li>
+<h2 id="例题">例题</h2>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-11%20%E4%B8%8B%E5%8D%886.23.31.png" /></p>
+<ol start="2" type="1">
+<li>因为每个表项2B，所以用16bit表示块，一共有<span class="math inline">\(2^{16}\)</span>个块，FAT大小为<span class="math inline">\(2^{16} \times 2B = 128KB\)</span> 。文件最大长度：FAT不限制文件大小，所以最大文件就是把所有FAT表项分给一个文件<span class="math inline">\(2^{16} \times 4KB = 512MB\)</span></li>
 <li>分别在100，106（链式）</li>
 <li>访问内存的dir目录文件，查找dir1的簇号48并读入内存，从dir1中找到file1的起始块号100，因为5000B在第二个簇，所以在<strong>FAT中</strong>根据100找到第二块即106号，所以100号其实并没有被访问，访问了48、106</li>
 </ol>
-<h3 id="访问磁盘次数"><a href="#访问磁盘次数" class="headerlink" title="访问磁盘次数"></a>访问磁盘次数</h3><p>若访问/a/b/c</p>
+<h3 id="访问磁盘次数">访问磁盘次数</h3>
+<p>若访问/a/b/c</p>
 <ul>
-<li><p>访问根目录，若根目录在内存中，不用访问磁盘</p>
-</li>
-<li><p>从根目录中读出a文件控制块的磁盘地址，访问磁盘取出读入内存（一次）</p>
-</li>
-<li><p>从a的文件控制块中读出b文件控制块的地址，访问磁盘读入内存（两次）</p>
-</li>
-<li><p>从b的文件控制块中读出c文件控制块的地址，访问磁盘读入内存（三次）</p>
-</li>
-<li><p>若要访问c的某一块位<strong>直接索引</strong>，直接根据索引地址，访问磁盘（四次）</p>
-</li>
+<li><p>访问根目录，若根目录在内存中，不用访问磁盘</p></li>
+<li><p>从根目录中读出a文件控制块的磁盘地址，访问磁盘取出读入内存（一次）</p></li>
+<li><p>从a的文件控制块中读出b文件控制块的地址，访问磁盘读入内存（两次）</p></li>
+<li><p>从b的文件控制块中读出c文件控制块的地址，访问磁盘读入内存（三次）</p></li>
+<li><p>若要访问c的某一块位<strong>直接索引</strong>，直接根据索引地址，访问磁盘（四次）</p></li>
 </ul>
+<h3 id="支持的最大文件长度">支持的最大文件长度</h3>
+<p>如果采用混合索引，最大长度为直接索引个数x块大小+一级索引个数x一块能放表项个数x块大小+…</p>
+<p>如果采用FAT表，看上面例题</p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -451,10 +497,12 @@ ASL  = \frac{b+1}{2} + \frac{s+1}{2}
 <li><p>直接映射和组相连映射主存结构相同</p></li>
 <li><p><strong>三种映射方式的标记长度计算方法不同</strong></p></li>
 <li><p>cache地址结构为：<strong>行号+块内地址</strong>，知道cache大小可以直接得知其地址长度，比如Cache行大小为16KB，可知其<strong>行号+块内地址</strong>长度为14。</p>
-<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-07%20%E4%B8%8B%E5%8D%882.45.35.png" /></p></li>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-07%20%E4%B8%8B%E5%8D%882.45.35.png" /></p></li>
 <li><p>主存地址除掉低位的块内地址部分，就是主存块号</p></li>
 <li><p>cache块=标记位+数据位。</p></li>
-<li><p><strong>标记项</strong>包括有效位、<strong>标记位</strong>tag、一致性维护位(脏位)、替换算法控制位/有效位（1位）。标记项长度一般用<strong>主存地址长度-组号-块内地址</strong>算得。如果使用写回法，必须设置一个脏位，全写法则不用（王道组原P149.12）。若采用随机替换算法不需要额外标记位。</p></li>
+<li><p><strong>标记项</strong>包括有效位、<strong>标记位</strong>tag、一致性维护位(脏位)、替换算法控制位/有效位（1位）。标记项长度一般用<strong>主存地址长度-组号-块内地址</strong>算得。</p></li>
+<li><p>如果使用写回法，必须设置一个脏位，全写法则不用（王道组原P149.12）。</p></li>
+<li><p>若采用随机替换算法不需要额外标记位。 如果使用LRU，每组/行需要设置1个LRU位 （真题 2018 44</p></li>
 </ul>
 ]]></content>
       <categories>
@@ -1575,36 +1623,45 @@ return redirect(url_for('index'))</br>
   <entry>
     <title>窗口大小、有效数据率、信道利用率计算</title>
     <url>/2021/08/06/flow-control-cal/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h2><h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>$W_T = W_R = 1$</p>
-<h3 id="GBN协议"><a href="#GBN协议" class="headerlink" title="GBN协议"></a>GBN协议</h3><p>$W_T \ge 1,  W_R = 1$</p>
-<p><strong>若用n个bit对帧序列进行编号，$W_T \le 2^{n}-1 $​</strong></p>
-<h3 id="选择重传协议"><a href="#选择重传协议" class="headerlink" title="选择重传协议"></a>选择重传协议</h3><p>$ W_T \ge 1, W_R \ge 1$</p>
-<p>$W_T \ge W_R$，否则接收窗口永远不满，无意义</p>
-<p>若用n个bit对帧序列进行编号，$W_T + W_R \le 2^n$</p>
-<p>一般情况下$W_R = W_T$，所以最大值为$W_{Tmax} = W_{Rmax} = 2^{n-1}$</p>
-<h2 id="有效数据率"><a href="#有效数据率" class="headerlink" title="有效数据率"></a>有效数据率</h2><p>首先要知道<em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率$V=\frac{m}{T}$​</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="窗口大小">窗口大小</h2>
+<h3 id="停止等待协议">停止等待协议</h3>
+<p><span class="math inline">\(W_T = W_R = 1\)</span></p>
+<h3 id="gbn协议">GBN协议</h3>
+<p><span class="math inline">\(W_T \ge 1, W_R = 1\)</span></p>
+<p><strong>若用n个bit对帧序列进行编号，$W_T ^{n}-1 $​</strong></p>
+<h3 id="选择重传协议">选择重传协议</h3>
+<p>$ W_T , W_R $</p>
+<p><span class="math inline">\(W_T \ge W_R\)</span>，否则接收窗口永远不满，无意义</p>
+<p>若用n个bit对帧序列进行编号，<span class="math inline">\(W_T + W_R \le 2^n\)</span></p>
+<p>一般情况下<span class="math inline">\(W_R = W_T\)</span>，所以最大值为<span class="math inline">\(W_{Tmax} = W_{Rmax} = 2^{n-1}\)</span></p>
+<h2 id="有效数据率">有效数据率</h2>
+<p>首先要知道<em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率<span class="math inline">\(V=\frac{m}{T}\)</span>​</p>
 <p>设：</p>
 <ul>
-<li><p>帧大小：L</p>
-</li>
-<li><p>两主机间单向传播时间：t，则RTT为2t</p>
-</li>
-<li><p>信道带宽/数据传输率：M</p>
-</li>
-<li><p>发送周期：$T = \frac{L}{M} + 2t + (确认帧发送时间)$​​ </p>
+<li><p>帧大小：L</p></li>
+<li><p>两主机间单向传播时间：t，则RTT为2t</p></li>
+<li><p>信道带宽/数据传输率：M</p></li>
+<li><p>发送周期：<span class="math inline">\(T = \frac{L}{M} + 2t + 确认帧发送时间\)</span>​​</p>
 <blockquote>
-<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为$\frac{L}{M}$​, 王道P81</p>
-</blockquote>
-</li>
+<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为<span class="math inline">\(\frac{L}{M}\)</span>​, 王道P81</p>
+</blockquote></li>
 </ul>
-<h3 id="停止等待协议-1"><a href="#停止等待协议-1" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>由于必须收到确认才能再次发送，所以一个发送周期之内发送一帧，所以</p>
-<script type="math/tex; mode=display">
-V=\frac{L}{T} = \frac{L}{\frac{L}{M}+2t}</script><h3 id="GBN协议-1"><a href="#GBN协议-1" class="headerlink" title="GBN协议"></a>GBN协议</h3><p>设窗口大小为n</p>
-<p>在收到确认前可以发送n个帧，所以</p>
-<script type="math/tex; mode=display">
-V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}</script><h3 id="选择重传协议-1"><a href="#选择重传协议-1" class="headerlink" title="选择重传协议"></a>选择重传协议</h3><p>同上</p>
-<h2 id="信道利用率"><a href="#信道利用率" class="headerlink" title="信道利用率"></a>信道利用率</h2><script type="math/tex; mode=display">
-信道利用率=\frac{有效时间}{总时间}=\frac{\frac{nL}{M}}{T}</script>]]></content>
+<h3 id="停止等待协议-1">停止等待协议</h3>
+<p>由于必须收到确认才能再次发送，所以一个发送周期之内发送一帧，所以 <span class="math display">\[
+V=\frac{L}{T} = \frac{L}{\frac{L}{M}+2t}
+\]</span></p>
+<h3 id="gbn协议-1">GBN协议</h3>
+<p>设窗口大小为n</p>
+<p>在收到确认前可以发送n个帧，所以 <span class="math display">\[
+V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
+\]</span></p>
+<h3 id="选择重传协议-1">选择重传协议</h3>
+<p>同上</p>
+<h2 id="信道利用率">信道利用率</h2>
+<p><span class="math display">\[
+信道利用率=\frac{数据传输时间}{发送数据周期}=\frac{\frac{nL}{M}}{T}
+\]</span></p>
+]]></content>
       <categories>
         <category>计算机网络</category>
       </categories>
@@ -1954,10 +2011,11 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}</script><h3 id="选择重传协议-
   <entry>
     <title>408考题中常见的隐含条件</title>
     <url>/2021/08/27/implied-term/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><div class="table-container">
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="计算机网络">计算机网络</h2>
+<h3 id="端口号">端口号</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>FTP数据链接</th>
 <th>FTP控制链接</th>
 <th>TELNET</th>
@@ -1968,7 +2026,7 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}</script><h3 id="选择重传协议-
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>TCP</td>
 <td>TCP</td>
 <td>TCP</td>
@@ -1977,108 +2035,112 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}</script><h3 id="选择重传协议-
 <td>TCP</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>20</td>
 <td>21</td>
 <td>23</td>
 <td>25</td>
 <td>80</td>
 <td>110</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>DNS</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>TCP</td>
 </tr>
-<tr>
+<tr class="even">
 <td>20</td>
 </tr>
 </tbody>
 </table>
-</div>
 <blockquote>
 <p>FTP数据传输时，服务器的端口时20，客户端的端口可以是其他</p>
 </blockquote>
-<h3 id="各层协议格式"><a href="#各层协议格式" class="headerlink" title="各层协议格式"></a>各层协议格式</h3><div class="table-container">
+<h3 id="各层协议格式">各层协议格式</h3>
 <table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 86%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>层</th>
 <th>格式</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>IP分组</td>
 <td>首部固定20B，最大60B<br />总长度1、片偏移8、首部长度4（一种8片首饰）<br />TTL生存时间，经过路由器-1<br />首部校验和只校验首部<br />总长度包括数据和首部<br />源地址和目的地址长度4B</td>
 </tr>
-<tr>
+<tr class="even">
 <td>UDP数据报</td>
 <td>首部8B，由4个2B字段组成<br />长度字段包含首部和数据<br />检验和检验首部+数据部分</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>TCP报文段</td>
-<td>首部固定20B，最大60B（同IP）<br />源/目的端口占2B($2^{16}-1=65535$)<br />序号和确认号各占4B<br /></td>
+<td>首部固定20B，最大60B（同IP）<br />源/目的端口占2B(<span class="math inline">\(2^{16}-1=65535\)</span>)<br />序号和确认号各占4B<br /></td>
 </tr>
-<tr>
+<tr class="even">
 <td>MAC帧</td>
 <td>前同步码8B<br />MAC地址张度6B<br />最短帧长64B</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>以太网帧  <strong>18B首部尾部</strong></p>
+<p>以太网帧 <strong>18B首部尾部</strong></p>
 <p>以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）</p>
 <p>以太网数据最多1500B, 以太网最大1518B，数据最少46B</p>
-<h3 id="ABC类网络"><a href="#ABC类网络" class="headerlink" title="ABC类网络"></a>ABC类网络</h3><p>现推方法：</p>
+<h3 id="abc类网络">ABC类网络</h3>
+<p>现推方法：</p>
 <p>A类：0，网络号为前8位，因此网络号:1~126</p>
 <p>B类：10，网络号为前16位，因此网络号:128.1~191.255</p>
 <p>C类：110，网络号为前24位，因此网络号:192.0.1~223.255.255</p>
 <p>D类：1110</p>
 <p>E类：1111</p>
-<h3 id="私有网段地址"><a href="#私有网段地址" class="headerlink" title="私有网段地址"></a>私有网段地址</h3><p>给出私有网段地址，推出可能使用了NAT技术</p>
-<div class="table-container">
+<h3 id="私有网段地址">私有网段地址</h3>
+<p>给出私有网段地址，推出可能使用了NAT技术</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>网段数量</th>
 <th>类型</th>
 <th>地址</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>A</td>
 <td><strong>10</strong>.0.0.0～<strong>10</strong>.255.255.255.255</td>
 </tr>
-<tr>
+<tr class="even">
 <td>16</td>
 <td>B</td>
 <td><strong>172.16</strong>.0.0～<strong>172.31</strong>.255.255</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>256</td>
 <td>C</td>
 <td><strong>192.168.0</strong>.0～<strong>192.168.255</strong>.255</td>
 </tr>
 </tbody>
 </table>
-</div>
 <blockquote>
 <p>C类最重要</p>
 </blockquote>
-<h3 id="链路层介质"><a href="#链路层介质" class="headerlink" title="链路层介质"></a>链路层介质</h3><p>王道P107</p>
-<h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="C语言数据类型大小"><a href="#C语言数据类型大小" class="headerlink" title="C语言数据类型大小"></a>C语言数据类型大小</h3><p>long:64</p>
+<h3 id="链路层介质">链路层介质</h3>
+<p>100BASE-T：100表示传送速度位100Mb/s，BASE表示基带传输，T表示双绞线，如果为F表示光纤</p>
+<h2 id="组成原理">组成原理</h2>
+<h3 id="c语言数据类型大小">C语言数据类型大小</h3>
+<p>long:64</p>
 <p>double:64</p>
 <p>int: 32</p>
 <p>float:32</p>
@@ -3660,38 +3722,42 @@ y\\
   <entry>
     <title>指令系统、CPU、流水线综合</title>
     <url>/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="ALU加减法，标志位"><a href="#ALU加减法，标志位" class="headerlink" title="ALU加减法，标志位"></a>ALU加减法，标志位</h2><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png" alt=""></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="alu加减法标志位">ALU加减法，标志位</h2>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png" /></p>
 <p>上图电路可以实现无符号数的加法和减法，当为加法时，sub=0，X和Y作为加法器的输入。当sub=1时，Y被取反，并且加上了Cin=1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。</p>
 <p><strong>ZF：</strong> 零标志（Zero Flag），ZF=1表示有符号/无符号计算结果为0。用于判断while条件中的相等</p>
 <p><strong>OF：</strong> 溢出标志(Overflow Flag)，OF=1表示<strong>有符号整数</strong>溢出，无符号数看CF</p>
-<p><strong>CF：</strong> 进/借位标志（Carry Flag），判断<strong>无符号数</strong>溢出，CF=1时，若sub=0,加法,则表示进位溢出，若sub=1, 为减法, 则表示借位溢出（不够减）。$CF= Sub \oplus Cout（Sub==Cin）$。CF=1表示溢出</p>
-<p><strong>SF：</strong> 符号标志（Sign Flag），SF=两个数最高位异或，<strong>计算结果的符号</strong>。根OF搭配实现大小关系。 </p>
+<p><strong>CF：</strong> 进/借位标志（Carry Flag），判断<strong>无符号数</strong>溢出，CF=1时，若sub=0,加法,则表示进位溢出，若sub=1, 为减法, 则表示借位溢出（不够减）。<span class="math inline">\(CF= Sub \oplus Cout（Sub==Cin）\)</span>。CF=1表示溢出</p>
+<p><strong>SF：</strong> 符号标志（Sign Flag），SF=两个数最高位异或，<strong>计算结果的符号</strong>。根OF搭配实现大小关系。</p>
 <p>这些标志位都属于PSW（程序状态寄存器），与跳转条件指令有关，条件判断的本质位一个减法，如当a==1时跳转，会计算a-1，判断ZF是否位0，若位0则jmp</p>
 <p>计算a-b</p>
 <p>若OF=SF，表示大于，如OF=0，SF=0，没有溢出，结果符号为0，说明a&gt;b</p>
-<p>若OF$\ne$SF，表示小于，OF=0, SF=1，没有溢出，结果符号为1，说明a&lt;b</p>
+<p>若OF<span class="math inline">\(\ne\)</span>SF，表示小于，OF=0, SF=1，没有溢出，结果符号为1，说明a&lt;b</p>
 <p>ZF=1，a=b</p>
 <p>例题</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-22%20%E4%B8%8B%E5%8D%884.45.52.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-22%20%E4%B8%8B%E5%8D%884.45.52.png" /></p>
 <p>（3）无符号数相减，a-b，若a&lt;b，肯定发生了借位即CF=1，若a=b，结果为0，ZF=0，所以C，Z，N应该为1, 1, 0</p>
-<h2 id="溢出判断"><a href="#溢出判断" class="headerlink" title="溢出判断"></a>溢出判断</h2><h3 id="无符号数加减法"><a href="#无符号数加减法" class="headerlink" title="无符号数加减法"></a>无符号数加减法</h3><p>$CF = Sub \oplus Cout$ ，公式要记住，2017年考了，sub代表减法，Cout代表进位。如0110+0100，cout=0，sub=0，所以CF=0</p>
-<h3 id="有符号数加减法"><a href="#有符号数加减法" class="headerlink" title="有符号数加减法"></a>有符号数加减法</h3><ol>
+<h2 id="溢出判断">溢出判断</h2>
+<h3 id="无符号数加减法">无符号数加减法</h3>
+<p><span class="math inline">\(CF = Sub \oplus Cout\)</span> ，公式要记住，2017年考了，sub代表减法，Cout代表进位。如0110+0100，cout=0，sub=0，所以CF=0</p>
+<h3 id="有符号数加减法">有符号数加减法</h3>
+<p>真题 2018 19题</p>
+<ol type="1">
 <li><p>一位符号位，只有符号相同的数相加才会发生溢出，因此判断条件：两个正数相加，结果为负，则溢出。</p>
-<p><a href="https://www.zhihu.com/question/265388131">如何确定数值计算后的SF,ZF,CF,OF？ - 知乎 (zhihu.com)</a></p>
-</li>
-<li><p>一位符号位，符号位<strong>进位</strong>与最高数位进位相同则无溢出，否则溢出。</p>
-</li>
-<li><p>两位符号位，01正溢出，10负溢出。</p>
-</li>
+<p><a href="https://www.zhihu.com/question/265388131">如何确定数值计算后的SF,ZF,CF,OF？ - 知乎 (zhihu.com)</a></p></li>
+<li><p>一位符号位，符号位<strong>进位</strong>与最高数位<strong>进位</strong>相同则无溢出，否则溢出。</p></li>
+<li><p>两位符号位，01正溢出，10负溢出。</p></li>
 </ol>
-<h3 id="无符号数乘法"><a href="#无符号数乘法" class="headerlink" title="无符号数乘法"></a>无符号数乘法</h3><ol>
+<h3 id="无符号数乘法">无符号数乘法</h3>
+<ol type="1">
 <li>两个n位的无符号数a、b相乘，左边n位必须全0，否则溢出</li>
 <li>手算：计算两个数十进制乘积，看是否超出了n位数能表示的范围</li>
 </ol>
 <blockquote>
 <p>2020真题</p>
 </blockquote>
-<h3 id="有符号数乘法（补码）"><a href="#有符号数乘法（补码）" class="headerlink" title="有符号数乘法（补码）"></a>有符号数乘法（补码）</h3><ol>
+<h3 id="有符号数乘法补码">有符号数乘法（补码）</h3>
+<ol type="1">
 <li>两个n位的有符号数a、b相乘，左边<strong>n+1位</strong>必须<strong>全0或全1</strong>，否则溢出</li>
 <li>手算：计算两个数十进制乘积，看是否超出了n位有符号数能表示的范围</li>
 </ol>
@@ -3699,50 +3765,59 @@ y\\
 <blockquote>
 <p>2019真题</p>
 </blockquote>
-<h3 id="移位"><a href="#移位" class="headerlink" title="移位"></a>移位</h3><p>对于$[X]_补=X_0.X_1X_2…X_n$，补码左移，什么情况会发生溢出？</p>
-<p>​    $X_0 \ne X1$时会溢出，可以用双符号位理解，当左移双符号位变为$X_0X_1$，不相等肯定溢出。</p>
-<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><h2 id="电路图元件"><a href="#电路图元件" class="headerlink" title="电路图元件"></a>电路图元件</h2><p>$X_{in}$ 控制寄存器数据流入</p>
-<p>$X_{out}$ 控制寄存器数据流出</p>
-<p>$X_{op}$ 控制器件的操作，比如$ALU_{op}$可以控制ALU操作为add、sub…</p>
+<h3 id="移位">移位</h3>
+<p>对于<span class="math inline">\([X]_补=X_0.X_1X_2...X_n\)</span>，补码左移，什么情况会发生溢出？</p>
+<p>​ <span class="math inline">\(X_0 \ne X1\)</span>时会溢出，可以用双符号位理解，当左移双符号位变为<span class="math inline">\(X_0X_1\)</span>，不相等肯定溢出。</p>
+<h3 id="浮点数">浮点数</h3>
+<h2 id="电路图元件">电路图元件</h2>
+<p><span class="math inline">\(X_{in}\)</span> 控制寄存器数据流入</p>
+<p><span class="math inline">\(X_{out}\)</span> 控制寄存器数据流出</p>
+<p><span class="math inline">\(X_{op}\)</span> 控制器件的操作，比如<span class="math inline">\(ALU_{op}\)</span>可以控制ALU操作为add、sub…</p>
 <blockquote>
-<p>若$PC_{out}=1, MAR_{in}=1$则$PC \rarr MAR$</p>
+<p>若<span class="math inline">\(PC_{out}=1, MAR_{in}=1\)</span>则<span class="math inline">\(PC \rarr MAR\)</span></p>
 </blockquote>
 <p>三态门：三种状态分别是连接、断开、高阻（了解）。控制器件与总线之间数据通路之间的连接与断开</p>
 <p>暂存器：暂存数据，一般与ALU搭配使用。如ALU有两个输入a和b，如果没有暂存器，数据总线同时连通a和b，造成两个输入端一样，增加暂存器可以将一个数据暂存其中，另一个数通过数据总线直接送入ALU，可以实现两个不同的输入。</p>
 <p>移位寄存器：实现移位运算</p>
-<p>多路选择器MUX：从多个输入中选择一个输出，控制信号为$MUX_{op}$</p>
-<p>译码器：n个输入$2^n$个输出，如对IR中的指令的操作码字段译码，向控制器提供特定的操作信号</p>
-<h2 id="一条指令执行过程"><a href="#一条指令执行过程" class="headerlink" title="一条指令执行过程"></a>一条指令执行过程</h2><p>一个指令周期可以分为4个机器周期：取指、间址、执行、中断。通常考数据流向、电路连线、元器件识别</p>
+<p>多路选择器MUX：从多个输入中选择一个输出，控制信号为<span class="math inline">\(MUX_{op}\)</span></p>
+<p>译码器：n个输入<span class="math inline">\(2^n\)</span>个输出，如对IR中的指令的操作码字段译码，向控制器提供特定的操作信号</p>
+<h2 id="一条指令执行过程">一条指令执行过程</h2>
+<p>一个指令周期可以分为4个机器周期：取指、间址、执行、中断。通常考数据流向、电路连线、元器件识别</p>
 <p><strong>取指</strong>：</p>
-<ol>
-<li>$PC \rarr MAR \rarr 地址总线 \rarr M$</li>
-<li>$CU读命令 \rarr 控制总线 \rarr M$</li>
-<li>$M \rarr 数据总线 \rarr MDR \rarr IR$</li>
-<li>$CU读命令$</li>
-<li>$(PC)+1$</li>
+<ol type="1">
+<li><span class="math inline">\(PC \rarr MAR \rarr 地址总线 \rarr M\)</span></li>
+<li><span class="math inline">\(CU读命令 \rarr 控制总线 \rarr M\)</span></li>
+<li><span class="math inline">\(M \rarr 数据总线 \rarr MDR \rarr IR\)</span></li>
+<li><span class="math inline">\(CU读命令\)</span></li>
+<li><span class="math inline">\((PC)+1\)</span></li>
 </ol>
 <p><strong>间址:</strong>(和取指周期前三步差不多)</p>
-<ol>
-<li>$Ad(IR) \rarr MAR \rarr 地址总线 \rarr M$</li>
-<li>$CU读命令 \rarr 控制总线 \rarr M$</li>
-<li>$M \rarr 数据总线 \rarr MDR$</li>
+<ol type="1">
+<li><span class="math inline">\(Ad(IR) \rarr MAR \rarr 地址总线 \rarr M\)</span></li>
+<li><span class="math inline">\(CU读命令 \rarr 控制总线 \rarr M\)</span></li>
+<li><span class="math inline">\(M \rarr 数据总线 \rarr MDR\)</span></li>
 </ol>
 <p><strong>执行：</strong>不统一</p>
 <p><strong>中断：</strong></p>
 <p>中断周期要做的事是保存程序断点到主存，所以要访存。堆栈在主存中，SP是栈顶指针地址。因为堆栈从高地址到低地址，所以SP-1而不是+1</p>
-<ol>
-<li>$CU控制信号使SP-1, SP \rarr MAR \rarr 地址总线 \rarr M$</li>
-<li>$CU写命令 \rarr 控制总线 \rarr M$</li>
-<li>$PC \rarr MDR \rarr 数据总线 \rarr M  （将PC保存到SP指向的内存）$</li>
-<li>$CU将中断程序的入口地址 \rarr PC$</li>
+<ol type="1">
+<li><span class="math inline">\(CU控制信号使SP-1, SP \rarr MAR \rarr 地址总线 \rarr M\)</span></li>
+<li><span class="math inline">\(CU写命令 \rarr 控制总线 \rarr M\)</span></li>
+<li><span class="math inline">\(PC \rarr MDR \rarr 数据总线 \rarr M （将PC保存到SP指向的内存）\)</span></li>
+<li><span class="math inline">\(CU将中断程序的入口地址 \rarr PC\)</span></li>
 </ol>
-<h2 id="一系列指令执行过程"><a href="#一系列指令执行过程" class="headerlink" title="一系列指令执行过程"></a>一系列指令执行过程</h2><h3 id="x86"><a href="#x86" class="headerlink" title="x86"></a>x86</h3><h4 id="数据表示"><a href="#数据表示" class="headerlink" title="数据表示"></a>数据表示</h4><p>字大小：16bit</p>
+<h2 id="一系列指令执行过程">一系列指令执行过程</h2>
+<h3 id="x86">x86</h3>
+<h4 id="数据表示">数据表示</h4>
+<p>字大小：16bit</p>
 <p>题目中exx代表32位寄存器，e开头, 3个字母，如eax，ebp …。若是两个字母ax、bx等是16位寄存器</p>
 <p>如果数据来自于寄存器，会写作eax，若访问内存，会加个括号，（eax+02H）, [eax+8]</p>
 <p>寻址时2个寄存器之间只能相加，最多用2个寄存器和1个有符号数计算地址，王道4.2.3 P172</p>
 <p><code>mov dword ptr [eax], 2</code> [eax]是读/写的地址, dword ptr指明读取单位是2个字即32bit，因此这条指令操作是：把2以4Byte形式传送到内存地址[eax]中。</p>
-<h4 id="算术逻辑运算指令"><a href="#算术逻辑运算指令" class="headerlink" title="算术逻辑运算指令"></a>算术逻辑运算指令</h4><p>add、sub、mul、imul、div、div、inc、dec、shl、shr</p>
-<h4 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h4><p>if/else/switch，判断条件的本质是计算a-b（cmp A, B），根据PSW来决定是否跳转，无符号数看CF、ZF，有符号数看OF、SF、ZF。</p>
+<h4 id="算术逻辑运算指令">算术逻辑运算指令</h4>
+<p>add、sub、mul、imul、div、div、inc、dec、shl、shr</p>
+<h4 id="分支结构">分支结构</h4>
+<p>if/else/switch，判断条件的本质是计算a-b（cmp A, B），根据PSW来决定是否跳转，无符号数看CF、ZF，有符号数看OF、SF、ZF。</p>
 <p>汇编语言：</p>
 <p>jmp和com一起使用，下面例子为：当eax&lt;=ebx时，跳转到03H。在条件跳转之前一定有一个cmp，无条件跳转则没有。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cmp	eax,	ebx</span><br><span class="line">jle	03H</span><br></pre></td></tr></table></figure>
@@ -3757,13 +3832,15 @@ y\\
 <blockquote>
 <p>偏移量是针对下一条指令，所以先+2，再+2x偏移</p>
 </blockquote>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-23%20%E4%B8%8B%E5%8D%882.59.59.png" alt=""></p>
-<h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p>for、while，原理同跳转指令</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-23%20%E4%B8%8B%E5%8D%882.59.59.png" /></p>
+<h4 id="循环结构">循环结构</h4>
+<p>for、while，原理同跳转指令</p>
 <p>C语言：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">  <span class="keyword">do</span> something</span><br></pre></td></tr></table></figure>
 <p>汇编语言：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Loop1: </span><br><span class="line">	&lt;do something&gt;</span><br><span class="line"></span><br><span class="line">inc i</span><br><span class="line">cmp i, N</span><br><span class="line">jl Loop1		&#x2F;&#x2F; i&lt;N满足条件，继续循环</span><br></pre></td></tr></table></figure>
-<h4 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h4><p>call/ret与push、pop搭配使用，call则将<strong>当前PC地址、函数实参、栈底指针</strong>入栈，ret则弹出上一层函数的地址，继续执行。比如:</p>
+<h4 id="函数调用">函数调用</h4>
+<p>call/ret与push、pop搭配使用，call则将<strong>当前PC地址、函数实参、栈底指针</strong>入栈，ret则弹出上一层函数的地址，继续执行。比如:</p>
 <p><strong>当前PC地址是：call指令的下一条指令地址。</strong></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f1()&#123;</span><br><span class="line">  f2();</span><br><span class="line">  f3();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在执行完f2，接下来应该执行f3，ret，pop出一个地址，这个地址是f3函数的地址，栈底指针是f1函数的栈底指针。</p>
@@ -3773,76 +3850,85 @@ y\\
 <p>汇编：</p>
 <p>每个函数第一条指令为push ebp，意思是保护先前EBP指针， EBP入栈</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push ebp	&#x2F;&#x2F; 保护上层函数地址</span><br><span class="line">move ebp esp &#x2F;&#x2F; 把esp栈顶指针设置为ebp栈底指针</span><br><span class="line"></span><br><span class="line">cmp n, 1		&#x2F;&#x2F; 比较</span><br><span class="line">jle	xxx			&#x2F;&#x2F; 根据结果跳转</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="程序举例"><a href="#程序举例" class="headerlink" title="程序举例"></a>程序举例</h4><ul>
+<h4 id="程序举例">程序举例</h4>
+<ul>
 <li><p>访问数组时格式<code>move arr (, %edi, 4)  %edx</code></p>
-<p>arr时数组地址，%edi是index，4是数组元素占字节数(int)，这个代码的意思是<code>arr[edi] -&gt; %edx</code></p>
-</li>
-<li><p>mov的间接寻址<code>mov 8(%ebp), %edi</code>  8(%ebp)的意思是，基于%ebp偏移8个单元</p>
-</li>
+<p>arr时数组地址，%edi是index，4是数组元素占字节数(int)，这个代码的意思是<code>arr[edi] -&gt; %edx</code></p></li>
+<li><p>mov的间接寻址<code>mov 8(%ebp), %edi</code> 8(%ebp)的意思是，基于%ebp偏移8个单元</p></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++)</span><br><span class="line">    s += arr[i]</span><br><span class="line">  retrun s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push	%ebp								&#x2F;&#x2F; 保护上层函数指针</span><br><span class="line">mov		%esp, %ebp						&#x2F;&#x2F; 栈顶指针指向栈底</span><br><span class="line">sub		$0x10, -0x4(%ebp)		&#x2F;&#x2F; -0x4(%ebp)是相对寻址，这个单元存放变量i的值</span><br><span class="line">movl	$0x0, -0x4(%ebp)		&#x2F;&#x2F; i&#x3D;0</span><br><span class="line">jmp		第12行</span><br><span class="line">mov		-0x4(%ebp), %eax		&#x2F;&#x2F; 把栈底指针偏移-4字节的数据移入%eax，使%eax存放i的值</span><br><span class="line">mov		arr(, %eax, 4), %edx	&#x2F;&#x2F; arr[%eax] -&gt; %edx, %eax是索引</span><br><span class="line">mov		s, %eax							&#x2F;&#x2F; s是累加变量sum的地址，传给%eax</span><br><span class="line">add		%edx, %eax					&#x2F;&#x2F; sum +&#x3D; arr[i]</span><br><span class="line">mov		%edx, s</span><br><span class="line">addl	%0x1, -0x4(%ebp)		&#x2F;&#x2F; i++</span><br><span class="line">cmpl	%0x3, -0x4(%ebp)		&#x2F;&#x2F; i-3</span><br><span class="line">jle		第6行								&#x2F;&#x2F; if i&lt;3, 跳转</span><br><span class="line">mov		s, %eax						</span><br><span class="line">leave</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
-<h3 id="MIPS"><a href="#MIPS" class="headerlink" title="MIPS"></a>MIPS</h3><h4 id="五段流水线"><a href="#五段流水线" class="headerlink" title="五段流水线"></a>五段流水线</h4><p>流水线一般结合MIPS32（RISC）考，不和X86一起考，因为X86是CISC不支持流水线。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png" alt=""></p>
+<h3 id="mips">MIPS</h3>
+<h4 id="五段流水线">五段流水线</h4>
+<p>流水线一般结合MIPS32（RISC）考，不和X86一起考，因为X86是CISC不支持流水线。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png" /></p>
 <p>简单介绍一下指令执行过程，<strong>注意：以下不是所有指令都具有，只是为了方便设计流水线，每个指令周期都有这几个机器周期，但周期内可能为空指令（空指令阶段什么都不做，但是要消耗时间），必须知道每种指令的机器周期有哪些。</strong></p>
-<ol>
+<ol type="1">
 <li>IF阶段，根据PC值从指令cache中取出指令，并将指令放在指令寄存器中，这是每个指令都要做的</li>
 <li>ID阶段，对指令译码，并从cache中取操作数(取不到则从主存找)，并存放到ID段的锁存器中，这里有三个：A、B、Imm，Imm代表立即数</li>
 <li>EX阶段，ALU将上一步得到的操作信息进行运算，运算结果放入EX段锁存器</li>
 <li>M阶段，访存阶段，只有Load和Store访存</li>
 <li>WB阶段，将数据写回<strong>寄存器</strong></li>
 </ol>
-<h5 id="运算类指令"><a href="#运算类指令" class="headerlink" title="运算类指令"></a>运算类指令</h5><p>如ADD，SUB，SHL等，其指令周期为：</p>
-<ol>
+<h5 id="运算类指令">运算类指令</h5>
+<p>如ADD，SUB，SHL等，其指令周期为：</p>
+<ol type="1">
 <li>IF</li>
 <li>ID，取出需要进行运算的操作数</li>
 <li>EX，将运算结果放入寄存器中，等待WB阶段写回寄存器</li>
-<li><strong>M ，空段</strong>，因为运算器运算的结果肯定是要直接放入某个寄存器中，因此不需要访存，例如ADD Rs, Rd的功能为$(Rs)+(Rd) \rarr Rd$，无访存阶段</li>
+<li><strong>M ，空段</strong>，因为运算器运算的结果肯定是要直接放入某个寄存器中，因此不需要访存，例如ADD Rs, Rd的功能为<span class="math inline">\((Rs)+(Rd) \rarr Rd\)</span>，无访存阶段</li>
 <li>WB，运算结果写回寄存器</li>
 </ol>
-<h5 id="LOAD指令"><a href="#LOAD指令" class="headerlink" title="LOAD指令"></a>LOAD指令</h5><p>LOAD Rd,996(Rs)，其功能为$(996 + (Rs)) \rarr Rd$，通常情况下，LOAD指令都要使用基址寻址，从表达式中可以看出进行了加法运算，因此必定有EX阶段</p>
-<ol>
+<h5 id="load指令">LOAD指令</h5>
+<p>LOAD Rd,996(Rs)，其功能为<span class="math inline">\((996 + (Rs)) \rarr Rd\)</span>，通常情况下，LOAD指令都要使用基址寻址，从表达式中可以看出进行了加法运算，因此必定有EX阶段</p>
+<ol type="1">
 <li>IF，每个指令都要有这个阶段</li>
 <li>ID，将基地址(Rs)取出，放到锁存器A中，偏移量的值放入Imm中</li>
 <li>EX，得到有效地址EA</li>
 <li>M，从cache的EA地址取数，并存放到锁存器</li>
 <li>WB，将该数写回Rd寄存器</li>
 </ol>
-<h5 id="STORE指令"><a href="#STORE指令" class="headerlink" title="STORE指令"></a>STORE指令</h5><p>STORE Rs, 996(Rd)，其功能为$Rs \rarr (996+(Rd))$，其前三个步骤都与LOAD一样</p>
-<ol>
+<h5 id="store指令">STORE指令</h5>
+<p>STORE Rs, 996(Rd)，其功能为<span class="math inline">\(Rs \rarr (996+(Rd))\)</span>，其前三个步骤都与LOAD一样</p>
+<ol start="4" type="1">
 <li>M，写入数据到cache，这一步就完成了STORE指令目的</li>
 <li><strong>WB，空</strong></li>
 </ol>
-<h5 id="条件转移"><a href="#条件转移" class="headerlink" title="条件转移"></a>条件转移</h5><p>采用相对寻址，如beq Rs, Rt, #偏移量，其功能为：若Rs==Rt，则(PC) + 指令字长/字节 + (指令字长/字节x偏移量) -&gt; PC，否则(PC) + 指令字长/字节 $\rarr$ PC(即顺序执行)</p>
+<h5 id="条件转移">条件转移</h5>
+<p>采用相对寻址，如beq Rs, Rt, #偏移量，其功能为：若Rs==Rt，则(PC) + 指令字长/字节 + (指令字长/字节x偏移量) -&gt; PC，否则(PC) + 指令字长/字节 <span class="math inline">\(\rarr\)</span> PC(即顺序执行)</p>
 <blockquote>
 <p>注：跳转到相对于下一条指令的偏移地址，这里指令字长单位是bit，字节是8bit。若指令字长为字节B，可以写作(PC) + 指令字长 + (指令字长x偏移量) -&gt; PC</p>
 </blockquote>
-<ol>
+<ol type="1">
 <li>IF</li>
 <li>ID，取出要比较的两个数，放入A、B锁存器，偏移量放入Imm中</li>
 <li>EX，运算，比较两个数</li>
 <li>M，不访存，这个阶段更新PC值</li>
 <li><strong>WB， 空</strong>，计算结果只是为了判断跳转，不需要写回</li>
 </ol>
-<h5 id="无条件转移"><a href="#无条件转移" class="headerlink" title="无条件转移"></a>无条件转移</h5><p>采用相对寻址，如jmp #偏移量，其功能为：(PC) + 指令字长/字节 + (偏移量/字节x指令字长) -&gt; PC</p>
+<h5 id="无条件转移">无条件转移</h5>
+<p>采用相对寻址，如jmp #偏移量，其功能为：(PC) + 指令字长/字节 + (偏移量/字节x指令字长) -&gt; PC</p>
 <blockquote>
 <p>注：跳转到相对于下一条指令的偏移地址</p>
 </blockquote>
-<ol>
+<ol type="1">
 <li>IF</li>
 <li>ID，偏移量放入Imm中</li>
 <li>EX，这个阶段更新PC值</li>
 <li><strong>M，空</strong></li>
 <li><strong>WB， 空</strong></li>
 </ol>
-<h4 id="判断是否冲突"><a href="#判断是否冲突" class="headerlink" title="判断是否冲突"></a>判断是否冲突</h4><p><a href="https://blog.csdn.net/Cyril_KI/article/details/111770213">流水线中数据相关的理解（RAW、WAR和WAW）_Cyril_KI的博客-CSDN博客</a></p>
-<p> 判断方法：判断两条指令什么相关，若<strong>时间上先运行</strong>的指令向R1<strong>写</strong>，但是还没写入时，<strong>时间上后运行</strong>的指令向R1<strong>读</strong>，这就发生了写后读。</p>
-<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ol>
+<h4 id="判断是否冲突">判断是否冲突</h4>
+<p><a href="https://blog.csdn.net/Cyril_KI/article/details/111770213">流水线中数据相关的理解（RAW、WAR和WAW）_Cyril_KI的博客-CSDN博客</a></p>
+<p>判断方法：判断两条指令什么相关，若<strong>时间上先运行</strong>的指令向R1<strong>写</strong>，但是还没写入时，<strong>时间上后运行</strong>的指令向R1<strong>读</strong>，这就发生了写后读。</p>
+<h5 id="方法">方法</h5>
+<ol type="1">
 <li>判断指令类型：运算类、load、store、条件转移、无条件转移</li>
 <li>写出每个指令需要的机器周期</li>
 <li>画图</li>
 </ol>
-<h5 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h5><p>在无转发机制的五段基本流水线（取指、译码/读寄存器、运算、访存、写回寄存器）中，下列指令存在数据冒险的指令对是（）</p>
+<h5 id="例1">例1</h5>
+<p>在无转发机制的五段基本流水线（取指、译码/读寄存器、运算、访存、写回寄存器）中，下列指令存在数据冒险的指令对是（）</p>
 <p>I1: add R1, R2, R3; (R2) + (R3) -&gt; R1</p>
 <p>I2: add R5, R2, R4; (R2) + (R4) -&gt; R5</p>
 <p>I3: add R4, R5, R3; (R5) + (R3) -&gt; R4</p>
@@ -3851,10 +3937,9 @@ y\\
 <p>B I2, I3</p>
 <p>C I2, I4</p>
 <p>D I3, I4</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>1</th>
 <th>2</th>
@@ -3865,7 +3950,7 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>I1</td>
 <td>IE</td>
 <td>ID(R2, R3)</td>
@@ -3874,7 +3959,7 @@ y\\
 <td>WB(R1)</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>I2</td>
 <td></td>
 <td>IE</td>
@@ -3885,12 +3970,10 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
 <p>可以看到I1在5写的寄存器R1和I2使用到的寄存器无关，因此不存在冲突，继续添加指令</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>1</th>
 <th>2</th>
@@ -3902,7 +3985,7 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>I1</td>
 <td>IE</td>
 <td>ID(R2, R3)</td>
@@ -3912,7 +3995,7 @@ y\\
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>I2</td>
 <td></td>
 <td>IE</td>
@@ -3922,7 +4005,7 @@ y\\
 <td>WB(R5)</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>I3</td>
 <td></td>
 <td></td>
@@ -3930,16 +4013,15 @@ y\\
 <td>ID(R5, R3)</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>写到这一步发现，I3在4要读R5，但是上一条指令还没写完，于是便出现了RAW冲突，所以选B</p>
 <p>解决方法是等待</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>1</th>
 <th>2</th>
@@ -3954,7 +4036,7 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>I1</td>
 <td>IE</td>
 <td>ID(R2, R3)</td>
@@ -3967,7 +4049,7 @@ y\\
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>I2</td>
 <td></td>
 <td>IE</td>
@@ -3980,7 +4062,7 @@ y\\
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>I3</td>
 <td></td>
 <td></td>
@@ -3995,11 +4077,11 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
-<h5 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h5><p>判断：流水线按序流动时，在RAW、WAR和WAW中，只可能出现RAW相关。</p>
+<h5 id="例2">例2</h5>
+<p>判断：流水线按序流动时，在RAW、WAR和WAW中，只可能出现RAW相关。</p>
 <p>对。当流水线按序流动，其图像如下：</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png" alt=""></p>
-<ol>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png" /></p>
+<ol type="1">
 <li>I1的2是读数据，I2、I3中的WB是写，都在2其之后，所以不存在WAR(读后写)相关</li>
 <li>I1的5是写数据，如果I2的3访问到了I1写的寄存器，就出现了RAW(写后读)相关</li>
 <li>I1的5是写，I2的6是写，在I1的写之后，所以不存在WAW相关</li>
@@ -4498,22 +4580,55 @@ y\\
   <entry>
     <title>408常见题</title>
     <url>/2021/09/07/408-problems/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="多长时间响应一次才能不丢失数据"><a href="#多长时间响应一次才能不丢失数据" class="headerlink" title="多长时间响应一次才能不丢失数据"></a>多长时间响应一次才能不丢失数据</h3><p><strong>查询/中断响应时间&gt;传输（准备）数据时间</strong></p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1202.png" alt=""></p>
-<p>1）设备A每次传输数据时间=$\frac{32bit}{2MB/s} = 2us$，必须每2us查询一次</p>
-<p>2） 设备B传输数据时间=$\frac{32bit}{40MB/s} = 0.1us$ 中断处理时间=$400 / 500MHz = 0.8us$  因为中断处理时间大于数据传输时间，<strong>数据会被刷新，造成丢失</strong></p>
-<h3 id="I-O接口"><a href="#I-O接口" class="headerlink" title="I/O接口"></a>I/O接口</h3><p>数据流动方向：CPU从主存去数据，放入通用寄存器，再传送给I/O端口</p>
-<h3 id="寄存器位数取决于"><a href="#寄存器位数取决于" class="headerlink" title="寄存器位数取决于"></a>寄存器位数取决于</h3><p>PC位数取决于内存容量和指令字长</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-09%20at%2016.34.50.png" alt=""></p>
-<p>内存为4GB=$2^{32B}$   指令字长为32bit = $2^2B$  所以PC位数为30</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理">组成原理</h2>
+<h3 id="jmp和call跳转指令的偏移量">jmp和call跳转指令的偏移量</h3>
+<p>jmp和call的偏移量为 相对于<strong>跳转指令的下一条指令</strong>的偏移，用补码表示。</p>
+<p>2019真题 45 3）</p>
+<h3 id="多道程序多任务">多道程序、多任务</h3>
+<p>多道程序设计是并行处理的一种基本形式，意味着多个进程同时在一个处理器上运行。在现代操作系统中，当多个程序或进程在单个处理器上运行时，操作系统的工作就是有效地管理所有进程。</p>
+<p>多道程序特点：</p>
+<ul>
+<li>CPU利用率高</li>
+<li>系统吞吐量达</li>
+<li>IO设备利用率高：多个程序使用IO设备，IO设备一直工作</li>
+</ul>
+<p>多任务是指操作系统使用多个CPU一次执行多个任务的能力。它基本上在一个系统中使用两个或多个CPU来分配共享公共资源（包括CPU和内存）的任务。</p>
+<p>多任务特点：</p>
+<ul>
+<li>并行：CPU和I/O设备并行</li>
+<li>并发：同一时间间隔内执行多个任务</li>
+<li>对共享资源进行保护</li>
+<li>单个CPU也可满足（2018 23）</li>
+</ul>
+<h3 id="多长时间响应一次才能不丢失数据">多长时间响应一次才能不丢失数据</h3>
+<p>对于定时查询，查询时间必须小于传输（准备）数据时间</p>
+<p>对于中断查询，中断响应时间小于传输（准备）数据时间</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1202.png" /></p>
+<p>1）设备A每次传输数据时间=<span class="math inline">\(\frac{32bit}{2MB/s} = 2us\)</span>，必须每2us查询一次，</p>
+<p>因为传输速率为2MB/S，所以每秒查询<span class="math inline">\(\frac{2MB}{4B}=0.5M\)</span>次，每次10条指令，IO时间占CPU总时间=<span class="math inline">\(\frac{0.5M \times 10 \times 4}{500M}= 4\%\)</span></p>
+<p>2） 设备B传输数据时间=<span class="math inline">\(\frac{32bit}{40MB/s} = 0.1us\)</span> 中断处理时间=<span class="math inline">\(400 / 500MHz = 0.8us\)</span> 因为中断处理时间大于数据传输时间，<strong>数据会被刷新，造成丢失</strong></p>
+<p>3）DMA方式使用CPU的时间只有预处理和后处理，每次传1000B，一秒传<span class="math inline">\(\frac{40MB}{1000B}=40000\)</span>次，百分比=<span class="math inline">\(\frac{40000 \times 500}{500M}=4\%\)</span></p>
+<blockquote>
+<p>IO时间占CPU占用百分比计算方法必须掌握，真题2019 21</p>
+</blockquote>
+<h3 id="io接口">I/O接口</h3>
+<p>数据流动方向：CPU从主存取数据，放入通用寄存器，再传送给I/O端口</p>
+<p>2017考题：IO指令实现的数据传送通常发生在（通用寄存器和IO端口之间）</p>
+<h3 id="寄存器位数取决于">寄存器位数取决于</h3>
+<p>PC位数取决于内存容量和指令字长</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-09%20at%2016.34.50.png" /></p>
+<p>内存为4GB=<span class="math inline">\(2^{32B}\)</span> 指令字长为32bit = <span class="math inline">\(2^2B\)</span> 所以PC位数为30</p>
 <p>解释：PC的每个值对应一个指令，所以PC位数取决于内存中能保存的指令条数</p>
-<h3 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h3><ul>
-<li>高级语言程序  （编译） 目标文件（链接）机器代码</li>
+<h3 id="编译过程">编译过程</h3>
+<ul>
+<li>高级语言程序 （编译） 目标文件（链接）机器代码</li>
 <li>汇编程序（汇编）目标文件</li>
 <li>解释程序不生成目标代码，每一行指令直接解释执行</li>
 <li>汇编与编译的区别在于源文件不同</li>
 </ul>
-<h3 id="中断流程"><a href="#中断流程" class="headerlink" title="中断流程"></a>中断流程</h3><h4 id="多级中断"><a href="#多级中断" class="headerlink" title="多级中断"></a>多级中断</h4><ol>
+<h3 id="中断流程">中断流程</h3>
+<h4 id="多级中断">多级中断</h4>
+<ol type="1">
 <li>关中断</li>
 <li>保存断点</li>
 <li>中断服务寻址程序</li>
@@ -4525,7 +4640,8 @@ y\\
 <li>开中断</li>
 <li>中断返回</li>
 </ol>
-<h4 id="单重中断"><a href="#单重中断" class="headerlink" title="单重中断"></a>单重中断</h4><ol>
+<h4 id="单重中断">单重中断</h4>
+<ol type="1">
 <li>关中断</li>
 <li>保存断点</li>
 <li>中断服务程序寻址</li>
@@ -4538,21 +4654,24 @@ y\\
 <blockquote>
 <p>总结：前三步是由硬件完成的（中断隐指令），因为单重中断不允许在中断程序时再相应，所以在执行结束之前一直处于关中断状态</p>
 </blockquote>
-<h4 id="其他总结"><a href="#其他总结" class="headerlink" title="其他总结"></a>其他总结</h4><ul>
+<h4 id="其他总结">其他总结</h4>
+<ul>
 <li>中断向量是中断服务程序的<strong>地址</strong>，由硬件产生，速度快</li>
 <li>中断服务程序一般是由操作系统提供</li>
 <li>中断和trap区别：trap是有意识安排的，目的是为了实现用户态和核心态的转换</li>
 <li>中断传输数据以字节为单位，</li>
-<li>中断优先级：<ul>
+<li>中断优先级：
+<ul>
 <li>DMA优先级比外中断高，（避免数据丢失）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="DMA过程"><a href="#DMA过程" class="headerlink" title="DMA过程"></a>DMA过程</h3><p>DMA分为预处理、数据传送、后处理3个阶段</p>
+<h3 id="dma过程">DMA过程</h3>
+<p>DMA分为预处理、数据传送、后处理3个阶段</p>
 <p>预处理：由CPU完成必要的准备工作，数据传送前由<strong>DMA控制器请求总线使用权</strong></p>
 <p>数据传送：由<strong>DMA控制器直接控制总线完成</strong></p>
 <p>后处理：DMA控制器<strong>向CPU发送中断请求</strong></p>
-<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>有符号数和无符号数转换：</p>
+<h3 id="数据类型转换">数据类型转换</h3>
+<p>有符号数和无符号数转换：</p>
 <ul>
 <li>只改变解释方式</li>
 </ul>
@@ -4567,15 +4686,17 @@ y\\
 <li>精度小转精度大：数值不变</li>
 <li>精度大转精度小：舍入，有损失，如float 3.14转int变为3</li>
 </ul>
-<h3 id="性能计算"><a href="#性能计算" class="headerlink" title="性能计算"></a>性能计算</h3><ul>
+<h3 id="性能计算">性能计算</h3>
+<ul>
 <li>主频</li>
 <li>CPI</li>
 <li>总线带宽=总线工作频率x总线宽度/8</li>
-<li>处理速率$MIPS=\frac{主频}{CPI}$</li>
+<li>处理速率<span class="math inline">\(MIPS=\frac{主频}{CPI}\)</span></li>
 <li>平均访问时间=命中率x访问cache时间+（1-命中率）x访问内存时间</li>
-<li>cache-主存效率=$\frac{cache存取周期}{平均访问时间}$</li>
+<li>cache-主存效率=<span class="math inline">\(\frac{cache存取周期}{平均访问时间}\)</span></li>
 </ul>
-<h3 id="对程序员透明的部件"><a href="#对程序员透明的部件" class="headerlink" title="对程序员透明的部件"></a>对程序员透明的部件</h3><p><strong>透明：</strong></p>
+<h3 id="对程序员透明的部件">对程序员透明的部件</h3>
+<p><strong>透明：</strong></p>
 <ul>
 <li>ALU（加法器、乘法器、移位器）</li>
 <li>IR指令寄存器（CPU自动取指，程序员只能通过PC来改变指令）</li>
@@ -4589,28 +4710,29 @@ y\\
 <li>程序状态字寄存器</li>
 <li>ACC 累加寄存器</li>
 </ul>
-<h3 id="流水线时间计算"><a href="#流水线时间计算" class="headerlink" title="流水线时间计算"></a>流水线时间计算</h3><p>m端流水线，n个指令，时钟周期为t，总时间为 $m+(n-1)t$</p>
-<p>经常于低位交叉存储结合起来考。2012真题，P310  .6     </p>
+<h3 id="流水线时间计算">流水线时间计算</h3>
+<p>m端流水线，n个指令，时钟周期为t，总时间为 <span class="math inline">\(m+(n-1)t\)</span></p>
+<p>经常于低位交叉存储结合起来考。2012真题，P310 .6</p>
 <p>2013真题，第三问</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" /></p>
 <p>一次突发传送总线事务时间=送首地址和命令时间（一个总线时钟周期）+存储器准备数据时间+传送数据时间</p>
-<p>存储器准备数据时间即为8体交叉存储器传送32B数据时间，因为一个体字长32b，8个体把存储周期分为8份，每份40/8=5ns，8个体需要传$[8+(8-1)]*5 = 75ns$</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.36.39.png" alt=""></p>
+<p>存储器准备数据时间即为8体交叉存储器传送32B数据时间，因为一个体字长32b，<strong>8个体把存储周期分为8份</strong>，每份40/8=5ns，8个体需要传<span class="math inline">\([8+(8-1)]*5 = 75ns\)</span></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.36.39.png" /></p>
 <p>每准备好32b就把它传送出去，传送时间为1个时钟周期 =5ns，第二个准备好时，第一个刚好传送完，以此类推，最后第8个传送完后再花5ns</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.38.06.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.38.06.png" /></p>
 <p>所以总时间= 5+75+5</p>
-<h3 id="CPU执行时间"><a href="#CPU执行时间" class="headerlink" title="CPU执行时间"></a>CPU执行时间</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" alt=""></p>
+<h3 id="cpu执行时间">CPU执行时间</h3>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" /></p>
 <p>第四问，2种思路：</p>
-<ol>
-<li><p>计算平均每条指令的CPI，再乘指令条数 </p>
-<p>$一条指令执行过程中因cache缺失导致平均额外开销=平均访存次数xcache缺失率x一次突发传送总线事务时间$</p>
-</li>
-<li><p>计算所有指令命中时花费时间+不命中时花费时间</p>
-</li>
+<ol type="1">
+<li><p>计算平均每条指令的CPI，再乘指令条数</p>
+<p><span class="math inline">\(一条指令执行过程中因cache缺失导致平均额外开销=平均访存次数xcache缺失率x一次突发传送总线事务时间\)</span></p></li>
+<li><p>计算所有指令命中时花费时间+不命中时花费时间</p></li>
 </ol>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.51.07.png" alt=""></p>
-<h3 id="单-双缓冲区时间"><a href="#单-双缓冲区时间" class="headerlink" title="单/双缓冲区时间"></a>单/双缓冲区时间</h3><p>原则：</p>
-<ol>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.51.07.png" /></p>
+<h3 id="单双缓冲区时间">单/双缓冲区时间</h3>
+<p>原则：</p>
+<ol type="1">
 <li>C和M不能同时发生，且<strong>C结束紧跟着M</strong>：CPU处理完才能接收</li>
 <li>单缓冲下T和M不能同时发生：因为T和M都用到了同一个缓冲</li>
 <li>由1、2可知，单缓冲下只能T和C同时发生</li>
@@ -4618,15 +4740,15 @@ y\\
 <p><strong>画图分析时假设一个初始状态，计算下次达到这种状态的时间</strong></p>
 <p>对于单缓冲来说，初始是缓冲区满</p>
 <p>对于双缓冲来说，初始是一个空一个满</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%A4%87%E6%B3%A8.jpg" /></p>
 <p><strong>注意：</strong>若题中要计算从读入到分析数据的总时间，要从缓冲区为空开始算起，计算公式为：第一个数据时间+（n-1）x上面计算的花费时间</p>
-<h3 id="LRU"><a href="#LRU" class="headerlink" title="LRU"></a>LRU</h3><p><strong>方法</strong>：每次替换时往前数，找到cache中，离当前位置最远的替换。做题时画下面的表，命中时在下面打勾，标记。</p>
-<p>eg: cache大小为4，访问序列是1  8  1  7  8  2  7  2  1  8  3  8  2  1  3  1  7  1  3  7</p>
+<h3 id="lru">LRU</h3>
+<p><strong>方法</strong>：每次替换时往前数，找到cache中，离当前位置最远的替换。做题时画下面的表，命中时在下面打勾，标记。</p>
+<p>eg: cache大小为4，访问序列是1 8 1 7 8 2 7 2 1 8 3 8 2 1 3 1 7 1 3 7</p>
 <p>注意下面第一次遇到3时需要替换，往前看分别出现 8, 1, 2 因此选择替换7</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>1</th>
 <th>8</th>
 <th>1</th>
@@ -4650,7 +4772,7 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>1</td>
 <td>1</td>
@@ -4672,7 +4794,7 @@ y\\
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>8</td>
 <td>8</td>
@@ -4694,7 +4816,7 @@ y\\
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td></td>
 <td></td>
@@ -4716,7 +4838,7 @@ y\\
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td></td>
 <td></td>
@@ -4738,7 +4860,7 @@ y\\
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td></td>
 <td>✅</td>
@@ -4762,45 +4884,76 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
 <p>最后发现✅有14个，总次数为20，因此命中率为70%。</p>
-<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h3 id="CLOCK算法"><a href="#CLOCK算法" class="headerlink" title="CLOCK算法"></a>CLOCK算法</h3><p>（A，M）分别代表（访问位，修改位）</p>
+<h2 id="操作系统">操作系统</h2>
+<h3 id="虚拟地址和物理地址低xx位相同">虚拟地址和物理地址低xx位相同</h3>
+<p>若页大小为4KB=<span class="math inline">\(2^{12}B\)</span>，则物理地址和虚拟地址低12位相同，根据这一点知道虚拟地址可以判断cache组号</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2019.14.30.png" /></p>
+<p>答：call指令虚拟地址为00401025，因为页大小为4KB，所以物理地址和虚拟地址低12位相同，所以7-10位代表组号，所以在第0组</p>
+<p>2018年44题也考了这个知识点</p>
+<h3 id="磁盘物理地址">磁盘物理地址</h3>
+<p>结构：柱面号，盘面/磁头号，扇区号</p>
+<blockquote>
+<p>柱面就是磁道</p>
+</blockquote>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2019.00.32.png" /></p>
+<p>3）每个柱面10x200/2=1000个簇</p>
+<p>每个磁道200/2=100个簇</p>
+<p>所以柱面号=100 530/1000 = 100</p>
+<p>磁道号=100530%1000/100=5</p>
+<p>扇区号=100530%100x2=60</p>
+<h3 id="动态分区">动态分区</h3>
+<p>首次适应：地址递增。产生碎片</p>
+<p>最佳适应：容量递增。<strong>产生最多的外部碎片</strong></p>
+<p>最坏适应：容量递减。不容易产生碎片，但是浪费空间</p>
+<p>临近适应：循环首次适应。</p>
+<h3 id="clock算法">CLOCK算法</h3>
+<p>（A，M）分别代表（访问位，修改位）</p>
 <p>替换顺序为（0，0）、（0，1）、（1，0）、（1，1）</p>
-<h3 id="只有FIFO会导致Bleady异常"><a href="#只有FIFO会导致Bleady异常" class="headerlink" title="只有FIFO会导致Bleady异常"></a>只有FIFO会导致Bleady异常</h3><h3 id="工作集概念"><a href="#工作集概念" class="headerlink" title="工作集概念"></a>工作集概念</h3><p>t时刻前n个访问的页面去重的结果，所以数量$\le$n</p>
-<h3 id="内核级线程、用户级线程"><a href="#内核级线程、用户级线程" class="headerlink" title="内核级线程、用户级线程"></a>内核级线程、用户级线程</h3><h4 id="用户级线程"><a href="#用户级线程" class="headerlink" title="用户级线程"></a>用户级线程</h4><ol>
+<h3 id="只有fifo会导致bleady异常">只有FIFO会导致Bleady异常</h3>
+<h3 id="工作集概念">工作集概念</h3>
+<p>t时刻前n个访问的页面去重的结果，所以数量<span class="math inline">\(\le\)</span>n</p>
+<h3 id="内核级线程用户级线程">内核级线程、用户级线程</h3>
+<h4 id="用户级线程">用户级线程</h4>
+<ol type="1">
 <li>线程的调度不需要内核直接参与，控制简单。</li>
 <li>可以在不支持线程的操作系统中实现。</li>
 </ol>
-<h4 id="内核级线程"><a href="#内核级线程" class="headerlink" title="内核级线程"></a>内核级线程</h4><ol>
+<h4 id="内核级线程">内核级线程</h4>
+<ol type="1">
 <li>线程在用户态的运行，而线程的调度和管理在内核实现，在控制权从一个线程传送到另一个线程需要用户态到内核态再到用户态的模式切换，比较占用系统资源。</li>
 </ol>
-<h4 id="区别和联系"><a href="#区别和联系" class="headerlink" title="区别和联系"></a>区别和联系</h4><ol>
+<h4 id="区别和联系">区别和联系</h4>
+<ol type="1">
 <li>内核支持线程是<strong>操作系统</strong>内核可感知的，而用户级线程是OS内核不可感知的。</li>
 <li>用户级线程的创建、撤消和调度不需要OS内核的支持。</li>
 <li>用户级线程的程序实体是运行在用户态下的程序，而内核支持线程的程序实体则是可以运行在任何状态下的程序。</li>
 </ol>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.00.15.png" alt=""></p>
-<h3 id="共享段"><a href="#共享段" class="headerlink" title="共享段"></a>共享段</h3><p>为了实现分段共享，可在系统中配置一张共享段表，所有各共享段都在共享段表中占有一表项。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.00.15.png" /></p>
+<h3 id="共享段">共享段</h3>
+<p>为了实现分段共享，可在系统中配置一张共享段表，所有各共享段都在共享段表中占有一表项。</p>
 <p>表项中记录了共享段的段号、段长、内存始址、存在位（是否已调入内存）等信息，并记录了共享此分段的每个进程的情况。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.04.48.png" alt=""></p>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>考选择题</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2016.04.48.png" /></p>
+<h3 id="死锁">死锁</h3>
+<p>考选择题</p>
 <p>死锁预防：破坏 互斥条件、不可剥夺条件、请求并保持条件、循环等待条件</p>
 <p>死锁避免：银行家算法</p>
 <p>死锁检测：资源分配图</p>
 <p>死锁解除：资源剥夺、撤销进程、进程回退</p>
-<h3 id="内中断、外中断、子函数"><a href="#内中断、外中断、子函数" class="headerlink" title="内中断、外中断、子函数"></a>内中断、外中断、子函数</h3><ul>
+<h3 id="内中断外中断子函数">内中断、外中断、子函数</h3>
+<ul>
 <li>內中断处理后直接终止，外中断处理后返回原指令执行</li>
 <li>内中断发送必须立即处理，外中断在指令周期结束处理</li>
 <li>外中断和子函数区别：外中断保存PC和PSW，子函数保存寄存器</li>
 <li></li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2015.53.53.png" alt=""></p>
-<h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><p>画表最好算，最方便</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2015.53.53.png" /></p>
+<h3 id="进程调度算法">进程调度算法</h3>
+<p>画表最好算，最方便</p>
 <p>不管什么算法，先画下面这个表</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -4809,7 +4962,8 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4817,18 +4971,18 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
 <p>根据不同算法填表，最后通过表来计算等待时间、周转时间、带权周转时间</p>
 <p>例题：</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-17%20%E4%B8%8B%E5%8D%888.09.03.png" alt=""></p>
-<h4 id="FCFS"><a href="#FCFS" class="headerlink" title="FCFS"></a>FCFS</h4><p>太简单，画甘特图都可以解决</p>
-<h4 id="短作业优先"><a href="#短作业优先" class="headerlink" title="短作业优先"></a>短作业优先</h4><ol>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-17%20%E4%B8%8B%E5%8D%888.09.03.png" /></p>
+<h4 id="fcfs">FCFS</h4>
+<p>太简单，画甘特图都可以解决</p>
+<h4 id="短作业优先">短作业优先</h4>
+<ol type="1">
 <li>根据题目补全信息</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -4837,50 +4991,49 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td></td>
 <td>6</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol type="1">
 <li>P1来先运行，结束时间为3，将3与提交时间这一列比较，只有P2小于3，所以P2开始时间为3</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -4889,50 +5042,49 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td><strong>3</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td><strong>3</strong></td>
 <td>6</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="2" type="1">
 <li>P2结束时间为3+6=9， 将9与提交时间这一列比较，发现都小于9，找到除结束进程外运行时间最小的进程，为P5，所以P5开始时间为9</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -4941,50 +5093,49 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
 <td>6</td>
 <td><strong>9</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td></td>
 <td>4</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td></td>
 <td>5</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td><strong>9</strong></td>
 <td>2</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="3" type="1">
 <li>P5结束时间为9+2=11，因为现在知道所有进程都到了，直接找到运行时间最小的P3，所以P3开始时间为11，其余的也可以填出来</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -4993,35 +5144,35 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>3</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
 <td>6</td>
 <td>9</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td><strong>11</strong></td>
 <td>4</td>
 <td><strong>15</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td><strong>15</strong></td>
 <td>5</td>
 <td><strong>20</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>9</td>
@@ -5030,19 +5181,16 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="4" type="1">
 <li><p>根据这个表计算</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_A24FDAA9C2AB-1.jpeg" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_A24FDAA9C2AB-1.jpeg" /></p>
 <p>等待时间 = 开始-就绪=周转-运行</p>
 <p>周转时间 = 结束-就绪</p>
-<p>带权周转时间 = 周转时间/运行时间</p>
-</li>
+<p>带权周转时间 = 周转时间/运行时间</p></li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -5054,7 +5202,7 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -5064,7 +5212,7 @@ y\\
 <td>3</td>
 <td>3/3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
@@ -5074,7 +5222,7 @@ y\\
 <td>7</td>
 <td>7/6</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td>11</td>
@@ -5084,7 +5232,7 @@ y\\
 <td>11</td>
 <td>11/4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td>15</td>
@@ -5094,7 +5242,7 @@ y\\
 <td>14</td>
 <td>14/5</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>9</td>
@@ -5106,13 +5254,14 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="高响应比优先"><a href="#高响应比优先" class="headerlink" title="高响应比优先"></a>高响应比优先</h4><script type="math/tex; mode=display">
-响应比 = \frac{等待时间+运行时间}{运行时间}</script><p>仿照上面的方法，<strong>但是每次进程结束都需要计算一次响应比</strong></p>
-<div class="table-container">
+<h4 id="高响应比优先">高响应比优先</h4>
+<p><span class="math display">\[
+响应比 = \frac{等待时间+运行时间}{运行时间}
+\]</span></p>
+<p>仿照上面的方法，<strong>但是每次进程结束都需要计算一次响应比</strong></p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>进程</th>
 <th>提交时间（就绪时间）</th>
 <th>开始时间</th>
@@ -5124,7 +5273,7 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -5134,7 +5283,7 @@ y\\
 <td>3</td>
 <td>3/3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>2</td>
 <td>3</td>
@@ -5144,7 +5293,7 @@ y\\
 <td>7</td>
 <td>7/6</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>4</td>
 <td>9</td>
@@ -5154,7 +5303,7 @@ y\\
 <td>9</td>
 <td>9/4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>6</td>
 <td>15</td>
@@ -5164,7 +5313,7 @@ y\\
 <td>14</td>
 <td>14/5</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>8</td>
 <td>13</td>
@@ -5176,60 +5325,62 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="open、read系统调用"><a href="#open、read系统调用" class="headerlink" title="open、read系统调用"></a>open、read系统调用</h3><ol>
+<h3 id="openread系统调用">open、read系统调用</h3>
+<ol type="1">
 <li>open根据（路径、文件名）找到相应的目录文件，从目录中找到文件名对应的目录项，并检查权限</li>
 <li>将目录项复制到内存中的打开文件表，返回表目对应的编号，用户使用这个编号来指明要操作的文件</li>
 <li>read根据（文件描述符、buf缓冲区地址、字节数）从fd的位置读数据</li>
 </ol>
-<h3 id="进程资源图简化，判断死锁"><a href="#进程资源图简化，判断死锁" class="headerlink" title="进程资源图简化，判断死锁"></a>进程资源图简化，判断死锁</h3><p><a href="https://blog.csdn.net/coding1994/article/details/52474731">资源分配图化简法</a></p>
-<h3 id="大端小端"><a href="#大端小端" class="headerlink" title="大端小端"></a>大端小端</h3><p>人看的是大端，机器存的是小端。（<strong>小机</strong>）</p>
+<h3 id="进程资源图简化判断死锁">进程资源图简化，判断死锁</h3>
+<p><a href="https://blog.csdn.net/coding1994/article/details/52474731">资源分配图化简法</a></p>
+<h3 id="大端小端">大端小端</h3>
+<p>人看的是大端，机器存的是小端。（<strong>小机</strong>）</p>
 <p>小端：12 34 56，12存储在低位。大端相反。</p>
-<h3 id="分页确定逻辑地址结构"><a href="#分页确定逻辑地址结构" class="headerlink" title="分页确定逻辑地址结构"></a>分页确定逻辑地址结构</h3><ul>
-<li><p>虚拟存储器最大容量：看MAR有多少位</p>
-</li>
-<li><p>页号+页内偏移。页号包括页表索引</p>
-</li>
+<h3 id="分页确定逻辑地址结构">分页确定逻辑地址结构</h3>
+<ul>
+<li><p>虚拟存储器最大容量：看MAR有多少位</p></li>
+<li><p>页号+页内偏移。页号包括页表索引</p></li>
 <li><p>多级页表逻辑地址确定：</p>
 <p>页内偏移由页大小决定</p>
 <p>最高一级页表位数不能超过<strong>log(一页的页表项数)</strong>，其他级的位数都为<strong>log(一页的页表项数)</strong></p>
 <p>eg：48位虚地址，页面大小为4KB，页表项大小为8B</p>
-<p>页面大小为4KB，所以页面偏移为12，一页的页表项数 = $4KB/8B = 2^{9}$，剩下的48-12=36位按每级9位分配，36/9=4，所以4级</p>
-</li>
+<p>页面大小为4KB，所以页面偏移为12，一页的页表项数 = <span class="math inline">\(4KB/8B = 2^{9}\)</span>，剩下的48-12=36位按每级9位分配，36/9=4，所以4级</p></li>
 <li><p>cache组相连映射确定地址结构：</p>
 <p>标记+组号+偏移</p>
-<p>偏移由页大小确定，组号由组数确定，组数=cache条数/m路，剩下的是标记</p>
-</li>
+<p>偏移由页大小确定，组号由组数确定，组数=cache条数/m路，剩下的是标记</p></li>
 </ul>
-<h3 id="TLB、页表、cache"><a href="#TLB、页表、cache" class="headerlink" title="TLB、页表、cache"></a>TLB、页表、cache</h3><p>cpu根据虚拟地址中的虚拟页号去TLB中找页，若存在将虚拟地址转换为物理地址。根据物理地址去cache中找块，若找到无需到主存中找。</p>
+<h3 id="tlb页表cache">TLB、页表、cache</h3>
+<p>cpu根据虚拟地址中的虚拟页号去TLB中找页，若存在将虚拟地址转换为物理地址。根据物理地址去cache中找块，若找到无需到主存中找。</p>
 <ul>
 <li>页表是为了实现虚拟内存，完成对<strong>内存</strong>的扩容。cache是为了解决cpu与主存速度不匹配的问题</li>
 <li>缺页要从<strong>磁盘</strong>中取出<strong>页</strong>到内存，cache不命中要从<strong>主存</strong>去取出<strong>块</strong>到cache。因此缺页开销更大</li>
 <li>TLB表项为虚拟页号+物理页号（主存）。cache表项为标记+数据。快表是慢表的一个副本，结构一样。cache中存放了数据，因此取数时最少访问主存0次。</li>
 </ul>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+<h2 id="数据结构">数据结构</h2>
+<ul>
 <li>双链表、静态链表</li>
 <li>共享栈</li>
 </ul>
-<h3 id="折半查找判定树画法"><a href="#折半查找判定树画法" class="headerlink" title="折半查找判定树画法"></a>折半查找判定树画法</h3><p><a href="https://blog.csdn.net/BlevMeM/article/details/84672731">数据结构学习记录（二）——折半查找二叉判定树的画法</a></p>
-<p>原则：若向上取整，说明分界点在右边，右子树节点数$\le$左子树节点数，向上取整则反</p>
-<ol>
+<h3 id="折半查找判定树画法">折半查找判定树画法</h3>
+<p><a href="https://blog.csdn.net/BlevMeM/article/details/84672731">数据结构学习记录（二）——折半查找二叉判定树的画法</a></p>
+<p>原则：若向上取整，说明分界点在右边，右子树节点数<span class="math inline">\(\le\)</span>左子树节点数，向上取整则反</p>
+<ol type="1">
 <li>先画满二叉树，再一个一个加节点，要按照上面的原则</li>
 <li>按中序遍历填入从小到大的数字</li>
 </ol>
 <ul>
 <li>对一个序列进行折半查找，问查找到某个数字需要找几次，用表的长度判断，而不是数字的值</li>
 </ul>
-<h3 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.28.57.png" alt=""></p>
-<ol>
+<h3 id="kmp">KMP</h3>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.28.57.png" /></p>
+<ol type="1">
 <li>计算next数组</li>
 </ol>
-<p>​    next数组前两个为-1，0，后面的按照后缀长度填</p>
-<p>​    如abaabc的next数组</p>
-<div class="table-container">
+<p>​ next数组前两个为-1，0，后面的按照后缀长度填</p>
+<p>​ 如abaabc的next数组</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>0</th>
 <th>1</th>
 <th>2</th>
@@ -5239,7 +5390,7 @@ y\\
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>a</td>
 <td>ab</td>
 <td>aba</td>
@@ -5247,7 +5398,7 @@ y\\
 <td>abaab</td>
 <td>abaabc</td>
 </tr>
-<tr>
+<tr class="even">
 <td>-1</td>
 <td>0</td>
 <td>0</td>
@@ -5257,45 +5408,75 @@ y\\
 </tr>
 </tbody>
 </table>
-</div>
-<ol>
+<ol start="2" type="1">
 <li>i指向主串不回退，j指向模式串，比较到abaabc发现不同，将j从5改为2，此时i=5，j=2</li>
 <li>比较4次完成匹配。</li>
 <li>总比较次数为6+4</li>
 </ol>
-<h3 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h3><p><a href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
-<ol>
+<h3 id="中缀表达式转后缀表达式">中缀表达式转后缀表达式</h3>
+<p><a href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
+<ol type="1">
 <li>（直接入栈</li>
 <li>其他符号入栈时要保证自己比栈顶元素优先级高</li>
 <li>遇到）全部出栈，直到把（出栈</li>
 </ol>
-<h3 id="WPL"><a href="#WPL" class="headerlink" title="WPL"></a>WPL</h3><p>定义要搞清楚：所有<strong>叶节点</strong>的带权路径之和</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2019.03.44.png" alt=""></p>
-<h3 id="循环队列判满、判空"><a href="#循环队列判满、判空" class="headerlink" title="循环队列判满、判空"></a>循环队列判满、判空</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png" alt=""></p>
+<h3 id="wpl">WPL</h3>
+<p>定义要搞清楚：所有<strong>叶节点</strong>的带权路径之和</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2019.03.44.png" /></p>
+<h3 id="循环队列">循环队列</h3>
+<h4 id="顺序表示">顺序表示</h4>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png" /></p>
 <p>牺牲额外一块空间。</p>
 <p>空条件：front == rear</p>
 <p>满条件：front == (rear+1)%maxsize</p>
 <p>元素个数：(rear-front+maxsize)%maxsize</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%889.01.14.png" alt=""></p>
+<h4 id="链式表示">链式表示</h4>
+<p>初始状态：</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-16%20at%2014.44.44.png" /></p>
+<p>从尾部插入：</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-16%20at%2014.45.08.png" /></p>
+<p>判空：front==rear</p>
+<p>判满：rear-&gt;next = front</p>
 <ul>
 <li>栈括号匹配</li>
 <li>栈递归应用</li>
 <li>栈层次遍历</li>
-<li>二叉树的表示方法、存储结构</li>
-<li>树的双亲表示法、孩子兄弟表示法</li>
-<li>树和森林的遍历</li>
 </ul>
-<h3 id="B树插入、删除、高度"><a href="#B树插入、删除、高度" class="headerlink" title="B树插入、删除、高度"></a>B树插入、删除、高度</h3><p>高度：看树、二叉树性质那一篇笔记</p>
+<h3 id="树和森林的遍历">树和森林的遍历</h3>
+<table>
+<thead>
+<tr class="header">
+<th>树</th>
+<th>森林</th>
+<th>二叉树</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>先根</td>
+<td>先序</td>
+<td>先序</td>
+</tr>
+<tr class="even">
+<td>后根</td>
+<td>中序</td>
+<td>中序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b树插入删除高度">B树插入、删除、高度</h3>
+<p>高度：看树、二叉树性质那一篇笔记</p>
 <p>插入：大于最大关键字树则分裂，可能会导致父节点也分裂</p>
 <p>删除：</p>
-<ol>
+<ol type="1">
 <li>直接删除</li>
 <li>兄弟够借：若被删除节点右（左）兄弟够借，先将共同父亲放入被删除节点，再把右（左）兄弟的最左（右）边的孩子放入父节点。</li>
 <li>不够借：被删除节点左右兄弟都不够借，则与父节点交换然后与兄弟合并。</li>
 </ol>
-<h3 id="排序二叉树——平衡二叉树"><a href="#排序二叉树——平衡二叉树" class="headerlink" title="排序二叉树——平衡二叉树"></a><strong>排序二叉树——平衡二叉树</strong></h3><p>平衡二叉树是特殊的排序二叉树</p>
+<h3 id="排序二叉树平衡二叉树"><strong>排序二叉树——平衡二叉树</strong></h3>
+<p>平衡二叉树是特殊的排序二叉树</p>
 <p>删除操作与排序二叉树一样：</p>
-<ol>
+<ol type="1">
 <li>叶节点直接删除</li>
 <li>如果只有一个子树，用子树替代</li>
 <li>如果有两个子树，用直接后继替代，然后删除直接后继</li>
@@ -5305,14 +5486,16 @@ y\\
 <ul>
 <li><strong>二叉搜索树</strong></li>
 </ul>
-<h3 id="哈夫曼树：构造、前缀、性质"><a href="#哈夫曼树：构造、前缀、性质" class="headerlink" title="哈夫曼树：构造、前缀、性质"></a><strong>哈夫曼树：构造、前缀、性质</strong></h3><p>性质：只能度为0和2的节点</p>
-<h3 id="邻接矩阵、邻接表、邻接多重表、十字链表定义和画法"><a href="#邻接矩阵、邻接表、邻接多重表、十字链表定义和画法" class="headerlink" title="邻接矩阵、邻接表、邻接多重表、十字链表定义和画法"></a>邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</h3><p><strong>邻接矩阵</strong></p>
-<p>顶点表是一维数组，边表是二维数组 </p>
+<h3 id="哈夫曼树构造前缀性质"><strong>哈夫曼树：构造、前缀、性质</strong></h3>
+<p>性质：只能度为0和2的节点</p>
+<h3 id="邻接矩阵邻接表邻接多重表十字链表定义和画法">邻接矩阵、邻接表、邻接多重表、十字链表定义和画法</h3>
+<p><strong>邻接矩阵</strong></p>
+<p>顶点表是一维数组，边表是二维数组</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex[vNum];		<span class="comment">//  定点可以是char型、int型</span></span><br><span class="line">  <span class="keyword">int</span> Edge[vNum][vNum];	<span class="comment">// 1代表有边</span></span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnmum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>邻接表</strong></p>
 <p>分为顶点节点和边表节点，每个顶点节点是一个单链表，连接着与这个顶点相连的边节点（有向图则与出边相连）</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/20130429141926037.jpg" alt=""></p>
- <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex;</span><br><span class="line">  ArcNode* first;</span><br><span class="line">&#125;VNode, AdjList[Vnum];</span><br><span class="line"><span class="comment">// VNode AdjList[Vnum];		//   邻接表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> Vex;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  AdjList vertices;</span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/20130429141926037.jpg" /></p>
+<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> Vex;</span><br><span class="line">  ArcNode* first;</span><br><span class="line">&#125;VNode, AdjList[Vnum];</span><br><span class="line"><span class="comment">// VNode AdjList[Vnum];		//   邻接表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> Vex;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">ArcNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  AdjList vertices;</span><br><span class="line">  <span class="keyword">int</span> vexnum, arcnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>十字链表</strong></p>
 <p>十字链表是<strong>有向图</strong>的链式存储</p>
 <p>顶点节点：</p>
@@ -5328,9 +5511,9 @@ y\\
 <li>hlink：下一条弧头节点相同的弧</li>
 <li>tlink：下一条弧尾节点相同的弧</li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114948819-61490260.png" alt=""></p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114814046-2079914035.png" alt=""><br>十字链表画法：先画同一行（弧尾相同)，再垂直连接弧头相同的边，最后连接顶点的第一个入边弧并补全空符号。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E7%94%BB%E6%B3%952.jpg" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114948819-61490260.png" /></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1358881-20181120114814046-2079914035.png" /> 十字链表画法：先画同一行（弧尾相同)，再垂直连接弧头相同的边，最后连接顶点的第一个入边弧并补全空符号。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E7%94%BB%E6%B3%952.jpg" /></p>
 <p><strong>邻接多重表</strong></p>
 <p>是<strong>无向图</strong>的链式表示，无向图的邻接矩阵中，一条边要占2个格子，删除的时候需要分别修改两个位，邻接多重表中有几条边就有几个弧节点。</p>
 <p>顶点节点：</p>
@@ -5345,44 +5528,46 @@ y\\
 <li>jvex，若一条弧连接0-1，jvex为1</li>
 <li>jlink，与jvex相连的下一条弧</li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-05%20%E4%B8%8B%E5%8D%8810.05.08.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-05%20%E4%B8%8B%E5%8D%8810.05.08.png" /></p>
 <ul>
 <li>DFS、BFS</li>
 </ul>
-<h3 id="最小生成树MST：Prim算法、Kruskal算法"><a href="#最小生成树MST：Prim算法、Kruskal算法" class="headerlink" title="最小生成树MST：Prim算法、Kruskal算法"></a>最小生成树MST：Prim算法、Kruskal算法</h3><p>Prim（选点，Point，PP）：任选初始点，选择与此点<strong>相连</strong>边中权值最小的边，不断重复，<strong>直到将所有点加入</strong>。复杂度$O(V^2)$</p>
-<p>Kruskal（选边）：不断选择权值最小的边，<strong>直到连通分量为</strong>1。因为用最小堆实现每次选择最小的边，所以复杂度$O(Elog_2(E))$</p>
+<h3 id="最小生成树mstprim算法kruskal算法">最小生成树MST：Prim算法、Kruskal算法</h3>
+<p>Prim（选点，Point，PP）：任选初始点，选择与此点<strong>相连</strong>边中权值最小的边，不断重复，<strong>直到将所有点加入</strong>。复杂度<span class="math inline">\(O(V^2)\)</span></p>
+<p>Kruskal（选边）：不断选择权值最小的边，<strong>直到连通分量为</strong>1。因为用最小堆实现每次选择最小的边，所以复杂度<span class="math inline">\(O(Elog_2(E))\)</span></p>
 <p>最小生成树唯一的条件：所有边的权值不同</p>
-<h3 id="最短路径：DFS、Dijkstra算法、Floyd算法"><a href="#最短路径：DFS、Dijkstra算法、Floyd算法" class="headerlink" title="最短路径：DFS、Dijkstra算法、Floyd算法"></a>最短路径：DFS、Dijkstra算法、Floyd算法</h3><p>都不考算法，只需要会手动模拟</p>
-<p>Dijkstra  <a href="https://www.bilibili.com/video/BV1zz4y1m7Nq">https://www.bilibili.com/video/BV1zz4y1m7Nq</a></p>
-<p>floyd <a href="https://www.bilibili.com/video/BV16w411o76v">https://www.bilibili.com/video/BV16w411o76v</a></p>
-<ol>
-<li><p>十字区域照抄</p>
-<ol>
-<li>十字区域中含∞的行或列照抄</li>
-<li>对角线都是0</li>
-<li>剩余部分，比较对应红色部分的行与列值之和 and 原值的大小，谁小取谁</li>
-<li>剩余部分若不是原值，下标就是红色区域的行与列下标合并去重</li>
+<h3 id="最短路径dfsdijkstra算法floyd算法">最短路径：DFS、Dijkstra算法、Floyd算法</h3>
+<p>都不考算法，只需要会手动模拟</p>
+<p>Dijkstra https://www.bilibili.com/video/BV1zz4y1m7Nq</p>
+<p>floyd https://www.bilibili.com/video/BV16w411o76v</p>
+<ol type="1">
+<li><p>十字区域照抄</p></li>
+<li><p>十字区域中含∞的行或列照抄</p></li>
+<li><p>对角线都是0</p></li>
+<li><p>剩余部分，比较对应红色部分的行与列值之和 and 原值的大小，谁小取谁</p></li>
+<li><p>剩余部分若不是原值，下标就是红色区域的行与列下标合并去重</p></li>
 </ol>
-</li>
-</ol>
-<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>结合工程背景，用节点表示先后顺序。选择某种数据结构，基于该数据结构来解决问题。eg：工厂流水线</p>
+<h3 id="拓扑排序">拓扑排序</h3>
+<p>结合工程背景，用节点表示先后顺序。选择某种数据结构，基于该数据结构来解决问题。eg：工厂流水线</p>
 <p>拓扑序列：陆续删除入度为0的节点。</p>
 <p>有可能考算法：indegree数组 or DFS</p>
 <p>indegree实现法：</p>
-<ol>
+<ol type="1">
 <li>用邻接表实现简单</li>
 <li>遍历所有边，统计每个顶点的入度并存储在 <code>indgree</code> 中</li>
 <li>将所有入度为0的点入栈</li>
 <li>栈顶元素出栈，遍历其所有出边（这里用邻接矩阵方便），将出边指向的顶点入度-1，入度为0则进栈</li>
 <li>栈为空停止，此时如果还有顶点未输出则有<strong>回路</strong></li>
 </ol>
-<h4 id="关键路径：AOE网"><a href="#关键路径：AOE网" class="headerlink" title="关键路径：AOE网"></a>关键路径：AOE网</h4><p>若只需要知道关键路径可以看：<a href="https://www.bilibili.com/video/BV1Fq4y1X7Tb">求解关键路径</a></p>
-<p> <img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/2313asdas.png" alt=""></p>
-<p> 最早发生ve：从前往后，选择大的。对于V4: 3+2 &lt; 2+4，所以ve(4) =6</p>
+<h4 id="关键路径aoe网">关键路径：AOE网</h4>
+<p>若只需要知道关键路径可以看：<a href="https://www.bilibili.com/video/BV1Fq4y1X7Tb">求解关键路径</a></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/2313asdas.png" /></p>
+<p>最早发生ve：从前往后，选择大的。对于V4: 3+2 &lt; 2+4，所以ve(4) =6</p>
 <p>最晚发生vl：从后往前，选择小的。对于V2: 7-3&gt;6-2，所以vl(2)=4</p>
 <p>最早开始e：对于图中的边a3，从V2指向V4，因此e(3) = ve(2) = 3</p>
 <p>最晚开始l：对于图中的边a3，从V2指向V4，因此l(3) = vl(4) - we ight = 6-2=4</p>
-<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p>开放定址法：线性探测+0，+1…+n。平方探测：$0^2, 1, -1, 2^2, -2^2…$。再散列</p>
+<h4 id="哈希算法">哈希算法</h4>
+<p>开放定址法：线性探测+0，+1…+n。平方探测：<span class="math inline">\(0^2, 1, -1, 2^2, -2^2...\)</span>。再散列</p>
 <p>拉链法：掌握存储结构，类似于孩子表示法（顺序表+链表）。定义结构，实现插入、删除、查找。</p>
 <p><a href="http://data.biancheng.net/view/30.html">树的双亲表示法、孩子表示法和孩子兄弟表示法 (biancheng.net)</a></p>
 <p>成功/失败查找长度。装填因子。</p>
@@ -5390,66 +5575,73 @@ y\\
 <li>查找算法</li>
 <li>排序算法</li>
 </ul>
-<h3 id="堆的插入删除"><a href="#堆的插入删除" class="headerlink" title="堆的插入删除"></a>堆的插入删除</h3><p>建立：从最后一个分支节点，往前调整每个分支节点</p>
+<h3 id="堆的插入删除">堆的插入删除</h3>
+<p>建立：从最后一个分支节点，往前调整每个分支节点</p>
 <p>插入：从下往上调整，只调整插入节点到根节点这个子树</p>
 <p>删除：从上往下调整，调整根节点</p>
-<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="物理层编码"><a href="#物理层编码" class="headerlink" title="物理层编码"></a>物理层编码</h3><ul>
+<h2 id="计算机网络">计算机网络</h2>
+<h3 id="物理层编码">物理层编码</h3>
+<ul>
 <li>以太网使用曼彻斯特编码</li>
 </ul>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2016.04.40.png" alt=""></p>
-<h3 id="极限传输速率"><a href="#极限传输速率" class="headerlink" title="极限传输速率"></a>极限传输速率</h3><p> 无噪声，奈氏定理$V = 2f \times log_{2}N$，f为带宽</p>
-<p>有噪声，香农$V = Wlog_2(1+\frac{S}{N})$    W为带宽，S/N为信噪比</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2016.04.40.png" /></p>
+<h3 id="极限传输速率">极限传输速率</h3>
+<p>无噪声，奈氏定理<span class="math inline">\(V = 2f \times log_{2}N\)</span>，f为带宽</p>
+<p>有噪声，香农<span class="math inline">\(V = Wlog_2(1+\frac{S}{N})\)</span> W为带宽，S/N为信噪比</p>
 <blockquote>
 <p>带宽单位为MHz，为最高频率-最低频率</p>
-<p>若给出信噪比为30dB，需要将其转换为S/N，关系是$30 = 10log_{10}1000$,所以S/N=1000</p>
+<p>若给出信噪比为30dB，需要将其转换为S/N，关系是<span class="math inline">\(30 = 10log_{10}1000\)</span>,所以S/N=1000</p>
 </blockquote>
 <p>eg：一个传输数字信号的模拟信道的功率是0.62W，噪声功率是0.02W，频率范围是3.5～3.9MHz，该信道最高数据传输率是：</p>
-<p>有噪声，用香农公式，带宽为0.4MHz，$V = 0.4 \times log_2(1+31) = 2Mbps$</p>
-<h3 id="CDMA"><a href="#CDMA" class="headerlink" title="CDMA"></a>CDMA</h3><p>真实数据 = <strong>码片序列</strong> 与 <strong>叠加的序列</strong>的内积。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.44.42.png" alt=""></p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.45.24.png" alt=""></p>
-<h3 id="GBN最大传送速率"><a href="#GBN最大传送速率" class="headerlink" title="GBN最大传送速率"></a>GBN最大传送速率</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.40.34.png" alt=""></p>
+<p>有噪声，用香农公式，带宽为0.4MHz，<span class="math inline">\(V = 0.4 \times log_2(1+31) = 2Mbps\)</span></p>
+<h3 id="cdma">CDMA</h3>
+<p>真实数据 = <strong>码片序列</strong> 与 <strong>叠加的序列</strong>的内积。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.44.42.png" /></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.45.24.png" /></p>
+<h3 id="gbn最大传送速率">GBN最大传送速率</h3>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2018.40.34.png" /></p>
 <p>GBN在接收到一次确认帧之前可以发N个帧。</p>
 <p>此题发送一个确认帧时间为50x2=100ms，N个帧大小为1000x1000B=1MB，1MB/100ms=80Mbps</p>
-<h3 id="有效数据率-信道利用率"><a href="#有效数据率-信道利用率" class="headerlink" title="有效数据率, 信道利用率"></a>有效数据率, 信道利用率</h3><p><em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率$V=\frac{m}{T}$​</p>
-<p>有效数据率也=发送数据/发送周期</p>
-<p>设：</p>
+<h3 id="有效数据率-信道利用">有效数据率, 信道利用</h3>
 <ul>
-<li><p>帧大小：L</p>
-</li>
-<li><p>两主机间单向传播时间：t，则RTT为2t</p>
-</li>
-<li><p>信道带宽/数据传输率：M</p>
-</li>
-<li><p>发送周期：$T = \frac{L}{M} + 2t + (确认帧发送时间)$​​   </p>
-</li>
+<li><p>帧大小：L</p></li>
+<li><p>两主机间单向传播时间：t，则RTT为2t</p></li>
+<li><p>信道带宽/数据传输率：M</p></li>
+<li><p>发送周期：<span class="math inline">\(T = \frac{L}{M} + 2t + 确认帧发送时间\)</span>​​</p></li>
 </ul>
 <blockquote>
-<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为$\frac{L}{M}$​, 王道P81</p>
+<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为<span class="math inline">\(\frac{L}{M}\)</span>​, 王道P81</p>
 <p>发送周期：从开始发送<strong>第一个</strong>帧开始到收到<strong>第一个</strong>确认帧的时间，不是所有的</p>
 </blockquote>
-<p>信道利用率=数据发送时间/（数据发送时间+传输时间）</p>
+<p>信道利用率=数据发送时间/发送周期</p>
 <p>信道吞吐率=发送速率x信道利用率</p>
 <p>例题：若最大帧长1000B，用3bit编号，RTT=0.96ms，信道传输率为100Mb/s，捎带确认，求最大信道利用率</p>
-<p>​    3bit编号，窗口最大为8-1=7，所以一次最多发7000B</p>
-<p>​    发送周期=发送时间+传输时间+确认帧发送时间=$\frac{1000B}{100Mb/s} + 0.96 + \frac{1000B}{100Mb/s}$</p>
-<p>​    数据发送时间=$7 \times \frac{1000B}{100Mb/s}$</p>
-<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><script type="math/tex; mode=display">
-吞吐量 = \frac{窗口大小}{RTT+发送时间+确认时间}</script><h4 id="CSMA-CD"><a href="#CSMA-CD" class="headerlink" title="CSMA/CD"></a>CSMA/CD</h4><p><strong>截断二进制指数退让算法：</strong></p>
-<ol>
-<li>确定基本退让时间$2\tau$</li>
-<li>$k = min[重传次数, 10]$</li>
-<li>从$[0, 1, …, 2^k-1]$中选一个数$r$，退避时间为$r.2\tau$</li>
+<p>​ 3bit编号，发送窗口最大为8-1=7，所以一次最多发7000B</p>
+<p>​ 发送周期=发送时间+传输时间+确认帧发送时间=<span class="math inline">\(\frac{1000B}{100Mb/s} + 0.96 + \frac{1000B}{100Mb/s}\)</span></p>
+<p>​ 数据发送时间=<span class="math inline">\(7 \times \frac{1000B}{100Mb/s}\)</span></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_359FD85BD012-1.jpeg" /></p>
+<p>设数据帧长度=x，数据传输时间=<span class="math inline">\(\frac{x}{3kbps}\)</span>，信道利用率=<span class="math inline">\(\frac{x/3k}{200ms \times 2 + x/3k}=0.4\)</span>解得x=800bit</p>
+<h3 id="吞吐量">吞吐量</h3>
+<p><span class="math display">\[
+吞吐量 = \frac{窗口大小}{RTT+发送时间+确认时间}
+\]</span></p>
+<h4 id="csmacd">CSMA/CD</h4>
+<p><strong>截断二进制指数退让算法：</strong></p>
+<ol type="1">
+<li>确定基本退让时间<span class="math inline">\(2\tau\)</span></li>
+<li><span class="math inline">\(k = min[重传次数, 10]\)</span></li>
+<li>从<span class="math inline">\([0, 1, …, 2^k-1]\)</span>中选一个数<span class="math inline">\(r\)</span>，退避时间为<span class="math inline">\(r.2\tau\)</span></li>
 <li>重传16次抛弃此帧</li>
 </ol>
-<p><strong>最小帧长：</strong>$总线传播时延 \times 数据传输率 \times 2 = 2\tau v$</p>
+<p><strong>最小帧长：</strong><span class="math inline">\(总线传播时延 \times 数据传输率 \times 2 = 2\tau v\)</span></p>
 <blockquote>
 <p>注意传播和传输的区别，数据大小/传输速率=发送时延</p>
 </blockquote>
 <ul>
 <li>以太网规定最短帧长为64B，凡长度小于64B的都是由于冲突而异常终止的无效帧</li>
 </ul>
-<h3 id="IP数据报"><a href="#IP数据报" class="headerlink" title="IP数据报"></a>IP数据报</h3><p>分片后<strong>改变的字段：</strong></p>
+<h3 id="ip数据报">IP数据报</h3>
+<p>分片后<strong>改变的字段：</strong></p>
 <ul>
 <li>标志位FLAG的MF、DF</li>
 <li>总长度，总长度是分片后的首部长度和数据长度之和</li>
@@ -5457,50 +5649,58 @@ y\\
 </ul>
 <p>经过路由器TTL改变</p>
 <p>若采用NAT，则源IP地址改变。其他情况IP均不变</p>
-<h3 id="ARP建立过程"><a href="#ARP建立过程" class="headerlink" title="ARP建立过程"></a>ARP建立过程</h3><ol>
+<h3 id="arp建立过程">ARP建立过程</h3>
+<ol type="1">
 <li>检查ARP缓存，有对应表项写入MAC帧，没有则用目的地址为FF-FF-FF-FF-FF-FF(6B)发送广播ARP请求</li>
 <li>目的主机接收到请求会向源主机<strong>单播</strong>一个ARP相应分组</li>
 <li>源主机收到后写入ARP缓存</li>
 </ol>
-<h3 id="路由表建立过程"><a href="#路由表建立过程" class="headerlink" title="路由表建立过程"></a>路由表建立过程</h3><p>建立方法：静态路由、动态路由（RIP、OSPF）</p>
+<h3 id="路由表建立过程">路由表建立过程</h3>
+<p>建立方法：静态路由、动态路由（RIP、OSPF）</p>
 <ul>
 <li>表项：目的网络地址、子网掩码、下一跳<strong>IP地址</strong>、接口</li>
 <li>注意：默认路由的目的网络和子网掩码为0.0.0.0（如果用CIDR表示为0.0.0.0/0），下一跳IP地址为连接互联网的路由器IP</li>
 <li>主机路由（特定路由）的子网掩码为全1，255.255.255.255</li>
 </ul>
-<h3 id="DHCP过程"><a href="#DHCP过程" class="headerlink" title="DHCP过程"></a>DHCP过程</h3><ol>
+<h3 id="dhcp过程">DHCP过程</h3>
+<ol type="1">
 <li>主机广播DHCP<strong>发现</strong>消息，<strong>源IP为0.0.0.0，目的IP为255.255.255.255</strong></li>
 <li>DHCP服务器广播DHCP<strong>提供</strong>消息</li>
 <li>主机收到消息，广播DHCP<strong>请求</strong>消息</li>
 <li>服务器广播DHCP<strong>确认</strong>消息</li>
 </ol>
-<h3 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h3><p>更新策略</p>
-<ol>
+<h3 id="距离向量算法">距离向量算法</h3>
+<p>更新策略</p>
+<ol type="1">
 <li>新网络更新</li>
 <li>到<strong>相邻路由器</strong>的跳数变化也更新</li>
 <li>到其他网络跳数变短更新，否则不更新</li>
 </ol>
 <p><strong>坏消息传得慢</strong>，若与R2相邻的网络不可达时，R2通知相邻的R1，R1会把到网络的距离+1，告诉R2，这样来回直到为16</p>
-<h3 id="数据帧发送过程中地址变化"><a href="#数据帧发送过程中地址变化" class="headerlink" title="数据帧发送过程中地址变化"></a>数据帧发送过程中地址变化</h3><p><strong>路由器转发后</strong>，将数据帧的源MAC地址改为路由器的MAC地址，目的MAC地址不变</p>
+<h3 id="数据帧发送过程中地址变化">数据帧发送过程中地址变化</h3>
+<p><strong>路由器转发后</strong>，将数据帧的源MAC地址改为路由器的MAC地址，目的MAC地址不变</p>
 <p>IP地址不变。但当使用NAT是源IP改变</p>
 <p>mac帧的目的mac地址和源mac地址在转发过程中都会发生改变</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-12%20at%2015.59.31.png" alt=""></p>
-<h3 id="GBN和TCP区分"><a href="#GBN和TCP区分" class="headerlink" title="GBN和TCP区分"></a>GBN和TCP区分</h3><ul>
-<li>GBN中$ACK_n$表示对n号帧的确认，期望收到n+1号帧</li>
-<li>TCP中$ack_n$表示对n-1号帧的确认，期望收到n号帧</li>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-12%20at%2015.59.31.png" /></p>
+<h3 id="gbn和tcp区分">GBN和TCP区分</h3>
+<ul>
+<li>GBN中<span class="math inline">\(ACK_n\)</span>表示对n号帧的确认，期望收到n+1号帧</li>
+<li>TCP中<span class="math inline">\(ack_n\)</span>表示对n-1号帧的确认，期望收到n号帧</li>
 </ul>
 <p>在GBN中，发送方需要重发出错帧及之后的帧</p>
 <p>GBN中一个窗口包含一个帧，TCP一个窗口为一个MSS</p>
-<p> 要注意区分GBN、SR、TCP协议的确认机制:</p>
-<ol>
-<li><p>GBN和TCP都采用累计确认机制，SR协议不是</p>
-</li>
+<p>要注意区分GBN、SR、TCP协议的确认机制:</p>
+<ol type="1">
+<li><p>GBN和TCP都采用累计确认机制，SR协议不是</p></li>
 <li><p>关于ACK序号的问题:</p>
-<p>i. GBN:ACK N表示N及其之前的都正确接收 </p>
-<p>ii. SR:ACK N表示正确接收N号帧<br>iii. TCP:ACK N表示期待收到N号帧</p>
-</li>
+<ol type="i">
+<li><p>GBN:ACK N表示N及其之前的都正确接收</p></li>
+<li><p>SR:ACK N表示正确接收N号帧</p></li>
+<li><p>TCP:ACK N表示期待收到N号帧</p></li>
+</ol></li>
 </ol>
-<h3 id="慢开始、拥塞避免、快恢复、快重传区分"><a href="#慢开始、拥塞避免、快恢复、快重传区分" class="headerlink" title="慢开始、拥塞避免、快恢复、快重传区分"></a>慢开始、拥塞避免、快恢复、快重传区分</h3><ul>
+<h3 id="慢开始拥塞避免快恢复快重传区分">慢开始、拥塞避免、快恢复、快重传区分</h3>
+<ul>
 <li>慢开始、快恢复：当遇到<strong>超时</strong>执行慢开始即窗口设为1，sshthresh/=2</li>
 <li>当连续收到三个重复确认执行快恢复，窗口/=2，sshtresh/=2</li>
 <li>拥塞避免按线性增长</li>

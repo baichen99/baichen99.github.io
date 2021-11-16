@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ALU加减法，标志位 上图电路可以实现无符号数的加法和减法，当为加法时，sub&#x3D;0，X和Y作为加法器的输入。当sub&#x3D;1时，Y被取反，并且加上了Cin&#x3D;1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。 ZF： 零标志（Zero Flag），ZF&#x3D;1表示有符号&#x2F;无符号计算结果为0。用于判断while条件中的相等 OF： 溢出标志(Overflow F">
+  <meta name="description" content="ALU加减法，标志位  上图电路可以实现无符号数的加法和减法，当为加法时，sub&#x3D;0，X和Y作为加法器的输入。当sub&#x3D;1时，Y被取反，并且加上了Cin&#x3D;1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。 ZF： 零标志（Zero Flag），ZF&#x3D;1表示有符号&#x2F;无符号计算结果为0。用于判断while条件中的相等 OF： 溢出标志(Overflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="指令系统、CPU、流水线综合">
 <meta property="og:url" content="http://blacston.com/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="ALU加减法，标志位 上图电路可以实现无符号数的加法和减法，当为加法时，sub&#x3D;0，X和Y作为加法器的输入。当sub&#x3D;1时，Y被取反，并且加上了Cin&#x3D;1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。 ZF： 零标志（Zero Flag），ZF&#x3D;1表示有符号&#x2F;无符号计算结果为0。用于判断while条件中的相等 OF： 溢出标志(Overflow F">
+<meta property="og:description" content="ALU加减法，标志位  上图电路可以实现无符号数的加法和减法，当为加法时，sub&#x3D;0，X和Y作为加法器的输入。当sub&#x3D;1时，Y被取反，并且加上了Cin&#x3D;1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。 ZF： 零标志（Zero Flag），ZF&#x3D;1表示有符号&#x2F;无符号计算结果为0。用于判断while条件中的相等 OF： 溢出标志(Overflow">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-22%20%E4%B8%8B%E5%8D%884.45.52.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png">
 <meta property="article:published_time" content="2021-09-20T07:57:45.000Z">
-<meta property="article:modified_time" content="2021-11-12T07:49:39.558Z">
+<meta property="article:modified_time" content="2021-11-16T07:26:59.246Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -199,7 +199,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-12 15:49:39" itemprop="dateModified" datetime="2021-11-12T15:49:39+08:00">2021-11-12</time>
+                <time title="修改时间：2021-11-16 15:26:59" itemprop="dateModified" datetime="2021-11-16T15:26:59+08:00">2021-11-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,38 +222,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="ALU加减法，标志位"><a href="#ALU加减法，标志位" class="headerlink" title="ALU加减法，标志位"></a>ALU加减法，标志位</h2><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png" alt=""></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="alu加减法标志位">ALU加减法，标志位</h2>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png" /></p>
 <p>上图电路可以实现无符号数的加法和减法，当为加法时，sub=0，X和Y作为加法器的输入。当sub=1时，Y被取反，并且加上了Cin=1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。</p>
 <p><strong>ZF：</strong> 零标志（Zero Flag），ZF=1表示有符号/无符号计算结果为0。用于判断while条件中的相等</p>
 <p><strong>OF：</strong> 溢出标志(Overflow Flag)，OF=1表示<strong>有符号整数</strong>溢出，无符号数看CF</p>
-<p><strong>CF：</strong> 进/借位标志（Carry Flag），判断<strong>无符号数</strong>溢出，CF=1时，若sub=0,加法,则表示进位溢出，若sub=1, 为减法, 则表示借位溢出（不够减）。$CF= Sub \oplus Cout（Sub==Cin）$。CF=1表示溢出</p>
-<p><strong>SF：</strong> 符号标志（Sign Flag），SF=两个数最高位异或，<strong>计算结果的符号</strong>。根OF搭配实现大小关系。 </p>
+<p><strong>CF：</strong> 进/借位标志（Carry Flag），判断<strong>无符号数</strong>溢出，CF=1时，若sub=0,加法,则表示进位溢出，若sub=1, 为减法, 则表示借位溢出（不够减）。<span class="math inline">\(CF= Sub \oplus Cout（Sub==Cin）\)</span>。CF=1表示溢出</p>
+<p><strong>SF：</strong> 符号标志（Sign Flag），SF=两个数最高位异或，<strong>计算结果的符号</strong>。根OF搭配实现大小关系。</p>
 <p>这些标志位都属于PSW（程序状态寄存器），与跳转条件指令有关，条件判断的本质位一个减法，如当a==1时跳转，会计算a-1，判断ZF是否位0，若位0则jmp</p>
 <p>计算a-b</p>
 <p>若OF=SF，表示大于，如OF=0，SF=0，没有溢出，结果符号为0，说明a&gt;b</p>
-<p>若OF$\ne$SF，表示小于，OF=0, SF=1，没有溢出，结果符号为1，说明a&lt;b</p>
+<p>若OF<span class="math inline">\(\ne\)</span>SF，表示小于，OF=0, SF=1，没有溢出，结果符号为1，说明a&lt;b</p>
 <p>ZF=1，a=b</p>
 <p>例题</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-22%20%E4%B8%8B%E5%8D%884.45.52.png" alt=""></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-22%20%E4%B8%8B%E5%8D%884.45.52.png" /></p>
 <p>（3）无符号数相减，a-b，若a&lt;b，肯定发生了借位即CF=1，若a=b，结果为0，ZF=0，所以C，Z，N应该为1, 1, 0</p>
-<h2 id="溢出判断"><a href="#溢出判断" class="headerlink" title="溢出判断"></a>溢出判断</h2><h3 id="无符号数加减法"><a href="#无符号数加减法" class="headerlink" title="无符号数加减法"></a>无符号数加减法</h3><p>$CF = Sub \oplus Cout$ ，公式要记住，2017年考了，sub代表减法，Cout代表进位。如0110+0100，cout=0，sub=0，所以CF=0</p>
-<h3 id="有符号数加减法"><a href="#有符号数加减法" class="headerlink" title="有符号数加减法"></a>有符号数加减法</h3><ol>
+<h2 id="溢出判断">溢出判断</h2>
+<h3 id="无符号数加减法">无符号数加减法</h3>
+<p><span class="math inline">\(CF = Sub \oplus Cout\)</span> ，公式要记住，2017年考了，sub代表减法，Cout代表进位。如0110+0100，cout=0，sub=0，所以CF=0</p>
+<h3 id="有符号数加减法">有符号数加减法</h3>
+<p>真题 2018 19题</p>
+<ol type="1">
 <li><p>一位符号位，只有符号相同的数相加才会发生溢出，因此判断条件：两个正数相加，结果为负，则溢出。</p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/265388131">如何确定数值计算后的SF,ZF,CF,OF？ - 知乎 (zhihu.com)</a></p>
-</li>
-<li><p>一位符号位，符号位<strong>进位</strong>与最高数位进位相同则无溢出，否则溢出。</p>
-</li>
-<li><p>两位符号位，01正溢出，10负溢出。</p>
-</li>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/265388131">如何确定数值计算后的SF,ZF,CF,OF？ - 知乎 (zhihu.com)</a></p></li>
+<li><p>一位符号位，符号位<strong>进位</strong>与最高数位<strong>进位</strong>相同则无溢出，否则溢出。</p></li>
+<li><p>两位符号位，01正溢出，10负溢出。</p></li>
 </ol>
-<h3 id="无符号数乘法"><a href="#无符号数乘法" class="headerlink" title="无符号数乘法"></a>无符号数乘法</h3><ol>
+<h3 id="无符号数乘法">无符号数乘法</h3>
+<ol type="1">
 <li>两个n位的无符号数a、b相乘，左边n位必须全0，否则溢出</li>
 <li>手算：计算两个数十进制乘积，看是否超出了n位数能表示的范围</li>
 </ol>
 <blockquote>
 <p>2020真题</p>
 </blockquote>
-<h3 id="有符号数乘法（补码）"><a href="#有符号数乘法（补码）" class="headerlink" title="有符号数乘法（补码）"></a>有符号数乘法（补码）</h3><ol>
+<h3 id="有符号数乘法补码">有符号数乘法（补码）</h3>
+<ol type="1">
 <li>两个n位的有符号数a、b相乘，左边<strong>n+1位</strong>必须<strong>全0或全1</strong>，否则溢出</li>
 <li>手算：计算两个数十进制乘积，看是否超出了n位有符号数能表示的范围</li>
 </ol>
@@ -261,50 +265,59 @@
 <blockquote>
 <p>2019真题</p>
 </blockquote>
-<h3 id="移位"><a href="#移位" class="headerlink" title="移位"></a>移位</h3><p>对于$[X]_补=X_0.X_1X_2…X_n$，补码左移，什么情况会发生溢出？</p>
-<p>​    $X_0 \ne X1$时会溢出，可以用双符号位理解，当左移双符号位变为$X_0X_1$，不相等肯定溢出。</p>
-<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><h2 id="电路图元件"><a href="#电路图元件" class="headerlink" title="电路图元件"></a>电路图元件</h2><p>$X_{in}$ 控制寄存器数据流入</p>
-<p>$X_{out}$ 控制寄存器数据流出</p>
-<p>$X_{op}$ 控制器件的操作，比如$ALU_{op}$可以控制ALU操作为add、sub…</p>
+<h3 id="移位">移位</h3>
+<p>对于<span class="math inline">\([X]_补=X_0.X_1X_2...X_n\)</span>，补码左移，什么情况会发生溢出？</p>
+<p>​ <span class="math inline">\(X_0 \ne X1\)</span>时会溢出，可以用双符号位理解，当左移双符号位变为<span class="math inline">\(X_0X_1\)</span>，不相等肯定溢出。</p>
+<h3 id="浮点数">浮点数</h3>
+<h2 id="电路图元件">电路图元件</h2>
+<p><span class="math inline">\(X_{in}\)</span> 控制寄存器数据流入</p>
+<p><span class="math inline">\(X_{out}\)</span> 控制寄存器数据流出</p>
+<p><span class="math inline">\(X_{op}\)</span> 控制器件的操作，比如<span class="math inline">\(ALU_{op}\)</span>可以控制ALU操作为add、sub…</p>
 <blockquote>
-<p>若$PC_{out}=1, MAR_{in}=1$则$PC \rarr MAR$</p>
+<p>若<span class="math inline">\(PC_{out}=1, MAR_{in}=1\)</span>则<span class="math inline">\(PC \rarr MAR\)</span></p>
 </blockquote>
 <p>三态门：三种状态分别是连接、断开、高阻（了解）。控制器件与总线之间数据通路之间的连接与断开</p>
 <p>暂存器：暂存数据，一般与ALU搭配使用。如ALU有两个输入a和b，如果没有暂存器，数据总线同时连通a和b，造成两个输入端一样，增加暂存器可以将一个数据暂存其中，另一个数通过数据总线直接送入ALU，可以实现两个不同的输入。</p>
 <p>移位寄存器：实现移位运算</p>
-<p>多路选择器MUX：从多个输入中选择一个输出，控制信号为$MUX_{op}$</p>
-<p>译码器：n个输入$2^n$个输出，如对IR中的指令的操作码字段译码，向控制器提供特定的操作信号</p>
-<h2 id="一条指令执行过程"><a href="#一条指令执行过程" class="headerlink" title="一条指令执行过程"></a>一条指令执行过程</h2><p>一个指令周期可以分为4个机器周期：取指、间址、执行、中断。通常考数据流向、电路连线、元器件识别</p>
+<p>多路选择器MUX：从多个输入中选择一个输出，控制信号为<span class="math inline">\(MUX_{op}\)</span></p>
+<p>译码器：n个输入<span class="math inline">\(2^n\)</span>个输出，如对IR中的指令的操作码字段译码，向控制器提供特定的操作信号</p>
+<h2 id="一条指令执行过程">一条指令执行过程</h2>
+<p>一个指令周期可以分为4个机器周期：取指、间址、执行、中断。通常考数据流向、电路连线、元器件识别</p>
 <p><strong>取指</strong>：</p>
-<ol>
-<li>$PC \rarr MAR \rarr 地址总线 \rarr M$</li>
-<li>$CU读命令 \rarr 控制总线 \rarr M$</li>
-<li>$M \rarr 数据总线 \rarr MDR \rarr IR$</li>
-<li>$CU读命令$</li>
-<li>$(PC)+1$</li>
+<ol type="1">
+<li><span class="math inline">\(PC \rarr MAR \rarr 地址总线 \rarr M\)</span></li>
+<li><span class="math inline">\(CU读命令 \rarr 控制总线 \rarr M\)</span></li>
+<li><span class="math inline">\(M \rarr 数据总线 \rarr MDR \rarr IR\)</span></li>
+<li><span class="math inline">\(CU读命令\)</span></li>
+<li><span class="math inline">\((PC)+1\)</span></li>
 </ol>
 <p><strong>间址:</strong>(和取指周期前三步差不多)</p>
-<ol>
-<li>$Ad(IR) \rarr MAR \rarr 地址总线 \rarr M$</li>
-<li>$CU读命令 \rarr 控制总线 \rarr M$</li>
-<li>$M \rarr 数据总线 \rarr MDR$</li>
+<ol type="1">
+<li><span class="math inline">\(Ad(IR) \rarr MAR \rarr 地址总线 \rarr M\)</span></li>
+<li><span class="math inline">\(CU读命令 \rarr 控制总线 \rarr M\)</span></li>
+<li><span class="math inline">\(M \rarr 数据总线 \rarr MDR\)</span></li>
 </ol>
 <p><strong>执行：</strong>不统一</p>
 <p><strong>中断：</strong></p>
 <p>中断周期要做的事是保存程序断点到主存，所以要访存。堆栈在主存中，SP是栈顶指针地址。因为堆栈从高地址到低地址，所以SP-1而不是+1</p>
-<ol>
-<li>$CU控制信号使SP-1, SP \rarr MAR \rarr 地址总线 \rarr M$</li>
-<li>$CU写命令 \rarr 控制总线 \rarr M$</li>
-<li>$PC \rarr MDR \rarr 数据总线 \rarr M  （将PC保存到SP指向的内存）$</li>
-<li>$CU将中断程序的入口地址 \rarr PC$</li>
+<ol type="1">
+<li><span class="math inline">\(CU控制信号使SP-1, SP \rarr MAR \rarr 地址总线 \rarr M\)</span></li>
+<li><span class="math inline">\(CU写命令 \rarr 控制总线 \rarr M\)</span></li>
+<li><span class="math inline">\(PC \rarr MDR \rarr 数据总线 \rarr M （将PC保存到SP指向的内存）\)</span></li>
+<li><span class="math inline">\(CU将中断程序的入口地址 \rarr PC\)</span></li>
 </ol>
-<h2 id="一系列指令执行过程"><a href="#一系列指令执行过程" class="headerlink" title="一系列指令执行过程"></a>一系列指令执行过程</h2><h3 id="x86"><a href="#x86" class="headerlink" title="x86"></a>x86</h3><h4 id="数据表示"><a href="#数据表示" class="headerlink" title="数据表示"></a>数据表示</h4><p>字大小：16bit</p>
+<h2 id="一系列指令执行过程">一系列指令执行过程</h2>
+<h3 id="x86">x86</h3>
+<h4 id="数据表示">数据表示</h4>
+<p>字大小：16bit</p>
 <p>题目中exx代表32位寄存器，e开头, 3个字母，如eax，ebp …。若是两个字母ax、bx等是16位寄存器</p>
 <p>如果数据来自于寄存器，会写作eax，若访问内存，会加个括号，（eax+02H）, [eax+8]</p>
 <p>寻址时2个寄存器之间只能相加，最多用2个寄存器和1个有符号数计算地址，王道4.2.3 P172</p>
 <p><code>mov dword ptr [eax], 2</code> [eax]是读/写的地址, dword ptr指明读取单位是2个字即32bit，因此这条指令操作是：把2以4Byte形式传送到内存地址[eax]中。</p>
-<h4 id="算术逻辑运算指令"><a href="#算术逻辑运算指令" class="headerlink" title="算术逻辑运算指令"></a>算术逻辑运算指令</h4><p>add、sub、mul、imul、div、div、inc、dec、shl、shr</p>
-<h4 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h4><p>if/else/switch，判断条件的本质是计算a-b（cmp A, B），根据PSW来决定是否跳转，无符号数看CF、ZF，有符号数看OF、SF、ZF。</p>
+<h4 id="算术逻辑运算指令">算术逻辑运算指令</h4>
+<p>add、sub、mul、imul、div、div、inc、dec、shl、shr</p>
+<h4 id="分支结构">分支结构</h4>
+<p>if/else/switch，判断条件的本质是计算a-b（cmp A, B），根据PSW来决定是否跳转，无符号数看CF、ZF，有符号数看OF、SF、ZF。</p>
 <p>汇编语言：</p>
 <p>jmp和com一起使用，下面例子为：当eax&lt;=ebx时，跳转到03H。在条件跳转之前一定有一个cmp，无条件跳转则没有。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmp	eax,	ebx</span><br><span class="line">jle	03H</span><br></pre></td></tr></table></figure>
@@ -319,13 +332,15 @@
 <blockquote>
 <p>偏移量是针对下一条指令，所以先+2，再+2x偏移</p>
 </blockquote>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-23%20%E4%B8%8B%E5%8D%882.59.59.png" alt=""></p>
-<h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p>for、while，原理同跳转指令</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-23%20%E4%B8%8B%E5%8D%882.59.59.png" /></p>
+<h4 id="循环结构">循环结构</h4>
+<p>for、while，原理同跳转指令</p>
 <p>C语言：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">  <span class="keyword">do</span> something</span><br></pre></td></tr></table></figure>
 <p>汇编语言：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Loop1: </span><br><span class="line">	&lt;do something&gt;</span><br><span class="line"></span><br><span class="line">inc i</span><br><span class="line">cmp i, N</span><br><span class="line">jl Loop1		&#x2F;&#x2F; i&lt;N满足条件，继续循环</span><br></pre></td></tr></table></figure>
-<h4 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h4><p>call/ret与push、pop搭配使用，call则将<strong>当前PC地址、函数实参、栈底指针</strong>入栈，ret则弹出上一层函数的地址，继续执行。比如:</p>
+<h4 id="函数调用">函数调用</h4>
+<p>call/ret与push、pop搭配使用，call则将<strong>当前PC地址、函数实参、栈底指针</strong>入栈，ret则弹出上一层函数的地址，继续执行。比如:</p>
 <p><strong>当前PC地址是：call指令的下一条指令地址。</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f1()&#123;</span><br><span class="line">  f2();</span><br><span class="line">  f3();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在执行完f2，接下来应该执行f3，ret，pop出一个地址，这个地址是f3函数的地址，栈底指针是f1函数的栈底指针。</p>
@@ -335,76 +350,85 @@
 <p>汇编：</p>
 <p>每个函数第一条指令为push ebp，意思是保护先前EBP指针， EBP入栈</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">push ebp	&#x2F;&#x2F; 保护上层函数地址</span><br><span class="line">move ebp esp &#x2F;&#x2F; 把esp栈顶指针设置为ebp栈底指针</span><br><span class="line"></span><br><span class="line">cmp n, 1		&#x2F;&#x2F; 比较</span><br><span class="line">jle	xxx			&#x2F;&#x2F; 根据结果跳转</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="程序举例"><a href="#程序举例" class="headerlink" title="程序举例"></a>程序举例</h4><ul>
+<h4 id="程序举例">程序举例</h4>
+<ul>
 <li><p>访问数组时格式<code>move arr (, %edi, 4)  %edx</code></p>
-<p>arr时数组地址，%edi是index，4是数组元素占字节数(int)，这个代码的意思是<code>arr[edi] -&gt; %edx</code></p>
-</li>
-<li><p>mov的间接寻址<code>mov 8(%ebp), %edi</code>  8(%ebp)的意思是，基于%ebp偏移8个单元</p>
-</li>
+<p>arr时数组地址，%edi是index，4是数组元素占字节数(int)，这个代码的意思是<code>arr[edi] -&gt; %edx</code></p></li>
+<li><p>mov的间接寻址<code>mov 8(%ebp), %edi</code> 8(%ebp)的意思是，基于%ebp偏移8个单元</p></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++)</span><br><span class="line">    s += arr[i]</span><br><span class="line">  retrun s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">push	%ebp								&#x2F;&#x2F; 保护上层函数指针</span><br><span class="line">mov		%esp, %ebp						&#x2F;&#x2F; 栈顶指针指向栈底</span><br><span class="line">sub		$0x10, -0x4(%ebp)		&#x2F;&#x2F; -0x4(%ebp)是相对寻址，这个单元存放变量i的值</span><br><span class="line">movl	$0x0, -0x4(%ebp)		&#x2F;&#x2F; i&#x3D;0</span><br><span class="line">jmp		第12行</span><br><span class="line">mov		-0x4(%ebp), %eax		&#x2F;&#x2F; 把栈底指针偏移-4字节的数据移入%eax，使%eax存放i的值</span><br><span class="line">mov		arr(, %eax, 4), %edx	&#x2F;&#x2F; arr[%eax] -&gt; %edx, %eax是索引</span><br><span class="line">mov		s, %eax							&#x2F;&#x2F; s是累加变量sum的地址，传给%eax</span><br><span class="line">add		%edx, %eax					&#x2F;&#x2F; sum +&#x3D; arr[i]</span><br><span class="line">mov		%edx, s</span><br><span class="line">addl	%0x1, -0x4(%ebp)		&#x2F;&#x2F; i++</span><br><span class="line">cmpl	%0x3, -0x4(%ebp)		&#x2F;&#x2F; i-3</span><br><span class="line">jle		第6行								&#x2F;&#x2F; if i&lt;3, 跳转</span><br><span class="line">mov		s, %eax						</span><br><span class="line">leave</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
-<h3 id="MIPS"><a href="#MIPS" class="headerlink" title="MIPS"></a>MIPS</h3><h4 id="五段流水线"><a href="#五段流水线" class="headerlink" title="五段流水线"></a>五段流水线</h4><p>流水线一般结合MIPS32（RISC）考，不和X86一起考，因为X86是CISC不支持流水线。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png" alt=""></p>
+<h3 id="mips">MIPS</h3>
+<h4 id="五段流水线">五段流水线</h4>
+<p>流水线一般结合MIPS32（RISC）考，不和X86一起考，因为X86是CISC不支持流水线。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png" /></p>
 <p>简单介绍一下指令执行过程，<strong>注意：以下不是所有指令都具有，只是为了方便设计流水线，每个指令周期都有这几个机器周期，但周期内可能为空指令（空指令阶段什么都不做，但是要消耗时间），必须知道每种指令的机器周期有哪些。</strong></p>
-<ol>
+<ol type="1">
 <li>IF阶段，根据PC值从指令cache中取出指令，并将指令放在指令寄存器中，这是每个指令都要做的</li>
 <li>ID阶段，对指令译码，并从cache中取操作数(取不到则从主存找)，并存放到ID段的锁存器中，这里有三个：A、B、Imm，Imm代表立即数</li>
 <li>EX阶段，ALU将上一步得到的操作信息进行运算，运算结果放入EX段锁存器</li>
 <li>M阶段，访存阶段，只有Load和Store访存</li>
 <li>WB阶段，将数据写回<strong>寄存器</strong></li>
 </ol>
-<h5 id="运算类指令"><a href="#运算类指令" class="headerlink" title="运算类指令"></a>运算类指令</h5><p>如ADD，SUB，SHL等，其指令周期为：</p>
-<ol>
+<h5 id="运算类指令">运算类指令</h5>
+<p>如ADD，SUB，SHL等，其指令周期为：</p>
+<ol type="1">
 <li>IF</li>
 <li>ID，取出需要进行运算的操作数</li>
 <li>EX，将运算结果放入寄存器中，等待WB阶段写回寄存器</li>
-<li><strong>M ，空段</strong>，因为运算器运算的结果肯定是要直接放入某个寄存器中，因此不需要访存，例如ADD Rs, Rd的功能为$(Rs)+(Rd) \rarr Rd$，无访存阶段</li>
+<li><strong>M ，空段</strong>，因为运算器运算的结果肯定是要直接放入某个寄存器中，因此不需要访存，例如ADD Rs, Rd的功能为<span class="math inline">\((Rs)+(Rd) \rarr Rd\)</span>，无访存阶段</li>
 <li>WB，运算结果写回寄存器</li>
 </ol>
-<h5 id="LOAD指令"><a href="#LOAD指令" class="headerlink" title="LOAD指令"></a>LOAD指令</h5><p>LOAD Rd,996(Rs)，其功能为$(996 + (Rs)) \rarr Rd$，通常情况下，LOAD指令都要使用基址寻址，从表达式中可以看出进行了加法运算，因此必定有EX阶段</p>
-<ol>
+<h5 id="load指令">LOAD指令</h5>
+<p>LOAD Rd,996(Rs)，其功能为<span class="math inline">\((996 + (Rs)) \rarr Rd\)</span>，通常情况下，LOAD指令都要使用基址寻址，从表达式中可以看出进行了加法运算，因此必定有EX阶段</p>
+<ol type="1">
 <li>IF，每个指令都要有这个阶段</li>
 <li>ID，将基地址(Rs)取出，放到锁存器A中，偏移量的值放入Imm中</li>
 <li>EX，得到有效地址EA</li>
 <li>M，从cache的EA地址取数，并存放到锁存器</li>
 <li>WB，将该数写回Rd寄存器</li>
 </ol>
-<h5 id="STORE指令"><a href="#STORE指令" class="headerlink" title="STORE指令"></a>STORE指令</h5><p>STORE Rs, 996(Rd)，其功能为$Rs \rarr (996+(Rd))$，其前三个步骤都与LOAD一样</p>
-<ol>
+<h5 id="store指令">STORE指令</h5>
+<p>STORE Rs, 996(Rd)，其功能为<span class="math inline">\(Rs \rarr (996+(Rd))\)</span>，其前三个步骤都与LOAD一样</p>
+<ol start="4" type="1">
 <li>M，写入数据到cache，这一步就完成了STORE指令目的</li>
 <li><strong>WB，空</strong></li>
 </ol>
-<h5 id="条件转移"><a href="#条件转移" class="headerlink" title="条件转移"></a>条件转移</h5><p>采用相对寻址，如beq Rs, Rt, #偏移量，其功能为：若Rs==Rt，则(PC) + 指令字长/字节 + (指令字长/字节x偏移量) -&gt; PC，否则(PC) + 指令字长/字节 $\rarr$ PC(即顺序执行)</p>
+<h5 id="条件转移">条件转移</h5>
+<p>采用相对寻址，如beq Rs, Rt, #偏移量，其功能为：若Rs==Rt，则(PC) + 指令字长/字节 + (指令字长/字节x偏移量) -&gt; PC，否则(PC) + 指令字长/字节 <span class="math inline">\(\rarr\)</span> PC(即顺序执行)</p>
 <blockquote>
 <p>注：跳转到相对于下一条指令的偏移地址，这里指令字长单位是bit，字节是8bit。若指令字长为字节B，可以写作(PC) + 指令字长 + (指令字长x偏移量) -&gt; PC</p>
 </blockquote>
-<ol>
+<ol type="1">
 <li>IF</li>
 <li>ID，取出要比较的两个数，放入A、B锁存器，偏移量放入Imm中</li>
 <li>EX，运算，比较两个数</li>
 <li>M，不访存，这个阶段更新PC值</li>
 <li><strong>WB， 空</strong>，计算结果只是为了判断跳转，不需要写回</li>
 </ol>
-<h5 id="无条件转移"><a href="#无条件转移" class="headerlink" title="无条件转移"></a>无条件转移</h5><p>采用相对寻址，如jmp #偏移量，其功能为：(PC) + 指令字长/字节 + (偏移量/字节x指令字长) -&gt; PC</p>
+<h5 id="无条件转移">无条件转移</h5>
+<p>采用相对寻址，如jmp #偏移量，其功能为：(PC) + 指令字长/字节 + (偏移量/字节x指令字长) -&gt; PC</p>
 <blockquote>
 <p>注：跳转到相对于下一条指令的偏移地址</p>
 </blockquote>
-<ol>
+<ol type="1">
 <li>IF</li>
 <li>ID，偏移量放入Imm中</li>
 <li>EX，这个阶段更新PC值</li>
 <li><strong>M，空</strong></li>
 <li><strong>WB， 空</strong></li>
 </ol>
-<h4 id="判断是否冲突"><a href="#判断是否冲突" class="headerlink" title="判断是否冲突"></a>判断是否冲突</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Cyril_KI/article/details/111770213">流水线中数据相关的理解（RAW、WAR和WAW）_Cyril_KI的博客-CSDN博客</a></p>
-<p> 判断方法：判断两条指令什么相关，若<strong>时间上先运行</strong>的指令向R1<strong>写</strong>，但是还没写入时，<strong>时间上后运行</strong>的指令向R1<strong>读</strong>，这就发生了写后读。</p>
-<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ol>
+<h4 id="判断是否冲突">判断是否冲突</h4>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Cyril_KI/article/details/111770213">流水线中数据相关的理解（RAW、WAR和WAW）_Cyril_KI的博客-CSDN博客</a></p>
+<p>判断方法：判断两条指令什么相关，若<strong>时间上先运行</strong>的指令向R1<strong>写</strong>，但是还没写入时，<strong>时间上后运行</strong>的指令向R1<strong>读</strong>，这就发生了写后读。</p>
+<h5 id="方法">方法</h5>
+<ol type="1">
 <li>判断指令类型：运算类、load、store、条件转移、无条件转移</li>
 <li>写出每个指令需要的机器周期</li>
 <li>画图</li>
 </ol>
-<h5 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h5><p>在无转发机制的五段基本流水线（取指、译码/读寄存器、运算、访存、写回寄存器）中，下列指令存在数据冒险的指令对是（）</p>
+<h5 id="例1">例1</h5>
+<p>在无转发机制的五段基本流水线（取指、译码/读寄存器、运算、访存、写回寄存器）中，下列指令存在数据冒险的指令对是（）</p>
 <p>I1: add R1, R2, R3; (R2) + (R3) -&gt; R1</p>
 <p>I2: add R5, R2, R4; (R2) + (R4) -&gt; R5</p>
 <p>I3: add R4, R5, R3; (R5) + (R3) -&gt; R4</p>
@@ -413,10 +437,9 @@
 <p>B I2, I3</p>
 <p>C I2, I4</p>
 <p>D I3, I4</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>1</th>
 <th>2</th>
@@ -427,7 +450,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>I1</td>
 <td>IE</td>
 <td>ID(R2, R3)</td>
@@ -436,7 +459,7 @@
 <td>WB(R1)</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>I2</td>
 <td></td>
 <td>IE</td>
@@ -447,12 +470,10 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>可以看到I1在5写的寄存器R1和I2使用到的寄存器无关，因此不存在冲突，继续添加指令</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>1</th>
 <th>2</th>
@@ -464,7 +485,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>I1</td>
 <td>IE</td>
 <td>ID(R2, R3)</td>
@@ -474,7 +495,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>I2</td>
 <td></td>
 <td>IE</td>
@@ -484,7 +505,7 @@
 <td>WB(R5)</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>I3</td>
 <td></td>
 <td></td>
@@ -492,16 +513,15 @@
 <td>ID(R5, R3)</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>写到这一步发现，I3在4要读R5，但是上一条指令还没写完，于是便出现了RAW冲突，所以选B</p>
 <p>解决方法是等待</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>1</th>
 <th>2</th>
@@ -516,7 +536,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>I1</td>
 <td>IE</td>
 <td>ID(R2, R3)</td>
@@ -529,7 +549,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>I2</td>
 <td></td>
 <td>IE</td>
@@ -542,7 +562,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>I3</td>
 <td></td>
 <td></td>
@@ -557,11 +577,11 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h5 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h5><p>判断：流水线按序流动时，在RAW、WAR和WAW中，只可能出现RAW相关。</p>
+<h5 id="例2">例2</h5>
+<p>判断：流水线按序流动时，在RAW、WAR和WAW中，只可能出现RAW相关。</p>
 <p>对。当流水线按序流动，其图像如下：</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png" alt=""></p>
-<ol>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-10%20%E4%B8%8A%E5%8D%881.12.33.png" /></p>
+<ol type="1">
 <li>I1的2是读数据，I2、I3中的WB是写，都在2其之后，所以不存在WAR(读后写)相关</li>
 <li>I1的5是写数据，如果I2的3访问到了I1写的寄存器，就出现了RAW(写后读)相关</li>
 <li>I1的5是写，I2的6是写，在I1的写之后，所以不存在WAW相关</li>
@@ -650,7 +670,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ALU%E5%8A%A0%E5%87%8F%E6%B3%95%EF%BC%8C%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="nav-number">1.</span> <span class="nav-text">ALU加减法，标志位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-number">2.</span> <span class="nav-text">溢出判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">无符号数加减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">有符号数加减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">无符号数乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95%EF%BC%88%E8%A1%A5%E7%A0%81%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">有符号数乘法（补码）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E4%BD%8D"><span class="nav-number">2.5.</span> <span class="nav-text">移位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">2.6.</span> <span class="nav-text">浮点数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%85%83%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">电路图元件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">一条指令执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%B3%BB%E5%88%97%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">一系列指令执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#x86"><span class="nav-number">5.1.</span> <span class="nav-text">x86</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA"><span class="nav-number">5.1.1.</span> <span class="nav-text">数据表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="nav-number">5.1.2.</span> <span class="nav-text">算术逻辑运算指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.3.</span> <span class="nav-text">分支结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.4.</span> <span class="nav-text">循环结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">5.1.5.</span> <span class="nav-text">函数调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%BE%E4%BE%8B"><span class="nav-number">5.1.6.</span> <span class="nav-text">程序举例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIPS"><span class="nav-number">5.2.</span> <span class="nav-text">MIPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E6%AE%B5%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">5.2.1.</span> <span class="nav-text">五段流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%B1%BB%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.1.1.</span> <span class="nav-text">运算类指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LOAD%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.1.2.</span> <span class="nav-text">LOAD指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#STORE%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.1.3.</span> <span class="nav-text">STORE指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB"><span class="nav-number">5.2.1.4.</span> <span class="nav-text">条件转移</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB"><span class="nav-number">5.2.1.5.</span> <span class="nav-text">无条件转移</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%86%B2%E7%AA%81"><span class="nav-number">5.2.2.</span> <span class="nav-text">判断是否冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B1"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">例1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B2"><span class="nav-number">5.2.2.3.</span> <span class="nav-text">例2</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#alu%E5%8A%A0%E5%87%8F%E6%B3%95%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="nav-number">1.</span> <span class="nav-text">ALU加减法，标志位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-number">2.</span> <span class="nav-text">溢出判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">无符号数加减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">有符号数加减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">无符号数乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%98%E6%B3%95%E8%A1%A5%E7%A0%81"><span class="nav-number">2.4.</span> <span class="nav-text">有符号数乘法（补码）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E4%BD%8D"><span class="nav-number">2.5.</span> <span class="nav-text">移位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">2.6.</span> <span class="nav-text">浮点数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%85%83%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">电路图元件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">一条指令执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%B3%BB%E5%88%97%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">一系列指令执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#x86"><span class="nav-number">5.1.</span> <span class="nav-text">x86</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA"><span class="nav-number">5.1.1.</span> <span class="nav-text">数据表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="nav-number">5.1.2.</span> <span class="nav-text">算术逻辑运算指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.3.</span> <span class="nav-text">分支结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.4.</span> <span class="nav-text">循环结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">5.1.5.</span> <span class="nav-text">函数调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%BE%E4%BE%8B"><span class="nav-number">5.1.6.</span> <span class="nav-text">程序举例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mips"><span class="nav-number">5.2.</span> <span class="nav-text">MIPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E6%AE%B5%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">5.2.1.</span> <span class="nav-text">五段流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%B1%BB%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.1.1.</span> <span class="nav-text">运算类指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#load%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.1.2.</span> <span class="nav-text">LOAD指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#store%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.1.3.</span> <span class="nav-text">STORE指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB"><span class="nav-number">5.2.1.4.</span> <span class="nav-text">条件转移</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB"><span class="nav-number">5.2.1.5.</span> <span class="nav-text">无条件转移</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%86%B2%E7%AA%81"><span class="nav-number">5.2.2.</span> <span class="nav-text">判断是否冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B1"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">例1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B2"><span class="nav-number">5.2.2.3.</span> <span class="nav-text">例2</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

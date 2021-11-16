@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="窗口大小停止等待协议$W_T &#x3D; W_R &#x3D; 1$ GBN协议$W_T \ge 1,  W_R &#x3D; 1$ 若用n个bit对帧序列进行编号，$W_T \le 2^{n}-1 $​ 选择重传协议$ W_T \ge 1, W_R \ge 1$ $W_T \ge W_R$，否则接收窗口永远不满，无意义">
+  <meta name="description" content="窗口大小 停止等待协议 \(W_T &#x3D; W_R &#x3D; 1\) GBN协议 \(W_T \ge 1, W_R &#x3D; 1\) 若用n个bit对帧序列进行编号，$W_T ^{n}-1 $​ 选择重传协议 $ W_T , W_R $ \(W_T \ge W_R\)，否则接收窗口永远不满，无意义">
 <meta property="og:type" content="article">
 <meta property="og:title" content="窗口大小、有效数据率、信道利用率计算">
 <meta property="og:url" content="http://blacston.com/2021/08/06/flow-control-cal/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="窗口大小停止等待协议$W_T &#x3D; W_R &#x3D; 1$ GBN协议$W_T \ge 1,  W_R &#x3D; 1$ 若用n个bit对帧序列进行编号，$W_T \le 2^{n}-1 $​ 选择重传协议$ W_T \ge 1, W_R \ge 1$ $W_T \ge W_R$，否则接收窗口永远不满，无意义">
+<meta property="og:description" content="窗口大小 停止等待协议 \(W_T &#x3D; W_R &#x3D; 1\) GBN协议 \(W_T \ge 1, W_R &#x3D; 1\) 若用n个bit对帧序列进行编号，$W_T ^{n}-1 $​ 选择重传协议 $ W_T , W_R $ \(W_T \ge W_R\)，否则接收窗口永远不满，无意义">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-06T10:25:53.000Z">
-<meta property="article:modified_time" content="2021-10-18T05:41:21.751Z">
+<meta property="article:modified_time" content="2021-11-16T08:16:53.134Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="计算机网络">
 <meta property="article:tag" content="流量控制">
@@ -194,7 +194,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-18 13:41:21" itemprop="dateModified" datetime="2021-10-18T13:41:21+08:00">2021-10-18</time>
+                <time title="修改时间：2021-11-16 16:16:53" itemprop="dateModified" datetime="2021-11-16T16:16:53+08:00">2021-11-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,36 +217,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h2><h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>$W_T = W_R = 1$</p>
-<h3 id="GBN协议"><a href="#GBN协议" class="headerlink" title="GBN协议"></a>GBN协议</h3><p>$W_T \ge 1,  W_R = 1$</p>
-<p><strong>若用n个bit对帧序列进行编号，$W_T \le 2^{n}-1 $​</strong></p>
-<h3 id="选择重传协议"><a href="#选择重传协议" class="headerlink" title="选择重传协议"></a>选择重传协议</h3><p>$ W_T \ge 1, W_R \ge 1$</p>
-<p>$W_T \ge W_R$，否则接收窗口永远不满，无意义</p>
-<p>若用n个bit对帧序列进行编号，$W_T + W_R \le 2^n$</p>
-<p>一般情况下$W_R = W_T$，所以最大值为$W_{Tmax} = W_{Rmax} = 2^{n-1}$</p>
-<h2 id="有效数据率"><a href="#有效数据率" class="headerlink" title="有效数据率"></a>有效数据率</h2><p>首先要知道<em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率$V=\frac{m}{T}$​</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="窗口大小">窗口大小</h2>
+<h3 id="停止等待协议">停止等待协议</h3>
+<p><span class="math inline">\(W_T = W_R = 1\)</span></p>
+<h3 id="gbn协议">GBN协议</h3>
+<p><span class="math inline">\(W_T \ge 1, W_R = 1\)</span></p>
+<p><strong>若用n个bit对帧序列进行编号，$W_T ^{n}-1 $​</strong></p>
+<h3 id="选择重传协议">选择重传协议</h3>
+<p>$ W_T , W_R $</p>
+<p><span class="math inline">\(W_T \ge W_R\)</span>，否则接收窗口永远不满，无意义</p>
+<p>若用n个bit对帧序列进行编号，<span class="math inline">\(W_T + W_R \le 2^n\)</span></p>
+<p>一般情况下<span class="math inline">\(W_R = W_T\)</span>，所以最大值为<span class="math inline">\(W_{Tmax} = W_{Rmax} = 2^{n-1}\)</span></p>
+<h2 id="有效数据率">有效数据率</h2>
+<p>首先要知道<em>发送周期</em>指的是：<strong>T=发送延时+RTT</strong>，若在T时间内发送mbit数据，则有效数据率<span class="math inline">\(V=\frac{m}{T}\)</span>​</p>
 <p>设：</p>
 <ul>
-<li><p>帧大小：L</p>
-</li>
-<li><p>两主机间单向传播时间：t，则RTT为2t</p>
-</li>
-<li><p>信道带宽/数据传输率：M</p>
-</li>
-<li><p>发送周期：$T = \frac{L}{M} + 2t + (确认帧发送时间)$​​ </p>
+<li><p>帧大小：L</p></li>
+<li><p>两主机间单向传播时间：t，则RTT为2t</p></li>
+<li><p>信道带宽/数据传输率：M</p></li>
+<li><p>发送周期：<span class="math inline">\(T = \frac{L}{M} + 2t + 确认帧发送时间\)</span>​​</p>
 <blockquote>
-<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为$\frac{L}{M}$​, 王道P81</p>
-</blockquote>
-</li>
+<p>如果题目忽略确认帧发送时间就不算括号内的，如果题目中说确认帧由数据帧捎带，意思是确认帧的发送时间和数据帧发送时间一样为<span class="math inline">\(\frac{L}{M}\)</span>​, 王道P81</p>
+</blockquote></li>
 </ul>
-<h3 id="停止等待协议-1"><a href="#停止等待协议-1" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>由于必须收到确认才能再次发送，所以一个发送周期之内发送一帧，所以</p>
-<script type="math/tex; mode=display">
-V=\frac{L}{T} = \frac{L}{\frac{L}{M}+2t}</script><h3 id="GBN协议-1"><a href="#GBN协议-1" class="headerlink" title="GBN协议"></a>GBN协议</h3><p>设窗口大小为n</p>
-<p>在收到确认前可以发送n个帧，所以</p>
-<script type="math/tex; mode=display">
-V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}</script><h3 id="选择重传协议-1"><a href="#选择重传协议-1" class="headerlink" title="选择重传协议"></a>选择重传协议</h3><p>同上</p>
-<h2 id="信道利用率"><a href="#信道利用率" class="headerlink" title="信道利用率"></a>信道利用率</h2><script type="math/tex; mode=display">
-信道利用率=\frac{有效时间}{总时间}=\frac{\frac{nL}{M}}{T}</script>
+<h3 id="停止等待协议-1">停止等待协议</h3>
+<p>由于必须收到确认才能再次发送，所以一个发送周期之内发送一帧，所以 <span class="math display">\[
+V=\frac{L}{T} = \frac{L}{\frac{L}{M}+2t}
+\]</span></p>
+<h3 id="gbn协议-1">GBN协议</h3>
+<p>设窗口大小为n</p>
+<p>在收到确认前可以发送n个帧，所以 <span class="math display">\[
+V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
+\]</span></p>
+<h3 id="选择重传协议-1">选择重传协议</h3>
+<p>同上</p>
+<h2 id="信道利用率">信道利用率</h2>
+<p><span class="math display">\[
+信道利用率=\frac{数据传输时间}{发送数据周期}=\frac{\frac{nL}{M}}{T}
+\]</span></p>
+
     </div>
 
     
@@ -331,7 +340,7 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}</script><h3 id="选择重传协议-
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.</span> <span class="nav-text">窗口大小</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.1.</span> <span class="nav-text">停止等待协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBN%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.2.</span> <span class="nav-text">GBN协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.</span> <span class="nav-text">选择重传协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE%E7%8E%87"><span class="nav-number">2.</span> <span class="nav-text">有效数据率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE-1"><span class="nav-number">2.1.</span> <span class="nav-text">停止等待协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBN%E5%8D%8F%E8%AE%AE-1"><span class="nav-number">2.2.</span> <span class="nav-text">GBN协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%E5%8D%8F%E8%AE%AE-1"><span class="nav-number">2.3.</span> <span class="nav-text">选择重传协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-number">3.</span> <span class="nav-text">信道利用率</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.</span> <span class="nav-text">窗口大小</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.1.</span> <span class="nav-text">停止等待协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gbn%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.2.</span> <span class="nav-text">GBN协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.</span> <span class="nav-text">选择重传协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE%E7%8E%87"><span class="nav-number">2.</span> <span class="nav-text">有效数据率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE-1"><span class="nav-number">2.1.</span> <span class="nav-text">停止等待协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gbn%E5%8D%8F%E8%AE%AE-1"><span class="nav-number">2.2.</span> <span class="nav-text">GBN协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%E5%8D%8F%E8%AE%AE-1"><span class="nav-number">2.3.</span> <span class="nav-text">选择重传协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-number">3.</span> <span class="nav-text">信道利用率</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

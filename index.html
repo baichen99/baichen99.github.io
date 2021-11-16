@@ -190,7 +190,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-15 16:07:37" itemprop="dateModified" datetime="2021-11-15T16:07:37+08:00">2021-11-15</time>
+                <time title="修改时间：2021-11-16 16:33:36" itemprop="dateModified" datetime="2021-11-16T16:33:36+08:00">2021-11-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -213,15 +213,674 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="多长时间响应一次才能不丢失数据"><a href="#多长时间响应一次才能不丢失数据" class="headerlink" title="多长时间响应一次才能不丢失数据"></a>多长时间响应一次才能不丢失数据</h3><p><strong>查询/中断响应时间&gt;传输（准备）数据时间</strong></p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1202.png" alt></p>
-<p>1）设备A每次传输数据时间=$\frac{32bit}{2MB/s} = 2us$，必须每2us查询一次</p>
-<p>2） 设备B传输数据时间=$\frac{32bit}{40MB/s} = 0.1us$ 中断处理时间=$400 / 500MHz = 0.8us$  因为中断处理时间大于数据传输时间，<strong>数据会被刷新，造成丢失</strong></p>
-<h3 id="I-O接口"><a href="#I-O接口" class="headerlink" title="I/O接口"></a>I/O接口</h3><p>数据流动方向：CPU从主存去数据，放入通用寄存器，再传送给I/O端口</p>
-<h3 id="寄存器位数取决于"><a href="#寄存器位数取决于" class="headerlink" title="寄存器位数取决于"></a>寄存器位数取决于</h3>
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理">组成原理</h2>
+<h3 id="jmp和call跳转指令的偏移量">jmp和call跳转指令的偏移量</h3>
+<p>jmp和call的偏移量为 相对于<strong>跳转指令的下一条指令</strong>的偏移，用补码表示。</p>
+<p>2019真题 45 3）</p>
+<h3 id="多道程序多任务">多道程序、多任务</h3>
+<p>多道程序设计是并行处理的一种基本形式，意味着多个进程同时在一个处理器上运行。在现代操作系统中，当多个程序或进程在单个处理器上运行时，操作系统的工作就是有效地管理所有进程。</p>
+<p>多道程序特点：</p>
+<ul>
+<li>CPU利用率高</li>
+<li>系统吞吐量达</li>
+<li>IO设备利用率高：多个程序使用IO设备，IO设备一直工作</li>
+</ul>
+<p>多任务是指操作系统使用多个CPU一次执行多个任务的能力。它基本上在一个系统中使用两个或多个CPU来分配共享公共资源（包括CPU和内存）的任务。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/09/07/408-problems/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/10/11/408-file-system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/11/408-file-system/" class="post-title-link" itemprop="url">文件系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-11 17:10:01" itemprop="dateCreated datePublished" datetime="2021-10-11T17:10:01+08:00">2021-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-16 16:23:00" itemprop="dateModified" datetime="2021-11-16T16:23:00+08:00">2021-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>磁盘块有几块固定存放信息：</p>
+<ul>
+<li>第0块：引导块，存放操作系统引导程序</li>
+<li>引导块后面<strong>若干个块</strong>，存放FAT表，开机后操作系统自动加载FAT表</li>
+<li>FAT表后的块：存放根目录的inode信息，如果有多个磁盘就有多个根目录</li>
+</ul>
+<p><strong>在Unix下：</strong></p>
+<p>磁盘块有几块固定存放信息：</p>
+<ul>
+<li>第0块：引导块，存放操作系统引导程序</li>
+<li>第1块：超级块</li>
+<li>第2块：存放位示图。</li>
+<li>接下来若干块存放inode节点，</li>
+</ul>
+<h2 id="打开文件过程">打开文件过程</h2>
+<p>系统会在内存中维护一个以打开文件列表，如果打开文的文件不在此列表中，会将该文件的FCB读取到内存，文件信息都存储在FCB中，然后更新已打开文件列表。</p>
+<ul>
+<li>open 将文件控制信息从外存读入内存</li>
+<li>read，根据FCB将文件数据从外存读入内存</li>
+</ul>
+<h3 id="目录文件">目录文件</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/11/408-file-system/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/06/30/cache-mapping/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/30/cache-mapping/" class="post-title-link" itemprop="url">cache映射方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-30 21:20:43" itemprop="dateCreated datePublished" datetime="2021-06-30T21:20:43+08:00">2021-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-16 16:18:35" itemprop="dateModified" datetime="2021-11-16T16:18:35+08:00">2021-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li>cache和主存交换单位是块</li>
+<li>下面的地址结构都是主存地址，因为cpu在访问主存地址时，先根据这个地址在cache找，再再主存中找</li>
+</ul>
+<p><strong>给定主存地址，如何访存？</strong></p>
+<h2 id="直接映射">直接映射</h2>
+<p>eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。</p>
+<ul>
+<li>确定主存地址位数：<span class="math inline">\(256M = 2^{28}\)</span>，所以有28位</li>
+</ul>
+<p>对于直接映射，主存地址结构如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">标记</th>
+<th style="text-align: center;">cache行号</th>
+<th style="text-align: center;">块内地址</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>行长(块大小)<span class="math inline">\(64B = 2^6B\)</span>，说明行内地址占6位</p></li>
+<li><p>cache有<span class="math inline">\(8=2^3个\)</span>，所以cache行号占3位</p></li>
+<li><p><strong>标记位数有两种计算方式，一是<span class="math inline">\(28-6-3=19位\)</span>，二是用主存容量/cache容量得到，<span class="math inline">\(256MB/(64B*8) = 2^{19}\)</span>，所以有19位</strong>。（这两种方式本质都一样，除法也只是用指数相减）。</p>
+<p>因此，给定一个主存地址，可以将其分为三部分，根据这三部分来寻址，步骤如下：</p>
+<ol type="1">
+<li>根据行号找到cache对应行，检查标记与cache行标记是否一致</li>
+<li>若一致，且有效位为1，则命中</li>
+<li>若不一致或有效位为0，则不命中</li>
+</ol></li>
+</ul>
+<h2 id="全相连映射">全相连映射</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/30/cache-mapping/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/06/flow-control-cal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/06/flow-control-cal/" class="post-title-link" itemprop="url">窗口大小、有效数据率、信道利用率计算</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-06 18:25:53" itemprop="dateCreated datePublished" datetime="2021-08-06T18:25:53+08:00">2021-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-16 16:16:53" itemprop="dateModified" datetime="2021-11-16T16:16:53+08:00">2021-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="窗口大小">窗口大小</h2>
+<h3 id="停止等待协议">停止等待协议</h3>
+<p><span class="math inline">\(W_T = W_R = 1\)</span></p>
+<h3 id="gbn协议">GBN协议</h3>
+<p><span class="math inline">\(W_T \ge 1, W_R = 1\)</span></p>
+<p><strong>若用n个bit对帧序列进行编号，$W_T ^{n}-1 $​</strong></p>
+<h3 id="选择重传协议">选择重传协议</h3>
+<p>$ W_T , W_R $</p>
+<p><span class="math inline">\(W_T \ge W_R\)</span>，否则接收窗口永远不满，无意义</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/06/flow-control-cal/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/" class="post-title-link" itemprop="url">指令系统、CPU、流水线综合</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-20 15:57:45" itemprop="dateCreated datePublished" datetime="2021-09-20T15:57:45+08:00">2021-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-16 15:26:59" itemprop="dateModified" datetime="2021-11-16T15:26:59+08:00">2021-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="alu加减法标志位">ALU加减法，标志位</h2>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png"></p>
+<p>上图电路可以实现无符号数的加法和减法，当为加法时，sub=0，X和Y作为加法器的输入。当sub=1时，Y被取反，并且加上了Cin=1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。</p>
+<p><strong>ZF：</strong> 零标志（Zero Flag），ZF=1表示有符号/无符号计算结果为0。用于判断while条件中的相等</p>
+<p><strong>OF：</strong> 溢出标志(Overflow Flag)，OF=1表示<strong>有符号整数</strong>溢出，无符号数看CF</p>
+<p><strong>CF：</strong> 进/借位标志（Carry Flag），判断<strong>无符号数</strong>溢出，CF=1时，若sub=0,加法,则表示进位溢出，若sub=1, 为减法, 则表示借位溢出（不够减）。<span class="math inline">\(CF= Sub \oplus Cout（Sub==Cin）\)</span>。CF=1表示溢出</p>
+<p><strong>SF：</strong> 符号标志（Sign Flag），SF=两个数最高位异或，<strong>计算结果的符号</strong>。根OF搭配实现大小关系。</p>
+<p>这些标志位都属于PSW（程序状态寄存器），与跳转条件指令有关，条件判断的本质位一个减法，如当a==1时跳转，会计算a-1，判断ZF是否位0，若位0则jmp</p>
+<p>计算a-b</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/27/implied-term/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/27/implied-term/" class="post-title-link" itemprop="url">408考题中常见的隐含条件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-27 19:48:51" itemprop="dateCreated datePublished" datetime="2021-08-27T19:48:51+08:00">2021-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-16 14:37:20" itemprop="dateModified" datetime="2021-11-16T14:37:20+08:00">2021-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="计算机网络">计算机网络</h2>
+<h3 id="端口号">端口号</h3>
+<table>
+<thead>
+<tr class="header">
+<th>FTP数据链接</th>
+<th>FTP控制链接</th>
+<th>TELNET</th>
+<th>smtp</th>
+<th>HTTP</th>
+<th>POP3</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>21</td>
+<td>23</td>
+<td>25</td>
+<td>80</td>
+<td>110</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>DNS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TCP</td>
+</tr>
+<tr class="even">
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>FTP数据传输时，服务器的端口时20，客户端的端口可以是其他</p>
+</blockquote>
+<h3 id="各层协议格式">各层协议格式</h3>
+<table>
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>层</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IP分组</td>
+<td>首部固定20B，最大60B<br>总长度1、片偏移8、首部长度4（一种8片首饰）<br>TTL生存时间，经过路由器-1<br>首部校验和只校验首部<br>总长度包括数据和首部<br>源地址和目的地址长度4B</td>
+</tr>
+<tr class="even">
+<td>UDP数据报</td>
+<td>首部8B，由4个2B字段组成<br>长度字段包含首部和数据<br>检验和检验首部+数据部分</td>
+</tr>
+<tr class="odd">
+<td>TCP报文段</td>
+<td>首部固定20B，最大60B（同IP）<br>源/目的端口占2B(<span class="math inline">\(2^{16}-1=65535\)</span>)<br>序号和确认号各占4B<br></td>
+</tr>
+<tr class="even">
+<td>MAC帧</td>
+<td>前同步码8B<br>MAC地址张度6B<br>最短帧长64B</td>
+</tr>
+</tbody>
+</table>
+<p>以太网帧 <strong>18B首部尾部</strong></p>
+<p>以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/27/implied-term/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/10/06/408-ds-algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/06/408-ds-algorithm/" class="post-title-link" itemprop="url">408-数据结构常见算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-06 16:11:55" itemprop="dateCreated datePublished" datetime="2021-10-06T16:11:55+08:00">2021-10-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-15 16:28:09" itemprop="dateModified" datetime="2021-11-15T16:28:09+08:00">2021-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="线性表">线性表</h2>
+<h3 id="原地逆置">原地逆置</h3>
+<h4 id="链表">链表</h4>
+<p>法1：因为头插法获得的顺序是逆序，所以可以利用头插法来实现原地逆置：将头节点取下，一次用头插法插入后面的节点。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0475.jpg"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">Reverse</span><span class="params">(LinkList L)</span> </span>&#123;</span><br><span class="line">  LNode *p, *r;</span><br><span class="line">  p = L-&gt;next;	<span class="comment">// p遍历节点</span></span><br><span class="line">  L-&gt;next = <span class="literal">NULL</span>; <span class="comment">//  头节点摘下</span></span><br><span class="line">  <span class="keyword">while</span>(p!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">    r = p-&gt;next;	<span class="comment">// 指向后继，防止断链</span></span><br><span class="line">		p-&gt;next = L-&gt;next;</span><br><span class="line">    L-&gt;next = p;</span><br><span class="line">    p = r;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> L</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>法2：三个指针pre, p, r，指向前驱、当前节点、后继。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0476.jpg"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">Reverse</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">  LNode *p, *pre, *r;</span><br><span class="line">  p = L-&gt;next;</span><br><span class="line">  r = p-&gt;next;</span><br><span class="line">  <span class="keyword">while</span>(r!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">    pre = p;</span><br><span class="line">    p = r;</span><br><span class="line">    r = r-&gt;next;</span><br><span class="line">    p-&gt;next = pre;	<span class="comment">//  逆置</span></span><br><span class="line">  &#125;</span><br><span class="line">  L-&gt;next = p;	<span class="comment">// 处理最后一个节点，因为p在倒数第二个节点时就结束循环了</span></span><br><span class="line">  <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/06/408-ds-algorithm/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -307,258 +966,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/23/sort-notes/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/" class="post-title-link" itemprop="url">指令系统、CPU、流水线综合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-20 15:57:45" itemprop="dateCreated datePublished" datetime="2021-09-20T15:57:45+08:00">2021-09-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-12 15:49:39" itemprop="dateModified" datetime="2021-11-12T15:49:39+08:00">2021-11-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="ALU加减法，标志位"><a href="#ALU加减法，标志位" class="headerlink" title="ALU加减法，标志位"></a>ALU加减法，标志位</h2><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-09-20%20%E4%B8%8B%E5%8D%883.56.51.png" alt></p>
-<p>上图电路可以实现无符号数的加法和减法，当为加法时，sub=0，X和Y作为加法器的输入。当sub=1时，Y被取反，并且加上了Cin=1，相当于X和Y补作为加法器输入，实现了减法。Cin, Cout分别为上一位的进位，和本位的进位。</p>
-<p><strong>ZF：</strong> 零标志（Zero Flag），ZF=1表示有符号/无符号计算结果为0。用于判断while条件中的相等</p>
-<p><strong>OF：</strong> 溢出标志(Overflow Flag)，OF=1表示<strong>有符号整数</strong>溢出，无符号数看CF</p>
-<p><strong>CF：</strong> 进/借位标志（Carry Flag），判断<strong>无符号数</strong>溢出，CF=1时，若sub=0,加法,则表示进位溢出，若sub=1, 为减法, 则表示借位溢出（不够减）。$CF= Sub \oplus Cout（Sub==Cin）$。CF=1表示溢出</p>
-<p><strong>SF：</strong> 符号标志（Sign Flag），SF=两个数最高位异或，<strong>计算结果的符号</strong>。根OF搭配实现大小关系。 </p>
-<p>这些标志位都属于PSW（程序状态寄存器），与跳转条件指令有关，条件判断的本质位一个减法，如当a==1时跳转，会计算a-1，判断ZF是否位0，若位0则jmp</p>
-<p>计算a-b</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/20/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/27/implied-term/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/27/implied-term/" class="post-title-link" itemprop="url">408考题中常见的隐含条件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-27 19:48:51" itemprop="dateCreated datePublished" datetime="2021-08-27T19:48:51+08:00">2021-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-11 21:33:31" itemprop="dateModified" datetime="2021-11-11T21:33:31+08:00">2021-11-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>FTP数据链接</th>
-<th>FTP控制链接</th>
-<th>TELNET</th>
-<th>smtp</th>
-<th>HTTP</th>
-<th>POP3</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td></td>
-</tr>
-<tr>
-<td>20</td>
-<td>21</td>
-<td>23</td>
-<td>25</td>
-<td>80</td>
-<td>110</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>DNS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TCP</td>
-</tr>
-<tr>
-<td>20</td>
-</tr>
-</tbody>
-</table>
-</div>
-<blockquote>
-<p>FTP数据传输时，服务器的端口时20，客户端的端口可以是其他</p>
-</blockquote>
-<h3 id="各层协议格式"><a href="#各层协议格式" class="headerlink" title="各层协议格式"></a>各层协议格式</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>层</th>
-<th>格式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IP分组</td>
-<td>首部固定20B，最大60B<br>总长度1、片偏移8、首部长度4（一种8片首饰）<br>TTL生存时间，经过路由器-1<br>首部校验和只校验首部<br>总长度包括数据和首部<br>源地址和目的地址长度4B</td>
-</tr>
-<tr>
-<td>UDP数据报</td>
-<td>首部8B，由4个2B字段组成<br>长度字段包含首部和数据<br>检验和检验首部+数据部分</td>
-</tr>
-<tr>
-<td>TCP报文段</td>
-<td>首部固定20B，最大60B（同IP）<br>源/目的端口占2B($2^{16}-1=65535$)<br>序号和确认号各占4B<br></td>
-</tr>
-<tr>
-<td>MAC帧</td>
-<td>前同步码8B<br>MAC地址张度6B<br>最短帧长64B</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>以太网帧  <strong>18B首部尾部</strong></p>
-<p>以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/27/implied-term/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -852,192 +1259,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/10/11/408-file-system/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/11/408-file-system/" class="post-title-link" itemprop="url">文件系统</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-11 17:10:01" itemprop="dateCreated datePublished" datetime="2021-10-11T17:10:01+08:00">2021-10-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 10:39:21" itemprop="dateModified" datetime="2021-11-10T10:39:21+08:00">2021-11-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>磁盘块有几块固定存放信息：</p>
-<ul>
-<li>第0块：引导块，存放操作系统引导程序</li>
-<li>引导块后面<strong>若干个块</strong>，存放FAT表，开机后操作系统自动加载FAT表</li>
-<li>FAT表后的块：存放根目录的inode信息，如果有多个磁盘就有多个根目录</li>
-</ul>
-<p><strong>在Unix下：</strong></p>
-<p>磁盘块有几块固定存放信息：</p>
-<ul>
-<li>第0块：引导块，存放操作系统引导程序</li>
-<li>第1块：超级块</li>
-<li>第2块：存放位示图。</li>
-<li>接下来若干块存放inode节点，</li>
-</ul>
-<h2 id="打开文件过程"><a href="#打开文件过程" class="headerlink" title="打开文件过程"></a>打开文件过程</h2><p>系统会在内存中维护一个以打开文件列表，如果打开文的文件不在此列表中，会将该文件的FCB读取到内存，文件信息都存储在FCB中，然后更新已打开文件列表。</p>
-<ul>
-<li>open 将文件控制信息从外存读入内存</li>
-<li>read，根据FCB将文件数据从外存读入内存</li>
-</ul>
-<h3 id="目录文件"><a href="#目录文件" class="headerlink" title="目录文件"></a>目录文件</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/11/408-file-system/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/10/06/408-ds-algorithm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/06/408-ds-algorithm/" class="post-title-link" itemprop="url">408-数据结构常见算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-06 16:11:55" itemprop="dateCreated datePublished" datetime="2021-10-06T16:11:55+08:00">2021-10-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 19:10:21" itemprop="dateModified" datetime="2021-11-07T19:10:21+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="原地逆置"><a href="#原地逆置" class="headerlink" title="原地逆置"></a>原地逆置</h3><h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>法1：因为头插法获得的顺序是逆序，所以可以利用头插法来实现原地逆置：将头节点取下，一次用头插法插入后面的节点。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0475.jpg" alt></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">Reverse</span><span class="params">(LinkList L)</span> </span>&#123;</span><br><span class="line">  LNode *p, *r;</span><br><span class="line">  p = L-&gt;next;	<span class="comment">// p遍历节点</span></span><br><span class="line">  L-&gt;next = <span class="literal">NULL</span>; <span class="comment">//  头节点摘下</span></span><br><span class="line">  <span class="keyword">while</span>(p!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">    r = p-&gt;next;	<span class="comment">// 指向后继，防止断链</span></span><br><span class="line">		p-&gt;next = L-&gt;next;</span><br><span class="line">    L-&gt;next = p;</span><br><span class="line">    p = r;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> L</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>法2：三个指针pre, p, r，指向前驱、当前节点、后继。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_0476.jpg" alt></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">Reverse</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">  LNode *p, *pre, *r;</span><br><span class="line">  p = L-&gt;next;</span><br><span class="line">  r = p-&gt;next;</span><br><span class="line">  <span class="keyword">while</span>(r!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">    pre = p;</span><br><span class="line">    p = r;</span><br><span class="line">    r = r-&gt;next;</span><br><span class="line">    p-&gt;next = pre;	<span class="comment">//  逆置</span></span><br><span class="line">  &#125;</span><br><span class="line">  L-&gt;next = p;	<span class="comment">// 处理最后一个节点，因为p在倒数第二个节点时就结束循环了</span></span><br><span class="line">  <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/06/408-ds-algorithm/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/01/14/python-copy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1103,91 +1324,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/01/14/python-copy/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/06/flow-control-cal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/06/flow-control-cal/" class="post-title-link" itemprop="url">窗口大小、有效数据率、信道利用率计算</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-06 18:25:53" itemprop="dateCreated datePublished" datetime="2021-08-06T18:25:53+08:00">2021-08-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-18 13:41:21" itemprop="dateModified" datetime="2021-10-18T13:41:21+08:00">2021-10-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h2><h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>$W_T = W_R = 1$</p>
-<h3 id="GBN协议"><a href="#GBN协议" class="headerlink" title="GBN协议"></a>GBN协议</h3><p>$W_T \ge 1,  W_R = 1$</p>
-<p><strong>若用n个bit对帧序列进行编号，$W_T \le 2^{n}-1 $​</strong></p>
-<h3 id="选择重传协议"><a href="#选择重传协议" class="headerlink" title="选择重传协议"></a>选择重传协议</h3><p>$ W_T \ge 1, W_R \ge 1$</p>
-<p>$W_T \ge W_R$，否则接收窗口永远不满，无意义</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/06/flow-control-cal/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1371,124 +1507,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/02/send-delay/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/06/30/cache-mapping/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/30/cache-mapping/" class="post-title-link" itemprop="url">cache映射方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-30 21:20:43" itemprop="dateCreated datePublished" datetime="2021-06-30T21:20:43+08:00">2021-06-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-12 16:04:34" itemprop="dateModified" datetime="2021-10-12T16:04:34+08:00">2021-10-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
-<li>cache和主存交换单位是块</li>
-<li>下面的地址结构都是主存地址，因为cpu在访问主存地址时，先根据这个地址在cache找，再再主存中找</li>
-</ul>
-<p><strong>给定主存地址，如何访存？</strong></p>
-<h2 id="直接映射">直接映射</h2>
-<p>eg：主存地址空间大小为256MB，按字节编址，数据cache有8个cache行，行长64B。</p>
-<ul>
-<li>确定主存地址位数：<span class="math inline">\(256M = 2^{28}\)</span>，所以有28位</li>
-</ul>
-<p>对于直接映射，主存地址结构如下：</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">标记</th>
-<th style="text-align: center;">cache行号</th>
-<th style="text-align: center;">块内地址</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<ul>
-<li><p>行长(块大小)<span class="math inline">\(64B = 2^6B\)</span>，说明行内地址占6位</p></li>
-<li><p>cache有<span class="math inline">\(8=2^3个\)</span>，所以cache行号占3位</p></li>
-<li><p><strong>标记位数有两种计算方式，一是<span class="math inline">\(28-6-3=19位\)</span>，二是用主存容量/cache容量得到，<span class="math inline">\(256MB/(64B*8) = 2^{19}\)</span>，所以有19位</strong>。（这两种方式本质都一样，除法也只是用指数相减）。</p>
-<p>因此，给定一个主存地址，可以将其分为三部分，根据这三部分来寻址，步骤如下：</p>
-<ol type="1">
-<li>根据行号找到cache对应行，检查标记与cache行标记是否一致</li>
-<li>若一致，且有效位为1，则命中</li>
-<li>若不一致或有效位为0，则不命中</li>
-</ol></li>
-</ul>
-<h2 id="全相连映射">全相连映射</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/30/cache-mapping/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
