@@ -4648,6 +4648,11 @@ y\\
 <p>预处理：由CPU完成必要的准备工作，数据传送前由<strong>DMA控制器请求总线使用权</strong></p>
 <p>数据传送：由<strong>DMA控制器直接控制总线完成</strong></p>
 <p>后处理：DMA控制器<strong>向CPU发送中断请求</strong></p>
+<h3 id="通道过程"><a href="#通道过程" class="headerlink" title="通道过程"></a>通道过程</h3><ol>
+<li>CPU通过管理程序<strong>组织通道程序</strong>，并使用I/O指令<strong>启动通道</strong></li>
+<li>通道处理器<strong>执行通道程序</strong>，完成IO操作</li>
+<li>通道程序结束后，向CPU发出中断请求</li>
+</ol>
 <h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>有符号数和无符号数转换：</p>
 <ul>
 <li>只改变解释方式</li>
