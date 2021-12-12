@@ -4594,6 +4594,7 @@ y\\
 <li>CPU利用率高</li>
 <li>系统吞吐量达</li>
 <li>IO设备利用率高：多个程序使用IO设备，IO设备一直工作</li>
+<li>并发、共享（单道程序是封闭）、虚拟、异步</li>
 </ul>
 <p>多任务是指操作系统使用多个CPU一次执行多个任务的能力。它基本上在一个系统中使用两个或多个CPU来分配共享公共资源（包括CPU和内存）的任务。</p>
 <p>多任务特点：</p>
@@ -4603,7 +4604,7 @@ y\\
 <li>对共享资源进行保护</li>
 <li>单个CPU也可满足（2018  23）</li>
 </ul>
-<h3 id="多长时间响应一次才能不丢失数据"><a href="#多长时间响应一次才能不丢失数据" class="headerlink" title="多长时间响应一次才能不丢失数据"></a>多长时间响应一次才能不丢失数据</h3><p>对于定时查询，查询时间必须小于传输（准备）数据时间</p>
+<h3 id="多长时间响应一次才能不丢失数据"><a href="#多长时间响应一次才能不丢失数据" class="headerlink" title="多长时间响应一次才能不丢失数据"></a>多长时间响应一次才能不丢失数据</h3><p>对于定时查询，查询时间间隔必须小于传输（准备）数据时间</p>
 <p>对于中断查询，中断响应时间小于传输（准备）数据时间</p>
 <p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/1202.png" alt=""></p>
 <p>1）设备A每次传输数据时间=$\frac{32bit}{2MB/s} = 2us$，必须每2us查询一次，</p>
@@ -4670,6 +4671,11 @@ y\\
 <li>通道处理器<strong>执行通道程序</strong>，完成IO操作</li>
 <li>通道程序结束后，向CPU发出<strong>中断请求</strong></li>
 </ol>
+<p>程序查询：纯软件</p>
+<p>程序中断：软件硬件结合</p>
+<p>DMA：纯硬件</p>
+<p>通道：软件硬件结合</p>
+<p><strong>每个机器周期都检测有无DMA请求</strong>，每条指令执行结束时检查有无中断请求</p>
 <h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>有符号数和无符号数转换：</p>
 <ul>
 <li>只改变解释方式</li>
@@ -4685,6 +4691,9 @@ y\\
 <li>精度小转精度大：数值不变</li>
 <li>精度大转精度小：舍入，有损失，如float 3.14转int变为3</li>
 </ul>
+<p>溢出判断：</p>
+<p>看表示范围，范围小的转范围大的不会溢出</p>
+<p>范围 double &gt; float &gt; int</p>
 <h3 id="性能计算"><a href="#性能计算" class="headerlink" title="性能计算"></a>性能计算</h3><ul>
 <li>主频</li>
 <li>CPI</li>
@@ -4708,7 +4717,7 @@ y\\
 <li>ACC 累加寄存器</li>
 </ul>
 <h3 id="流水线时间计算"><a href="#流水线时间计算" class="headerlink" title="流水线时间计算"></a>流水线时间计算</h3><p>m端流水线，n个指令，时钟周期为t，总时间为 $m+(n-1)t$</p>
-<p>经常于低位交叉存储结合起来考。2012真题，P310  .6     </p>
+<p>经常于<strong>低位交叉</strong>存储结合起来考。2012真题，P310  .6     </p>
 <p>2013真题，第三问</p>
 <p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" alt=""></p>
 <p>一次突发传送总线事务时间=送首地址和命令时间（一个总线时钟周期）+存储器准备数据时间+传送数据时间</p>
@@ -4717,6 +4726,8 @@ y\\
 <p>每准备好32b就把它传送出去，传送时间为1个时钟周期 =5ns，第二个准备好时，第一个刚好传送完，以此类推，最后第8个传送完后再花5ns</p>
 <p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.38.06.png" alt=""></p>
 <p>所以总时间= 5+75+5</p>
+<h3 id="低位交叉存储器"><a href="#低位交叉存储器" class="headerlink" title="低位交叉存储器"></a>低位交叉存储器</h3><p>m体低位交叉存储器，每个存储体为n位，每个存储体存储周期为t</p>
+<p>最大带宽=mxn/t</p>
 <h3 id="CPU执行时间"><a href="#CPU执行时间" class="headerlink" title="CPU执行时间"></a>CPU执行时间</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-05%20at%2010.25.56.png" alt=""></p>
 <p>第四问，2种思路：</p>
 <ol>
@@ -5313,9 +5324,10 @@ y\\
 </tbody>
 </table>
 </div>
-<h3 id="open、read系统调用"><a href="#open、read系统调用" class="headerlink" title="open、read系统调用"></a>open、read系统调用</h3><ol>
+<h3 id="open、read、close系统调用"><a href="#open、read、close系统调用" class="headerlink" title="open、read、close系统调用"></a>open、read、close系统调用</h3><ol>
 <li>open根据（路径、<strong>文件名</strong>）找到相应的目录文件，并<strong>把目录文件读入内存</strong>，从目录中找到文件名对应的目录项，并检查权限。将目录项复制到内存中的打开文件表，<strong>返回文件描述符</strong></li>
 <li>read根据<strong>文件描述符</strong>找到对应FCB，<strong>将文件内容读入内存</strong>，返回<strong>数据缓冲区的指针</strong>给用户进程</li>
+<li>close把文件当前的控制信息从内存写回外存</li>
 </ol>
 <h3 id="大端小端"><a href="#大端小端" class="headerlink" title="大端小端"></a>大端小端</h3><p>人看的是大端，机器存的是小端。（<strong>小机</strong>）</p>
 <p>小端：12 34 56，12存储在低位。大端相反。</p>
@@ -5750,6 +5762,15 @@ y\\
 <li>检查ARP缓存，有对应表项写入MAC帧，没有则用目的地址为FF-FF-FF-FF-FF-FF(6B)发送广播ARP请求</li>
 <li>目的主机接收到请求会向源主机<strong>单播</strong>一个ARP相应分组</li>
 <li>源主机收到后写入ARP缓存</li>
+</ol>
+<p>如果H1———R1———H2</p>
+<p>H1发送IP数据报给R2过程：</p>
+<ol>
+<li>H1发送IP数据报，源IP为xx，目的地址为xx</li>
+<li>H1通过ARP获得R1的MAC地址，填入帧中发送</li>
+<li>R1收到帧后获得数据报，按照下一跳地址<strong>广播</strong></li>
+<li>R1通过ARP得到H2的MAC地址，构造帧发送到H2所在网络</li>
+<li>H2得到IP数据报</li>
 </ol>
 <h3 id="路由表建立过程"><a href="#路由表建立过程" class="headerlink" title="路由表建立过程"></a>路由表建立过程</h3><p>建立方法：静态路由、动态路由（RIP、OSPF）</p>
 <ul>
