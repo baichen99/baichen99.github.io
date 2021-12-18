@@ -2951,20 +2951,14 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
   <entry>
     <title>排序效率</title>
     <url>/2021/08/23/sort-notes/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="总结">总结</h2>
-<h3 id="稳定性">稳定性</h3>
-<p>稳定的算法：插、归、基、冒泡 <a href="https://www.bilibili.com/read/cv12699857?from=articleDetail&amp;spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.4">巧记稳定的排序</a></p>
-<h3 id="复杂度">复杂度</h3>
-<h4 id="时间复杂度">时间复杂度</h4>
-<p>选泡插：<span class="math inline">\(O(n^2)\)</span></p>
-<p>快归堆：<span class="math inline">\(O(nlog_2{n})\)</span></p>
-<p>基：<span class="math inline">\(O(d(n+r))\)</span> d趟 r个队列</p>
-<h4 id="空间复杂度">空间复杂度</h4>
-<p>快排：<span class="math inline">\(O(log2_n)\)</span></p>
-<p>2归：<span class="math inline">\(O(n)\)</span></p>
-<p>基数：<span class="math inline">\(O(r)\)</span></p>
-<h3 id="每趟确定一个元素位置">每趟确定一个元素位置</h3>
-<p>插入排序不能，因为每次讲一个元素插入已经有序的列表，之后的元素还可能影响有序表元素的位置。</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>稳定的算法：插、归、基、冒泡  <a href="https://www.bilibili.com/read/cv12699857?from=articleDetail&amp;spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.4">巧记稳定的排序</a></p>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>选泡插：$O(n^2)$</p>
+<p>快归堆：$O(nlog_2{n})$</p>
+<p>基：$O(d(n+r))$  d趟  r个队列</p>
+<h4 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h4><p>快排：$O(log2_n)$</p>
+<p>2归：$O(n)$</p>
+<p>基数：$O(r)$</p>
+<h3 id="每趟确定一个元素位置"><a href="#每趟确定一个元素位置" class="headerlink" title="每趟确定一个元素位置"></a>每趟确定一个元素位置</h3><p>插入排序不能，因为每次讲一个元素插入已经有序的列表，之后的元素还可能影响有序表元素的位置。</p>
 <p>希尔排序不能，每次只能保证一个组内相对有序</p>
 <p>归并排序不能，每次只能保证组内有序</p>
 <p>基数排序：不能</p>
@@ -2975,78 +2969,72 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <li>堆排序</li>
 <li><strong>快排比较特殊！</strong> 如果选择枢轴在边界，第二趟确定2个元素位置，如果在中间，第二趟确定3个</li>
 </ul>
-<p>​ <img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.37.39.png" /></p>
-<h3 id="排序效率与初始状态关系">排序效率与初始状态关系</h3>
-<p>选择排序、堆排序、归并排序与原状态无关</p>
+<p>​    <img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.37.39.png" alt=""></p>
+<h3 id="排序效率与初始状态关系"><a href="#排序效率与初始状态关系" class="headerlink" title="排序效率与初始状态关系"></a>排序效率与初始状态关系</h3><p>选择排序、堆排序、归并排序与原状态无关</p>
 <ul>
 <li>冒泡，若顺序，一趟过后flag==True，退出循环</li>
-<li>快排，每次平均划分效率最高，如果有序或逆序，时间复杂度为<span class="math inline">\(O(n^2)\)</span>，空间复杂度为<span class="math inline">\(O(n)\)</span></li>
+<li>快排，每次平均划分效率最高，如果有序或逆序，时间复杂度为$O(n^2)$，空间复杂度为$O(n)$</li>
 <li>插入排序，有序最好O(n)，逆序最坏</li>
 </ul>
-<h2 id="插入排序">插入排序</h2>
-<h3 id="直接插入">直接插入</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(A[i] &lt; A[i<span class="number">-1</span>]) &#123;   <span class="comment">// 后面&gt;=前面时是有序，跳过</span></span><br><span class="line">      temp = A[i];</span><br><span class="line">      <span class="comment">// 在有序列表中从后往前比</span></span><br><span class="line">      <span class="comment">// 因为i-1处无序了，所以将这个数插入到前面比他小的后面</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>; j&gt;=<span class="number">0</span> &amp;&amp; temp &lt; A[j]; j--)  <span class="comment">// 要找到比temp小的 或 相等的</span></span><br><span class="line">        A[j+<span class="number">1</span>] = A[j]</span><br><span class="line">      A[j+<span class="number">1</span>] = temp</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="直接插入"><a href="#直接插入" class="headerlink" title="直接插入"></a>直接插入</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(A[i] &lt; A[i<span class="number">-1</span>]) &#123;   <span class="comment">// 后面&gt;=前面时是有序，跳过</span></span><br><span class="line">      temp = A[i];</span><br><span class="line">      <span class="comment">// 在有序列表中从后往前比</span></span><br><span class="line">      <span class="comment">// 因为i-1处无序了，所以将这个数插入到前面比他小的后面</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>; j&gt;=<span class="number">0</span> &amp;&amp; temp &lt; A[j]; j--)  <span class="comment">// 要找到比temp小的 或 相等的</span></span><br><span class="line">        A[j+<span class="number">1</span>] = A[j]</span><br><span class="line">      A[j+<span class="number">1</span>] = temp</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>思想：</strong>每次将一个记录插入有序序列中</p>
 <p><strong>空间复杂度</strong>：因为只用到了temp额外变量，所以空间复杂度为<strong>O(1)</strong></p>
 <p><strong>时间复杂度：</strong> 比较次数*移动次数</p>
 <ul>
-<li>最坏：逆序，比较总次数为<span class="math inline">\(1+2+...+n-1 = \frac{n(n-1)}{2}\)</span>，移动总次数为<span class="math inline">\(2+3+...+n = \frac{(n-1)(n+2)}{2}\)</span>，时间复杂度为<span class="math inline">\(O(n^2)\)</span></li>
-<li>最好：顺序，比较总次数为<span class="math inline">\(1+1+...+1=n-1\)</span>，不需要移动，所以时间复杂度为<span class="math inline">\(O(n)\)</span></li>
-<li>平均：<span class="math inline">\(O(n^2)\)</span></li>
+<li>最坏：逆序，比较总次数为$1+2+…+n-1 = \frac{n(n-1)}{2}$，移动总次数为$2+3+…+n = \frac{(n-1)(n+2)}{2}$，时间复杂度为$O(n^2)$</li>
+<li>最好：顺序，比较总次数为$1+1+…+1=n-1$，不需要移动，所以时间复杂度为$O(n)$</li>
+<li>平均：$O(n^2)$</li>
 </ul>
 <blockquote>
 <p>适用于<strong>链式存储</strong>(注意)、顺序存储</p>
 </blockquote>
-<h3 id="折半插入">折半插入</h3>
-<p><strong>思想：</strong>直接插入排序是顺序找到有序表的插入位置，折半插入则是用折半查找</p>
+<h3 id="折半插入"><a href="#折半插入" class="headerlink" title="折半插入"></a>折半插入</h3><p><strong>思想：</strong>直接插入排序是顺序找到有序表的插入位置，折半插入则是用折半查找</p>
 <p><strong>空间复杂度：</strong>O(1)</p>
-<p><strong>时间复杂度：</strong> 和直接插入的<strong>唯一区别在于</strong>减少了比较次数，移动次数未改变，因为折半查找的复杂度为<span class="math inline">\(O(log_{2}n)\)</span>，所以折半插入的时间复杂度为<span class="math inline">\(O(nlog_{2}n)\)</span></p>
-<h3 id="希尔排序">希尔排序</h3>
-<p><strong>思想：</strong>选定步长d，对每个子序列<span class="math inline">\([i, i+d, ..., i+kd]\)</span>进行<strong>直接插入排序</strong>，不断缩小d直到为1，即可完成排序。</p>
-<p><strong>空间复杂度：</strong>本质上是多次直接插入排序，所以为<span class="math inline">\(O(1)\)</span></p>
-<p><strong>时间复杂度：</strong>很难计算，最坏情况为d=1，即直接插入排序，<span class="math inline">\(O(n^2)\)</span></p>
+<p><strong>时间复杂度：</strong> 和直接插入的<strong>唯一区别在于</strong>减少了比较次数，移动次数未改变$O(n^2)$，因为折半查找的复杂度为$O(log_{2}n)$，所以折半插入的时间复杂度为最好$O(nlog_{2}n)$ ，平均$O(n^2)$</p>
+<blockquote>
+<p>比直接插入更坏因为，若数组已经有序，直接插入对每个元素只需比较一次，折半插入需要比较$O(log2n)$次</p>
+</blockquote>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p><strong>思想：</strong>选定步长d，对每个子序列$[i, i+d, …, i+kd]$进行<strong>直接插入排序</strong>，不断缩小d直到为1，即可完成排序。</p>
+<p><strong>空间复杂度：</strong>本质上是多次直接插入排序，所以为$O(1)$</p>
+<p><strong>时间复杂度：</strong>很难计算，最坏情况为d=1，即直接插入排序，$O(n^2)$</p>
 <p><strong>不稳定！！！</strong></p>
-<h2 id="交换排序">交换排序</h2>
-<h3 id="冒泡排序">冒泡排序</h3>
-<p><strong>思想：</strong>两个两个比较，每趟确定一个最小/大值</p>
+<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p><strong>思想：</strong>两个两个比较，每趟确定一个最小/大值</p>
 <p><strong>空间复杂度：</strong>O(1)</p>
-<p><strong>时间复杂度:</strong></p>
+<p><strong>时间复杂度:</strong> </p>
 <ul>
 <li><strong>最好：</strong>本身有序，需要比较n-1次，移动0次，所以O(n)</li>
-<li><strong>最坏:</strong> 逆序，需要进行n-1躺排序，每趟比较次数为<span class="math inline">\(n-1, n-2, ..., 1\)</span>，且每次比较移动次数为3（temp=a, a=b, b=temp），比较次数为<span class="math inline">\(1+2+...+n-1 = \frac{n(n-1)}{2}\)</span>，移动次数为<span class="math inline">\(\frac{3n(n-1)}{2}\)</span></li>
+<li><strong>最坏:</strong> 逆序，需要进行n-1躺排序，每趟比较次数为$n-1, n-2, …, 1$，且每次比较移动次数为3（temp=a, a=b, b=temp），比较次数为$1+2+…+n-1 = \frac{n(n-1)}{2}$，移动次数为$\frac{3n(n-1)}{2}$</li>
 </ul>
-<h3 id="快速排序">快速排序</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot = A[low];  <span class="comment">// 第一个为枢轴</span></span><br><span class="line">  <span class="keyword">while</span>(low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[high] &gt;= pivot) high--;</span><br><span class="line">    A[low] = A[hight];</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[low] &lt;= pivot) low--;</span><br><span class="line">    A[high] = A[low];</span><br><span class="line">  &#125;</span><br><span class="line">  A[low] = pivot;</span><br><span class="line">  <span class="keyword">return</span> low;   <span class="comment">// 返回枢轴的位置</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuikSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot_pos = Partition(A, low, high);</span><br><span class="line">  QuickSort(A, low, pivot_pos<span class="number">-1</span>);</span><br><span class="line">  QuickSort(A, pivot_pos+<span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也适用于链表</p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot = A[low];  <span class="comment">// 第一个为枢轴</span></span><br><span class="line">  <span class="keyword">while</span>(low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[high] &gt;= pivot) high--;</span><br><span class="line">    A[low] = A[hight];</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high &amp;&amp; A[low] &lt;= pivot) low--;</span><br><span class="line">    A[high] = A[low];</span><br><span class="line">  &#125;</span><br><span class="line">  A[low] = pivot;</span><br><span class="line">  <span class="keyword">return</span> low;   <span class="comment">// 返回枢轴的位置</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuikSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot_pos = Partition(A, low, high);</span><br><span class="line">  QuickSort(A, low, pivot_pos<span class="number">-1</span>);</span><br><span class="line">  QuickSort(A, pivot_pos+<span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>思想：</strong>分治，是<strong>内部排序</strong>算法中<strong>平均性能</strong>最好的</p>
 <p><strong>空间复杂度：</strong>快排是递归的，因此需要借助栈，栈的深度与调用深度一致</p>
 <ul>
-<li><strong>最好：</strong>每次都分一半，即<span class="math inline">\(2^h &gt;= n, h=log_2n\)</span>，因此<span class="math inline">\(O(log_2n)\)</span></li>
-<li><strong>最坏：</strong>每次都取到最大值，要调用n-1次，<span class="math inline">\(O(n)\)</span></li>
+<li><strong>最好：</strong>每次都分一半，即$2^h &gt;= n, h=log_2n$，因此$O(log_2n)$</li>
+<li><strong>最坏：</strong>每次都取到最大值，要调用n-1次，$O(n)$</li>
 </ul>
 <p><strong>时间复杂度：</strong><a href="https://blog.csdn.net/weshjiness/article/details/8660583">快速排序最好，最坏，平均复杂度分析</a></p>
 <ul>
-<li><strong>最好：</strong> <span class="math inline">\(O(nlog_2n)\)</span></li>
-<li><strong>最坏：</strong><span class="math inline">\(O(n)\)</span></li>
+<li><strong>最好：</strong> $O(nlog_2n)$</li>
+<li><strong>最坏：</strong>$O(n^2)$</li>
 </ul>
-<h2 id="选择排序">选择排序</h2>
-<h3 id="简单选择排序">简单选择排序</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> min=i;  <span class="comment">// min指向最小元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">      <span class="keyword">if</span>(A[j] &lt; A[min])</span><br><span class="line">        min=j;</span><br><span class="line">   	<span class="keyword">if</span>(min!=i)</span><br><span class="line">      swap(A[i], A[min])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> min=i;  <span class="comment">// min指向最小元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">      <span class="keyword">if</span>(A[j] &lt; A[min])</span><br><span class="line">        min=j;</span><br><span class="line">   	<span class="keyword">if</span>(min!=i)</span><br><span class="line">      swap(A[i], A[min])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>思想：</strong>每次找到关键字最小的放在有序子序列</p>
 <p><strong>空间复杂度：</strong>O(1)</p>
 <p><strong>时间复杂度：</strong></p>
-<p>一共进行n-1趟比较， <strong>比较次数与初始状态无关</strong>为<span class="math inline">\(n-1+n-2+...+1 = \frac{n(n-1)}{2}\)</span>，在有序情况下交换次数为0，最坏为<span class="math inline">\(3(n-1)\)</span>，因此时间复杂度为<span class="math inline">\(O(n^2)\)</span></p>
+<p>一共进行n-1趟比较， <strong>比较次数与初始状态无关</strong>为$n-1+n-2+…+1 = \frac{n(n-1)}{2}$，在有序情况下交换次数为0，最坏为$3(n-1)$，因此时间复杂度为$O(n^2)$</p>
 <p>因为比较过程中进行了交换，<strong>不稳定</strong></p>
-<h3 id="堆排序">堆排序</h3>
-<p><strong>空间复杂度：</strong>O(1)</p>
-<p><strong>时间复杂度：</strong>：<code>buildHeap</code>复杂度为O(n)，每次<code>heapify</code>需要调整<span class="math inline">\(O(h)=O(log_2{n})\)</span>次，所以时间复杂度为<span class="math inline">\(O(nlog_2{n})\)</span></p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p><strong>空间复杂度：</strong>O(1)</p>
+<p><strong>时间复杂度：</strong>：<code>buildHeap</code>复杂度为O(n)，每次<code>heapify</code>需要调整$O(h)=O(log_2{n})$次，所以时间复杂度为$O(nlog_2{n})$</p>
 <p>顺序存储的二叉树，若从0开始编号，对于节点i有以下性质：</p>
 <ul>
-<li><p>双亲节点编号为 (i-1)/2</p></li>
-<li><p>左孩子编号为2i+1</p></li>
-<li><p>右孩子编号为2i+2</p></li>
+<li><p>双亲节点编号为 (i-1)/2</p>
+</li>
+<li><p>左孩子编号为2i+1</p>
+</li>
+<li>右孩子编号为2i+2</li>
 </ul>
-<h4 id="建立最大堆">建立最大堆</h4>
-<p>假设数组长度为n</p>
+<h4 id="建立最大堆"><a href="#建立最大堆" class="headerlink" title="建立最大堆"></a>建立最大堆</h4><p>假设数组长度为n</p>
 <p><strong>调整条件</strong>：</p>
 <ul>
 <li>当前节点大于两个孩子时，不调整</li>
@@ -3061,67 +3049,69 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <p>因为<strong>叶子节点不需要调整</strong>，我们只需要从<strong>最后一个分支节点</strong>开始调整，也就是<strong>最后一个节点的父节点</strong>，其坐标为(n-1-1)/2</p>
 <p>从后往前依次进行调整：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// O(n) * O(log2n)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">(<span class="keyword">int</span> arr[], n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> last = n - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> last_parent = (last<span class="number">-1</span>)/<span class="number">2</span>;   <span class="comment">// 第一个分支节点</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=last_parent; i&gt;=<span class="number">0</span>; i--)</span><br><span class="line">    heapify(arr, n, i);    <span class="comment">// 对每个分支进行调整</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="堆排序-1">堆排序</h4>
-<p>建立了堆就可以<strong>堆排序</strong>了，步骤为：</p>
-<ol type="1">
-<li><p>将根节点与最后一个节点交换，拿出最后一个节点（最大值）</p></li>
-<li><p>对根节点进行调整</p></li>
+<h4 id="堆排序-1"><a href="#堆排序-1" class="headerlink" title="堆排序"></a>堆排序</h4><p>建立了堆就可以<strong>堆排序</strong>了，步骤为：</p>
+<ol>
+<li><p>将根节点与最后一个节点交换，拿出最后一个节点（最大值）</p>
+</li>
+<li><p>对根节点进行调整</p>
+</li>
 </ol>
 <p>代码为：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  buildHeap(arr, n);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">    swap(arr[<span class="number">0</span>], arr[i]);  <span class="comment">// 跟节点和最后一个节点交换 然后取出删除最后一个</span></span><br><span class="line">    heapify(arr, i, <span class="number">0</span>);  <span class="comment">// 因为堆大小在减少，i为剩余堆大小</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="插入删除的调整比较过程">插入、删除的调整（比较过程）</h4>
-<p><strong>插入</strong></p>
-<p>插入元素，即把元素放在最后，然后从第一个分支节点开始调整，接下来递归调整其父节点。调整次数就是层数-1，时间复杂度为<span class="math inline">\(O(log_{2}n)\)</span></p>
+<h4 id="插入、删除的调整（比较过程）"><a href="#插入、删除的调整（比较过程）" class="headerlink" title="插入、删除的调整（比较过程）"></a>插入、删除的调整（比较过程）</h4><p><strong>插入</strong></p>
+<p>插入元素，即把元素放在最后，然后从第一个分支节点开始调整，接下来递归调整其父节点。调整次数就是层数-1，时间复杂度为$O(log_{2}n)$</p>
 <p>可以看作是<strong>结点上浮</strong>的过程。</p>
 <p><strong>删除</strong></p>
-<p>删除根元素，即把根元素与最后一个元素交换，然后移除最后一个元素。接下来对根节点调用<code>heapify(arr, n-1, 0)</code>。（整个过程就是堆排序的过程）。时间复杂度为<span class="math inline">\(O(log_{2}n)\)</span></p>
+<p>删除根元素，即把根元素与最后一个元素交换，然后移除最后一个元素。接下来对根节点调用<code>heapify(arr, n-1, 0)</code>。（整个过程就是堆排序的过程）。时间复杂度为$O(log_{2}n)$</p>
 <p>可以看作是<strong><em>堆的最后一个结点的下沉</em></strong></p>
 <p>若小根堆，节点i与两个孩子<strong>都比较</strong>，选择更小的交换</p>
 <p>eg：8，15，10，21，34，16，12。删除8之后重建堆</p>
-<ol type="1">
+<ol>
 <li>12， 15， 10， 21， 34， 16</li>
 <li>调整根节点：15与10比较，10更小，10与12比较，10更小，所以10和12交换：10，15，12，21，34，16</li>
 <li>调整12节点：只有一个孩子，所以12与16比较，12更小，所以不动</li>
 </ol>
 <p>例题：</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%884.03.30.png" /></p>
-<h2 id="归并排序">归并排序</h2>
-<p>合并有序列表。二路排序是递归合并2个有序数组。</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/截屏2021-09-04%20上午11.06.31.png" /></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%884.03.30.png" alt=""></p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>合并有序列表。二路排序是递归合并2个有序数组。</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/截屏2021-09-04 上午11.06.31.png" alt=""></p>
 <p>上面是一个4层的二叉树，从下往上为1，2，3，4层</p>
 <p>可以将归并排序过程看作倒置的二叉树：</p>
 <ul>
-<li><p>将其看作高度为h的树，第h层最多<span class="math inline">\(2^{h-1}\)</span>个节点，所以<span class="math inline">\(n \le 2^{h-1}\)</span>，<span class="math inline">\(h -1 = \lceil log_2n \rceil\)</span></p></li>
-<li><p>高度为h，需要<span class="math inline">\(h -1 = \lceil log_2n \rceil\)</span>趟排序</p></li>
-<li><p>每趟对两个<strong>有序</strong>列表排序，每比较一次，就可以得出一个元素位置，所以<strong>每趟最多比较n-1次，O(n)</strong>，n为全部元素个数</p></li>
-<li><p>趟数<span class="math inline">\(O(log_2{n})\)</span> 每趟<span class="math inline">\(O(n)\)</span> 时间复杂度<span class="math inline">\(O(nlog_2{n})\)</span> 空间复杂度<span class="math inline">\(O(n)\)</span></p></li>
-<li><p><strong>稳定</strong></p></li>
+<li>将其看作高度为h的树，第h层最多$2^{h-1}$个节点，所以$n  \le 2^{h-1}$，$h -1 = \lceil log_2n \rceil$</li>
+<li>高度为h，需要$h -1 = \lceil log_2n \rceil$趟排序</li>
+<li>每趟对两个<strong>有序</strong>列表排序，每比较一次，就可以得出一个元素位置，所以<strong>每趟最多比较n-1次，O(n)</strong>，n为全部元素个数</li>
+<li><p>趟数$O(log_2{n})$  每趟$O(n)$  时间复杂度$O(nlog_2{n})$  空间复杂度$O(n)$</p>
+</li>
+<li><p><strong>稳定</strong></p>
+</li>
 </ul>
-<h2 id="基数排序">基数排序</h2>
-<p><strong>不是基于比较的算法</strong></p>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p><strong>不是基于比较的算法</strong></p>
 <p>多关键字排序，比如数字123，<strong>先对个位排序，再对十位排序，再对百位排序</strong></p>
 <ul>
 <li>用到了队列进行分配和收集，如果基数为r，那么就有r个队列，比如数字0-9，基数为10，10个队列</li>
 <li>如果有d个关键字位，就需要d躺排序</li>
-<li>时间复杂度：O(d(n+r)) 收集为O(r)，分配为O(n) 与初始状态无关</li>
+<li>时间复杂度：O(d(n+r))    收集为O(r)，分配为O(n)   与初始状态无关</li>
 <li>空间复杂度：r个队列，O(r)</li>
 </ul>
-<h2 id="外部排序">外部排序</h2>
-<p>采用归并排序</p>
+<h2 id="外部排序"><a href="#外部排序" class="headerlink" title="外部排序"></a>外部排序</h2><p>采用归并排序</p>
 <ul>
-<li><p>初始归并段r</p></li>
-<li><p>归并路数k</p></li>
-<li><p>趟数S</p></li>
+<li><p>初始归并段r</p>
+</li>
+<li><p>归并路数k</p>
+</li>
+<li><p>趟数S</p>
+</li>
 </ul>
-<p>趟数：<span class="math inline">\(S = log_k{r}\)</span></p>
+<p>趟数：$S = log_k{r}$</p>
 <p>读写磁盘次数=(磁盘块数+趟数*磁盘块数)x2</p>
 <blockquote>
 <p>生成初始归并段需要磁盘块数的读和写，每趟都要堆所有磁盘块进行读和写</p>
 </blockquote>
 <p>内部归并，k个元素中选择最小的需要比较(k-1)次</p>
-<p>每趟归并n个元素，比较次数为<span class="math inline">\((n-1)(k-1)\)</span></p>
-<p>S趟归并需要比较<span class="math inline">\(S(n-1)(k-1)\)</span>次</p>
-<p><strong>败者树</strong>：k个元素中选择最小的只需要比较<span class="math inline">\(\lceil log_2k \rceil\)</span>次</p>
+<p>每趟归并n个元素，比较次数为$(n-1)(k-1)$</p>
+<p>S趟归并需要比较$S(n-1)(k-1)$次</p>
+<p><strong>败者树</strong>：k个元素中选择最小的只需要比较$\lceil log_2k \rceil$次</p>
 ]]></content>
       <categories>
         <category>数据结构</category>
@@ -3188,12 +3178,12 @@ dump把python对象转换成JSON对象, 并且写入文件</strong> ### 解码 <
   <entry>
     <title>二叉树、B-树的一些性质</title>
     <url>/2021/09/04/tree-feature/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h4 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h4><ul>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h3><ul>
 <li>节点数 = 总度数 + 1</li>
 <li>度为m的树，第i层<strong>最多</strong>有$1 \times m \times m^{2} … = m^{i-1}$个节点</li>
 <li>高度为h的m叉树<strong>最多</strong>有$1+m+m^{2}+… = \frac{m^{h} - 1}{m-1}$​​</li>
 </ul>
-<h5 id="求n个节点m叉树的最小高度"><a href="#求n个节点m叉树的最小高度" class="headerlink" title="求n个节点m叉树的最小高度"></a>求n个节点m叉树的最小高度</h5><ol>
+<h3 id="求n个节点m叉树的最小高度"><a href="#求n个节点m叉树的最小高度" class="headerlink" title="求n个节点m叉树的最小高度"></a>求n个节点m叉树的最小高度</h3><ol>
 <li><p>高度最小，肯定为完全m叉树，$0 &lt; h层节点个数 &lt; m^{h-1} $ </p>
 </li>
 <li><p>所以$1+m+…+m^{h-2} &lt; n \le 1+m+…+m^{h-1} $​​​</p>
@@ -3206,7 +3196,7 @@ dump把python对象转换成JSON对象, 并且写入文件</strong> ### 解码 <
 </li>
 <li>最小高度为$h = \lceil log_{m}[n(m-1) + 1]  \rceil $​​​​​</li>
 </ol>
-<h4 id="顺序存储的m叉树"><a href="#顺序存储的m叉树" class="headerlink" title="顺序存储的m叉树"></a>顺序存储的m叉树</h4><p>若从1开始编号，对于节点i有以下性质：</p>
+<h3 id="顺序存储的m叉树"><a href="#顺序存储的m叉树" class="headerlink" title="顺序存储的m叉树"></a>顺序存储的m叉树</h3><p>若从1开始编号，对于节点i有以下性质：</p>
 <ul>
 <li><p>双亲节点编号为$\lfloor \frac{i-2}{m} \rfloor + 1$​</p>
 <blockquote>
@@ -3221,14 +3211,14 @@ dump把python对象转换成JSON对象, 并且写入文件</strong> ### 解码 <
 <li><p>所在层数为$\lfloor log_2i \rfloor + 1$</p>
 </li>
 </ul>
-<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h4 id="基本性质-1"><a href="#基本性质-1" class="headerlink" title="基本性质"></a>基本性质</h4><ul>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="基本性质-1"><a href="#基本性质-1" class="headerlink" title="基本性质"></a>基本性质</h3><ul>
 <li>$n_0 = n_2 + 1$​</li>
 <li><p>高度为h的二叉树<strong>最多</strong>有$m^{h} - 1$​​个节点（满二叉树）</p>
 </li>
 <li><p>n个节点的二叉树（完全二叉树）最小高度为$h = \lceil log_{m}n(m-1)  \rceil$​​</p>
 </li>
 </ul>
-<h4 id="顺序存储的二叉树"><a href="#顺序存储的二叉树" class="headerlink" title="顺序存储的二叉树"></a>顺序存储的二叉树</h4><p>若从1开始编号，对于节点i有以下性质：</p>
+<h3 id="顺序存储的二叉树"><a href="#顺序存储的二叉树" class="headerlink" title="顺序存储的二叉树"></a>顺序存储的二叉树</h3><p>若从1开始编号，对于节点i有以下性质：</p>
 <ul>
 <li>双亲节点编号为$\lfloor \frac{i}{2} \rfloor$</li>
 <li>左孩子编号为2i</li>
@@ -3243,7 +3233,7 @@ dump把python对象转换成JSON对象, 并且写入文件</strong> ### 解码 <
 </li>
 <li>右孩子编号为2i+2</li>
 </ul>
-<h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><h4 id="基本性质-2"><a href="#基本性质-2" class="headerlink" title="基本性质"></a>基本性质</h4><p>设有m阶B树，设$k = \lceil \frac{m}{2} \rceil$</p>
+<h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><h3 id="基本性质-2"><a href="#基本性质-2" class="headerlink" title="基本性质"></a>基本性质</h3><p>设有m阶B树，设$k = \lceil \frac{m}{2} \rceil$</p>
 <p>关键字数的取值范围：</p>
 <ul>
 <li>根结点 $\in [1, m-1]$</li>
@@ -3255,7 +3245,7 @@ dump把python对象转换成JSON对象, 并且写入文件</strong> ### 解码 <
 <li>其他 $\in [k, m]$</li>
 </ul>
 <p><strong>关键字个数为n的B树，其叶子节点为n+1个。</strong></p>
-<h4 id="最大最小高度"><a href="#最大最小高度" class="headerlink" title="最大最小高度"></a>最大最小高度</h4><p>根据以上基本性质，可推导出给定关键字数$n$下的最大和最小高度</p>
+<h3 id="最大最小高度"><a href="#最大最小高度" class="headerlink" title="最大最小高度"></a>最大最小高度</h3><p>根据以上基本性质，可推导出给定关键字数$n$下的最大和最小高度</p>
 <p><strong>最大高度推导：</strong></p>
 <p>关键字数一定，想要高度最大，则每个结点的关键字数是最少的，这样高度就能尽可能大，这样<strong>每层的最小关键字数</strong>如下</p>
 <div class="table-container">
@@ -3345,7 +3335,7 @@ dump把python对象转换成JSON对象, 并且写入文件</strong> ### 解码 <
 <p>这样结点最少，有$(1 + 2 + 2^2 + … + 2^4) = 2^5 -1 = 31$</p>
 <p>节点数最多，即每个结点的子树数最多：</p>
 <p>结点最多有$(1 + 3 + 3^2 + … + 3^4) = （3^5 -1）/（3-1） = 121$</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>根据以下公式算最大最小高度，其中n位关键字个数</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>根据以下公式算最大最小高度，其中n位关键字个数</p>
 <script type="math/tex; mode=display">
 2k^{h-1} \le n+1 \le m^h</script><p>不管出什么题都是有基本性质推导的，最大最小高度的性质记住，其他的可以现推。</p>
 <h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><ul>
@@ -3760,19 +3750,20 @@ y\\
 </li>
 </ol>
 <h3 id="无符号数乘法"><a href="#无符号数乘法" class="headerlink" title="无符号数乘法"></a>无符号数乘法</h3><ol>
-<li>两个n位的无符号数a、b相乘，左边n位必须全0，否则溢出</li>
+<li>两个n位的无符号数a、b相乘，左边n位必须<strong>全0</strong>，否则溢出</li>
 <li>手算：计算两个数十进制乘积，看是否超出了n位数能表示的范围</li>
 </ol>
 <blockquote>
-<p>2020真题</p>
+<p> 2020真题</p>
 </blockquote>
 <h3 id="有符号数乘法（补码）"><a href="#有符号数乘法（补码）" class="headerlink" title="有符号数乘法（补码）"></a>有符号数乘法（补码）</h3><ol>
 <li>两个n位的有符号数a、b相乘，左边<strong>n+1位</strong>必须<strong>全0或全1</strong>，否则溢出</li>
 <li>手算：计算两个数十进制乘积，看是否超出了n位有符号数能表示的范围</li>
 </ol>
 <p>为什么是前n+1位呢？假设两个4位数相乘，结果为正数，最大正数为0111，扩展为8位（正数补0），0000 0111，若前面5位有一位为1，就超过了4位能表示的最大正数。若结果为负数，最小负数为1000,扩展（负数补1），1111 1000，若前5位有一位为0，就超过了最小负数。</p>
+<p>也可以根据补码表示范围来解释：32位补码表示范围是$[-2^{31}, 2^{31}-1]$ 如果为<strong>0000 0000</strong> 8000 0000H=$2^{31}$ 超出了范围，如果为FFFF FFFF 0000 0000H=$-2^{32}$超出了范围</p>
 <blockquote>
-<p>2019真题</p>
+<p>2019、2020真题</p>
 </blockquote>
 <h3 id="移位"><a href="#移位" class="headerlink" title="移位"></a>移位</h3><p>对于$[X]_补=X_0.X_1X_2…X_n$，补码左移，什么情况会发生溢出？</p>
 <p>​    $X_0 \ne X1$时会溢出，可以用双符号位理解，当左移双符号位变为$X_0X_1$，不相等肯定溢出。</p>
@@ -3856,7 +3847,7 @@ y\\
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++)</span><br><span class="line">    s += arr[i]</span><br><span class="line">  retrun s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push	%ebp								&#x2F;&#x2F; 保护上层函数指针</span><br><span class="line">mov		%esp, %ebp						&#x2F;&#x2F; 栈顶指针指向栈底</span><br><span class="line">sub		$0x10, -0x4(%ebp)		&#x2F;&#x2F; -0x4(%ebp)是相对寻址，M[R[%ebp]-4]这个单元存放变量i的值</span><br><span class="line">movl	$0x0, -0x4(%ebp)		&#x2F;&#x2F; i&#x3D;0</span><br><span class="line">jmp		第12行</span><br><span class="line">mov		-0x4(%ebp), %eax		&#x2F;&#x2F; 把栈底指针偏移-4字节的数据移入%eax，使%eax存放i的值</span><br><span class="line">mov		arr(, %eax, 4), %edx	&#x2F;&#x2F; arr[%eax] -&gt; %edx, %eax是索引</span><br><span class="line">mov		s, %eax							&#x2F;&#x2F; s是累加变量sum的地址，传给%eax</span><br><span class="line">add		%edx, %eax					&#x2F;&#x2F; sum +&#x3D; arr[i]</span><br><span class="line">mov		%edx, s</span><br><span class="line">addl	%0x1, -0x4(%ebp)		&#x2F;&#x2F; i++</span><br><span class="line">cmpl	%0x3, -0x4(%ebp)		&#x2F;&#x2F; i-3&gt;0</span><br><span class="line">jle		第6行								&#x2F;&#x2F; if i&lt;3, 跳转</span><br><span class="line">mov		s, %eax						</span><br><span class="line">leave</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push	%ebp								&#x2F;&#x2F; 保护上层函数指针</span><br><span class="line">mov		%esp, %ebp						&#x2F;&#x2F; 栈顶指针指向栈底</span><br><span class="line">sub		$0x10, -0x4(%ebp)		&#x2F;&#x2F; -0x4(%ebp)是相对寻址，M[R[%ebp]-4]，这个单元存放变量i的值</span><br><span class="line">movl	$0x0, -0x4(%ebp)		&#x2F;&#x2F; i&#x3D;0</span><br><span class="line">jmp		第12行</span><br><span class="line">mov		-0x4(%ebp), %eax		&#x2F;&#x2F; 把栈底指针偏移-4字节的数据移入%eax，使%eax存放i的值</span><br><span class="line">mov		arr(, %eax, 4), %edx	&#x2F;&#x2F; arr[%eax] -&gt; %edx, %eax是索引</span><br><span class="line">mov		s, %eax							&#x2F;&#x2F; s是累加变量sum的地址，传给%eax</span><br><span class="line">add		%edx, %eax					&#x2F;&#x2F; sum +&#x3D; arr[i]</span><br><span class="line">mov		%edx, s</span><br><span class="line">addl	%0x1, -0x4(%ebp)		&#x2F;&#x2F; i++</span><br><span class="line">cmpl	%0x3, -0x4(%ebp)		&#x2F;&#x2F; i-3&gt;0</span><br><span class="line">jle		第6行								&#x2F;&#x2F; if i&lt;3, 跳转</span><br><span class="line">mov		s, %eax						</span><br><span class="line">leave</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
 <h3 id="MIPS"><a href="#MIPS" class="headerlink" title="MIPS"></a>MIPS</h3><h4 id="五段流水线"><a href="#五段流水线" class="headerlink" title="五段流水线"></a>五段流水线</h4><p>流水线一般结合MIPS32（RISC）考，不和X86一起考，因为X86是CISC不支持流水线。</p>
 <p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-07-09%20%E4%B8%8B%E5%8D%8811.53.18.png" alt=""></p>
 <p>简单介绍一下指令执行过程，<strong>注意：以下不是所有指令都具有，只是为了方便设计流水线，每个指令周期都有这几个机器周期，但周期内可能为空指令（空指令阶段什么都不做，但是要消耗时间），必须知道每种指令的机器周期有哪些。</strong></p>
@@ -4573,7 +4564,20 @@ y\\
   <entry>
     <title>408常见题</title>
     <url>/2021/09/07/408-problems/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="cache-主存系统效率"><a href="#cache-主存系统效率" class="headerlink" title="cache-主存系统效率"></a>cache-主存系统效率</h3><p>=命中cache时间/平均访问时间</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="浮点数加减法"><a href="#浮点数加减法" class="headerlink" title="浮点数加减法"></a>浮点数加减法</h3><ol>
+<li>对阶，小的向大的看齐，即尾数右移，指数++，尾数可能舍入，指数不会溢出（大阶肯定没溢出）</li>
+<li>尾数相加，相减</li>
+<li>规格化：<ol>
+<li>左规：符号位和最高位相同需要规格化，即当00.0xx或11.1xxx时，尾数左移</li>
+<li>右规：尾数结果溢出时，即10.xx或01.xx时需要右规，右规最多一次</li>
+</ol>
+</li>
+<li>尾数舍入</li>
+<li>溢出判断：若右规后，符号位为01则上溢，中断处理。10下溢，当作机器零</li>
+</ol>
+<h3 id="LSB-MSB"><a href="#LSB-MSB" class="headerlink" title="LSB MSB"></a>LSB MSB</h3><p>最高/最低有效字节是什么跟存储方式无关</p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-12-12%20at%2014.46.18.png" alt=""></p>
+<h3 id="cache-主存系统效率"><a href="#cache-主存系统效率" class="headerlink" title="cache-主存系统效率"></a>cache-主存系统效率</h3><p>=命中cache时间/平均访问时间</p>
 <p>平均访问时间=命中x访问cache时间+不命中x（访问cache时间+访问主存时间）</p>
 <h3 id="位扩展、字扩展地址线"><a href="#位扩展、字扩展地址线" class="headerlink" title="位扩展、字扩展地址线"></a>位扩展、字扩展地址线</h3><p>eg：512Kx8位构成4Mx32位存储器</p>
 <p>需要$4M/521k=8$行</p>
@@ -4944,7 +4948,10 @@ y\\
 <li>外中断和子函数区别：外中断保存PC和PSW，子函数保存寄存器</li>
 </ul>
 <p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2015.53.53.png" alt=""></p>
-<h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><p>画表最好算，最方便</p>
+<h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><blockquote>
+<p>注意带权周转时间=周转时间/实际运行时间  </p>
+</blockquote>
+<p>画表最好算，最方便</p>
 <p>不管什么算法，先画下面这个表</p>
 <div class="table-container">
 <table>
@@ -5353,10 +5360,8 @@ y\\
 <li>缺页要从<strong>磁盘</strong>中取出<strong>页</strong>到内存，cache不命中要从<strong>主存</strong>去取出<strong>块</strong>到cache。因此缺页开销更大</li>
 <li>TLB表项为虚拟页号+物理页号（主存）。cache表项为标记+数据。快表是慢表的一个副本，结构一样。cache中存放了数据，因此取数时最少访问主存0次。</li>
 </ul>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
-<li>双链表、静态链表</li>
-<li>共享栈</li>
-</ul>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="二叉树顺序存储"><a href="#二叉树顺序存储" class="headerlink" title="二叉树顺序存储"></a>二叉树顺序存储</h3><p>2020真题：<img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/IMG_49219393311D-1.jpeg" alt=""></p>
+<p>为了满足任意性，如检查一个点的左右孩子，1-5层的所有节点都要保存，所以是$2^5-1$</p>
 <h3 id="折半查找判定树画法"><a href="#折半查找判定树画法" class="headerlink" title="折半查找判定树画法"></a>折半查找判定树画法</h3><p><a href="https://blog.csdn.net/BlevMeM/article/details/84672731">数据结构学习记录（二）——折半查找二叉判定树的画法</a></p>
 <p>原则：<strong>若向上取整，说明分界点在右边，右子树节点数$\le$左子树节点数，向上取整则反</strong>  （很容易弄反）</p>
 <ol>
@@ -5412,7 +5417,7 @@ y\\
 <blockquote>
 <p>如果从1开始计数，next数组全部+1</p>
 </blockquote>
-<p><strong>nextval</strong>数组是next的递归计算，<strong>从前往后，如果s[i]=s[i-1]，nextval[i]=nextval[next[i]]   否则 nextval[i]=next[i]</strong></p>
+<p><strong>nextval</strong>数组是next的递归计算，<strong>从前往后，如果s[i]=s[next[i]]，nextval[i]=nextval[next[i]]   否则 nextval[i]=next[i]</strong></p>
 <div class="table-container">
 <table>
 <thead>
@@ -5430,11 +5435,11 @@ y\\
 <tr>
 <td></td>
 <td>a</td>
-<td>ab</td>
-<td>aba</td>
-<td>abaa</td>
-<td>abaab</td>
-<td>abaabc</td>
+<td>b</td>
+<td>a</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
 </tr>
 <tr>
 <td>next</td>
@@ -5449,9 +5454,9 @@ y\\
 <td>nextval</td>
 <td>-1</td>
 <td>0</td>
-<td>0</td>
-<td>0</td>
+<td>-1</td>
 <td>1</td>
+<td>0</td>
 <td>2</td>
 </tr>
 </tbody>
@@ -5475,11 +5480,11 @@ y\\
 <tr>
 <td></td>
 <td>a</td>
-<td>aa</td>
-<td>aaa</td>
-<td>aaaa</td>
-<td>aaaab</td>
-<td>aaaabc</td>
+<td>a</td>
+<td>a</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
 </tr>
 <tr>
 <td>next</td>
@@ -5497,7 +5502,7 @@ y\\
 <td>0</td>
 <td>0</td>
 <td>4</td>
-<td>1</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -5511,6 +5516,8 @@ y\\
 <th>BFS</th>
 <th>DFS</th>
 <th>拓扑排序</th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -5519,14 +5526,20 @@ y\\
 <td>$O(V+E)$</td>
 <td>$O(V+E)$</td>
 <td>$O(V+E)$</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>邻接矩阵</td>
 <td>$O(V^2)$</td>
 <td>$O(V^2)$</td>
 <td>$O(V^2)$</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5534,6 +5547,10 @@ y\\
 </tbody>
 </table>
 </div>
+<p>Prim:$O(V^2)$</p>
+<p>Kruskal:$O(Elog_2E)$</p>
+<p>Dijkstra:$O(V^2)$</p>
+<p>Floyd:$O(V^3)$</p>
 <h3 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h3><p><a href="https://blog.csdn.net/sgbfblog/article/details/8001651">中缀表达式转换为后缀表达式_</a></p>
 <ol>
 <li>（直接入栈</li>
@@ -5826,102 +5843,89 @@ y\\
   <entry>
     <title>作文模板</title>
     <url>/2021/11/10/muban/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="大作文">大作文</h2>
-<h3 id="话题引起">话题引起</h3>
-<ol type="1">
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="大作文"><a href="#大作文" class="headerlink" title="大作文"></a>大作文</h2><h3 id="话题引起"><a href="#话题引起" class="headerlink" title="话题引起"></a>话题引起</h3><ol>
 <li><strong>The bar chart above present diferrent proportions/factors of</strong> consumers’ concern on choosing restaurant <strong>in a certain city in xx year.</strong></li>
 <li>The line chart shows the ascending/ tendency of 主题</li>
 </ol>
-<h3 id="图表描述">图表描述</h3>
-<ol type="1">
+<h3 id="图表描述"><a href="#图表描述" class="headerlink" title="图表描述"></a>图表描述</h3><ol>
 <li>To put it more precise，描述变化或占比</li>
 <li>静态图描述占比：the proportion of xxx in 2013 was 33% compared to 25% in 2008, showing an increase of 8%.</li>
-<li>“分别占用” the percentage of A B C and others is a, b, c, d respectively.</li>
+<li>“分别占用”  the percentage of A B C and others is a, b, c, d respectively.</li>
 <li>描述变化：<strong>the number/percentage of</strong> museums in China <strong>increases/decreases</strong> <strong>steadily/sharply from xx in 2013 to xx in 2015.</strong></li>
 <li>描述最值：xxx is the biggest proportion of all categories/factors</li>
 </ol>
-<p>​ Exercising by themselves <strong>occupies the dominant position, accounting for</strong> 54.3%</p>
-<ol start="6" type="1">
+<p>​        Exercising by themselves <strong>occupies the dominant position, accounting for</strong> 54.3%</p>
+<ol>
 <li>多个描述时用while/whereas，in the meanwhile</li>
 <li>the proportion of those .., while that of those…</li>
 </ol>
-<h3 id="图表总结">图表总结</h3>
-<ol type="1">
+<h3 id="图表总结"><a href="#图表总结" class="headerlink" title="图表总结"></a>图表总结</h3><ol>
 <li>As a matter of fact, what author tries to tell us is more than statistics.</li>
 <li>Isolated as the figures seem to be, as a matter of fact, they are connected to one another closely.</li>
 </ol>
-<h3 id="具体意义">具体意义</h3>
-<ol type="1">
-<li><strong>In fact, this chart is a miniature of a prevalent phenomenon. An incresing number of</strong> customers choose ...(描述)</li>
+<h3 id="具体意义"><a href="#具体意义" class="headerlink" title="具体意义"></a>具体意义</h3><ol>
+<li><strong>In fact, this chart is a miniature of a prevalent phenomenon. An incresing number of</strong> customers choose …(描述)</li>
 <li>In fact, this chart is a miniature of contemporary society.</li>
 <li>The table leads us to find out what causes the …</li>
 </ol>
-<h3 id="意义论证">意义论证</h3>
-<ol type="1">
-<li>I can find no better reasons than the following ones./There are many reasons for this phenomenon.（解释原因）
-<ol type="1">
+<h3 id="意义论证"><a href="#意义论证" class="headerlink" title="意义论证"></a>意义论证</h3><ol>
+<li>I can find no better reasons than the following ones./There are many reasons for this phenomenon.（解释原因）<ol>
 <li>On one hand./To begin with/For one thing</li>
 <li>On the other hand./Furthermore/For another</li>
-</ol></li>
+</ol>
+</li>
 </ol>
 <ul>
 <li>原因，which leads to/result in the downward/upward tendency of…</li>
 <li></li>
 </ul>
-<h3 id="意义总结可省略">意义总结(可省略)</h3>
-<ol type="1">
+<h3 id="意义总结-可省略"><a href="#意义总结-可省略" class="headerlink" title="意义总结(可省略)"></a>意义总结(可省略)</h3><ol>
 <li>（正面/中立）As a consequence/result</li>
 <li>（负面）If we keep turing a blind eye to it, the problem above will generate severe consequences. For example,..</li>
 </ol>
-<h3 id="结尾段">结尾段</h3>
-<h4 id="总结建议憧憬">总结+建议+憧憬</h4>
-<ol type="1">
-<li>号召：Considering every aspect of this phenonmenon, we should bear in mind that … , we should xxx, Only in this way can we meet a brighter furture.</li>
+<h3 id="结尾段"><a href="#结尾段" class="headerlink" title="结尾段"></a>结尾段</h3><h4 id="总结-建议-憧憬"><a href="#总结-建议-憧憬" class="headerlink" title="总结+建议+憧憬"></a>总结+建议+憧憬</h4><ol>
+<li>号召：Considering every aspect of this phenonmenon, we should bear in mind that … ,   we should xxx, Only in this way can we meet a brighter furture.</li>
 <li>两面：(If used carelessly or without restraint), xx could prove to be a double-edged sword. Therefore, we must absorb the essence and neglect the drawbacks of xxx Only in this way can we ….</li>
 </ol>
-<p>​ / take full advantage of merit of xx, such as…, and avoid the drawbacks such as …</p>
-<ol type="1">
-<li><p>中立： No matter what the reason/Whether it is positive or negative, one thing is certian that there is a growing tendency xxx, which I believe will not change in a short time. + 憧憬</p>
-<p>It can be predicted that as … improves/develops, xx can be more 发展趋势</p></li>
+<p>​        / take full advantage of merit of xx, such as…, and avoid the drawbacks such as …</p>
+<ol>
+<li><p>中立： No matter what the reason/Whether it is positive or negative, one thing is certian that there is a growing tendency xxx, which I believe will not change in a short time.  + 憧憬</p>
+<p>It can be predicted that as … improves/develops, xx can be more 发展趋势</p>
+</li>
 </ol>
 <p><strong>憧憬</strong></p>
-<ol type="1">
+<ol>
 <li>With suporting policies and rational(理性的) instructions, it is reasonable for us to believe that our society can achieve a more healthy development.</li>
 </ol>
-<h3 id="完整">完整</h3>
-<h4 id="第一段">第一段</h4>
-<p>静态图描述占比</p>
-<p>The pie chart above present diferrent proportions/factors of <em>consumers’ concern on choosing restaurant</em> in a certain city in xx year.To put it more precise，xx <strong>acount for</strong> the largest proportion(20%). Next come the xx and xx, which <strong>constitute</strong> 10% and 9% respectively, much higher than xxx(2%). Other factors <strong>make up</strong> 1%. <strong>As a matter of fact</strong>, what author tries to tell us is more than statistics.</p>
+<h3 id="完整"><a href="#完整" class="headerlink" title="完整"></a>完整</h3><h4 id="第一段"><a href="#第一段" class="headerlink" title="第一段"></a>第一段</h4><p>静态图描述占比</p>
+<p>The pie chart above present diferrent proportions/factors of <em>consumers’ concern on choosing restaurant</em> in a certain city in xx year.To put it more precise，xx <strong>acount for</strong> the largest proportion(20%). <strong>Next come</strong> the xx and xx, which <strong>constitute</strong> 10% and 9% respectively, much higher than xxx(2%). Other factors <strong>make up</strong> 1%. <strong>As a matter of fact</strong>, what author tries to tell us is more than statistics.</p>
 <blockquote>
 <p>the proportion of people who …</p>
 </blockquote>
 <p>动态图描述变化</p>
 <p>The line chart present the numbers of xxx in both A and B have been increasing with different rates during the period from 2000 to 2008.To put it more precise, <strong>the number/percentage/percent of</strong> xxx <strong>increases/rises/decreases/drops</strong> <strong>slightly/steadily/sharply from xx in 2013 to xx in 2015.</strong> However/In the meanwhile, the number of xxx during this period shows a larger increase/decrease.</p>
-<h4 id="第二段">第二段</h4>
-<p>The chart leads us to find out what causes the difference of xx. /In fact, this chart is a miniature of a social phenomenon.</p>
+<h4 id="第二段"><a href="#第二段" class="headerlink" title="第二段"></a>第二段</h4><p>The chart leads us to find out what causes the difference of xx. /In fact, this chart is a miniature of a social phenomenon.</p>
 <p>I can find no better reasons than the following ones. /This phenomenon can be attributed to the following ones.</p>
 <p><strong>For one thing</strong>, …. which leads to the downward/upward tendency of…, <strong>For another, ….., (Furthermore…)</strong></p>
 <p>常用语句：</p>
-<ol type="1">
+<ol>
 <li>with the rapid development of our economy and society, more and more people prefer …/an increasing number of ..</li>
 <li>people are paying more attention to</li>
 <li>the mass media, such as radio, television and the Internet, have made huge efforts to promote xxx</li>
 <li>may exert great influencce on it</li>
 </ol>
-<h4 id="第三段">第三段</h4>
-<p>Considering every aspect of the issue, I, as most of others will do, safely draw a conclusion that there is a growing tendency … If xx can …, it is reasonanle for us to believe that ..</p>
+<h4 id="第三段"><a href="#第三段" class="headerlink" title="第三段"></a>第三段</h4><p>Considering every aspect of the issue, I, as most of others will do, safely draw a conclusion that there is a growing tendency …  If xx can …, it is reasonanle for us to believe that ..</p>
 <p>展望：<strong>With suporting policies and rational instructions</strong>, it is reasonable for us to believe that our society can achieve a more healthy development.</p>
-<h2 id="小作文">小作文</h2>
-<h3 id="道歉信">道歉信</h3>
-<p>Dear xx,</p>
+<h2 id="小作文"><a href="#小作文" class="headerlink" title="小作文"></a>小作文</h2><p>I am writing to invite you to our online meeting <strong>scheduled for</strong> next Friday from 2 p.m. to 4 p.m.</p>
+<p>a wide variety of</p>
+<p>We will pleased if you could accept our invitation</p>
+<h3 id="道歉信"><a href="#道歉信" class="headerlink" title="道歉信"></a>道歉信</h3><p>Dear xx,</p>
 <p>I am writing to apologize for not being able to …, since I have to cancel … for some reason. I am terribly sorry for any inconvenience this causes you and any changes that it necessiates in your current plans.</p>
 <p>It was not my intention to cause any inconvenience, 交代原因, To slove the problem, would you prefer （解决措施）</p>
 <p>Thank you for understanding in this matter. Feel free to contact me if you have further questions.</p>
-<h3 id="感谢信">感谢信</h3>
-<p>I am writing to express my heartfelt gratitude for …</p>
-<p>Please</p>
-<h3 id="接受邀请">接受邀请</h3>
-<p>I have received your letter inviting me to xx. Thank you for your invitation. I am pleased to accept it.</p>
+<h3 id="感谢信"><a href="#感谢信" class="headerlink" title="感谢信"></a>感谢信</h3><p>I am writing to express my heartfelt gratitude for …</p>
+<p>Please </p>
+<h3 id="接受邀请"><a href="#接受邀请" class="headerlink" title="接受邀请"></a>接受邀请</h3><p>I have received your letter inviting me to xx. Thank you for your invitation. I am pleased to accept it.</p>
 <p>Thank you once again for your invitation. I am looking forward to your reply.</p>
 ]]></content>
       <categories>
