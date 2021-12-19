@@ -2951,7 +2951,7 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
   <entry>
     <title>排序效率</title>
     <url>/2021/08/23/sort-notes/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>稳定的算法：插、归、基、冒泡  <a href="https://www.bilibili.com/read/cv12699857?from=articleDetail&amp;spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.4">巧记稳定的排序</a></p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>稳定的算法：插、归、基、冒泡  </p>
 <h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>选泡插：$O(n^2)$</p>
 <p>快归堆：$O(nlog_2{n})$</p>
 <p>基：$O(d(n+r))$  d趟  r个队列</p>
@@ -2970,6 +2970,7 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <li><strong>快排比较特殊！</strong> 如果选择枢轴在边界，第二趟确定2个元素位置，如果在中间，第二趟确定3个</li>
 </ul>
 <p>​    <img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.37.39.png" alt=""></p>
+<h3 id="可以用链式存储的"><a href="#可以用链式存储的" class="headerlink" title="可以用链式存储的"></a>可以用链式存储的</h3><p>直接插入、冒泡、</p>
 <h3 id="排序效率与初始状态关系"><a href="#排序效率与初始状态关系" class="headerlink" title="排序效率与初始状态关系"></a>排序效率与初始状态关系</h3><p>选择排序、堆排序、归并排序与原状态无关</p>
 <ul>
 <li>冒泡，若顺序，一趟过后flag==True，退出循环</li>
