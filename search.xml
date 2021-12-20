@@ -2094,8 +2094,8 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 </table>
 </div>
 <p>以太网帧  <strong>18B首部尾部</strong></p>
-<p>以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）</p>
-<p>以太网数据最多1500B, 以太网最大1518B，数据最少46B</p>
+<p>若不考虑前导码，以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）</p>
+<p>以太网<strong>数据</strong>最多1500B, 以太网最大1518B，数据最少46B</p>
 <h3 id="ABC类网络"><a href="#ABC类网络" class="headerlink" title="ABC类网络"></a>ABC类网络</h3><p>现推方法：</p>
 <p>A类：0，网络号为前8位，因此网络号:1~126</p>
 <p>B类：10，网络号为前16位，因此网络号:128.1~191.255</p>
@@ -2970,7 +2970,7 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <li><strong>快排比较特殊！</strong> 如果选择枢轴在边界，第二趟确定2个元素位置，如果在中间，第二趟确定3个</li>
 </ul>
 <p>​    <img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-15%20at%2015.37.39.png" alt=""></p>
-<h3 id="可以用链式存储的"><a href="#可以用链式存储的" class="headerlink" title="可以用链式存储的"></a>可以用链式存储的</h3><p>直接插入、冒泡、</p>
+<h3 id="可以用链式存储的"><a href="#可以用链式存储的" class="headerlink" title="可以用链式存储的"></a>可以用链式存储的</h3><p>选泡插</p>
 <h3 id="排序效率与初始状态关系"><a href="#排序效率与初始状态关系" class="headerlink" title="排序效率与初始状态关系"></a>排序效率与初始状态关系</h3><p>选择排序、堆排序、归并排序与原状态无关</p>
 <ul>
 <li>冒泡，若顺序，一趟过后flag==True，退出循环</li>
@@ -3020,13 +3020,13 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <li><strong>最坏：</strong>$O(n^2)$</li>
 </ul>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> min=i;  <span class="comment">// min指向最小元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">      <span class="keyword">if</span>(A[j] &lt; A[min])</span><br><span class="line">        min=j;</span><br><span class="line">   	<span class="keyword">if</span>(min!=i)</span><br><span class="line">      swap(A[i], A[min])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>思想：</strong>每次找到关键字最小的放在有序子序列</p>
-<p><strong>空间复杂度：</strong>O(1)</p>
+<p><strong>思想：</strong> 每次找到关键字最小的放在有序子序列</p>
+<p><strong>空间复杂度：</strong> O(1)</p>
 <p><strong>时间复杂度：</strong></p>
 <p>一共进行n-1趟比较， <strong>比较次数与初始状态无关</strong>为$n-1+n-2+…+1 = \frac{n(n-1)}{2}$，在有序情况下交换次数为0，最坏为$3(n-1)$，因此时间复杂度为$O(n^2)$</p>
 <p>因为比较过程中进行了交换，<strong>不稳定</strong></p>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p><strong>空间复杂度：</strong>O(1)</p>
-<p><strong>时间复杂度：</strong>：<code>buildHeap</code>复杂度为O(n)，每次<code>heapify</code>需要调整$O(h)=O(log_2{n})$次，所以时间复杂度为$O(nlog_2{n})$</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p><strong>空间复杂度：</strong> O(1)</p>
+<p><strong>时间复杂度：</strong> ：<code>buildHeap</code>复杂度为O(n)，每次<code>heapify</code>需要调整$O(h)=O(log_2{n})$次，所以时间复杂度为$O(nlog_2{n})$</p>
 <p>顺序存储的二叉树，若从0开始编号，对于节点i有以下性质：</p>
 <ul>
 <li><p>双亲节点编号为 (i-1)/2</p>
@@ -4567,7 +4567,7 @@ y\\
     <url>/2021/09/07/408-problems/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="组成原理"><a href="#组成原理" class="headerlink" title="组成原理"></a>组成原理</h2><h3 id="浮点数加减法"><a href="#浮点数加减法" class="headerlink" title="浮点数加减法"></a>浮点数加减法</h3><ol>
 <li>对阶，小的向大的看齐，即尾数右移，指数++，尾数可能舍入，指数不会溢出（大阶肯定没溢出）</li>
-<li>尾数相加，相减</li>
+<li>尾数相加、相减</li>
 <li>规格化：<ol>
 <li>左规：符号位和最高位相同需要规格化，即当00.0xx或11.1xxx时，尾数左移</li>
 <li>右规：尾数结果溢出时，即10.xx或01.xx时需要右规，右规最多一次</li>
@@ -5517,8 +5517,6 @@ y\\
 <th>BFS</th>
 <th>DFS</th>
 <th>拓扑排序</th>
-<th></th>
-<th></th>
 </tr>
 </thead>
 <tbody>
@@ -5527,20 +5525,14 @@ y\\
 <td>$O(V+E)$</td>
 <td>$O(V+E)$</td>
 <td>$O(V+E)$</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>邻接矩阵</td>
 <td>$O(V^2)$</td>
 <td>$O(V^2)$</td>
 <td>$O(V^2)$</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
-<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5706,7 +5698,10 @@ y\\
 <h3 id="堆的插入删除"><a href="#堆的插入删除" class="headerlink" title="堆的插入删除"></a>堆的插入删除</h3><p>建立：从最后一个分支节点，往前调整每个分支节点</p>
 <p>插入：从下往上调整，只调整插入节点到根节点这个子树</p>
 <p>删除：从上往下调整，调整根节点</p>
-<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="物理层编码"><a href="#物理层编码" class="headerlink" title="物理层编码"></a>物理层编码</h3><ul>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="冲突域广播域"><a href="#冲突域广播域" class="headerlink" title="冲突域广播域"></a>冲突域广播域</h3><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-12-19%20at%2016.55.56.png" alt="不同层的设备"></p>
+<p>冲突域：以太网中，两台计算机在同时通信时会发生冲突，那么这个网络就是一个冲突域</p>
+<p>广播域：指网络中的某一设备同时向网络中所有的其它设备发送数据，这个数据所能广播到的范围即为广播域</p>
+<h3 id="物理层编码"><a href="#物理层编码" class="headerlink" title="物理层编码"></a>物理层编码</h3><ul>
 <li>以太网使用曼彻斯特编码</li>
 </ul>
 <p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-08%20at%2016.04.40.png" alt=""></p>
@@ -5935,5 +5930,33 @@ y\\
       <tags>
         <tag>作文</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/12/20/todo/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><ul>
+<li>公式</li>
+<li>特殊曲线积分</li>
+<li>错题</li>
+<li>108 数列极限</li>
+</ul>
+<h2 id="408"><a href="#408" class="headerlink" title="408"></a>408</h2><ul>
+<li>计算机网络 各种协议</li>
+<li>RIP 坏消息传得慢</li>
+<li>数据结构结论、应用题、排序模拟</li>
+<li>真题</li>
+<li>新考点：红黑树、SDN、VLAN、SIMD、虚拟机…</li>
+</ul>
+<h2 id="政治"><a href="#政治" class="headerlink" title="政治"></a>政治</h2><ul>
+<li>肖4 主观题</li>
+<li>肖4 8 选择题 错题再背</li>
+</ul>
+<h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><ul>
+<li>模板</li>
+<li>作文词汇</li>
+<li>试写作文</li>
+<li>阅读</li>
+</ul>
+]]></content>
   </entry>
 </search>
