@@ -4667,6 +4667,7 @@ y\\
 </ul>
 </li>
 </ul>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-12-22%20at%2016.35.23.png" alt=""></p>
 <h3 id="DMA过程"><a href="#DMA过程" class="headerlink" title="DMA过程"></a>DMA过程</h3><p>DMA分为预处理、数据传送、后处理3个阶段</p>
 <p>预处理：由CPU完成必要的准备工作，数据传送前由<strong>DMA控制器请求总线使用权</strong></p>
 <p>数据传送：由<strong>DMA控制器直接控制总线完成</strong></p>
@@ -5551,7 +5552,8 @@ y\\
 <li>遇到）全部出栈，直到把（出栈</li>
 </ol>
 <h3 id="WPL"><a href="#WPL" class="headerlink" title="WPL"></a>WPL</h3><p>定义要搞清楚：所有<strong>叶节点</strong>的带权路径之和</p>
-<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2019.03.44.png" alt=""></p>
+<p><strong>根节点路径为0</strong></p>
+<p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/Screen%20Shot%202021-11-07%20at%2019.03.44.png" alt="a"></p>
 <h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><h4 id="顺序表示"><a href="#顺序表示" class="headerlink" title="顺序表示"></a>顺序表示</h4><p><img data-src="https://raw.githubusercontent.com/baichen99/pics/master/img/%E6%88%AA%E5%B1%8F2021-10-06%20%E4%B8%8B%E5%8D%888.51.14.png" alt=""></p>
 <p>牺牲额外一块空间。</p>
 <p>空条件：front == rear</p>
@@ -5798,6 +5800,7 @@ y\\
 <li>服务器广播DHCP<strong>确认</strong>消息</li>
 </ol>
 <h3 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h3><p>更新策略</p>
+<p><a href="https://www.bilibili.com/video/BV1oJ411e7BW">https://www.bilibili.com/video/BV1oJ411e7BW</a><br>6分钟开始<br>10分钟开始讲坏消息传得慢</p>
 <ol>
 <li>新网络更新</li>
 <li>到<strong>相邻路由器</strong>的跳数变化也更新</li>
@@ -5914,18 +5917,10 @@ y\\
 <h4 id="第三段"><a href="#第三段" class="headerlink" title="第三段"></a>第三段</h4><p>Considering every aspect of the issue, I, as most of others will do, safely draw a conclusion that there is a growing tendency that  …, which will not change in a short time.</p>
 <p>社会：<strong>With suporting policies and rational instructions</strong>, it is reasonable for us to believe that our society can achieve a more healthy development.</p>
 <p>两面：(If used carelessly or without restraint), xx could prove to be a double-edged sword. Therefore, we must absorb the essence and neglect the drawbacks of xxx Only in this way can we …</p>
-<p>S</p>
-<h2 id="小作文"><a href="#小作文" class="headerlink" title="小作文"></a>小作文</h2><p>I am writing to invite you to our online meeting <strong>scheduled for</strong> next Friday from 2 p.m. to 4 p.m.</p>
-<p>a wide variety of</p>
-<p>We will pleased if you could accept our invitation</p>
 <h3 id="道歉信"><a href="#道歉信" class="headerlink" title="道歉信"></a>道歉信</h3><p>Dear xx,</p>
 <p>I am writing to apologize for not being able to …, since I have to cancel … for some reason. I am terribly sorry for any inconvenience this causes you and any changes that it necessiates in your current plans.</p>
 <p>It was not my intention to cause any inconvenience, 交代原因, To slove the problem, would you prefer （解决措施）</p>
 <p>Thank you for understanding in this matter. Feel free to contact me if you have further questions.</p>
-<h3 id="感谢信"><a href="#感谢信" class="headerlink" title="感谢信"></a>感谢信</h3><p>I am writing to express my heartfelt gratitude for …</p>
-<p>Please </p>
-<h3 id="接受邀请"><a href="#接受邀请" class="headerlink" title="接受邀请"></a>接受邀请</h3><p>I have received your letter inviting me to xx. Thank you for your invitation. I am pleased to accept it.</p>
-<p>Thank you once again for your invitation. I am looking forward to your reply.</p>
 ]]></content>
       <categories>
         <category>作文</category>
@@ -5942,12 +5937,16 @@ y\\
 <li>特殊曲线积分</li>
 <li>错题</li>
 <li>108 数列极限</li>
+<li>张宇8 4 错题</li>
 </ul>
 <h2 id="408"><a href="#408" class="headerlink" title="408"></a>408</h2><ul>
 <li>计算机网络 各种协议</li>
 <li>RIP 坏消息传得慢</li>
-<li>数据结构结论、应用题、排序模拟</li>
+<li>数据结构结论、<strong>应用题</strong>、排序模拟</li>
 <li>真题</li>
+<li>经典PV操作</li>
+<li>文件系统</li>
+<li>存储结构</li>
 <li>新考点：红黑树、SDN、VLAN、SIMD、虚拟机…</li>
 </ul>
 <h2 id="政治"><a href="#政治" class="headerlink" title="政治"></a>政治</h2><ul>
