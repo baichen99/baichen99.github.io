@@ -159,6 +159,358 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2022/01/03/process-thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/03/process-thread/" class="post-title-link" itemprop="url">process-thread</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-03 12:40:37" itemprop="dateCreated datePublished" datetime="2022-01-03T12:40:37+08:00">2022-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-04 22:57:23" itemprop="dateModified" datetime="2022-01-04T22:57:23+08:00">2022-01-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="为什么要引入进程"><a href="#为什么要引入进程" class="headerlink" title="为什么要引入进程"></a>为什么要引入进程</h2><p>早先的操作系统是单道批处理的，但是cpu是高效率的，而IO是低速的，就会出现cpu要等待IO的情况；从而降低了实际效率。<br>后来就引入多道批处理；而程序在执行的过程中又会因为共享资源而导致程序在执行的过程中相互限制；<br>后来引入进程用来给程序提供一个抽象的概念，他能申请道系统资源并且独立给程序提供资源，从而解决原来的程序之间因为资源共享而相互限制的问题。这样就可以提高系统资源的利用率以及系统的处理能力</p>
+<h2 id="进程是什么"><a href="#进程是什么" class="headerlink" title="进程是什么"></a>进程是什么</h2><p>进程（Process）是进程实体的运行过程，是系统进行资源分配和调度的一次独立单位。</p>
+<p>程序是静态的，必须为其分配CPU、内存等资源等所需资源才可以运行，运行的程序就是进程。</p>
+<p>操作系统设置了一个专门的数据结构叫Process Control Block, PCB 进程控制块，通过PCB操作系统可以获得进程的基本情况和运行状态，进而控制和管理进程。</p>
+<p>PCB包括：进程描述信息、进程控制和管理信息、资源分配清单、处理机相关信息。</p>
+<p>进程描述信息：进程标识符（PID），用户标识符(UID)<br>进程控制和管理信息：</p>
+<ul>
+<li>CPU、磁盘、网络流量使用情况。</li>
+<li>进程当前状态：就绪、阻塞、运行，是OS调度的依据。<br>资源分配清单：正在使用的文件、设备、内存区域<br>处理机相关信息：PSW、PC等寄存器的值</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/03/process-thread/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/12/28/ml-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/28/ml-notes/" class="post-title-link" itemprop="url">机器学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-28 10:58:09" itemprop="dateCreated datePublished" datetime="2021-12-28T10:58:09+08:00">2021-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-04 14:35:18" itemprop="dateModified" datetime="2022-01-04T14:35:18+08:00">2022-01-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ml/" itemprop="url" rel="index"><span itemprop="name">ml</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2><h3 id="矩阵求导"><a href="#矩阵求导" class="headerlink" title="矩阵求导"></a>矩阵求导</h3><p>矩阵求导的本质与分子布局、分母布局的本质（矩阵求导——本质篇）：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263777564">https://zhuanlan.zhihu.com/p/263777564</a><br>矩阵求导公式的数学推导（矩阵求导——基础篇）：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273729929">https://zhuanlan.zhihu.com/p/273729929</a><br>矩阵求导公式的数学推导（矩阵求导——进阶篇）：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/288541909">https://zhuanlan.zhihu.com/p/288541909</a></p>
+<h3 id="常用公式"><a href="#常用公式" class="headerlink" title="常用公式"></a>常用公式</h3><p>矩阵求导、几种重要的矩阵及常用的矩阵求导公式 <a target="_blank" rel="noopener" href="https://blog.csdn.net/daaikuaichuan/article/details/80620518">https://blog.csdn.net/daaikuaichuan/article/details/80620518</a></p>
+<p>以下是分子布局：</p>
+<ol>
+<li><p>$\frac{\partial(x^Tx)}{\partial x} = 2x^T$</p>
+</li>
+<li><p>$\frac{\partial \beta^Tx}{\partial x} = \frac{\partial x^T \beta}{\partial x} = \beta^T$</p>
+</li>
+<li><p>$\frac{\partial(x^TAx)}{\partial x} = x^T(A + A^T)$</p>
+</li>
+<li><p>$\frac{\partial sum(x)}{\partial x} = \bold 1$</p>
+</li>
+<li><p>$\frac{\partial Ax}{\partial x} = A$</p>
+</li>
+<li><p>$\frac{\partial x^TA}{\partial x} = A^T$</p>
+</li>
+</ol>
+<h3 id="自动求导"><a href="#自动求导" class="headerlink" title="自动求导"></a>自动求导</h3><p>Pytorch autograd,backward详解  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/83172023">https://zhuanlan.zhihu.com/p/83172023</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/28/ml-notes/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/27/implied-term/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/27/implied-term/" class="post-title-link" itemprop="url">408考题中常见的隐含条件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-27 19:48:51" itemprop="dateCreated datePublished" datetime="2021-08-27T19:48:51+08:00">2021-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-26 12:24:51" itemprop="dateModified" datetime="2021-12-26T12:24:51+08:00">2021-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>FTP数据链接</th>
+<th>FTP控制链接</th>
+<th>TELNET</th>
+<th>smtp</th>
+<th>HTTP</th>
+<th>POP3</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td>21</td>
+<td>23</td>
+<td>25</td>
+<td>80</td>
+<td>110</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>DNS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UDP</td>
+</tr>
+<tr>
+<td>53</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>FTP数据传输时，服务器的端口时20，客户端的端口可以是其他</p>
+</blockquote>
+<h3 id="各层协议格式"><a href="#各层协议格式" class="headerlink" title="各层协议格式"></a>各层协议格式</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP分组</td>
+<td>首部固定20B，最大60B<br>总长度1、片偏移8、首部长度4（一种8片首饰）<br>TTL生存时间，经过路由器-1<br>首部校验和只校验首部<br>总长度包括数据和首部<br>源地址和目的地址长度4B</td>
+</tr>
+<tr>
+<td>UDP数据报</td>
+<td>首部8B，由4个2B字段组成<br>长度字段包含首部和数据<br>检验和检验首部+数据部分</td>
+</tr>
+<tr>
+<td>TCP报文段</td>
+<td>首部固定20B，最大60B（同IP）<br>源/目的端口占2B($2^{16}-1=65535$)<br>序号和确认号各占4B<br></td>
+</tr>
+<tr>
+<td>MAC帧</td>
+<td>前同步码8B<br>MAC地址长度6B<br>最短帧长64B</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>以太网帧  <strong>18B首部尾部</strong></p>
+<p>若不考虑前导码，以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/27/implied-term/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/11/10/muban/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -331,268 +683,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/09/07/408-problems/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/12/20/todo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/20/todo/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-20 10:32:46" itemprop="dateCreated datePublished" datetime="2021-12-20T10:32:46+08:00">2021-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-21 08:54:01" itemprop="dateModified" datetime="2021-12-21T08:54:01+08:00">2021-12-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><ul>
-<li>公式</li>
-<li>特殊曲线积分</li>
-<li>错题</li>
-<li>108 数列极限</li>
-<li>张宇8 4 错题</li>
-</ul>
-<h2 id="408"><a href="#408" class="headerlink" title="408"></a>408</h2><ul>
-<li>计算机网络 各种协议</li>
-<li>RIP 坏消息传得慢</li>
-<li>数据结构结论、<strong>应用题</strong>、排序模拟</li>
-<li>真题</li>
-<li>经典PV操作</li>
-<li>文件系统</li>
-<li>存储结构</li>
-<li>新考点：红黑树、SDN、VLAN、SIMD、虚拟机…</li>
-</ul>
-<h2 id="政治"><a href="#政治" class="headerlink" title="政治"></a>政治</h2><ul>
-<li>肖4 主观题</li>
-<li>肖4 8 选择题 错题再背</li>
-</ul>
-<h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><ul>
-<li>模板</li>
-<li>作文词汇</li>
-<li>试写作文</li>
-<li>阅读</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/20/todo/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/27/implied-term/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/27/implied-term/" class="post-title-link" itemprop="url">408考题中常见的隐含条件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-27 19:48:51" itemprop="dateCreated datePublished" datetime="2021-08-27T19:48:51+08:00">2021-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-19 17:05:15" itemprop="dateModified" datetime="2021-12-19T17:05:15+08:00">2021-12-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>FTP数据链接</th>
-<th>FTP控制链接</th>
-<th>TELNET</th>
-<th>smtp</th>
-<th>HTTP</th>
-<th>POP3</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td>TCP</td>
-<td></td>
-</tr>
-<tr>
-<td>20</td>
-<td>21</td>
-<td>23</td>
-<td>25</td>
-<td>80</td>
-<td>110</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>DNS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UDP</td>
-</tr>
-<tr>
-<td>53</td>
-</tr>
-</tbody>
-</table>
-</div>
-<blockquote>
-<p>FTP数据传输时，服务器的端口时20，客户端的端口可以是其他</p>
-</blockquote>
-<h3 id="各层协议格式"><a href="#各层协议格式" class="headerlink" title="各层协议格式"></a>各层协议格式</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>层</th>
-<th>格式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IP分组</td>
-<td>首部固定20B，最大60B<br>总长度1、片偏移8、首部长度4（一种8片首饰）<br>TTL生存时间，经过路由器-1<br>首部校验和只校验首部<br>总长度包括数据和首部<br>源地址和目的地址长度4B</td>
-</tr>
-<tr>
-<td>UDP数据报</td>
-<td>首部8B，由4个2B字段组成<br>长度字段包含首部和数据<br>检验和检验首部+数据部分</td>
-</tr>
-<tr>
-<td>TCP报文段</td>
-<td>首部固定20B，最大60B（同IP）<br>源/目的端口占2B($2^{16}-1=65535$)<br>序号和确认号各占4B<br></td>
-</tr>
-<tr>
-<td>MAC帧</td>
-<td>前同步码8B<br>MAC地址长度6B<br>最短帧长64B</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>以太网帧  <strong>18B首部尾部</strong></p>
-<p>若不考虑前导码，以太网最小帧64B（最小帧长=总线传播时延x数据传输率x2）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/27/implied-term/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1645,101 +1735,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/08/02/send-delay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/02/send-delay/" class="post-title-link" itemprop="url">数据交换时间</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-02 14:09:35" itemprop="dateCreated datePublished" datetime="2021-08-02T14:09:35+08:00">2021-08-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-16 14:28:56" itemprop="dateModified" datetime="2021-10-16T14:28:56+08:00">2021-10-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="分组交换">分组交换</h2>
-<p>发送时间+传播时间</p>
-<p>假设，分组长度为p，中间节点有k个，数据传输速率为b，分组个数为n，分组转发的过程可抽象为：<strong>第一个节点从开始到接收的延时+其他节点从最后一个节点到接收的延时</strong></p>
-<p>则发送延时为：<span class="math inline">\(\frac{p}{b}\times(k+1) + (n-1)\times \frac{p}{b}\)</span>​</p>
-<blockquote>
-<p>k+1是因为发送端也有发送延时</p>
-</blockquote>
-<p>例题在P9 第4题，P45 第37题</p>
-<h2 id="报文交换">报文交换</h2>
-<p>不分组，整块直接发送。</p>
-<h2 id="电路交换">电路交换</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/02/send-delay/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1809,7 +1804,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1822,7 +1817,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-count">93</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1861,7 +1856,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

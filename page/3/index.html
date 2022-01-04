@@ -741,95 +741,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/09/23/flask03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/09/23/flask03/" class="post-title-link" itemprop="url">flask03-cookies, session</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-09-23 10:58:00" itemprop="dateCreated datePublished" datetime="2018-09-23T10:58:00+08:00">2018-09-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">flask学习笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>使用session和cookies制作一个简单的登录系统</p>
-<h3 id="cookie">cookie</h3>
-<h4 id="设置cookie">设置cookie</h4>
-<p>在flask中，在响应中添加cookie最方便的方法是使用Response类提供的<code>set_cookie()</code>方法，要使用这个方法需要先试用<code>make_response()</code>方法生成一个response对象</p>
-<p>set_cookie()方法支持多个参数来设置Cookie的选项</p>
-<hr>
-<p>key cookie的键 value cookie的值 max_age cookie保持的时间，单位为秒；默认在用户关闭浏览器过期 expires 具体过期时间 path domain secure httponly</p>
-<hr>
-<h4 id="获取cookie">获取cookie</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/09/23/flask03/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/07/spider-csv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1181,87 +1092,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/09/22/flask02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/09/22/flask02/" class="post-title-link" itemprop="url">flask02-启动开发服务器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-09-22 12:58:39" itemprop="dateCreated datePublished" datetime="2018-09-22T12:58:39+08:00">2018-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">flask学习笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>flask通过依赖包Click安装了一个CLI(命令行交互界面)系统, 可以通过flask命令执行内置命令 使用<code>flask run</code>来启动内置的开发服务器
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/09/22/flask02/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2020/08/17/sort-go/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1448,6 +1278,180 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/08/07/gocv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/07/gocv/" class="post-title-link" itemprop="url">gocv的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-07 18:50:39" itemprop="dateCreated datePublished" datetime="2019-08-07T18:50:39+08:00">2019-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">flask学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="gocv">gocv</h1>
+<h3 id="读取图片">读取图片</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img := gocv.IMRead(<span class="string">&quot;test.png&quot;</span>, gocv.IMReadColor)</span><br><span class="line">win := gocv.NewWindow(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">win.IMShow(img)</span><br><span class="line">win.WaitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="创建纯色图片">创建纯色图片</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CreateImgByBGR</span><span class="params">(sizex <span class="keyword">int</span>, sizey <span class="keyword">int</span>, b <span class="keyword">float64</span>, g <span class="keyword">float64</span>, r <span class="keyword">float64</span>)</span> <span class="title">gocv</span>.<span class="title">Mat</span></span> &#123;</span><br><span class="line">	img := gocv.NewMatWithSizeFromScalar(gocv.NewScalar(b, g, r, <span class="number">255</span>), sizex, sizey, gocv.MatTypeCV8UC3)</span><br><span class="line">	<span class="keyword">return</span> img</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="转换">转换</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">img := gocv.IMRead(<span class="string">&quot;test.png&quot;</span>, gocv.IMReadColor)</span><br><span class="line">dst := gocv.NewMat()</span><br><span class="line">gocv.CvtColor(img, &amp;dst, gocv.ColorBGRToHSV)</span><br><span class="line">win := gocv.NewWindow(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">win.IMShow(dst)</span><br><span class="line">win.WaitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="inrange">inRange</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	img := gocv.IMRead(<span class="string">&quot;test.png&quot;</span>, gocv.IMReadColor)</span><br><span class="line">	lb := gocv.NewScalar(<span class="number">68</span>, <span class="number">84</span>, <span class="number">153</span>, <span class="number">255</span>)</span><br><span class="line">	ub := gocv.NewScalar(<span class="number">80</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>)</span><br><span class="line">	hsv := gocv.NewMat()</span><br><span class="line">	mask := gocv.NewMat()</span><br><span class="line">	gocv.CvtColor(img, &amp;hsv, gocv.ColorBGRToHSV)</span><br><span class="line">	gocv.InRangeWithScalar(hsv, lb, ub, &amp;mask)</span><br><span class="line">	win := gocv.NewWindow(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">	win.IMShow(mask)</span><br><span class="line">	win.WaitKey(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/07/gocv/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/06/spider-json/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/06/spider-json/" class="post-title-link" itemprop="url">python爬虫-数据存储(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-06-06 19:06:54" itemprop="dateCreated datePublished" datetime="2018-06-06T19:06:54+08:00">2018-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spider/" itemprop="url" rel="index"><span itemprop="name">spider</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>JSON的格式是 <code>键:值</code> 类似于python中的字典</em> <em>JSON数组: JSON数组在方括号中书写,可包含多个对象 如<code>[&#123;'name':'blackstone', 'age', 21&#125;,&#123;'name':'marry', 'age', 19&#125;]</code></em>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/06/spider-json/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1517,7 +1521,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1530,7 +1534,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-count">93</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1569,7 +1573,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
