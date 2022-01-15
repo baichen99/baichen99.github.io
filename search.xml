@@ -309,79 +309,6 @@ ASL  = \frac{b+1}{2} + \frac{s+1}{2}
       </tags>
   </entry>
   <entry>
-    <title>webpack和vue配合使用</title>
-    <url>/2019/11/18/Vuejs%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%92%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="目录结构">目录结构</h2>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── dist  					# 打包后的资源</span><br><span class="line">│   ├── bundle.js  	# 打包后的js文件</span><br><span class="line">│   └── img					</span><br><span class="line">├── index.html			# 最外层文件</span><br><span class="line">├── node_modules		# 模块</span><br><span class="line">├── src							# 源代码，在此编写代码</span><br><span class="line">│   ├── css</span><br><span class="line">│   ├── img</span><br><span class="line">│   ├── js</span><br><span class="line">│   ├── main.js			# </span><br><span class="line">│   └── vue					# 存放vue组件文件</span><br><span class="line">└── webpack.config.js	# 配置</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h2 id="代码示例">代码示例</h2>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./app.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    template: <span class="string">&#x27;&lt;App/&gt;&#x27;</span>,</span><br><span class="line">    components: &#123;</span><br><span class="line">        App,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>vue实例中不要写太多代码，把代码都写到<code>*.vue</code>文件中，以模块的方式导入</li>
-<li>实例化一个vue对象时，vue会将el选择的节点替换为template的内容</li>
-<li><a href="%5Bhttps://cn.vuejs.org/v2/guide/components-registration.html#%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C%5D(https://cn.vuejs.org/v2/guide/components-registration.html#局部注册)">组件注册</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;&#123;&#123; message &#125;&#125;&lt;/h2&gt;</span><br><span class="line">        &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;btn&quot;</span> @click=<span class="string">&quot;btnClick&quot;</span>&gt;按钮&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                message: <span class="string">&#x27;hello webpack&#x27;</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            btnClick: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">this</span>.message = <span class="string">&quot;changed&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;  </span><br><span class="line">&lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        background: url(<span class="string">&#x27;../img/timg.jpeg&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    .btn &#123;</span><br><span class="line">        width: 50px;</span><br><span class="line">        height: 30px;</span><br><span class="line">        background: red;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>script标签里的<code>export default</code>是es6的语法，导出默认对象，这样再其他文件中import的时候就不需要知道原模块定义的变量名</p></li>
-<li><p><a href="https://www.runoob.com/w3cnote/es6-module.html">ES6模块</a></p></li>
-</ul>
-<h2 id="插件的使用">插件的使用</h2>
-<ol type="1">
-<li>npm 下载</li>
-<li>webpack.config.js 配置 ### 示例1 打包代码到dist文件夹后，index.html不在文件夹内，那么打包的js文件也没有意义了，现在用<code>HtmlWebpackPlugin</code>插件解决这个问题</li>
-<li><code>npm install html-webpack-plugin --save-dev</code></li>
-<li>修改<code>webpack.config.js</code>中plugin部分如下 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>);</span><br><span class="line">...</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: <span class="string">&#x27;index.html&#x27;</span></span><br><span class="line">  &#125;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>template指明根据什么模板来生成index.html</li>
-</ul>
-<p><a href="https://webpack.docschina.org/plugins/html-webpack-plugin/">HtmlWebpackPlugin</a></p>
-<h3 id="示例2">示例2</h3>
-<p>使用 <code>UglifyjsWebpackPlugin</code>将打包后的代码进行压缩</p>
-<ol type="1">
-<li><code>$ npm install uglifyjs-webpack-plugin --save-dev</code></li>
-<li>修改<code>webpack.config.js</code>中plugin部分如下</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">&#x27;uglifyjs-webpack-plugin&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> UglifyJsPlugin(),</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><a href="https://webpack.docschina.org/plugins/uglifyjs-webpack-plugin/">UglifyjsWebpackPlugin</a></p>
-<h2 id="开启本地服务器">开启本地服务器</h2>
-<p>不用每次写完代码都npm run build，让页面实时刷新</p>
-<ol type="1">
-<li><code>npm install --save-dev webpack-dev-server</code></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  ... </span><br><span class="line">  devServer: &#123;</span><br><span class="line">      contentBase: <span class="string">&#x27;./dist&#x27;</span>,		<span class="comment">// 把这个文件夹作为</span></span><br><span class="line">      inline: <span class="literal">true</span>,							<span class="comment">// 实时更新</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li><p>输入<code>./node_modules/.bin/webpack-dev-server</code>即可开启，但是这样太麻烦，可以在<code>package.json</code>里配置scripts</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line"></span><br><span class="line">  &quot;dev&quot;: &quot;webpack-dev-server --open&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<ul>
-<li>--open 表示用浏览器打开</li>
-</ul></li>
-</ol>
-<h2 id="配置文件的分离">配置文件的分离</h2>
-<p>上一个例子中为了实现本地开发服务器配置了一些东西，但是在实际编译的时候不需要，压缩代码的插件UglifyJsPlugin在编译的时候才用到，所以要分离配置文件</p>
-<ol type="1">
-<li><p><code>npm install --save-dev webpack-merge</code></p></li>
-<li><p>根目录新建一个build目录, 新建三个文件 base.config.js dev.config.js prod.config.js 分别存放公共部分配置，开发配置，生产配置</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// base.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> VueLoaderPlugin = <span class="built_in">require</span>(<span class="string">&#x27;vue-loader/lib/plugin&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;../dist&#x27;</span>),</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">          &#123;</span><br><span class="line">            test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">            use: [<span class="string">&#x27;style-loader&#x27;</span>, <span class="string">&#x27;css-loader&#x27;</span> ]</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            test: <span class="regexp">/\.(png|jpg|gif|jpeg)$/</span>,</span><br><span class="line">            use: [</span><br><span class="line">              &#123;</span><br><span class="line">                loader: <span class="string">&#x27;url-loader&#x27;</span>,</span><br><span class="line">                options: &#123;</span><br><span class="line">                    limit: <span class="number">8192</span>,</span><br><span class="line">                    name: <span class="string">&#x27;img/[name].[hash:8].[ext]&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            test: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">            use: &#123;</span><br><span class="line">              loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">              options: &#123;</span><br><span class="line">                presets: [<span class="string">&#x27;@babel/preset-env&#x27;</span>]</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            test: <span class="regexp">/\.vue$/</span>,</span><br><span class="line">            loader: <span class="string">&#x27;vue-loader&#x27;</span></span><br><span class="line">          &#125;,</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> VueLoaderPlugin(),</span><br><span class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">          template: <span class="string">&#x27;index.html&#x27;</span></span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        alias: &#123;</span><br><span class="line">            <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// dev.config.js</span></span><br><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> baseConfig = <span class="built_in">require</span>(<span class="string">&#x27;./base.config&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = webpackMerge(baseConfig, &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        contentBase: <span class="string">&#x27;./dist&#x27;</span>,</span><br><span class="line">        inline: <span class="literal">true</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// prod.config.js</span></span><br><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">&#x27;uglifyjs-webpack-plugin&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> baseConfig = <span class="built_in">require</span>(<span class="string">&#x27;./base.config&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = webpackMerge(baseConfig, &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> UglifyJsPlugin(),</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>记得修改base.config.js力path中的dist为../dist</li>
-</ul></li>
-</ol>
-<h2 id="代码">代码</h2>
-<p><a href="https://github.com/baichen99/webpack_test">github</a></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>vuejs</tag>
-        <tag>webpack</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>XSS跨站脚本攻击</title>
     <url>/2021/01/10/XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="xss">XSS</h1>
@@ -1451,49 +1378,6 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
       </tags>
   </entry>
   <entry>
-    <title>进程</title>
-    <url>/2018/06/15/jincheng/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="单核如何实现多任务">单核如何实现多任务?</h3>
-<p>依次轮流执行, 看上去像是同时进行</p>
-<h3 id="并发与并行">并发与并行?</h3>
-<p><strong>并发</strong>是看上去一起执行,任务数大于CPU核心数 <strong>并行</strong>是真正的一起执行, 任务数小于CPU核心数 <span id="more"></span> ### 线程与进程 . 线程：是程序执行流的最小单元，是系统独立调度和分配CPU（独立运行）的基本单位 . 进程：是资源分配的基本单位。一个进程包括多个线程。 对于操作系统而言, 一个任务就是一个进程</p>
-<p><strong>区别</strong>： 1. 线程与资源分配无关，它属于某一个进程，并与进程内的其他线程一起共享进程的资源。</p>
-<ol start="2" type="1">
-<li><p>每个进程都有自己一套独立的资源（数据），供其内的所有线程共享。</p></li>
-<li><p>不论是大小，开销线程要更“轻量级”</p></li>
-<li><p>一个进程内的线程通信比进程之间的通信更快速，有效。（因为共享变量）</p></li>
-</ol>
-<h3 id="实现多任务的方式">实现多任务的方式</h3>
-<ol type="1">
-<li>多进程模式</li>
-<li>多线程模式</li>
-<li>协程模式</li>
-<li>多进程+多线程模式</li>
-</ol>
-<h3 id="单任务现象">单任务现象</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>():</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    print(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">&#x27;bye&#x27;</span>)</span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">    run()</span><br></pre></td></tr></table></figure>
-<p><strong>这样不会执行run(), 只有上面的while循环结束后才可以执行</strong></p>
-<h3 id="实现多任务">实现多任务</h3>
-<p><strong>multiprocessing库</strong> --跨平台的多进程模块 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>():</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">&quot;hello---%s&quot;</span>%os.getpid()) <span class="comment"># os.getpid()获取当前进程id号, os.getppid()获取当前进程的父进程的id号</span></span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    print(<span class="string">&quot;主(父)进程启动---%s&quot;</span>%os.getpid())</span><br><span class="line">    <span class="comment"># 创建子进程</span></span><br><span class="line">    p = Process(target=run)   <span class="comment"># 创建进程是为了执行函数, 需要传入两个参数 target=函数和arg=() 传入的参数必须元组, 如果元组只有一个元素后面必须加个逗号, 这样才构成元组</span></span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    p.start()</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">&#x27;bye&#x27;</span>)</span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">    run() </span><br></pre></td></tr></table></figure></p>
-<h3 id="父子进程的先后顺序">父子进程的先后顺序</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params"><span class="built_in">str</span></span>):</span></span><br><span class="line">    print(<span class="string">&quot;子进程启动&quot;</span>)</span><br><span class="line">    sleep(<span class="number">3</span>)</span><br><span class="line">    print(<span class="string">&quot;子进程结束&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    print(<span class="string">&quot;父进程启动&quot;</span>)</span><br><span class="line">    p = Process(target=run, args=(<span class="string">&quot;nice&quot;</span>,))</span><br><span class="line">    p.start()</span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;父进程结束&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>运行结果</strong> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">父进程启动</span><br><span class="line">父进程结束</span><br><span class="line">子进程启动</span><br><span class="line">子进程结束</span><br></pre></td></tr></table></figure> <strong>父进程的结束不影响子进程, 怎么让父进程等大子进程结束再执行父进程?</strong> <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params"><span class="built_in">str</span></span>):</span></span><br><span class="line">    print(<span class="string">&quot;子进程启动&quot;</span>)</span><br><span class="line">    sleep(<span class="number">3</span>)</span><br><span class="line">    print(<span class="string">&quot;子进程结束&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    print(<span class="string">&quot;父进程启动&quot;</span>)</span><br><span class="line">    p = Process(target=run, args=(<span class="string">&quot;nice&quot;</span>,))</span><br><span class="line">    p.start()</span><br><span class="line">    </span><br><span class="line">    p.join() <span class="comment"># 等待进程结束</span></span><br><span class="line">    print(<span class="string">&quot;父进程结束&quot;</span>)</span><br></pre></td></tr></table></figure> ### 全局变量在多个进程中不能共享 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line">num = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>():</span></span><br><span class="line">    print(<span class="string">&quot;子进程开始&quot;</span>)</span><br><span class="line">    <span class="keyword">global</span> num</span><br><span class="line">    num += <span class="number">1</span></span><br><span class="line">    print(<span class="string">&quot;子进程结束--%d&quot;</span> % num)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    print(<span class="string">&quot;父进程开始&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建子进程</span></span><br><span class="line">    p = Process(target=run)</span><br><span class="line">    p.start()</span><br><span class="line">    p.join() <span class="comment"># 等待进程结束</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;父进程结束--%s&quot;</span>%num)</span><br></pre></td></tr></table></figure> 执行结果 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">父进程开始</span><br><span class="line">子进程开始</span><br><span class="line">子进程结束--101</span><br><span class="line">父进程结束--100</span><br></pre></td></tr></table></figure> - 在子进程中修改全局变量对父进程全局变量没有影响, 因为在创建子进程时对全局变量做了一个备份, 父进程和子进程的变量独立 - 每个进程都有自己的代码段, 堆栈段, 数据段</p>
-<p>如果再创建一个子进程 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建子进程</span></span><br><span class="line">p2 = Process(target=run)</span><br><span class="line">p2.start()</span><br><span class="line">p2.join()  <span class="comment"># 等待进程结束</span></span><br></pre></td></tr></table></figure> 变量依然独立</p>
-<h3 id="启动大量子进程">启动大量子进程</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">import</span> os, time, random</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">name</span>):</span></span><br><span class="line">    print(<span class="string">&quot;子进程%s启动--%s&quot;</span> % (name, os.getpid()))</span><br><span class="line">    start = time.time()</span><br><span class="line">    time.sleep(random.choice[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">    end = time.time()</span><br><span class="line">    print(<span class="string">&quot;子进程%s结束--%s--耗时%.2f&quot;</span> % (name, os.getpid(), end - start))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    print(<span class="string">&quot;父进程启动&quot;</span>)</span><br><span class="line">    <span class="comment"># 创建多个进程使用进程池</span></span><br><span class="line">    pp = Pool(<span class="number">2</span>) <span class="comment"># 表示可以同时执行的进程数, 默认值是CPU核心数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        <span class="comment"># 创建进程, 放入进程池, 同一管理</span></span><br><span class="line">        pp.apply_async(run, args=(i,))</span><br><span class="line">    <span class="comment"># 使用进程池时,在调用之前必须先调用close(), 调用close之后就不能添加新的进程了 </span></span><br><span class="line">    pp.close() </span><br><span class="line">    <span class="comment"># 等待进程池中所有子进程结束再去执行父进程</span></span><br><span class="line">    pp.join()</span><br><span class="line">    print(<span class="string">&quot;父进程结束&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="进程间通信">进程间通信</h3>
-<p>进程间通过队列通信, 队列相当于一个中间人的角色 Process之间肯定是需要通信的，操作系统提供了很多机制来实现进程间的通信。Python的multiprocessing模块包装了底层的机制，提供了Queue、Pipes等多种方式来交换数据。</p>
-<p>我们以Queue为例，在父进程中创建两个子进程，一个往Queue里写数据，一个从Queue里读数据： <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Queue</span><br><span class="line"><span class="keyword">import</span> os, time, random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写数据进程执行的代码:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">q</span>):</span></span><br><span class="line">    print(<span class="string">&#x27;Process to write: %s&#x27;</span> % os.getpid())</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>]:</span><br><span class="line">        print(<span class="string">&#x27;Put %s to queue...&#x27;</span> % value)</span><br><span class="line">        q.put(value)</span><br><span class="line">        time.sleep(random.random())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读数据进程执行的代码:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">q</span>):</span></span><br><span class="line">    print(<span class="string">&#x27;Process to read: %s&#x27;</span> % os.getpid())</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        value = q.get(<span class="literal">True</span>)</span><br><span class="line">        print(<span class="string">&#x27;Get %s from queue.&#x27;</span> % value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 父进程创建Queue，并传给各个子进程：</span></span><br><span class="line">    q = Queue()</span><br><span class="line">    pw = Process(target=write, args=(q,))</span><br><span class="line">    pr = Process(target=read, args=(q,))</span><br><span class="line">    <span class="comment"># 启动子进程pw，写入:</span></span><br><span class="line">    pw.start()</span><br><span class="line">    <span class="comment"># 启动子进程pr，读取:</span></span><br><span class="line">    pr.start()</span><br><span class="line">    <span class="comment"># 等待pw结束:</span></span><br><span class="line">    pw.join()</span><br><span class="line">    <span class="comment"># pr进程里是死循环，无法等待其结束，只能强行终止:</span></span><br><span class="line">    pr.terminate()</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>进程</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jwt-go的使用</title>
     <url>/2019/07/26/jwt-go/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="go-jwt">go jwt</h1>
@@ -1570,6 +1454,7 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <p>-e 显示所有进程</p>
 <p>-f full format 完整格式</p>
 <p>-l long formart</p>
+<h2 id="ps--aux">ps -aux</h2>
 <p>UID： 说明该程序被谁拥有 PID：就是指该程序的 ID PPID： 就是指该程序父级程序的 ID C： 指的是 CPU 使用的百分比 STIME： 程序的启动时间 TTY： 指的是登录终端 TIME : 指程序使用掉 CPU 的时间 CMD： 下达的指令</p>
 <h2 id="软硬链接-ln">软硬链接 ln</h2>
 <p>软链接：ln -s target linkname 硬链接：ln target linkname</p>
@@ -1618,6 +1503,13 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <p><a href="https://www.cnblogs.com/youyoui/p/10680329.html">Linux环境变量配置全攻略 - 悠悠i - 博客园 (cnblogs.com)</a></p>
 <h2 id="重定向符">&gt;, &lt;, &gt;&gt;, &lt;&lt; 重定向符</h2>
 <p><a href="https://www.runoob.com/linux/linux-shell-io-redirections.html">Shell 输入/输出重定向 | 菜鸟教程 (runoob.com)</a></p>
+<h2 id="压缩">压缩</h2>
+<p>c: 创建文档 t： 列出存档内容 x：提取存档 f： filename 要操作的文档名 v：详细信息</p>
+<ol type="1">
+<li>压缩文件夹 <code>tar -zcvf &lt;目标文件&gt; &lt;源路径&gt;</code></li>
+</ol>
+<h2 id="scp">scp</h2>
+<p>传输文件夹 <code>scp -r &lt;src&gt; root@ip:/home/</code></p>
 ]]></content>
       <categories>
         <category>linux</category>
@@ -1869,42 +1761,6 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
       </tags>
   </entry>
   <entry>
-    <title>pyenv使用</title>
-    <url>/2021/02/07/pyenv/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a href="https://juejin.cn/post/6844903861979709453#heading-9">参考文章</a></p>
-<p>以下操作都针对mac</p>
-<h2 id="安装pyenv">安装pyenv</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install pyenv</span><br></pre></td></tr></table></figure>
-<h2 id="安装pyenv-virtualenv">安装pyenv-virtualenv</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install pyenv-virtualenv</span><br></pre></td></tr></table></figure>
-<p>在.zshrc或者.bash_profile中写入</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pyenv-virtualenv</span></span><br><span class="line"><span class="keyword">if</span> which pyenv-virtualenv-init &gt; /dev/null;</span><br><span class="line">  then <span class="built_in">eval</span> <span class="string">&quot;$(pyenv virtualenv-init -)&quot;</span>;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">source ~&#x2F;.zshrc</span><br><span class="line"># or</span><br><span class="line">source ~&#x2F;.bash_profile</span><br></pre></td></tr></table></figure>
-<h2 id="安装python">安装python</h2>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pyenv install 3.8.0</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在mac big sur 11.2可能出现安装失败的情况</p>
-<p><a href="https://dev.to/kojikanao/install-python-3-8-0-via-pyenv-on-bigsur-4oee">[Unable to build Python on macOS Big Sur](https://github.com/pyenv/pyenv/issues/1643)</a></p>
-<p>使用如下指令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">set -ex</span><br><span class="line"></span><br><span class="line">export CFLAGS&#x3D;&quot;-I$(brew --prefix openssl)&#x2F;include -I$(brew --prefix readline)&#x2F;include -I$(xcrun --show-sdk-path)&#x2F;usr&#x2F;include&quot;</span><br><span class="line">export LDFLAGS&#x3D;&quot;-L$(brew --prefix openssl)&#x2F;lib -L$(brew --prefix readline)&#x2F;lib -L$(xcrun --show-sdk-path)&#x2F;usr&#x2F;lib -L&#x2F;usr&#x2F;local&#x2F;opt&#x2F;zlib&#x2F;lib&quot;</span><br><span class="line">export CPPFLAGS&#x3D;&quot;-I&#x2F;usr&#x2F;local&#x2F;opt&#x2F;zlib&#x2F;include&quot;</span><br><span class="line">export PKG_CONFIG_PATH&#x3D;&quot;&#x2F;usr&#x2F;local&#x2F;opt&#x2F;zlib&#x2F;lib&#x2F;pkgconfig&quot;</span><br><span class="line"></span><br><span class="line">pyenv install --patch 3.5.9 &lt; &lt;(curl -sSL https:&#x2F;&#x2F;github.com&#x2F;python&#x2F;cpython&#x2F;commit&#x2F;8ea6353.patch)</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="创建虚拟环境">创建虚拟环境</h2>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pyenv virtualenv 3.8.0 ML</span><br></pre></td></tr></table></figure>
-<p>切换到项目文件夹后，输入<code>pyenv local ML</code> ，之后这个目录的python版本就是ML对应的环境。也可以<code>pyenv activate ML</code>暂时激活</p>
-<h2 id="解决下载速度慢的问题">解决下载速度慢的问题</h2>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">version&#x3D;&quot;3.7.4&quot;; echo $version; wget &quot;https:&#x2F;&#x2F;mirrors.huaweicloud.com&#x2F;python&#x2F;$version&#x2F;Python-$version.tar.xz&quot; -P ~&#x2F;.pyenv&#x2F;cache&#x2F;;pyenv install $version</span><br></pre></td></tr></table></figure>
-<h2 id="疑难杂症">疑难杂症</h2>
-<p><a href="https://blog.csdn.net/krais_wk/article/details/103741854">ubuntu16.06用pyenv安装python时出现BUILD FAILED</a></p>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>env</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>python问题导航</title>
     <url>/2021/02/19/pynotes/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="教程">教程</h2>
@@ -1927,7 +1783,11 @@ V = \frac{nL}{T} = \frac{nL}{\frac{L}{M}+2t}
 <p><a href="https://blog.csdn.net/yxys01/article/details/103204531">Python3安装完全攻略 Mac篇</a></p>
 <h3 id="pypi镜像设置">pypi镜像设置</h3>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install pip -U</span><br><span class="line">pip config set global.index-url https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>
-<h2 id="运维">运维</h2>
+<h2 id="log">log</h2>
+<p>Python 日志库 logging 的理解和实践经验 - simpleapples的文章 - 知乎 https://zhuanlan.zhihu.com/p/56095714</p>
+<h2 id="函数">函数</h2>
+<h3 id="装饰器">装饰器</h3>
+<p><a href="https://www.zhihu.com/question/26930016/answer/1904166977">如何理解装饰器-zhihu</a></p>
 <h2 id="其他">其他</h2>
 <p><a href="https://blog.csdn.net/Gpwner/article/details/53140016">Git教程之一个团队如何在github上协作开发 - CSDN博客</a></p>
 <p><a href="https://blog.csdn.net/uncledou/article/details/8693499">Linux中enca命令及文件编码问题 - UncleDou的专栏 - CSDN博客</a></p>
@@ -2313,22 +2173,6 @@ dump把python对象转换成JSON对象, 并且写入文件</strong> ### 解码 <
         <tag>python</tag>
         <tag>spider</tag>
         <tag>json</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线程</title>
-    <url>/2018/06/17/threads/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Python标准库提供了两个模块: thread 和 threading, thread是低级模块, threading是对其的封装, 绝大多数情况下我们只需要使用threading <span id="more"></span> ## 使用threading创建多线程 有两种方法</p>
-<p>第一种方法是:把一个函数传入并创建Thread实例,然后调用start方法开始执行</p>
-<p>第二种方法是:从threading.Thread<strong>继承</strong>并创建线程类, 然后<strong>重写</strong>__init__方法和run方法</p>
-<p>方法一演示如下 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time, threading</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_run</span>(<span class="params">urls</span>):</span></span><br><span class="line">    print(<span class="string">&quot;Current process %s is running&quot;</span> % threading.current_thread().name)</span><br><span class="line">    <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">        print(<span class="string">&quot;%s ------&gt; %s&quot;</span> % (threading.current_thread().name, url))</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;%s is running...&quot;</span> % threading.current_thread().name)</span><br><span class="line">t1 = threading.Thread(target=thread_run, name=<span class="string">&quot;thread1&quot;</span>, args=([<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>],))</span><br><span class="line">t2 = threading.Thread(target=thread_run, name=<span class="string">&quot;thread2&quot;</span>, args=([<span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;8&#x27;</span>],))</span><br><span class="line"></span><br><span class="line">t1.start()</span><br><span class="line">t2.start()</span><br><span class="line">t1.join()</span><br><span class="line">t2.join()</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br></pre></td></tr></table></figure> 运行结果 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MainThread is running...</span><br><span class="line">Current process thread1 is running</span><br><span class="line">thread1 ------&gt; 1</span><br><span class="line">Current process thread2 is running</span><br><span class="line">thread2 ------&gt; 5</span><br><span class="line">thread1 ------&gt; 2</span><br><span class="line">thread2 ------&gt; 6</span><br><span class="line">thread1 ------&gt; 3</span><br><span class="line">thread2 ------&gt; 7</span><br><span class="line">thread2 ------&gt; 8</span><br><span class="line">thread1 ------&gt; 4</span><br><span class="line">thread1 ended</span><br><span class="line">thread2 ended</span><br><span class="line">MainThread ended</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure> 方法二 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random, threading, time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span>(<span class="params">threading.Thread</span>):</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name, urls</span>):</span></span><br><span class="line">        threading.Thread.__init__(self, name=name)</span><br><span class="line">        self.urls = urls</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(<span class="string">&quot;Current %s is running...&quot;</span> % threading.current_thread().name)</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> self.urls:</span><br><span class="line">            print(<span class="string">&quot;%s ---&gt;&gt;&gt; %s&quot;</span> % (threading.current_thread().name, url))</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line">        print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br><span class="line">print(<span class="string">&quot;%s is running&quot;</span> % threading.current_thread().name)</span><br><span class="line">t1 = MyThread(name=<span class="string">&quot;Thread1&quot;</span>, urls=[<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>])</span><br><span class="line">t2 = MyThread(name=<span class="string">&quot;Thread2&quot;</span>, urls=[<span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>])</span><br><span class="line">t1.start()</span><br><span class="line">t2.start()</span><br><span class="line">t1.join()</span><br><span class="line">t2.join()</span><br><span class="line">print(<span class="string">&quot;%s ended&quot;</span> % threading.current_thread().name)</span><br></pre></td></tr></table></figure> 运行结果如下 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MainThread is running</span><br><span class="line">Current Thread1 is running...</span><br><span class="line">Thread1 ---&gt;&gt;&gt; 1</span><br><span class="line">Current Thread2 is running...</span><br><span class="line">Thread2 ---&gt;&gt;&gt; 4</span><br><span class="line">Thread2 ---&gt;&gt;&gt; 5</span><br><span class="line">Thread1 ---&gt;&gt;&gt; 2</span><br><span class="line">Thread2 ---&gt;&gt;&gt; 6</span><br><span class="line">Thread1 ---&gt;&gt;&gt; 3</span><br><span class="line">Thread2 ended</span><br><span class="line">Thread1 ended</span><br><span class="line">MainThread ended</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure> ## 线程同步 多个线程对某个数据进行修改可能会出现错误, 使用Thread对象的Lock和RLock方法可以实现简单的线程同步,这两个对象都有acquire方法和release方法, 对于哪些每次只允许一个线程操作的数据, 可以将其操作放到acquire和release之间 对于<strong>Lock对象</strong>如果一个线程进行两次aquire,由于没有release第二次的aquire将会挂起,造成死锁 <strong>RLock</strong>对象允许一个线程多次对其进行acquire操作 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># RLock使多个线程不能同时更改变量</span></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">mylock = threading.RLock()</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span>(<span class="params">threading.Thread</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        初始化</span></span><br><span class="line"><span class="string">        :param name: 线程名称</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        threading.Thread.__init__(self, name=name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">global</span> num</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            mylock.acquire()</span><br><span class="line">            print(<span class="string">&quot;%s locked, Number: %d&quot;</span> % (threading.current_thread().name, num))</span><br><span class="line">            <span class="keyword">if</span> num &gt;= <span class="number">4</span>:</span><br><span class="line">                mylock.release()</span><br><span class="line">                print(<span class="string">&quot;%s released, Number: %d&quot;</span> % (threading.current_thread().name, num))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">            print(<span class="string">&quot;%s released, Number: %d&quot;</span> % (threading.current_thread().name, num))</span><br><span class="line">            mylock.release()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    thread1 = MyThread(<span class="string">&#x27;thread1&#x27;</span>)</span><br><span class="line">    thread2 = MyThread(<span class="string">&#x27;thread2&#x27;</span>)</span><br><span class="line">    thread1.start()</span><br><span class="line">    thread2.start()</span><br></pre></td></tr></table></figure> 执行结果 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">thread1 locked, Number: 0</span><br><span class="line">thread1 released, Number: 1</span><br><span class="line">thread1 locked, Number: 1</span><br><span class="line">thread1 released, Number: 2</span><br><span class="line">thread1 locked, Number: 2</span><br><span class="line">thread1 released, Number: 3</span><br><span class="line">thread1 locked, Number: 3</span><br><span class="line">thread1 released, Number: 4</span><br><span class="line">thread1 locked, Number: 4</span><br><span class="line">thread1 released, Number: 4</span><br><span class="line">thread2 locked, Number: 4</span><br><span class="line">thread2 released, Number: 4</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>线程</tag>
       </tags>
   </entry>
   <entry>
@@ -4995,96 +4839,6 @@ y\\
       </tags>
   </entry>
   <entry>
-    <title>作文模板</title>
-    <url>/2021/11/10/muban/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="大作文"><a href="#大作文" class="headerlink" title="大作文"></a>大作文</h2><h3 id="话题引起"><a href="#话题引起" class="headerlink" title="话题引起"></a>话题引起</h3><ol>
-<li><strong>The bar chart above present diferrent proportions/factors of</strong> consumers’ concern on choosing restaurant <strong>in a certain city in xx year.</strong></li>
-<li>The line chart shows the ascending/ tendency of 主题</li>
-</ol>
-<h3 id="图表描述"><a href="#图表描述" class="headerlink" title="图表描述"></a>图表描述</h3><ol>
-<li>To put it more precise，描述变化或占比</li>
-<li>静态图描述占比：the proportion of xxx in 2013 was 33% compared to 25% in 2008, showing an increase of 8%.</li>
-<li>“分别占用”  the percentage of A B C and others is a, b, c, d respectively.</li>
-<li>描述变化：<strong>the number/percentage of</strong> museums in China <strong>increases/decreases</strong> <strong>steadily/sharply from xx in 2013 to xx in 2015.</strong></li>
-<li>描述最值：xxx is the biggest proportion of all categories/factors</li>
-</ol>
-<p>​        Exercising by themselves <strong>occupies the dominant position, accounting for</strong> 54.3%</p>
-<ol>
-<li>多个描述时用while/whereas，in the meanwhile</li>
-<li>the proportion of those .., while that of those…</li>
-</ol>
-<h3 id="图表总结"><a href="#图表总结" class="headerlink" title="图表总结"></a>图表总结</h3><ol>
-<li>As a matter of fact, what author tries to tell us is more than statistics.</li>
-<li>Isolated as the figures seem to be, as a matter of fact, they are connected to one another closely.</li>
-</ol>
-<h3 id="具体意义"><a href="#具体意义" class="headerlink" title="具体意义"></a>具体意义</h3><ol>
-<li><strong>In fact, this chart is a miniature of a prevalent phenomenon. An incresing number of</strong> customers choose …(描述)</li>
-<li>In fact, this chart is a miniature of contemporary society.</li>
-<li>The table leads us to find out what causes the …</li>
-</ol>
-<h3 id="意义论证"><a href="#意义论证" class="headerlink" title="意义论证"></a>意义论证</h3><ol>
-<li>I can find no better reasons than the following ones./There are many reasons for this phenomenon.（解释原因）<ol>
-<li>On one hand./To begin with/For one thing</li>
-<li>On the other hand./Furthermore/For another</li>
-</ol>
-</li>
-</ol>
-<ul>
-<li>原因，which leads to/result in the downward/upward tendency of…</li>
-</ul>
-<h3 id="意义总结-可省略"><a href="#意义总结-可省略" class="headerlink" title="意义总结(可省略)"></a>意义总结(可省略)</h3><ol>
-<li>（正面/中立）As a consequence/result</li>
-<li>（负面）If we keep turing a blind eye to it, the problem above will generate severe consequences. For example,..</li>
-</ol>
-<h3 id="结尾段"><a href="#结尾段" class="headerlink" title="结尾段"></a>结尾段</h3><h4 id="总结-建议-憧憬"><a href="#总结-建议-憧憬" class="headerlink" title="总结+建议+憧憬"></a>总结+建议+憧憬</h4><ol>
-<li>号召：Considering every aspect of this phenonmenon, we should bear in mind that … ,   we should xxx, Only in this way can we meet a brighter furture.</li>
-<li>两面：(If used carelessly or without restraint), xx could prove to be a double-edged sword. Therefore, we must absorb the essence and neglect the drawbacks of xxx Only in this way can we ….</li>
-</ol>
-<p>​        / take full advantage of merit of xx, such as…, and avoid the drawbacks such as …</p>
-<ol>
-<li><p>中立： No matter what the reason/Whether it is positive or negative, one thing is certian that there is a growing tendency xxx, which I believe will not change in a short time.  + 憧憬</p>
-<p>It can be predicted that as … improves/develops, xx can be more 发展趋势</p>
-</li>
-</ol>
-<p><strong>憧憬</strong></p>
-<ol>
-<li>With suporting policies and rational(理性的) instructions, it is reasonable for us to believe that our society can achieve a more healthy development.</li>
-</ol>
-<h3 id="完整"><a href="#完整" class="headerlink" title="完整"></a>完整</h3><h4 id="第一段"><a href="#第一段" class="headerlink" title="第一段"></a>第一段</h4><p>静态图描述占比</p>
-<p>The pie chart above present diferrent proportions/factors of <em>consumers’ concern on choosing restaurant</em> in a certain city in xx year.To put it more precise，xx <strong>acount for</strong> the largest proportion(20%). <strong>Next come</strong> the xx and xx, which <strong>constitute</strong> 10% and 9% respectively, much higher than xxx(2%). Other factors <strong>make up</strong> 1%. <strong>As a matter of fact</strong>, what author tries to tell us is more than statistics.</p>
-<blockquote>
-<p>the proportion of people who …</p>
-</blockquote>
-<p>动态图描述变化</p>
-<p>The line chart present the numbers of xxx in both A and B have been increasing with different rates during the period from 2000 to 2008.To put it more precise, <strong>the number/percentage/percent of</strong> xxx <strong>increases/rises/decreases/drops</strong> <strong>slightly/steadily/sharply from xx in 2013 to xx in 2015.</strong> However/In the meanwhile, the number of xxx during this period shows a larger increase/decrease.</p>
-<h4 id="第二段"><a href="#第二段" class="headerlink" title="第二段"></a>第二段</h4><p>The chart leads us to find out what causes the difference of xx. /In fact, this chart is a miniature of a social phenomenon.</p>
-<p>I can find no better reasons than the following ones. /This phenomenon can be attributed to the following ones.</p>
-<p><strong>For one thing</strong>, …. which leads to the downward/upward tendency of…, <strong>For another, ….., (Furthermore…)</strong></p>
-<p>常用语句：</p>
-<ol>
-<li>经济发展：with the rapid development of our economy and society, more and more people prefer …/an increasing number of ..</li>
-<li>人：people are paying increasingly more attention to</li>
-<li>媒体：the mass media, such as radio, television and the Internet, have made huge efforts to promote xxx</li>
-<li>其他：xxx may exert great influencce on it</li>
-<li>政府花费：the rapidly develping economy enbales government to increase its speding on xxx</li>
-<li>政策：the government has already worked out a series of policies to improve bussiness enviroment.</li>
-</ol>
-<h4 id="第三段"><a href="#第三段" class="headerlink" title="第三段"></a>第三段</h4><p>Considering every aspect of the issue, I, as most of others will do, safely draw a conclusion that there is a growing tendency that  …, which will not change in a short time.</p>
-<p>社会：<strong>With suporting policies and rational instructions</strong>, it is reasonable for us to believe that our society can achieve a more healthy development.</p>
-<p>两面：(If used carelessly or without restraint), xx could prove to be a double-edged sword. Therefore, we must absorb the essence and neglect the drawbacks of xxx Only in this way can we …</p>
-<h3 id="道歉信"><a href="#道歉信" class="headerlink" title="道歉信"></a>道歉信</h3><p>Dear xx,</p>
-<p>I am writing to apologize for not being able to …, since I have to cancel … for some reason. I am terribly sorry for any inconvenience this causes you and any changes that it necessiates in your current plans.</p>
-<p>It was not my intention to cause any inconvenience, 交代原因, To slove the problem, would you prefer （解决措施）</p>
-<p>Thank you for understanding in this matter. Feel free to contact me if you have further questions.</p>
-]]></content>
-      <categories>
-        <category>作文</category>
-      </categories>
-      <tags>
-        <tag>作文</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>机器学习笔记</title>
     <url>/2021/12/28/ml-notes/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2><h3 id="矩阵求导"><a href="#矩阵求导" class="headerlink" title="矩阵求导"></a>矩阵求导</h3><p>矩阵求导的本质与分子布局、分母布局的本质（矩阵求导——本质篇）：<a href="https://zhuanlan.zhihu.com/p/263777564">https://zhuanlan.zhihu.com/p/263777564</a><br>矩阵求导公式的数学推导（矩阵求导——基础篇）：<a href="https://zhuanlan.zhihu.com/p/273729929">https://zhuanlan.zhihu.com/p/273729929</a><br>矩阵求导公式的数学推导（矩阵求导——进阶篇）：<a href="https://zhuanlan.zhihu.com/p/288541909">https://zhuanlan.zhihu.com/p/288541909</a></p>
@@ -5133,33 +4887,167 @@ x_1^{(m)} && x_2^{(m)} && \dots &&  x_n^{(m)} \\
       </tags>
   </entry>
   <entry>
-    <title>process-thread</title>
-    <url>/2022/01/03/process-thread/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="为什么要引入进程"><a href="#为什么要引入进程" class="headerlink" title="为什么要引入进程"></a>为什么要引入进程</h2><p>早先的操作系统是单道批处理的，但是cpu是高效率的，而IO是低速的，就会出现cpu要等待IO的情况；从而降低了实际效率。<br>后来就引入多道批处理；而程序在执行的过程中又会因为共享资源而导致程序在执行的过程中相互限制；<br>后来引入进程用来给程序提供一个抽象的概念，他能申请道系统资源并且独立给程序提供资源，从而解决原来的程序之间因为资源共享而相互限制的问题。这样就可以提高系统资源的利用率以及系统的处理能力</p>
-<h2 id="进程是什么"><a href="#进程是什么" class="headerlink" title="进程是什么"></a>进程是什么</h2><p>进程（Process）是进程实体的运行过程，是系统进行资源分配和调度的一次独立单位。</p>
-<p>程序是静态的，必须为其分配CPU、内存等资源等所需资源才可以运行，运行的程序就是进程。</p>
-<p>操作系统设置了一个专门的数据结构叫Process Control Block, PCB 进程控制块，通过PCB操作系统可以获得进程的基本情况和运行状态，进而控制和管理进程。</p>
-<p>PCB包括：进程描述信息、进程控制和管理信息、资源分配清单、处理机相关信息。</p>
-<p>进程描述信息：进程标识符（PID），用户标识符(UID)<br>进程控制和管理信息：</p>
+    <title>作文模板</title>
+    <url>/2021/11/10/eng-essay-teamplate/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="大作文">大作文</h2>
+<h3 id="话题引起">话题引起</h3>
+<ol type="1">
+<li><strong>The bar chart above present diferrent proportions/factors of</strong> consumers’ concern on choosing restaurant <strong>in a certain city in xx year.</strong></li>
+<li>The line chart shows the ascending/ tendency of 主题</li>
+</ol>
+<h3 id="图表描述">图表描述</h3>
+<ol type="1">
+<li>To put it more precise，描述变化或占比</li>
+<li>静态图描述占比：the proportion of xxx in 2013 was 33% compared to 25% in 2008, showing an increase of 8%.</li>
+<li>“分别占用” the percentage of A B C and others is a, b, c, d respectively.</li>
+<li>描述变化：<strong>the number/percentage of</strong> museums in China <strong>increases/decreases</strong> <strong>steadily/sharply from xx in 2013 to xx in 2015.</strong></li>
+<li>描述最值：xxx is the biggest proportion of all categories/factors</li>
+</ol>
+<p>​ Exercising by themselves <strong>occupies the dominant position, accounting for</strong> 54.3%</p>
+<ol start="6" type="1">
+<li>多个描述时用while/whereas，in the meanwhile</li>
+<li>the proportion of those .., while that of those…</li>
+</ol>
+<h3 id="图表总结">图表总结</h3>
+<ol type="1">
+<li>As a matter of fact, what author tries to tell us is more than statistics.</li>
+<li>Isolated as the figures seem to be, as a matter of fact, they are connected to one another closely.</li>
+</ol>
+<h3 id="具体意义">具体意义</h3>
+<ol type="1">
+<li><strong>In fact, this chart is a miniature of a prevalent phenomenon. An incresing number of</strong> customers choose ...(描述)</li>
+<li>In fact, this chart is a miniature of contemporary society.</li>
+<li>The table leads us to find out what causes the ...</li>
+</ol>
+<h3 id="意义论证">意义论证</h3>
+<ol type="1">
+<li>I can find no better reasons than the following ones./There are many reasons for this phenomenon.（解释原因）
+<ol type="1">
+<li>On one hand./To begin with/For one thing</li>
+<li>On the other hand./Furthermore/For another</li>
+</ol></li>
+</ol>
 <ul>
-<li>CPU、磁盘、网络流量使用情况。</li>
-<li>进程当前状态：就绪、阻塞、运行，是OS调度的依据。<br>资源分配清单：正在使用的文件、设备、内存区域<br>处理机相关信息：PSW、PC等寄存器的值</li>
+<li>原因，which leads to/result in the downward/upward tendency of…</li>
 </ul>
-<h3 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h3><p>创建态：操作系统创建进程，初始化PCB</p>
-<p>就绪态：进程创建完成，便处于就绪态，处于就绪态的进程已经具备运行条件，但是由于没有空闲CPU，暂时不能运行。</p>
-<p>运行态：操作系统从就绪队列上取下一个进程，为其分配CPU，进程进入运行态</p>
-<p>阻塞态：进程运行过程中如果请求了某个事件发生，在这个事件发生前进程进入阻塞状态，直到该事件发生后才变为就绪态</p>
-<p>终止态：进程运行完毕，操作系统回收进程占用的CPU和PCB</p>
-<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="为什么引入线程"><a href="#为什么引入线程" class="headerlink" title="为什么引入线程"></a>为什么引入线程</h3><p>引入线程的目的则是减小程序在并发执行时所付出的时空开销，提高操作系统的并发性能。</p>
-<p>线程最直接的理解就是“轻量级进程”，它是一个基本的CPU执行单元，也是程序执行流的最小单元，引入线程之后，不仅进程之间可以并发，进程内的各线程之间也可以并发，从而进一步提升了系统的并发性，使一个进程内也可以并发处理各种任务。</p>
-<h2 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h2><p>抢占式：当一个进程运行时，如果有优先级更高的进程需要使用处理机，必须立即暂停正在执行的进程，将CPU分配给新进程</p>
-<p>非抢占式：当一个进程运行时，如果有优先级更高的进程需要使用处理机，仍然让正在执行的进程执行，知道该进程结束或进入阻塞态才把CPU分配给优先级更高的进程</p>
+<h3 id="意义总结可省略">意义总结(可省略)</h3>
+<ol type="1">
+<li>（正面/中立）As a consequence/result</li>
+<li>（负面）If we keep turing a blind eye to it, the problem above will generate severe consequences. For example,..</li>
+</ol>
+<h3 id="结尾段">结尾段</h3>
+<h4 id="总结建议憧憬">总结+建议+憧憬</h4>
+<ol type="1">
+<li>号召：Considering every aspect of this phenonmenon, we should bear in mind that ... , we should xxx, Only in this way can we meet a brighter furture.</li>
+<li>两面：(If used carelessly or without restraint), xx could prove to be a double-edged sword. Therefore, we must absorb the essence and neglect the drawbacks of xxx Only in this way can we ....</li>
+</ol>
+<p>​ / take full advantage of merit of xx, such as…, and avoid the drawbacks such as ...</p>
+<ol type="1">
+<li><p>中立： No matter what the reason/Whether it is positive or negative, one thing is certian that there is a growing tendency xxx, which I believe will not change in a short time. + 憧憬</p>
+<p>It can be predicted that as ... improves/develops, xx can be more 发展趋势</p></li>
+</ol>
+<p><strong>憧憬</strong></p>
+<ol type="1">
+<li>With suporting policies and rational(理性的) instructions, it is reasonable for us to believe that our society can achieve a more healthy development.</li>
+</ol>
+<h3 id="完整">完整</h3>
+<h4 id="第一段">第一段</h4>
+<p>静态图描述占比</p>
+<p>The pie chart above present diferrent proportions/factors of <em>consumers’ concern on choosing restaurant</em> in a certain city in xx year.To put it more precise，xx <strong>acount for</strong> the largest proportion(20%). <strong>Next come</strong> the xx and xx, which <strong>constitute</strong> 10% and 9% respectively, much higher than xxx(2%). Other factors <strong>make up</strong> 1%. <strong>As a matter of fact</strong>, what author tries to tell us is more than statistics.</p>
+<blockquote>
+<p>the proportion of people who ...</p>
+</blockquote>
+<p>动态图描述变化</p>
+<p>The line chart present the numbers of xxx in both A and B have been increasing with different rates during the period from 2000 to 2008.To put it more precise, <strong>the number/percentage/percent of</strong> xxx <strong>increases/rises/decreases/drops</strong> <strong>slightly/steadily/sharply from xx in 2013 to xx in 2015.</strong> However/In the meanwhile, the number of xxx during this period shows a larger increase/decrease.</p>
+<h4 id="第二段">第二段</h4>
+<p>The chart leads us to find out what causes the difference of xx. /In fact, this chart is a miniature of a social phenomenon.</p>
+<p>I can find no better reasons than the following ones. /This phenomenon can be attributed to the following ones.</p>
+<p><strong>For one thing</strong>, .... which leads to the downward/upward tendency of…, <strong>For another, ....., (Furthermore…)</strong></p>
+<p>常用语句：</p>
+<ol type="1">
+<li>经济发展：with the rapid development of our economy and society, more and more people prefer .../an increasing number of ..</li>
+<li>人：people are paying increasingly more attention to</li>
+<li>媒体：the mass media, such as radio, television and the Internet, have made huge efforts to promote xxx</li>
+<li>其他：xxx may exert great influencce on it</li>
+<li>政府花费：the rapidly develping economy enbales government to increase its speding on xxx</li>
+<li>政策：the government has already worked out a series of policies to improve bussiness enviroment.</li>
+</ol>
+<h4 id="第三段">第三段</h4>
+<p>Considering every aspect of the issue, I, as most of others will do, safely draw a conclusion that there is a growing tendency that ..., which will not change in a short time.</p>
+<p>社会：<strong>With suporting policies and rational instructions</strong>, it is reasonable for us to believe that our society can achieve a more healthy development.</p>
+<p>两面：(If used carelessly or without restraint), xx could prove to be a double-edged sword. Therefore, we must absorb the essence and neglect the drawbacks of xxx Only in this way can we ...</p>
+<h3 id="道歉信">道歉信</h3>
+<p>Dear xx,</p>
+<p>I am writing to apologize for not being able to ..., since I have to cancel ... for some reason. I am terribly sorry for any inconvenience this causes you and any changes that it necessiates in your current plans.</p>
+<p>It was not my intention to cause any inconvenience, 交代原因, To slove the problem, would you prefer （解决措施）</p>
+<p>Thank you for understanding in this matter. Feel free to contact me if you have further questions.</p>
 ]]></content>
       <categories>
-        <category>os</category>
+        <category>作文</category>
       </categories>
       <tags>
-        <tag>os</tag>
+        <tag>作文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>frp搭建笔记</title>
+    <url>/2022/01/15/frp/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li>frp</li>
+</ul>
+<h1 id="frp">frp</h1>
+<h2 id="需求和环境">需求和环境</h2>
+<p>学校电脑A，内网环境，windows 腾讯云服务器B，centos 7 家里电脑C，mac os 现在需要用C访问A上的mysql数据库</p>
+<h2 id="服务端配置">服务端配置</h2>
+<p>到<a href="https://github.com/fatedier/frp/releases">realease页面</a>下载最新版frp, 解压</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.38.0/frp_0.38.0_linux_amd64.tar.gz</span><br><span class="line">tar -xf frp_0.38.0_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>然后改名 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv frp_0.38.0_linux_amd64 frp</span><br></pre></td></tr></table></figure></p>
+<p>配置一下服务端配置 <code>fprs.ini</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bind_port &#x3D; 7000</span><br><span class="line">token &#x3D; password</span><br></pre></td></tr></table></figure>
+<ul>
+<li>bind_port 设置客户端通过哪个端口访问frp服务器</li>
+<li>token则是访问访问服务器的密码</li>
+</ul>
+<p>然后需要在服务区防火墙增加7000端口访问，这时候直接运行起来</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./frps -c frps.ini</span><br></pre></td></tr></table></figure>
+<p>如果想让frp服务区在后台运行，可以用tmux，或者用下面的方法配置开机启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /lib/systemd/system/frps.service</span><br></pre></td></tr></table></figure>
+<p>修改内容为 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;fraps service</span><br><span class="line">After&#x3D;network.target syslog.target</span><br><span class="line">Wants&#x3D;network.target</span><br><span class="line"> </span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;simple</span><br><span class="line">ExecStart&#x3D;&#x2F;root&#x2F;frp&#x2F;frps -c &#x2F;root&#x2F;frp&#x2F;frps.ini  #此处按实际情况修改</span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure></p>
+<p>然后让fprs.service开机启动，然后重启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start frps.service</span><br><span class="line">systemctl enable frps.service</span><br></pre></td></tr></table></figure>
+<p>到这里服务端就配置好了</p>
+<h2 id="客户端配置">客户端配置</h2>
+<p>客户端也需要下载frp，我们使用到的文件就两个<code>frpc.exe</code>和<code>frpc.ini</code></p>
+<p>接下来对<code>frpc.ini</code>进行配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; &lt;服务器ip&gt;</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line">token &#x3D; frppass</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 3306</span><br><span class="line">remote_port &#x3D; 6000</span><br></pre></td></tr></table></figure>
+<p>然后运行frp <code>./frpc.exe -c frpc.ini</code></p>
+<p>到这里就可以在电脑C上通过<code>ip:6000</code>端口访问到电脑A上的<code>127.0.0.1:3306</code>端口，即实现了访问内网的mysql服务</p>
+<h3 id="远程桌面服务">远程桌面服务</h3>
+<p>如果要添加其他端口，跟上面的方法是一样的，下面演示添加远程桌面服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; &lt;服务器ip&gt;</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line">token &#x3D; frppass</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 3306</span><br><span class="line">remote_port &#x3D; 6000</span><br><span class="line"></span><br><span class="line">[RDP]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 3389</span><br><span class="line">remote_port &#x3D; 6001</span><br></pre></td></tr></table></figure>
+<p>这样就可以访问<code>ip:6001</code>来对电脑A进行远程桌面</p>
+]]></content>
+      <tags>
+        <tag>内网穿透</tag>
+        <tag>frp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>flask笔记</title>
+    <url>/2022/01/06/flask-notes/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="参数">参数</h2>
+<p>Query args: - <code>flask.request.values</code> - url定义的参数</p>
+<p>form: - <code>flask.request.json</code> - 表单中的参数</p>
+<h2 id="循环导入问题">循环导入问题</h2>
+<p>https://stackoverflow.com/questions/59156895/cannot-import-name-mydb-from-partially-initialized-module-connection-in-pyth</p>
+<h2 id="init_app">init_app</h2>
+<p>init_app的作用，利用app实例的配置信息，初始化服务。举例来说，如果db不init_app(app)，就无法连接数据库，db就不可用 <a href="https://stackoverflow.com/questions/31570013/what-is-the-point-of-initializing-extensions-with-the-flask-instance-in-flask">What is the point of initializing extensions with the flask instance in Flask?</a></p>
+]]></content>
+      <categories>
+        <category>flask</category>
+      </categories>
+      <tags>
+        <tag>flask</tag>
       </tags>
   </entry>
 </search>
