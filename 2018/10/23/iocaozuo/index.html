@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"blacston.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="文本类型 文件的类型分为文本文件和二进制文件，">
+  <meta name="description" content="文本类型文件的类型分为文本文件和二进制文件，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++文件操作">
 <meta property="og:url" content="http://blacston.com/2018/10/23/iocaozuo/index.html">
 <meta property="og:site_name" content="黑石的技术笔记">
-<meta property="og:description" content="文本类型 文件的类型分为文本文件和二进制文件，">
+<meta property="og:description" content="文本类型文件的类型分为文本文件和二进制文件，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-10-23T11:21:00.000Z">
-<meta property="article:modified_time" content="2021-01-16T03:39:21.279Z">
+<meta property="article:modified_time" content="2022-01-21T12:20:05.765Z">
 <meta property="article:author" content="baichen">
 <meta property="article:tag" content="文件操作">
 <meta property="article:tag" content="C++">
@@ -195,7 +195,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
+                <time title="修改时间：2022-01-21 20:20:05" itemprop="dateModified" datetime="2022-01-21T20:20:05+08:00">2022-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,44 +218,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="文本类型">文本类型</h2>
-<p>文件的类型分为文本文件和二进制文件， <span id="more"></span> 文本文件又称为ASCII文件，它的每个字节存放一个ASCII码，代表一个字符。 二进制文件则是把内存中的数据，按照其在内存中的存储形式原样写在磁盘上存放。 比如一个 short 类型的整数20000，在内存中占用2个字节，而按文本形式输出则占5个字节。 因此在以文本形式输出时，一个字节对应一个字符，因而便于字符的输出，缺点则是占用存储空间较多。 用二进制形式输出数据，节省了转化时间和存储空间，但不能直接以字符的形式输出。</p>
-<h2 id="c中的文件操作类">c++中的文件操作类</h2>
-<ul>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="文本类型"><a href="#文本类型" class="headerlink" title="文本类型"></a>文本类型</h2><p>文件的类型分为文本文件和二进制文件，<br><span id="more"></span><br>文本文件又称为ASCII文件，它的每个字节存放一个ASCII码，代表一个字符。<br>二进制文件则是把内存中的数据，按照其在内存中的存储形式原样写在磁盘上存放。<br>比如一个 short 类型的整数20000，在内存中占用2个字节，而按文本形式输出则占5个字节。<br>因此在以文本形式输出时，一个字节对应一个字符，因而便于字符的输出，缺点则是占用存储空间较多。<br>用二进制形式输出数据，节省了转化时间和存储空间，但不能直接以字符的形式输出。</p>
+<h2 id="c-中的文件操作类"><a href="#c-中的文件操作类" class="headerlink" title="c++中的文件操作类"></a>c++中的文件操作类</h2><ul>
 <li>fstream（输入输出文件流）：支持文件的输入与输出操作；</li>
 <li>ifstream（输入文件流）：支持从文件中输入操作；</li>
 <li>ofstream（输出文件流）：支持向文件写入的操作；</li>
 </ul>
-<h2 id="文件的打开和关闭">文件的打开和关闭</h2>
-<h3 id="文件的打开">文件的打开</h3>
-<p>打开文件有两种方式： 1. 利用构造函数: 在实例化时传入参数<code>ofstream fs(path);</code> 2. 利用open方法: <code>fs.open(path);</code></p>
-<p>open方法有很多哥参数，第二个参数指明打开模式 - ios::in 打开文件以便读取 - ios::out 打开文件以便写入 - ios::ate 初始位置：文件尾 - ios::app 所有输出附加在文件末尾 - ios::trunc 如果文件已存在则先删除该文件 - ios::binary 二进制方式</p>
-<p>这些方式可以组合使用，使用"|"符号连接 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ofstream fs;  </span><br><span class="line">fs.open(&quot;123.txt&quot;, ios::in|ios::out|ios::binary);</span><br></pre></td></tr></table></figure> #### 默认值 <strong>ofstream、ifstream、fstream 的open函数或者构造函数都有默认的打开文件的方式</strong></p>
-<p><code>ofstream fs1("123.txt", ios::out);</code></p>
-<p><code>ifstream fs2("123.txt", ios::in);</code></p>
-<p><code>fstream fs3("123.txt", ios::in|ios::out);</code></p>
-<h4 id="判断文件是否打开成功">判断文件是否打开成功</h4>
-<ol type="1">
-<li>直接 if 判断 fs 对象； <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ofstream fs(&#39;123.txt&#39;);</span><br><span class="line">if(!fs)</span><br><span class="line">    fs.close();</span><br></pre></td></tr></table></figure></li>
-<li>用 is_open 方法判断； fs.is_open() 打开成功返回1，否则返回0</li>
-<li>用 good 方法判断； 用法同上</li>
-<li>用 fail 方法判断； 返回值和good相反</li>
+<h2 id="文件的打开和关闭"><a href="#文件的打开和关闭" class="headerlink" title="文件的打开和关闭"></a>文件的打开和关闭</h2><h3 id="文件的打开"><a href="#文件的打开" class="headerlink" title="文件的打开"></a>文件的打开</h3><p>打开文件有两种方式：</p>
+<ol>
+<li>利用构造函数: 在实例化时传入参数<code>ofstream fs(path);</code></li>
+<li>利用open方法: <code>fs.open(path);</code></li>
 </ol>
-<h3 id="文件流的关闭">文件流的关闭</h3>
-<p><code>fs.close();</code></p>
-<h2 id="读写操作">读写操作</h2>
-<h3 id="文本类型-1">文本类型</h3>
-<h4 id="读-get-getline">读 &gt;&gt; get() getline()</h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;fstream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main(int argc, char* argv[])</span><br><span class="line">&#123;</span><br><span class="line">    var &#x3D; 3000;</span><br><span class="line">    </span><br><span class="line">    ifstream fs_in;</span><br><span class="line">    fs_in.open(&quot;d:\\123.txt&quot;);</span><br><span class="line">    if (!fs_in) return 0;</span><br><span class="line">    fs_in &gt;&gt; var;</span><br><span class="line">    char ch &#x3D; fs_in.get();</span><br><span class="line">    fs_in.close();</span><br><span class="line">    return 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>open方法有很多哥参数，第二个参数指明打开模式</p>
+<ul>
+<li>ios::in<br>打开文件以便读取</li>
+<li>ios::out<br>打开文件以便写入</li>
+<li>ios::ate<br>初始位置：文件尾</li>
+<li>ios::app<br>所有输出附加在文件末尾</li>
+<li>ios::trunc<br>如果文件已存在则先删除该文件</li>
+<li>ios::binary<br>二进制方式</li>
+</ul>
+<p>这些方式可以组合使用，使用”|”符号连接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ofstream fs;  </span><br><span class="line">fs.open(&quot;123.txt&quot;, ios::in|ios::out|ios::binary);</span><br></pre></td></tr></table></figure></p>
+<h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4><p><strong>ofstream、ifstream、fstream 的open函数或者构造函数都有默认的打开文件的方式</strong></p>
+<p><code>ofstream fs1(&quot;123.txt&quot;, ios::out);</code></p>
+<p><code>ifstream fs2(&quot;123.txt&quot;, ios::in);</code></p>
+<p><code>fstream fs3(&quot;123.txt&quot;, ios::in|ios::out);</code></p>
+<h4 id="判断文件是否打开成功"><a href="#判断文件是否打开成功" class="headerlink" title="判断文件是否打开成功"></a>判断文件是否打开成功</h4><ol>
+<li>直接 if 判断 fs 对象；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ofstream fs(&#39;123.txt&#39;);</span><br><span class="line">if(!fs)</span><br><span class="line">    fs.close();</span><br></pre></td></tr></table></figure></li>
+<li>用 is_open 方法判断；<br>fs.is_open()  打开成功返回1，否则返回0</li>
+<li>用 good 方法判断；<br>用法同上</li>
+<li>用 fail 方法判断；<br>返回值和good相反 </li>
+</ol>
+<h3 id="文件流的关闭"><a href="#文件流的关闭" class="headerlink" title="文件流的关闭"></a>文件流的关闭</h3><p><code>fs.close();</code></p>
+<h2 id="读写操作"><a href="#读写操作" class="headerlink" title="读写操作"></a>读写操作</h2><h3 id="文本类型-1"><a href="#文本类型-1" class="headerlink" title="文本类型"></a>文本类型</h3><h4 id="读-gt-gt-get-getline"><a href="#读-gt-gt-get-getline" class="headerlink" title="读 &gt;&gt; get() getline()"></a>读 &gt;&gt; get() getline()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;fstream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main(int argc, char* argv[])</span><br><span class="line">&#123;</span><br><span class="line">    var &#x3D; 3000;</span><br><span class="line">    </span><br><span class="line">    ifstream fs_in;</span><br><span class="line">    fs_in.open(&quot;d:\\123.txt&quot;);</span><br><span class="line">    if (!fs_in) return 0;</span><br><span class="line">    fs_in &gt;&gt; var;</span><br><span class="line">    char ch &#x3D; fs_in.get();</span><br><span class="line">    fs_in.close();</span><br><span class="line">    return 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>getline()函数原型</li>
 </ul>
-<p><code>istream&amp; getline (char* s, streamsize n );</code> s 为一个字符数组，不能是string，n为获取字符的长度, 若读取的行数不为最后一行则返回true，使用可以<code>利用while(fs.getline(ch, n)); 来遍历文件的每一行</code> #### 写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;fstream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main(int argc, char* argv[])</span><br><span class="line">&#123;</span><br><span class="line">    short var &#x3D; 20000;</span><br><span class="line">    ofstream fs;</span><br><span class="line">    fs.open(&quot;d:\\123.txt&quot;);</span><br><span class="line">    if (!fs) return 0;</span><br><span class="line"></span><br><span class="line">    fs &lt;&lt; var &lt;&lt; endl;</span><br><span class="line">    fs &lt;&lt; &quot;真的是你吗？&quot; &lt;&lt; endl;</span><br><span class="line">    fs.put(&#39;Y&#39;);   &#x2F;&#x2F; 只能输出**单个字符**到文件</span><br><span class="line">    fs.close();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="二进制类型">二进制类型</h3>
-<p>使用write()方法</p>
+<p><code>istream&amp; getline (char* s, streamsize n );</code><br>s 为一个字符数组，不能是string，n为获取字符的长度, 若读取的行数不为最后一行则返回true，使用可以<code>利用while(fs.getline(ch, n)); 来遍历文件的每一行</code></p>
+<h4 id="写"><a href="#写" class="headerlink" title="写"></a>写</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;fstream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main(int argc, char* argv[])</span><br><span class="line">&#123;</span><br><span class="line">    short var &#x3D; 20000;</span><br><span class="line">    ofstream fs;</span><br><span class="line">    fs.open(&quot;d:\\123.txt&quot;);</span><br><span class="line">    if (!fs) return 0;</span><br><span class="line"></span><br><span class="line">    fs &lt;&lt; var &lt;&lt; endl;</span><br><span class="line">    fs &lt;&lt; &quot;真的是你吗？&quot; &lt;&lt; endl;</span><br><span class="line">    fs.put(&#39;Y&#39;);   &#x2F;&#x2F; 只能输出**单个字符**到文件</span><br><span class="line">    fs.close();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="二进制类型"><a href="#二进制类型" class="headerlink" title="二进制类型"></a>二进制类型</h3><p>使用write()方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;fstream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main(int argc, char* argv[])</span><br><span class="line">&#123;</span><br><span class="line">    short var &#x3D; 20000;</span><br><span class="line">    ofstream fs;</span><br><span class="line">    fs.open(&quot;d:\\123.txt&quot;);</span><br><span class="line">    if (!fs) return 0;</span><br><span class="line">    </span><br><span class="line">    fs.write((char*)&amp;var, sizeof(var));</span><br><span class="line">    fs.close();</span><br><span class="line">    return 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="section"></h3>
 
     </div>
 
@@ -342,7 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">文本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">c++中的文件操作类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80%E5%92%8C%E5%85%B3%E9%97%AD"><span class="nav-number">3.</span> <span class="nav-text">文件的打开和关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80"><span class="nav-number">3.1.</span> <span class="nav-text">文件的打开</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80%E6%88%90%E5%8A%9F"><span class="nav-number">3.1.1.</span> <span class="nav-text">判断文件是否打开成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%B5%81%E7%9A%84%E5%85%B3%E9%97%AD"><span class="nav-number">3.2.</span> <span class="nav-text">文件流的关闭</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">读写操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B-1"><span class="nav-number">4.1.</span> <span class="nav-text">文本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB-get-getline"><span class="nav-number">4.1.1.</span> <span class="nav-text">读 &gt;&gt; get() getline()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.2.</span> <span class="nav-text">二进制类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#section"><span class="nav-number">4.3.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">文本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">c++中的文件操作类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80%E5%92%8C%E5%85%B3%E9%97%AD"><span class="nav-number">3.</span> <span class="nav-text">文件的打开和关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80"><span class="nav-number">3.1.</span> <span class="nav-text">文件的打开</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">3.1.1.</span> <span class="nav-text">默认值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80%E6%88%90%E5%8A%9F"><span class="nav-number">3.1.2.</span> <span class="nav-text">判断文件是否打开成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%B5%81%E7%9A%84%E5%85%B3%E9%97%AD"><span class="nav-number">3.2.</span> <span class="nav-text">文件流的关闭</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">读写操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B-1"><span class="nav-number">4.1.</span> <span class="nav-text">文本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB-gt-gt-get-getline"><span class="nav-number">4.1.1.</span> <span class="nav-text">读 &gt;&gt; get() getline()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99"><span class="nav-number">4.1.2.</span> <span class="nav-text">写</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.2.</span> <span class="nav-text">二进制类型</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,20 +358,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">90</span>
+        <span class="site-state-item-count">92</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

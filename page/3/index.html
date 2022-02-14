@@ -159,6 +159,467 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/06/11/python-list-init/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/11/python-list-init/" class="post-title-link" itemprop="url">python数组初始化问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-11 13:23:39 / 修改时间：13:42:41" itemprop="dateCreated datePublished" datetime="2021-06-11T13:23:39+08:00">2021-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="引言">引言</h2>
+<p>在一个项目中，我想初始化一个mxn的二维数组，于是我使用这段代码初始化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = [[] * <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<p>但发现arr的值为<code>[[]]</code>，并不是我们期望的<code>[[], [], ..., []]</code>，这是为什么呢？</p>
+<p>对照一维数组的初始化方式，于是我换了一种初始化的方式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = [[]] * <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>结果为<code>[[], [], [], [], [], [], [], [], [], []]</code>正如我们预料的那样。</p>
+<p>于是我们创建一个5x3的列表试试：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [[<span class="number">0</span>] * <span class="number">3</span>] * <span class="number">5</span></span><br><span class="line">arr[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/11/python-list-init/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/02/03/pydataprocessing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/03/pydataprocessing/" class="post-title-link" itemprop="url">python数据处理笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-03 11:26:52" itemprop="dateCreated datePublished" datetime="2021-02-03T11:26:52+08:00">2021-02-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-11 13:21:01" itemprop="dateModified" datetime="2021-06-11T13:21:01+08:00">2021-06-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="pandas">Pandas</h2>
+<h3 id="dataframe.locindex-column">dataframe.loc[index, column]</h3>
+<p>根据index, column来返回对应数据。index为行，column为列。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chenKFKevin/article/details/62049060">ioc使用</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">4</span>, <span class="number">5</span>], [<span class="number">7</span>, <span class="number">8</span>]], index=[<span class="string">&#x27;cobra&#x27;</span>, <span class="string">&#x27;viper&#x27;</span>, <span class="string">&#x27;sidewinder&#x27;</span>], columns=[<span class="string">&#x27;max_speed&#x27;</span>, <span class="string">&#x27;shield&#x27;</span>])</span><br><span class="line">print(df)</span><br><span class="line">print(<span class="string">&#x27;-&#x27;</span>*<span class="number">20</span>)</span><br><span class="line">print(df.loc[<span class="string">&#x27;cobra&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">            max_speed  shield</span><br><span class="line">cobra               1       2</span><br><span class="line">viper               4       5</span><br><span class="line">sidewinder          7       8</span><br><span class="line">--------------------</span><br><span class="line">max_speed    1</span><br><span class="line">shield       2</span><br><span class="line">Name: cobra, dtype: int64</span><br></pre></td></tr></table></figure>
+<h3 id="dataframe.drop">dataframe.drop</h3>
+<p><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html">官方文档</a></p>
+<p>drop会将数据删除一列，并返回一个副本</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/03/pydataprocessing/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/04/23/crnn-ctc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/23/crnn-ctc/" class="post-title-link" itemprop="url">crnn-ctc</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-23 08:22:07 / 修改时间：08:52:54" itemprop="dateCreated datePublished" datetime="2021-04-23T08:22:07+08:00">2021-04-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">神经网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="ctc">CTC</h2>
+<p><a target="_blank" rel="noopener" href="https://xiaodu.io/ctc-explained/">CTC算法详解</a></p>
+<p>CTC（Connectionist Temporal Classification）算法，它可以让RNN直接对序列数据进行学习，而无需事先标注好训练数据中输入序列和输出序列的映射关系，打破了RNN应用于语音识别、手写字识别等领域的数据依赖约束，使得RNN模型在序列学习任务中取得更好的应用效果。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38410428/article/details/91381151">端到端模型（end-to-end learning）</a></p>
+<p>在序列学习任务中，RNN模型对训练样本一般有这样的依赖条件：输入序列和输出序列之间的映射关系已经事先标注好了。由于输入序列和输出序列是一一对应的，所以RNN模型的训练和预测都是端到端的，即可以根据输出序列和标注样本间的差异来直接定义RNN模型的Loss函数，传统的RNN训练和预测方式可直接适用。</p>
+<p>但有些数据，比如音频数据，天然难以分割，在大规模训练下这种数据要求是完全不切实际的。而如果输入序列和输出序列之间映射关系没有提前标注好，那传统的RNN训练方式就不能直接适用了，无法直接对音频数据和图像数据进行训练。</p>
+<p><img src="https://raw.githubusercontent.com/baichen99/pics/master/img/r2.png.webp"></p>
+<p>Connectionist Temporal Classification（CTC）[1]是Alex Graves等人在ICML 2006上提出的一种端到端的RNN训练方法，它可以让RNN直接对序列数据进行学习，而无需事先标注好训练数据中输入序列和输入序列的映射关系，使得RNN模型在语音识别等序列学习任务中取得更好的效果。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/42719047">ctc原理</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/23/crnn-ctc/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/04/20/cnn-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/20/cnn-notes/" class="post-title-link" itemprop="url">cnn笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-20 16:11:54 / 修改时间：22:55:11" itemprop="dateCreated datePublished" datetime="2021-04-20T16:11:54+08:00">2021-04-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">神经网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="基本概念">基本概念</h2>
+<p>假设输入图像为(39x39x3)，卷积层的参数如下：</p>
+<ul>
+<li><span class="math inline">\(n_H = n_W = 39\)</span></li>
+<li>信道数量（number of channels）：<span class="math inline">\(n_c = 3\)</span></li>
+<li>卷积核大小：<span class="math inline">\(f = 3\)</span></li>
+<li>步长stride：<span class="math inline">\(s = 1\)</span></li>
+<li>padding：<span class="math inline">\(p = 0\)</span></li>
+<li>过滤器数量：<span class="math inline">\(10 filters\)</span></li>
+</ul>
+<p>得到结果为(37x37x10)。37通过公式：<span class="math inline">\(\frac{n+2p-f}{s} + 1\)</span>计算得来。</p>
+<blockquote>
+<p>对于3D卷积，卷积核大小为<span class="math inline">\(f\times f \times n_c\)</span>，图像通道数=filter通道数。卷积后<span class="math inline">\(n_c = 1\)</span></p>
+</blockquote>
+<h3 id="池化层">池化层</h3>
+<p>Max Pooling：在卷积核范围内找到最大值作为输出。</p>
+<p>eg: <span class="math inline">\(\begin{pmatrix} 1&amp;3&amp;2&amp;1\\2&amp;9&amp;1&amp;1\\1&amp;3&amp;2&amp;3\\5&amp;6&amp;1&amp;2 \end{pmatrix}\)</span>在经过<span class="math inline">\(f=s=2\)</span>的max pooling池化层之后为<span class="math inline">\(\begin{pmatrix}9&amp;2\\6&amp;3\end{pmatrix}\)</span></p>
+<p>池化层输出大小也可以用上面的公式计算。也就是<span class="math inline">\((\lfloor \frac{n_H-f}{s}+1 \rfloor , \lfloor \frac{n_W-f}{s}+1 \rfloor , n_c)\)</span></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/20/cnn-notes/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/04/15/network-dimension/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baichen">
+      <meta itemprop="description" content="黑石的技术笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑石的技术笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/15/network-dimension/" class="post-title-link" itemprop="url">神经网络的维数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-15 12:05:53" itemprop="dateCreated datePublished" datetime="2021-04-15T12:05:53+08:00">2021-04-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-18 15:37:49" itemprop="dateModified" datetime="2021-04-18T15:37:49+08:00">2021-04-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">神经网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="深度神经网络">深度神经网络</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24801814">通俗理解BP</a></p>
+<p><img src="network.png"></p>
+<h3 id="定义符号">定义符号</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">符号</th>
+<th style="text-align: center;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(a^{[l]}\)</span></td>
+<td style="text-align: center;">l层的输入</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(w^{l}\)</span></td>
+<td style="text-align: center;">l层的权重</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(n^{[l]}\)</span></td>
+<td style="text-align: center;">l层的维数</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(z^{[l]}\)</span></td>
+<td style="text-align: center;">l层的输出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="单个样本">单个样本</h3>
+<p><span class="math inline">\(z^{[l]} = w^{[l]}a^{[l]}+b^{[l]}\)</span></p>
+<p><span class="math inline">\(a^{[l+1]} = g(z^{[l]})\)</span></p>
+<p>对于单个样本，每个<strong>神经元</strong>输出是一个标量</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/15/network-dimension/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/04/06/limit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -999,459 +1460,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2020/03/29/vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/29/vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">vue 父子组件通信</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-29 01:06:50" itemprop="dateCreated datePublished" datetime="2020-03-29T01:06:50+08:00">2020-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vuejs/" itemprop="url" rel="index"><span itemprop="name">vuejs</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="父到子">父到子</h2>
-<p>通过在父组件的prop属性向子组件传递数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;student :student&#x3D;&quot;liming&quot;&gt;&lt;&#x2F;student&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    姓名: &#123;&#123; student.name &#125;&#125;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      student: &#123;</span><br><span class="line">        type: Object,</span><br><span class="line">        default: ()&#x3D;&gt;(&#123;&#125;),</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="子到父">子到父</h2>
-<p>子组件通过<code>$emit('eventName', data)</code>产生事件, 在父组件中监听此事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;MyInput @update:data&#x3D;&quot;handleUpdate&quot;&gt;&lt;&#x2F;MyInput&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		methods: &#123;</span><br><span class="line">      handleUpdate(data) &#123;</span><br><span class="line">        &#x2F;&#x2F; do something</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&#x2F;&#x2F; 当el-input的输入框的值发生改变, 会触发input事件</span><br><span class="line">	&lt;el-input @input&#x3D;&quot;$emit(&#39;update:data&#39;, value)&quot;&gt;&lt;&#x2F;el-input&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="双向绑定数据">双向绑定数据</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/29/vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2020/08/17/sort-go/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/17/sort-go/" class="post-title-link" itemprop="url">go 排序算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-17 13:45:07" itemprop="dateCreated datePublished" datetime="2020-08-17T13:45:07+08:00">2020-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/interview/" itemprop="url" rel="index"><span itemprop="name">interview</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="冒泡">冒泡</h2>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 稳定</span></span><br><span class="line"><span class="comment">// 时间复杂度 O(n^2)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BubbleSort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// n个元素只要走n-1趟</span></span><br><span class="line">	n := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;n<span class="number">-1</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>; j&lt;n-i<span class="number">-1</span>; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> arr[j] &gt; arr[j+<span class="number">1</span>] &#123;</span><br><span class="line">				arr[j], arr[j+<span class="number">1</span>] = arr[j+<span class="number">1</span>], arr[j]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arr = []<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">12</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>&#125;</span><br><span class="line">	BubbleSort(arr)</span><br><span class="line">	fmt.Println(arr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="插入">插入</h2>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本思想 不断地将尚未排好序的数插入到已经排好序的部分</span></span><br><span class="line"><span class="comment">// 稳定</span></span><br><span class="line"><span class="comment">// 时间复杂度 O(n^2)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Insertionsort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="comment">// 第一个认为是有序的，从第二个元素开始，一共n-1次插入</span></span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;n<span class="number">-1</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j:=i+<span class="number">1</span>; j&gt;<span class="number">0</span>; j-- &#123;</span><br><span class="line">			<span class="keyword">if</span> arr[j] &lt; arr[j<span class="number">-1</span>] &#123;</span><br><span class="line">				arr[j], arr[j<span class="number">-1</span>] = arr[j<span class="number">-1</span>], arr[j]</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arr = []<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">12</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>&#125;</span><br><span class="line">	Insertionsort(arr)</span><br><span class="line">	fmt.Println(arr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="选择">选择</h2>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本思想 在每次遍历后，把未排序的最小的元素放到前面</span></span><br><span class="line"><span class="comment">// 不稳定  eg  3 2 3 1 第一个3和1交换  破坏了稳定性</span></span><br><span class="line"><span class="comment">// 时间复杂度O(n^2)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SelectionSort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="keyword">var</span> minIndex <span class="keyword">int</span> = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;n<span class="number">-1</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j:=i+<span class="number">1</span>; j&lt;n; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> arr[j] &lt; arr[minIndex] &#123;</span><br><span class="line">				minIndex = j</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> minIndex != i &#123;</span><br><span class="line">			arr[i], arr[minIndex] = arr[minIndex], arr[i]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arr = []<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">12</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>&#125;</span><br><span class="line">	SelectionSort(arr)</span><br><span class="line">	fmt.Println(arr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="希尔">希尔</h2>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本思想 希尔排序是按照不同步长对元素进行插入排序</span></span><br><span class="line"><span class="comment">// 不稳定  eg  5 2 2 步长为2时，5和第二个2交换，破坏稳定性</span></span><br><span class="line"><span class="comment">// 时间复杂度O(n^2)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ShellSort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="comment">// 遍历间隔</span></span><br><span class="line">	<span class="keyword">for</span> gap:=n/<span class="number">2</span>; gap&gt;<span class="number">0</span>; gap/=<span class="number">2</span> &#123;</span><br><span class="line">		<span class="comment">// 从第gap个开始</span></span><br><span class="line">		<span class="keyword">for</span> i:=gap; i&lt;n; i++ &#123;</span><br><span class="line">			<span class="comment">// 之前的分组都要过一遍，比如gap=2时，42比较，21比较</span></span><br><span class="line">			<span class="keyword">for</span> j:=i; j-gap&gt;=<span class="number">0</span> &amp;&amp; arr[j-gap] &gt; arr[j]; j -= gap&#123;</span><br><span class="line">				arr[j-gap], arr[j] = arr[j], arr[j-gap]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arr = []<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>&#125;</span><br><span class="line">	ShellSort(arr)</span><br><span class="line">	fmt.Println(arr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="归并">归并</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/17/sort-go/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2021/01/10/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/10/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/" class="post-title-link" itemprop="url">CSRF跨站请求伪造</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-10 13:14:48" itemprop="dateCreated datePublished" datetime="2021-01-10T13:14:48+08:00">2021-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="csrf跨站请求伪造">CSRF跨站请求伪造</h1>
-<p>CSRF(Cross Site Request Forgery)是一种攻击者盗用用户身份，在当前<strong>已登录</strong>的Web上执行非本意操作的攻击方法。攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。</p>
-<h2 id="原理">原理</h2>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46592479">如何防止CSRF攻击？</a></p>
-<p>一个典型的CSRF攻击有着如下的流程：</p>
-<ul>
-<li>受害者登录<a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>，并保留了登录凭证（Cookie）。</li>
-<li>攻击者引诱受害者访问了<a href="https://link.zhihu.com/?target=http%3A//b.com">http://b.com</a>。</li>
-<li><a href="https://link.zhihu.com/?target=http%3A//b.com">http://b.com</a> 向 <a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a> 发送了一个请求：<a href="https://link.zhihu.com/?target=http%3A//a.com/act%3Dxx">http://a.com/act=xx</a>。浏览器会默认携带<a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>的Cookie。</li>
-<li><a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>接收到请求后，对请求进行验证，并确认是受害者的凭证，误以为是受害者自己发送的请求。</li>
-<li><a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>以受害者的名义执行了act=xx。</li>
-<li>攻击完成，攻击者在受害者不知情的情况下，冒充受害者，让<a href="https://link.zhihu.com/?target=http%3A//a.com">http://a.com</a>执行了自己定义的操作。</li>
-</ul>
-<h2 id="csrf的特点"><strong>CSRF的特点</strong></h2>
-<ul>
-<li>攻击一般发起在第三方网站，而不是被攻击的网站。被攻击的网站无法防止攻击发生。</li>
-<li>攻击利用受害者在被攻击网站的登录凭证，冒充受害者提交操作；而不是直接窃取数据。</li>
-<li>整个过程攻击者并不能获取到受害者的登录凭证，仅仅是“冒用”。</li>
-<li>跨站请求可以用各种方式：图片URL、超链接、CORS、Form提交等等。部分请求方式可以直接嵌入在第三方论坛、文章中，难以进行追踪。</li>
-</ul>
-<p>CSRF通常是跨域的，因为外域通常更容易被攻击者掌控。但是如果本域下有容易被利用的功能，比如可以发图和链接的论坛和评论区，攻击可以直接在本域下进行，而且这种攻击更加危险。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/10/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2019/08/07/gocv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/07/gocv/" class="post-title-link" itemprop="url">gocv的使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-07 18:50:39" itemprop="dateCreated datePublished" datetime="2019-08-07T18:50:39+08:00">2019-08-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">flask学习笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="gocv">gocv</h1>
-<h3 id="读取图片">读取图片</h3>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img := gocv.IMRead(<span class="string">&quot;test.png&quot;</span>, gocv.IMReadColor)</span><br><span class="line">win := gocv.NewWindow(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">win.IMShow(img)</span><br><span class="line">win.WaitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="创建纯色图片">创建纯色图片</h3>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CreateImgByBGR</span><span class="params">(sizex <span class="keyword">int</span>, sizey <span class="keyword">int</span>, b <span class="keyword">float64</span>, g <span class="keyword">float64</span>, r <span class="keyword">float64</span>)</span> <span class="title">gocv</span>.<span class="title">Mat</span></span> &#123;</span><br><span class="line">	img := gocv.NewMatWithSizeFromScalar(gocv.NewScalar(b, g, r, <span class="number">255</span>), sizex, sizey, gocv.MatTypeCV8UC3)</span><br><span class="line">	<span class="keyword">return</span> img</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="转换">转换</h3>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">img := gocv.IMRead(<span class="string">&quot;test.png&quot;</span>, gocv.IMReadColor)</span><br><span class="line">dst := gocv.NewMat()</span><br><span class="line">gocv.CvtColor(img, &amp;dst, gocv.ColorBGRToHSV)</span><br><span class="line">win := gocv.NewWindow(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">win.IMShow(dst)</span><br><span class="line">win.WaitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="inrange">inRange</h3>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	img := gocv.IMRead(<span class="string">&quot;test.png&quot;</span>, gocv.IMReadColor)</span><br><span class="line">	lb := gocv.NewScalar(<span class="number">68</span>, <span class="number">84</span>, <span class="number">153</span>, <span class="number">255</span>)</span><br><span class="line">	ub := gocv.NewScalar(<span class="number">80</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>)</span><br><span class="line">	hsv := gocv.NewMat()</span><br><span class="line">	mask := gocv.NewMat()</span><br><span class="line">	gocv.CvtColor(img, &amp;hsv, gocv.ColorBGRToHSV)</span><br><span class="line">	gocv.InRangeWithScalar(hsv, lb, ub, &amp;mask)</span><br><span class="line">	win := gocv.NewWindow(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">	win.IMShow(mask)</span><br><span class="line">	win.WaitKey(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/08/07/gocv/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blacston.com/2018/06/06/spider-json/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baichen">
-      <meta itemprop="description" content="黑石的技术笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑石的技术笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/06/06/spider-json/" class="post-title-link" itemprop="url">python爬虫-数据存储(一)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-06-06 19:06:54" itemprop="dateCreated datePublished" datetime="2018-06-06T19:06:54+08:00">2018-06-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:39:21" itemprop="dateModified" datetime="2021-01-16T11:39:21+08:00">2021-01-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spider/" itemprop="url" rel="index"><span itemprop="name">spider</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><em>JSON的格式是 <code>键:值</code> 类似于python中的字典</em> <em>JSON数组: JSON数组在方括号中书写,可包含多个对象 如<code>[&#123;'name':'blackstone', 'age', 21&#125;,&#123;'name':'marry', 'age', 19&#125;]</code></em>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/06/06/spider-json/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1521,20 +1529,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">90</span>
+        <span class="site-state-item-count">92</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
